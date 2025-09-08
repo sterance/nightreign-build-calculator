@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { relicEffects } from '../data/effectData';
+import { characters } from '../data/chaliceData';
 
 const DesiredEffects = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -29,6 +30,16 @@ const DesiredEffects = () => {
     return acc;
   }, {});
 
+  const formatEffectName = (effect) => {
+    const characterName = characters.find(char => effect.toLowerCase().startsWith(char));
+    if (characterName) {
+      const restOfEffect = effect.slice(characterName.length).trim();
+      const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
+      return `[${capitalizedChar}] ${restOfEffect}`;
+    }
+    return effect;
+  };
+
   return (
     <div id="effects-card" className="card" ref={containerRef}>
       <h2>Desired Effects</h2>
@@ -47,7 +58,7 @@ const DesiredEffects = () => {
                 <h3>{category}</h3>
                 <ul>
                   {filteredEffects[category].map((effect, index) => (
-                    <li key={index}>{effect}</li>
+                    <li key={index}>{formatEffectName(effect)}</li>
                   ))}
                 </ul>
               </div>
