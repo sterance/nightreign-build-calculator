@@ -6,6 +6,7 @@ const Chalice = ({ chalice, isSelected, onToggle }) => {
     <div
       className={`chalice ${isSelected ? 'selected' : ''}`}
       onClick={() => onToggle(chalice.name)}
+      title={chalice.name}
     >
       <div className="relic-slots">
         {chalice.slots.map((color, index) => (

@@ -7,6 +7,11 @@ const CharacterSelection = ({
   onCharacterSelect,
   onClear,
 }) => {
+  const capitalize = (s) => {
+    if (typeof s !== 'string' || !s) return '';
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  };
+
   return (
     <div id="character-card" className="card">
       <div className="card-header">
@@ -31,6 +36,7 @@ const CharacterSelection = ({
             className={`character-image-wrapper ${selectedCharacter === character ? 'selected' : ''
               }`}
             onClick={() => onCharacterSelect(character)}
+            title={capitalize(character)}
           >
             <img
               src={`/characters/${character}.png`}

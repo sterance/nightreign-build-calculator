@@ -3,6 +3,7 @@ import './App.css';
 import CharacterSelection from './components/CharacterSelection';
 import ChaliceSelection from './components/ChaliceSelection';
 import { chaliceData } from './data/chaliceData';
+import { CalculatorIcon, QuestionMarkIcon, UploadIcon } from './components/Icons';
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -69,7 +70,20 @@ function App() {
         </div>
       </div>
 
-      <button id="calculate-button">Calculate</button>
+      <div className="bottom-bar">
+        <button className='help-button' title='How to use'>
+          <QuestionMarkIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Help</span>
+        </button>
+        <button className='calculate-button' title='Calculate optimal relics'>
+          <CalculatorIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+        </button>
+        <button className="upload-button" title='Upload your save file'>
+          <UploadIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Upload</span>
+        </button>
+      </div>
     </div>
   );
 }
