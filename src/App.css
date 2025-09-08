@@ -1,0 +1,80 @@
+#root {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  flex-grow: 1;
+}
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0 2rem 2rem 2rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  top: 0px;
+}
+
+.card-container {
+  display: grid;
+  flex-grow: 1;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: 
+  "character chalice effects"
+  "relics relics effects";
+}
+
+.card {
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+}
+
+#character-card {
+  display: flex;
+  flex-direction: column;
+  grid-area: character;
+}
+#character-card img{
+  height: auto;
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: center;
+  
+}
+
+#chalice-card {
+  grid-area: chalice;
+}
+
+#relics-card {
+  grid-area: relics;
+}
+
+#effects-card {
+  grid-area: effects;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+#calculate-button {
+  font-size: larger;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+}
