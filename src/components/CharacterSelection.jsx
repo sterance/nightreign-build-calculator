@@ -1,21 +1,44 @@
 import React from 'react';
 import { characters } from '../data/chaliceData';
+import { ClearSelectionIcon } from './Icons';
 
-const CharacterSelection = ({ selectedCharacter, onCharacterSelect }) => {
+const CharacterSelection = ({
+  selectedCharacter,
+  onCharacterSelect,
+  onClear,
+}) => {
   return (
     <div id="character-card" className="card">
-      <h2>Character Selection</h2>
+      <div className="card-header">
+        <h2>Character Selection</h2>
+        {selectedCharacter && (
+          <div className='button-group'>
+            <button
+              className="card-button icon-button"
+              onClick={onClear}
+              title='Clear Selection'
+            >
+              <ClearSelectionIcon />
+            </button>
+          </div>
+
+        )}
+      </div>
       <div className="image-grid">
         {characters.map((character) => (
-          <img
+          <div
             key={character}
-            src={`/characters/${character}.png`}
-            alt={character}
-            height={50}
-            width={50}
-            className={selectedCharacter === character ? 'selected' : ''}
+            className={`character-image-wrapper ${selectedCharacter === character ? 'selected' : ''
+              }`}
             onClick={() => onCharacterSelect(character)}
-          />
+          >
+            <img
+              src={`/characters/${character}.png`}
+              alt={character}
+              height={60}
+              width={60}
+            />
+          </div>
         ))}
       </div>
     </div>

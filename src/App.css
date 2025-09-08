@@ -23,7 +23,7 @@ h1 {
   flex-grow: 1;
   gap: 1.5rem;
   margin-top: 1rem;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'character chalice effects'
@@ -38,21 +38,64 @@ h1 {
   background-color: #1a1a1a;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+.card h2 {
+  margin: 0;
+}
+.card-header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.card-button {
+  background: none;
+  border: 1px solid #555;
+  color: #ccc;
+  font-size: 0.8em;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+}
+.card-button:hover {
+  border-color: #646cff;
+}
+.button-group {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  gap: 0.1rem;
+}
+
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4em;
+}
+.icon-button:focus,
+.icon-button:focus-visible {
+  outline: none;
+}
+.icon-button svg {
+  color: #ccc;
 }
 
 #character-card {
-  display: flex;
-  flex-direction: column;
   grid-area: character;
 }
 
-#character-card img {
-  height: auto;
+.character-image-wrapper {
   cursor: pointer;
   border: 2px solid transparent;
+  padding: 0;
+  border-radius: 6px;
 }
 
-#character-card img.selected {
+.character-image-wrapper.selected {
   border-color: #646cff;
 }
 
@@ -83,6 +126,11 @@ h1 {
   border: 1px solid #555;
   border-radius: 4px;
   padding: 0.2rem;
+  cursor: pointer;
+}
+
+.chalice.selected {
+  border-color: #646cff;
 }
 
 .relic-slots {
@@ -97,10 +145,6 @@ h1 {
 
 #effects-card {
   grid-area: effects;
-}
-
-.card h2 {
-  margin-top: 0;
 }
 
 #calculate-button {

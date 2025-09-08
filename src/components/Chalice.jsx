@@ -1,9 +1,12 @@
 import React from 'react';
 import RelicSlot from './RelicSlot';
 
-const Chalice = ({ chalice }) => {
+const Chalice = ({ chalice, isSelected, onToggle }) => {
   return (
-    <div className="chalice">
+    <div
+      className={`chalice ${isSelected ? 'selected' : ''}`}
+      onClick={() => onToggle(chalice.name)}
+    >
       <div className="relic-slots">
         {chalice.slots.map((color, index) => (
           <RelicSlot key={index} color={color} />
