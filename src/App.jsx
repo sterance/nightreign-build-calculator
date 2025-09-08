@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
 import ChaliceSelection from './components/ChaliceSelection';
+import RelicResults from './components/RelicResults';
 import { chaliceData } from './data/chaliceData';
 import { CalculatorIcon, QuestionMarkIcon, UploadIcon } from './components/Icons';
 
@@ -65,9 +66,7 @@ function App() {
           <input type="text" />
         </div>
 
-        <div id="relics-card" className="card">
-          <h2>Recommended Relics</h2>
-        </div>
+        <RelicResults />
       </div>
 
       <div className="bottom-bar">

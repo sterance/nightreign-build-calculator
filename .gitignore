@@ -26,5 +26,6 @@ dist-ssr
 # other
 /public/characters
 /public/chalices
+/public/relics
 /public/relic-slots
 *:Zone.Identifier
