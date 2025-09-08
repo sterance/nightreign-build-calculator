@@ -3,6 +3,7 @@ import './App.css';
 import CharacterSelection from './components/CharacterSelection';
 import ChaliceSelection from './components/ChaliceSelection';
 import RelicResults from './components/RelicResults';
+import DesiredEffects from './components/DesiredEffects';
 import { chaliceData } from './data/chaliceData';
 import { CalculatorIcon, QuestionMarkIcon, UploadIcon } from './components/Icons';
 
@@ -61,10 +62,7 @@ function App() {
           onClearAll={handleClearAllChalices}
         />
 
-        <div id="effects-card" className="card">
-          <h2>Desired Effects</h2>
-          <input type="text" />
-        </div>
+        <DesiredEffects />
 
         <RelicResults />
       </div>
