@@ -5,7 +5,7 @@ import ChaliceSelection from './components/ChaliceSelection';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import { chaliceData } from './data/chaliceData';
-import { CalculatorIcon, QuestionMarkIcon, UploadIcon } from './components/Icons';
+import { CalculatorIcon, QuestionMarkIcon, RelicIcon, UploadIcon } from './components/Icons';
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -69,8 +69,8 @@ function App() {
 
       <div className="bottom-bar">
         <button className='help-button' title='How to use'>
-          <QuestionMarkIcon />
-          <span style={{ marginLeft: '0.5rem' }}>Help</span>
+          <RelicIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Relics</span>
         </button>
         <button className='calculate-button' title='Calculate optimal relics'>
           <CalculatorIcon />
