@@ -7,10 +7,13 @@ import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
 import { CalculatorIcon, RelicIcon, UploadIcon } from './components/Icons';
+import { calculateBestRelics } from './utils/calculation';
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
+  const [selectedSaveName, setSelectedSaveName] = useState(null);
   const [selectedChalices, setSelectedChalices] = useState([]);
+  const [desiredEffects, setDesiredEffects] = useState([]);
   const [showRelics, setShowRelics] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -25,6 +28,10 @@ function App() {
         const parsedData = JSON.parse(storedData);
         if (parsedData && parsedData.length > 0) {
           setHasRelicData(true);
+          // If there's only one character, pre-select it
+          if(parsedData.length === 1) {
+            setSelectedSaveName(parsedData[0].character_name);
+          }
         }
       } catch (e) {
         localStorage.removeItem('relicData');
@@ -91,6 +98,11 @@ function App() {
         const data = await response.json();
         localStorage.setItem('relicData', JSON.stringify(data));
         setHasRelicData(true);
+        if (data.length === 1) {
+          setSelectedSaveName(data[0].character_name);
+        } else {
+          setSelectedSaveName(null); // Require user to select a character
+        }
       } else {
         const errorText = await response.text();
         throw new Error(errorText || 'Failed to process file');
@@ -104,6 +116,33 @@ function App() {
     }
   };
 
+  const handleCalculate = () => {
+    const relicData = JSON.parse(localStorage.getItem('relicData'));
+
+    if (!relicData || !selectedCharacter || selectedChalices.length === 0 || !selectedSaveName) {
+      console.log("Cannot calculate: Missing relic data, character selection, chalice selection, or save name selection.");
+      return;
+    }
+
+    // Find the character data for the selected save name
+    const characterRelicData = relicData.find(
+      (character) => character.character_name === selectedSaveName
+    );
+
+    if (!characterRelicData) {
+        console.log(`No relic data found for character: ${selectedSaveName}`);
+        return;
+    }
+
+    const result = calculateBestRelics(
+      desiredEffects,
+      characterRelicData,
+      selectedChalices,
+      selectedCharacter
+    );
+
+    console.log("Calculation Result:", result);
+  };
 
   return (
     <div className="app-container">
@@ -124,14 +163,14 @@ function App() {
           onClearAll={handleClearAllChalices}
         />
 
-        <DesiredEffects />
+        <DesiredEffects onChange={setDesiredEffects} />
 
         <RelicResults
           selectedChalices={selectedChalices}
         />
       </div>
 
-      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} />}
+      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName}/>}
       
       {uploadError && <div className="error-popup">{uploadError}</div>}
 
@@ -145,13 +184,13 @@ function App() {
           <RelicIcon />
           <span style={{ marginLeft: '0.5rem' }}>Relics</span>
         </button>
-        <button className='calculate-button' title='Calculate optimal relics'>
+        <button className='calculate-button' title='Calculate optimal relics' onClick={handleCalculate}>
           <CalculatorIcon />
           <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
         </button>
         <button className="upload-button" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
            {isUploading ? (
-            <div className="spinner"></div>
+            <div className="loader"></div>
           ) : (
             <>
               <UploadIcon />

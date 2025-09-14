@@ -71,7 +71,7 @@ const EffectCard = ({ effect, onUpdate, onDelete }) => {
   );
 };
 
-const DesiredEffects = () => {
+const DesiredEffects = ({ onChange }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEffects, setSelectedEffects] = useState([]);
   const [isListVisible, setListVisible] = useState(false);
@@ -89,6 +89,10 @@ const DesiredEffects = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
+  useEffect(() => {
+    onChange(selectedEffects);
+  }, [selectedEffects, onChange]);
 
   const filteredEffects = Object.keys(relicEffects).reduce((acc, category) => {
     const filtered = relicEffects[category].filter((effect) =>

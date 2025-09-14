@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import items from '../data/items.json';
+import effects from '../data/effects.json';
 
 const RelicCard = ({ relic, items, effects }) => {
   const relicInfo = items[relic.item_id.toString()];
@@ -40,7 +42,7 @@ const RelicCard = ({ relic, items, effects }) => {
   );
 };
 
-const CharacterRelics = ({ characterData, items, effects }) => {
+const CharacterRelics = ({ characterData, items, effects, onSaveNameSelect, selectedSaveName }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
     // hide unknown relics and "Deep" relics
@@ -56,7 +58,16 @@ const CharacterRelics = ({ characterData, items, effects }) => {
 
   return (
       <div className="character-relics">
-        <h3>{characterData.character_name}</h3>
+        <label>
+          <input
+            type="radio"
+            name="saveName"
+            value={characterData.character_name}
+            checked={selectedSaveName === characterData.character_name}
+            onChange={() => onSaveNameSelect(characterData.character_name)}
+          />
+          <h3>{characterData.character_name}</h3>
+        </label>
         <div className="relics-grid">
           {filteredRelics.sort((a, b) => a.sorting - b.sorting).map((relic, index) => (
             <RelicCard key={index} relic={relic} items={items} effects={effects} />
@@ -66,10 +77,8 @@ const CharacterRelics = ({ characterData, items, effects }) => {
   )
 };
 
-const RelicsPage = ({ onBack }) => {
+const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
   const [relicData, setRelicData] = useState(null);
-  const [items, setItems] = useState(null);
-  const [effects, setEffects] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -79,17 +88,6 @@ const RelicsPage = ({ onBack }) => {
         if (storedRelicData) {
           setRelicData(JSON.parse(storedRelicData));
         }
-
-        const [itemsRes, effectsRes] = await Promise.all([
-          fetch('/items.json'),
-          fetch('/effects.json')
-        ]);
-
-        const itemsData = await itemsRes.json();
-        const effectsData = await effectsRes.json();
-        
-        setItems(itemsData);
-        setEffects(effectsData);
       } catch (error) {
         console.error("Failed to load relic data:", error);
       } finally {
@@ -133,7 +131,14 @@ const RelicsPage = ({ onBack }) => {
         </div>
         <div className="relic-data-container">
             {relicData.map(character => (
-              <CharacterRelics key={character.section_number} characterData={character} items={items} effects={effects} />
+              <CharacterRelics 
+                key={character.section_number} 
+                characterData={character} 
+                items={items} 
+                effects={effects}
+                selectedSaveName={selectedSaveName}
+                onSaveNameSelect={onSaveNameSelect}
+              />
             ))}
         </div>
       </div>
