@@ -8,12 +8,15 @@ import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
 import { CalculatorIcon, RelicIcon, UploadIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
+import items from './data/items.json';
+import effects from './data/effects.json';
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedSaveName, setSelectedSaveName] = useState(null);
   const [selectedChalices, setSelectedChalices] = useState([]);
   const [desiredEffects, setDesiredEffects] = useState([]);
+  const [calculationResult, setCalculationResult] = useState(null);
   const [showRelics, setShowRelics] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
@@ -140,8 +143,33 @@ function App() {
       selectedChalices,
       selectedCharacter
     );
+    
+    if (result) {
+      const formattedResult = {
+        "chalice name": result.chalice.name,
+        ...result.relics.reduce((acc, relic) => {
+          const relicInfo = items[relic.item_id.toString()];
+          const relicEffects = [
+            relic.effect1_id,
+            relic.effect2_id,
+            relic.effect3_id,
+            relic.sec_effect1_id,
+            relic.sec_effect2_id,
+            relic.sec_effect3_id,
+          ].map(id => effects[id.toString()]?.name).filter(Boolean);
 
-    console.log("Calculation Result:", result);
+          acc[relicInfo.name] = {
+            "effect 1": relicEffects[0] || "",
+            "effect 2": relicEffects[1] || "",
+            "effect 3": relicEffects[2] || "",
+          };
+          return acc;
+        }, {})
+      };
+      setCalculationResult(formattedResult);
+    } else {
+      setCalculationResult(null);
+    }
   };
 
   return (
@@ -167,6 +195,7 @@ function App() {
 
         <RelicResults
           selectedChalices={selectedChalices}
+          calculationResult={calculationResult}
         />
       </div>
 
