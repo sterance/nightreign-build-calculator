@@ -126,7 +126,9 @@ function App() {
 
         <DesiredEffects />
 
-        <RelicResults />
+        <RelicResults
+          selectedChalices={selectedChalices}
+        />
       </div>
 
       {showRelics && <RelicsPage onBack={() => setShowRelics(false)} />}

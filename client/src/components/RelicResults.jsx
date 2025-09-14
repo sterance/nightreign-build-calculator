@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RelicResults = () => {
+const RelicResults = ({ selectedChalices }) => {
   const toTitleCase = (str) => {
     return str
       .replace('.png', '')
@@ -11,28 +11,31 @@ const RelicResults = () => {
   };
 
   const relics = [
-    'delicate-burning-scene.png',
-    'delicate-drizzly-scene.png',
-    'delicate-luminous-scene.png',
+    'scenic-flatstone.png',
+    'scenic-flatstone.png',
+    'scenic-flatstone.png',
   ];
+  const chalice = 'placeholder-chalice.png'
 
+  const isEnabled = selectedChalices && selectedChalices.length > 0;
+  
   return (
-    <div id="relics-card" className="card">
+    <div id="relics-card" className={`card ${!isEnabled ? 'disabled' : ''}`}>
       <h2>Recommended Relics</h2>
       <div className="relic-result-container">
         <div className="chalice-result-card">
-          <img src="/chalices/wylders-chalice.png" alt="Chalice" style={{ width: '60px', height: '60px' }} />
-          <span id='chalice-name'>{toTitleCase('wylders-chalice.png')}</span>
+          <img src="/chalices/placeholder-chalice.png" alt="Chalice" style={{ width: '60px', height: '60px' }} />
+          <span id='chalice-name'>{chalice === 'placeholder-chalice.png' ? '' : toTitleCase(chalice)}</span>
         </div>
         {relics.map((relic, index) => (
           <div className="relic-result-card" key={index}>
             <img src={`/relics/${relic}`} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
-            <span>{toTitleCase(relic)}</span>
+            <span>{relic === 'scenic-flatstone.png' ? '' : toTitleCase(relic)}</span>
             <table className="relic-stats-table">
               <tbody>
-                <tr><td>Stat 1</td></tr>
-                <tr><td>Stat 2</td></tr>
-                <tr><td>Stat 3</td></tr>
+                <tr><td>Effect 1</td></tr>
+                <tr><td>Effect 2</td></tr>
+                <tr><td>Effect 3</td></tr>
               </tbody>
             </table>
           </div>
