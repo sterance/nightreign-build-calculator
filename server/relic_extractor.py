@@ -68,7 +68,7 @@ class BND4Entry:
             self.decrypted = True
             
         except Exception as e:
-            print(f"Error decrypting entry {self._index}: {str(e)}")
+            print(f"Error decrypting entry {self._index}: {str(e)}", file=sys.stderr)
             raise
 
 def clean_decrypted_output_folder():
@@ -86,14 +86,14 @@ def merge_userdata_files(input_file):
     unpacked_folder = decrypt_ds2_sl2(input_file)
 
     if not os.path.isdir(unpacked_folder):
-        print(f"❌ Folder not found: {unpacked_folder}")
+        print(f"Folder not found: {unpacked_folder}", file=sys.stderr)
         return None
 
     import glob
     userdata_files = sorted(glob.glob(os.path.join(unpacked_folder, "USERDATA_*")))
 
     if len(userdata_files) != 14:
-        print(f"⚠️ Expected 14 USERDATA files, found {len(userdata_files)}")
+        print(f"⚠️ Expected 14 USERDATA files, found {len(userdata_files)}", file=sys.stderr)
         return None
 
     output_file = os.path.join(unpacked_folder, "memory.sl2")
@@ -118,11 +118,11 @@ def decrypt_ds2_sl2(input_file) -> Optional[str]:
         with open(input_file, 'rb') as f:
             raw = f.read()
     except Exception as e:
-        print(f"ERROR: Could not read input file: {e}")
+        print(f"ERROR: Could not read input file: {e}", file=sys.stderr)
         return None
     
     if raw[0:4] != b'BND4':
-        print("ERROR: 'BND4' header not found! This doesn't appear to be a valid SL2 file.")
+        print("ERROR: 'BND4' header not found! This doesn't appear to be a valid SL2 file.", file=sys.stderr)
         return None
 
     num_bnd4_entries = struct.unpack("<i", raw[12:16])[0]
@@ -140,13 +140,13 @@ def decrypt_ds2_sl2(input_file) -> Optional[str]:
         pos = BND4_HEADER_LEN + (BND4_ENTRY_HEADER_LEN * i)
         
         if pos + BND4_ENTRY_HEADER_LEN > len(raw):
-            print(f"Warning: File too small to read entry #{i} header")
+            print(f"Warning: File too small to read entry #{i} header", file=sys.stderr)
             break
             
         entry_header = raw[pos:pos + BND4_ENTRY_HEADER_LEN]
 
         if entry_header[0:8] != b'\x40\x00\x00\x00\xff\xff\xff\xff':
-            print(f"Warning: Entry header #{i} does not match expected magic value - skipping")
+            print(f"Warning: Entry header #{i} does not match expected magic value - skipping", file=sys.stderr)
             continue
 
         entry_size = struct.unpack("<i", entry_header[8:12])[0]
@@ -156,15 +156,15 @@ def decrypt_ds2_sl2(input_file) -> Optional[str]:
         
         # Validity checks
         if entry_size <= 0 or entry_size > 1000000000:
-            print(f"Warning: Entry #{i} has invalid size: {entry_size} - skipping")
+            print(f"Warning: Entry #{i} has invalid size: {entry_size} - skipping", file=sys.stderr)
             continue
             
         if entry_data_offset <= 0 or entry_data_offset + entry_size > len(raw):
-            print(f"Warning: Entry #{i} has invalid data offset: {entry_data_offset} - skipping")
+            print(f"Warning: Entry #{i} has invalid data offset: {entry_data_offset} - skipping", file=sys.stderr)
             continue
             
         if entry_name_offset <= 0 or entry_name_offset >= len(raw):
-            print(f"Warning: Entry #{i} has invalid name offset: {entry_name_offset} - skipping")
+            print(f"Warning: Entry #{i} has invalid name offset: {entry_name_offset} - skipping", file=sys.stderr)
             continue
 
         try:
@@ -224,7 +224,7 @@ def find_hex_offset(section_data, hex_pattern):
             return section_data.index(pattern_bytes)
         return None
     except ValueError as e:
-        print(f"Failed to find hex pattern: {str(e)}")
+        print(f"Failed to find hex pattern: {str(e)}", file=sys.stderr)
         return None
 
 def aob_to_pattern(aob: str):
@@ -300,7 +300,7 @@ def empty_slot_finder_aow(file_path, pattern_offset_start, pattern_offset_end):
             file.seek(start_pos)
             section_data = file.read(end_pos - start_pos)
     except Exception as e:
-        print(f"Error reading file: {e}")
+        print(f"Error reading file: {e}", file=sys.stderr)
         return []
 
     # Find alignment point by scanning for valid slots
@@ -331,7 +331,7 @@ def empty_slot_finder_aow(file_path, pattern_offset_start, pattern_offset_end):
                 break
     
     if start_offset is None:
-        print("[ERROR] No valid slot alignment found.")
+        print("[ERROR] No valid slot alignment found.", file=sys.stderr)
         return []
 
     # Process all slots from alignment with variable slot sizes
@@ -411,7 +411,7 @@ def extract_relics_from_section(file_path, section_number):
     if 1 <= section_number <= 10:
         offset = base_offset + (section_number - 1) * 0x290
     else:
-        print(f"Invalid section number: {section_number}")
+        print(f"Invalid section number: {section_number}", file=sys.stderr)
         return None
     
     # Try to locate character name
@@ -422,14 +422,14 @@ def extract_relics_from_section(file_path, section_number):
             name_bytes = locate_name2(file_path, offset)
     
     if name_bytes is None:
-        print("Could not locate character name")
+        print("Could not locate character name", file=sys.stderr)
         return None
     
     # Find character data in section
     fixed_pattern_offset = find_hex_offset(section_data, name_bytes.hex())
     
     if fixed_pattern_offset is None:
-        print("Character name pattern not found in section")
+        print("Character name pattern not found in section", file=sys.stderr)
         return None
     
     # Calculate search boundaries for relics
@@ -437,7 +437,7 @@ def extract_relics_from_section(file_path, section_number):
     search_end_position = section_info['end'] - section_info['start']
     
     if search_start_position >= len(section_data):
-        print("Search start position beyond section data")
+        print("Search start position beyond section data", file=sys.stderr)
         return None
     
     # Extract character name
@@ -462,12 +462,12 @@ def extract_all_relics(sl2_file_path):
         # Handle SL2 decryption and merging
         unpacked_folder = merge_userdata_files(sl2_file_path)
         if unpacked_folder is None:
-            print("Failed to decrypt and merge SL2 file")
+            print("Failed to decrypt and merge SL2 file", file=sys.stderr)
             return None
         
         memory_file = os.path.join(unpacked_folder, "memory.sl2")
         if not os.path.exists(memory_file):
-            print("memory.sl2 not found after decryption")
+            print("memory.sl2 not found after decryption", file=sys.stderr)
             return None
         
         all_character_data = []
@@ -481,27 +481,27 @@ def extract_all_relics(sl2_file_path):
         return all_character_data
         
     except Exception as e:
-        print(f"Error extracting relics: {str(e)}")
+        print(f"Error extracting relics: {str(e)}", file=sys.stderr)
         return None
 
 def main():
     """Command line interface for testing"""
     if len(sys.argv) != 2:
-        print("Usage: python relic_extractor.py <path_to_sl2_file>")
+        print("Usage: python relic_extractor.py <path_to_sl2_file>", file=sys.stderr)
         sys.exit(1)
     
     sl2_file = sys.argv[1]
     if not os.path.exists(sl2_file):
-        print(f"File not found: {sl2_file}")
+        print(f"File not found: {sl2_file}", file=sys.stderr)
         sys.exit(1)
     
-    print(f"Extracting relics from: {sl2_file}")
+    print(f"Extracting relics from: {sl2_file}", file=sys.stderr)
     relic_data = extract_all_relics(sl2_file)
     
     if relic_data:
         print(json.dumps(relic_data, indent=2))
     else:
-        print("No relic data extracted")
+        print("No relic data extracted", file=sys.stderr)
         sys.exit(1)
 
 if __name__ == "__main__":

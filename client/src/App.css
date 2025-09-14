@@ -175,7 +175,7 @@ h1 {
   right: 2rem;
 }
 
-.bottom-bar .help-button {
+.bottom-bar .relics-button {
   position: absolute;
   left: 2rem;
 }
@@ -296,4 +296,143 @@ button:focus-visible {
 
 .effects-category li:last-child {
   border-bottom: none;
+}
+
+.relic-page-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.relic-page {
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.relic-page .close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+}
+
+.relic-data-container {
+  margin-top: 1rem;
+}
+
+.character-relics {
+  margin-bottom: 1.5rem;
+}
+
+.character-relics h3 {
+  text-align: left;
+  border-bottom: 1px solid #555;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.relics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.relic-card {
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 1rem;
+  background-color: #242424;
+}
+
+.relic-card h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1em;
+}
+
+.relic-card ul {
+  padding-left: 1.2rem;
+  margin: 0;
+  font-size: 0.85em;
+  /* list-style-type: '- '; */
+}
+
+.relic-card li {
+  text-align: left;
+}
+
+.relic-card.color-red { border-left: 5px solid #ff4d4d; }
+.relic-card.color-blue { border-left: 5px solid #4d94ff; }
+.relic-card.color-yellow { border-left: 5px solid #ffff4d; }
+.relic-card.color-green { border-left: 5px solid #4dff4d; }
+.relic-card.color-white { border-left: 5px solid #ffffff; }
+
+.error-popup {
+  position: fixed;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff4d4d;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  animation: fadeInOut 5s forwards;
+}
+
+.loader {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #646cff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+.bottom-bar .relic-button {
+  position: absolute;
+  left: 2rem;
+}
+
+.bottom-bar .relic-button:disabled {
+  background-color: #333;
+  color: #777;
+  cursor: not-allowed;
+  border-color: #555;
+}
+
+.bottom-bar .relic-button:disabled:hover {
+  border-color: #555;
+}
+
+.bottom-bar .relic-button:disabled svg {
+  color: #777;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, 20px); }
 }
