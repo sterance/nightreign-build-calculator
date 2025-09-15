@@ -7,10 +7,9 @@ Extracts relic information from .sl2 save files
 import os
 import sys
 import struct
-import hashlib
 import json
 import shutil
-from typing import Optional, Dict, List
+from typing import Optional
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 # Constants from original script
