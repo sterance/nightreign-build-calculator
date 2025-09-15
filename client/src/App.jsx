@@ -32,7 +32,7 @@ function App() {
         if (parsedData && parsedData.length > 0) {
           setHasRelicData(true);
           // If there's only one character, pre-select it
-          if(parsedData.length === 1) {
+          if (parsedData.length === 1) {
             setSelectedSaveName(parsedData[0].character_name);
           }
         }
@@ -92,7 +92,8 @@ function App() {
     formData.append('savefile', file);
 
     try {
-      const response = await fetch('http://localhost:3001/upload', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const response = await fetch(`${apiUrl}/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -133,8 +134,8 @@ function App() {
     );
 
     if (!characterRelicData) {
-        console.log(`No relic data found for character: ${selectedSaveName}`);
-        return;
+      console.log(`No relic data found for character: ${selectedSaveName}`);
+      return;
     }
 
     const result = calculateBestRelics(
@@ -143,7 +144,7 @@ function App() {
       selectedChalices,
       selectedCharacter
     );
-    
+
     if (result) {
       const formattedResult = {
         "chalice name": result.chalice.name,
@@ -203,8 +204,8 @@ function App() {
         />
       </div>
 
-      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName}/>}
-      
+      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} />}
+
       {uploadError && <div className="error-popup">{uploadError}</div>}
 
       <div className="bottom-bar">
@@ -222,7 +223,7 @@ function App() {
           <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
         </button>
         <button className="upload-button" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
-           {isUploading ? (
+          {isUploading ? (
             <div className="loader"></div>
           ) : (
             <>
