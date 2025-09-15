@@ -40,8 +40,8 @@ node_modules/
 *.sw?
 
 # other
-/client/public/characters
-/client/public/chalices
-/client/public/relics
-/client/public/relic-slots
+# /client/public/characters
+# /client/public/chalices
+# /client/public/relics
+# /client/public/relic-slots
 *:Zone.Identifier
