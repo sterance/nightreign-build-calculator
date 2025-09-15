@@ -8,7 +8,7 @@ const fs = require('fs');
 const app = express();
 const port = 3001;
 
-// Ensure the uploads directory exists
+// ensure the uploads directory exists
 const uploadDir = 'uploads';
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
@@ -69,13 +69,14 @@ app.post('/upload', upload.single('savefile'), (req, res) => {
   });
 });
 
-// Serve the React app for production
-const clientBuildPath = path.join(__dirname, '../client/dist');
-app.use(express.static(clientBuildPath));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuildPath, 'index.html'));
-});
-
+if (process.env.NODE_ENV !== 'production') {
+  // Serve the React app for development
+  const clientBuildPath = path.join(__dirname, '../client/dist');
+  app.use(express.static(clientBuildPath));
+  app.get('*', (req, res) => {
+      res.sendFile(path.join(clientBuildPath, 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
