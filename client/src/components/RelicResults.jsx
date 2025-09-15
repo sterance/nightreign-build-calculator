@@ -1,17 +1,22 @@
 import React from 'react';
+import RelicSlot from './RelicSlot';
 
 const RelicResults = ({ selectedChalices, calculationResult }) => {
 
   const getRelicImage = (relicName) => {
     if (!relicName) return 'scenic-flatstone.png';
-    return `${relicName.toLowerCase().replace(/ /g, '-')}.png`;
+    const cleanedName = relicName
+      .toLowerCase()
+      .replace(/[<>:'"/\\|?*']/g, '') // Remove special characters
+      .replace(/ /g, '-'); // Replace spaces with hyphens
+    return `${cleanedName}.png`;
   };
 
   const isEnabled = selectedChalices && selectedChalices.length > 0;
   
   const renderContent = () => {
     if (calculationResult) {
-      const { "chalice name": chaliceName, ...relics } = calculationResult;
+      const { "chalice name": chaliceName, "chalice slots": chaliceSlots, ...relics } = calculationResult;
       const relicEntries = Object.entries(relics);
       
       return (
@@ -19,16 +24,21 @@ const RelicResults = ({ selectedChalices, calculationResult }) => {
           <div className="chalice-result-card">
             <img src="/chalices/placeholder-chalice.png" alt="Chalice" style={{ width: '60px', height: '60px' }} />
             <span id='chalice-name'>{chaliceName}</span>
+            <div className="relic-slots-container">
+              {chaliceSlots && chaliceSlots.map((color, index) => (
+                <RelicSlot key={index} color={color} />
+              ))}
+            </div>
           </div>
-          {relicEntries.map(([relicName, effects], index) => (
-            <div className="relic-result-card" key={index}>
+          {relicEntries.map(([relicName, relicData], index) => (
+            <div className={`relic-result-card color-${relicData.color}`} key={index}>
               <img src={`/relics/${getRelicImage(relicName)}`} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
               <span>{relicName}</span>
               <table className="relic-stats-table">
                 <tbody>
-                  <tr><td>{effects['effect 1']}</td></tr>
-                  <tr><td>{effects['effect 2']}</td></tr>
-                  <tr><td>{effects['effect 3']}</td></tr>
+                  <tr><td>{relicData.effects['effect 1']}</td></tr>
+                  <tr><td>{relicData.effects['effect 2']}</td></tr>
+                  <tr><td>{relicData.effects['effect 3']}</td></tr>
                 </tbody>
               </table>
             </div>

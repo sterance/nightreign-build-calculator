@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
 import effects from '../data/effects.json';
+import { CloseIcon } from './Icons';
 
 const RelicCard = ({ relic, items, effects }) => {
   const relicInfo = items[relic.item_id.toString()];
@@ -42,7 +43,7 @@ const RelicCard = ({ relic, items, effects }) => {
   );
 };
 
-const CharacterRelics = ({ characterData, items, effects, onSaveNameSelect, selectedSaveName }) => {
+const CharacterRelics = ({ characterData, items, effects, onSaveNameSelect, selectedSaveName, showRadio }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
     // hide unknown relics and "Deep" relics
@@ -59,13 +60,15 @@ const CharacterRelics = ({ characterData, items, effects, onSaveNameSelect, sele
   return (
       <div className="character-relics">
         <label>
-          <input
-            type="radio"
-            name="saveName"
-            value={characterData.character_name}
-            checked={selectedSaveName === characterData.character_name}
-            onChange={() => onSaveNameSelect(characterData.character_name)}
-          />
+          {showRadio && (
+            <input
+              type="radio"
+              name="saveName"
+              value={characterData.character_name}
+              checked={selectedSaveName === characterData.character_name}
+              onChange={() => onSaveNameSelect(characterData.character_name)}
+            />
+          )}
           <h3>{characterData.character_name}</h3>
         </label>
         <div className="relics-grid">
@@ -114,20 +117,28 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
          <div className="relic-page card">
            <div className="card-header">
              <h2>Your Relics</h2>
-             <button className="close-button" onClick={onBack}>X</button>
+             <button className="close-button" onClick={onBack}><CloseIcon /></button>
            </div>
            <p>No displayable relic data found. Upload a save file or check your filters.</p>
          </div>
        </div>
      );
   }
+  
+  const charactersWithRelics = relicData.filter(character => 
+    character.relics.some(relic => {
+        const relicInfo = items[relic.item_id.toString()];
+        return relicInfo && !relicInfo.name.startsWith('Deep');
+    })
+  );
+
 
   return (
     <div className="relic-page-backdrop">
       <div className="relic-page card">
         <div className='card-header'>
             <h2>Your Relics</h2>
-            <button className="close-button" onClick={onBack}>X</button>
+            <button className="close-button" onClick={onBack}><CloseIcon/></button>
         </div>
         <div className="relic-data-container">
             {relicData.map(character => (
@@ -138,6 +149,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
                 effects={effects}
                 selectedSaveName={selectedSaveName}
                 onSaveNameSelect={onSaveNameSelect}
+                showRadio={charactersWithRelics.length > 1}
               />
             ))}
         </div>

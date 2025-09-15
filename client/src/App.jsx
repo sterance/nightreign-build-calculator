@@ -147,6 +147,7 @@ function App() {
     if (result) {
       const formattedResult = {
         "chalice name": result.chalice.name,
+        "chalice slots": result.chalice.slots,
         ...result.relics.reduce((acc, relic) => {
           const relicInfo = items[relic.item_id.toString()];
           const relicEffects = [
@@ -159,9 +160,12 @@ function App() {
           ].map(id => effects[id.toString()]?.name).filter(Boolean);
 
           acc[relicInfo.name] = {
-            "effect 1": relicEffects[0] || "",
-            "effect 2": relicEffects[1] || "",
-            "effect 3": relicEffects[2] || "",
+            color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
+            effects: {
+              "effect 1": relicEffects[0] || "",
+              "effect 2": relicEffects[1] || "",
+              "effect 3": relicEffects[2] || "",
+            }
           };
           return acc;
         }, {})
