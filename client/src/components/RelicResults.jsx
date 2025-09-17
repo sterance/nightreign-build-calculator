@@ -3,72 +3,66 @@ import RelicSlot from './RelicSlot';
 
 const RelicResults = ({ selectedChalices, calculationResult }) => {
 
-  const getRelicImage = (relicName) => {
-    if (!relicName) return 'scenic-flatstone.png';
-    const cleanedName = relicName
+  const getImageUrl = (name, type) => {
+    const cleanedName = name
       .toLowerCase()
-      .replace(/[<>:'"/\\|?*']/g, '') // Remove special characters
-      .replace(/ /g, '-'); // Replace spaces with hyphens
-    return `${cleanedName}.png`;
+      .replace(/[<>:'"/\\|?*']/g, '') // remove special characters
+      .replace(/ /g, '-'); // replace spaces with hyphens
+    return `/${type}/${cleanedName}.png`;
   };
 
   const isEnabled = selectedChalices && selectedChalices.length > 0;
-  
+
   const renderContent = () => {
+    let chaliceName, chaliceSlots, relicEntries, relics;
+
     if (calculationResult) {
-      const { "chalice name": chaliceName, "chalice slots": chaliceSlots, ...relics } = calculationResult;
-      const relicEntries = Object.entries(relics);
-      
-      return (
-        <>
-          <div className="chalice-result-card">
-            <img src="/chalices/placeholder-chalice.png" alt="Chalice" style={{ width: '60px', height: '60px' }} />
-            <span id='chalice-name'>{chaliceName}</span>
-            <div className="relic-slots-container">
-              {chaliceSlots && chaliceSlots.map((color, index) => (
-                <RelicSlot key={index} color={color} />
-              ))}
-            </div>
-          </div>
-          {relicEntries.map(([relicName, relicData], index) => (
-            <div className={`relic-result-card color-${relicData.color}`} key={index}>
-              <img src={`/relics/${getRelicImage(relicName)}`} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
-              <span>{relicName}</span>
-              <table className="relic-stats-table">
-                <tbody>
-                  <tr><td>{relicData.effects['effect 1']}</td></tr>
-                  <tr><td>{relicData.effects['effect 2']}</td></tr>
-                  <tr><td>{relicData.effects['effect 3']}</td></tr>
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </>
-      );
+      ({ "chalice name": chaliceName, "chalice slots": chaliceSlots, ...relics } = calculationResult);
+      relicEntries = Object.entries(relics);
     } else {
-      // Placeholder content
-      return (
-        <>
-          <div className="chalice-result-card">
-            <img src="/chalices/placeholder-chalice.png" alt="Chalice" style={{ width: '60px', height: '60px' }} />
-            <span id='chalice-name'></span>
-          </div>
-          {['scenic-flatstone.png', 'scenic-flatstone.png', 'scenic-flatstone.png'].map((relic, index) => (
-            <div className="relic-result-card" key={index}>
-              <img src={`/relics/${relic}`} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
-              <span></span>
-              <table className="relic-stats-table">
-                <tbody>
-                  <tr><td>Effect 1</td></tr>
-                  <tr><td>Effect 2</td></tr>
-                  <tr><td>Effect 3</td></tr>
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </>
-      );
+      chaliceName = "Placeholder chalice";
+      chaliceSlots = ["white", "white", "white"];
+      const placeholderRelic = {
+        color: "white",
+        effects: {
+          "effect 1": "",
+          "effect 2": "",
+          "effect 3": "",
+        }
+      };
+      relicEntries = [
+        ["Scenic Flatstone", placeholderRelic],
+        ["Scenic Flatstone", placeholderRelic],
+        ["Scenic Flatstone", placeholderRelic],
+      ]
     }
+
+    return (
+      <>
+        <div className="chalice-result-card">
+          <img src={getImageUrl(chaliceName, 'chalices')} alt="Chalice" style={{ width: '60px', height: '60px' }} />
+          {chaliceName !== "Placeholder chalice" && <span id='chalice-name'>{chaliceName}</span>}
+          <div className="relic-slots-container">
+            {chaliceSlots && chaliceSlots.map((color, index) => (
+              <RelicSlot key={index} color={color} />
+            ))}
+          </div>
+        </div>
+        {relicEntries.map(([relicName, relicData], index) => (
+          <div className={`relic-result-card color-${relicData.color}`} key={index}>
+            <img src={getImageUrl(relicName, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
+            {relicName !== "Scenic Flatstone" && <span>{relicName}</span>}
+            <table className="relic-stats-table">
+              <tbody>
+                <tr><td>{relicData.effects['effect 1']}</td></tr>
+                <tr><td>{relicData.effects['effect 2']}</td></tr>
+                <tr><td>{relicData.effects['effect 3']}</td></tr>
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </>
+    );
   };
 
   return (

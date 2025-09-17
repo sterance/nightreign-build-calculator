@@ -137,9 +137,10 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
     <div className="relic-page-backdrop">
       <div className="relic-page card">
         <div className='card-header'>
-            <h2>Your Relics</h2>
+            
             <button className="close-button" onClick={onBack}><CloseIcon/></button>
         </div>
+        <h2>Your Relics</h2>
         <div className="relic-data-container">
             {relicData.map(character => (
               <CharacterRelics 
