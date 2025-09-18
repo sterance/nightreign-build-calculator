@@ -272,6 +272,9 @@ button:focus-visible {
   -webkit-appearance: none;
   margin: 0;
 }
+.weight-control input[type="number"] {
+  -moz-appearance: textfield; /* spinner suppression for firefox */
+}
 .icon-button.required svg {
   fill: #646cff;
 }
