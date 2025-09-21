@@ -1,0 +1,6295 @@
+[
+  {
+    "ids": [
+      10000,
+      7036000,
+      8610100
+    ],
+    "name": "FP Restoration upon Successive Attacks",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      10001,
+      100000,
+      7032200
+    ],
+    "name": "Taking attacks improves attack power",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      10002,
+      7035900
+    ],
+    "name": "Switching Weapons Boosts Attack Power",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      11000,
+      7033200
+    ],
+    "name": "[Wylder] +1 additional Character Skill use",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      11002,
+      7032400
+    ],
+    "name": "[Wylder] Art gauge greatly filled when ability is activated",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      12002,
+      7012000
+    ],
+    "name": "[Guardian] Slowly restores nearby allies' HP while Art is active",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      16002,
+      7010900
+    ],
+    "name": "[Revenant] Expend own HP to fully heal nearby allies when activating Art",
+    "deepOfNight": false,
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      17002,
+      7032900
+    ],
+    "name": "[Recluse] Suffer blood loss and increase attack power upon Art activation",
+    "deepOfNight": false,
+    "nightfarer": "Recluse",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      310000,
+      310400,
+      7000090,
+      8000000
+    ],
+    "name": "Increased Maximum HP",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      310100,
+      7000190,
+      8010000
+    ],
+    "name": "Increased Maximum FP",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      310200,
+      310401,
+      7000290,
+      8020000
+    ],
+    "name": "Increased Maximum Stamina",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311000,
+      370000,
+      8510000
+    ],
+    "name": "Improved Item Discovery",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      311100,
+      370001,
+      8500000
+    ],
+    "name": "More Runes From Defeated Enemies",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      311500,
+      8020200
+    ],
+    "name": "Improved Stamina Recovery",
+    "deepOfNight": false,
+    "group": "Improved Stamina Recovery",
+    "level": 0
+  },
+  {
+    "ids": [
+      311600,
+      7003100,
+      8210100
+    ],
+    "name": "Improved Blood Loss Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      311601,
+      7003500,
+      8210500
+    ],
+    "name": "Improved Frost Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      311700,
+      7003000,
+      8210000
+    ],
+    "name": "Improved Poison Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      311701,
+      7003400,
+      8210400
+    ],
+    "name": "Improved Rot Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      311800,
+      7003200,
+      8210200
+    ],
+    "name": "Improved Sleep Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      311801,
+      7003600,
+      8210600
+    ],
+    "name": "Improved Madness Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      311900,
+      7003300,
+      8210300
+    ],
+    "name": "Improved Death Blight Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      312000
+    ],
+    "name": "Improved Poison & Rot Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      312001
+    ],
+    "name": "Improved Blood Loss & Frost Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      312002
+    ],
+    "name": "Improved Sleep & Madness Resistance",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      312100,
+      8230000
+    ],
+    "name": "Improved Poise",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      312300,
+      8350000
+    ],
+    "name": "Improved Skill Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      312500
+    ],
+    "name": "Improved Dexterity",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      312501,
+      320800,
+      8610200
+    ],
+    "name": "Successive Attacks Boost Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320000,
+      8100100
+    ],
+    "name": "Improved Magic Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320001,
+      320101,
+      320201,
+      320301
+    ],
+    "name": "Impaired Physical Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320100,
+      8100300
+    ],
+    "name": "Improved Lightning Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320200,
+      8100200
+    ],
+    "name": "Improved Fire Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      320300,
+      8100400
+    ],
+    "name": "Improved Holy Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320400,
+      8660000
+    ],
+    "name": "Improved Attack Power at Low HP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320500,
+      8670000
+    ],
+    "name": "Improved Attack Power at Full HP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320600,
+      8430000
+    ],
+    "name": "Improved Thrusting Counterattack",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320700,
+      8140000
+    ],
+    "name": "Improved Guard Breaking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      320900,
+      7040200,
+      8130000
+    ],
+    "name": "Improved Critical Hits",
+    "deepOfNight": false,
+    "group": "Improved Critical Hits",
+    "level": 0,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      321000,
+      8340100
+    ],
+    "name": "Projectile Damage Drop-Off Reduced",
+    "deepOfNight": false,
+    "group": "Projectile Damage Drop Off Reduced",
+    "level": 0
+  },
+  {
+    "ids": [
+      321200,
+      8320000
+    ],
+    "name": "Improved Chain Attack Finishers",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      321300,
+      8320100
+    ],
+    "name": "Improved Charge Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      321500,
+      8340000
+    ],
+    "name": "Improved Ranged Weapon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      321600
+    ],
+    "name": "Blood Loss in Vicinity Increases Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      321700
+    ],
+    "name": "Poison & Rot Improves Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      321800,
+      8320300
+    ],
+    "name": "Improved Jump Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      321900,
+      7043000,
+      8380000
+    ],
+    "name": "Improved Roar & Breath Attacks",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      322000,
+      7040100,
+      8420000
+    ],
+    "name": "Improved Guard Counters",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      322100,
+      8390000
+    ],
+    "name": "Improved Throwing Pots",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      322200,
+      7043100,
+      8400000
+    ],
+    "name": "Improved Perfuming Arts",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      330000,
+      8330000
+    ],
+    "name": "Improved Sorceries",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      330400,
+      8330100
+    ],
+    "name": "Improved Incantations",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      330600,
+      8330500
+    ],
+    "name": "Extended Spell Duration",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      330700,
+      8330400
+    ],
+    "name": "Improved Spell Casting Speed",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      330800,
+      8330600,
+      8330602
+    ],
+    "name": "Reduced Spell FP Cost",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      330801
+    ],
+    "name": "Maximum HP Down",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      330900
+    ],
+    "name": "Improved Charged Spells & Skills",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340000,
+      7006200,
+      8200000
+    ],
+    "name": "Improved Physical Damage Negation",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      340100,
+      8200100
+    ],
+    "name": "Improved Magic Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340200,
+      8200200
+    ],
+    "name": "Improved Fire Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340300,
+      8200300
+    ],
+    "name": "Improved Lightning Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340400,
+      8200400
+    ],
+    "name": "Improved Holy Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340500,
+      8200500
+    ],
+    "name": "Improved Non-Physical Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340700,
+      8410000
+    ],
+    "name": "Improved Dodging",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340701
+    ],
+    "name": "Impaired Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      340800,
+      7012300,
+      8660101
+    ],
+    "name": "Improved Damage Negation at Low HP",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      340900,
+      8670101
+    ],
+    "name": "Improved Damage Negation at Full HP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      341000,
+      8220000
+    ],
+    "name": "Improved Guarding Ability",
+    "deepOfNight": false,
+    "group": "Improved Guarding Ability",
+    "level": 0
+  },
+  {
+    "ids": [
+      350000,
+      8440000
+    ],
+    "name": "Improved Flask HP Restoration",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      350200,
+      7001100,
+      8540000
+    ],
+    "name": "Continuous HP Recovery",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      350300,
+      8630000
+    ],
+    "name": "Defeating Enemies Restores HP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      350400
+    ],
+    "name": "Successive Attack HP Restoration",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      350500,
+      7034900,
+      8640000
+    ],
+    "name": "Critical Hit HP Restoration",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      350600,
+      8640100
+    ],
+    "name": "Critical Hit FP Restoration",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      360200,
+      8350200
+    ],
+    "name": "Reduced Skill FP Cost",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      360700
+    ],
+    "name": "No Rune Loss or Level Down Upon Death",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      361100,
+      8630100
+    ],
+    "name": "Defeating Enemies Restores FP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      370002
+    ],
+    "name": "Continuous HP Loss",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6001400
+    ],
+    "name": "Physical Attack Up +3",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001401
+    ],
+    "name": "Physical Attack Up +4",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001500
+    ],
+    "name": "Magic Attack Power Up +3",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001501
+    ],
+    "name": "Magic Attack Power Up +4",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001600
+    ],
+    "name": "Fire Attack Power Up +3",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001601
+    ],
+    "name": "Fire Attack Power Up +4",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001700
+    ],
+    "name": "Lightning Attack Power Up +3",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001701
+    ],
+    "name": "Lightning Attack Power Up +4",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001800
+    ],
+    "name": "Holy Attack Power Up +3",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6001801
+    ],
+    "name": "Holy Attack Power Up +4",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002600
+    ],
+    "name": "Improved Magic Damage Negation +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002601
+    ],
+    "name": "Improved Magic Damage Negation +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002700
+    ],
+    "name": "Improved Fire Damage Negation +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002701
+    ],
+    "name": "Improved Fire Damage Negation +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002800
+    ],
+    "name": "Improved Lightning Damage Negation +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002801
+    ],
+    "name": "Improved Lightning Damage Negation +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002900
+    ],
+    "name": "Improved Holy Damage Negation +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6002901
+    ],
+    "name": "Improved Holy Damage Negation +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003000
+    ],
+    "name": "Improved Poison Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003001
+    ],
+    "name": "Improved Poison Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003100
+    ],
+    "name": "Improved Blood Loss Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003101
+    ],
+    "name": "Improved Blood Loss Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003200
+    ],
+    "name": "Improved Sleep Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003201
+    ],
+    "name": "Improved Sleep Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003300
+    ],
+    "name": "Improved Death Blight Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003301
+    ],
+    "name": "Improved Death Blight Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003400
+    ],
+    "name": "Improved Rot Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003401
+    ],
+    "name": "Improved Rot Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003500
+    ],
+    "name": "Improved Frost Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003501
+    ],
+    "name": "Improved Frost Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003600
+    ],
+    "name": "Improved Madness Resistance +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6003601
+    ],
+    "name": "Improved Madness Resistance +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6005600
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6005601
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6030200
+    ],
+    "name": "HP restored when using medicinal boluses- etc. +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6030600
+    ],
+    "name": "Art gauge charged from successful guarding +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6030800
+    ],
+    "name": "Art gauge fills moderately upon critical hit +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6030900
+    ],
+    "name": "Physical attack power increases after using grease items +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6030901
+    ],
+    "name": "Physical attack power increases after using grease items +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6035100
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6040101
+    ],
+    "name": "Improved Guard Counters +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6040100
+    ],
+    "name": "Improved Guard Counters +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6040301
+    ],
+    "name": "Improved Throwing Pot Damage +2",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040300
+    ],
+    "name": "Improved Throwing Pot Damage +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040401
+    ],
+    "name": "Improved Throwing Knife Damage +2",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040400
+    ],
+    "name": "Improved Throwing Knife Damage +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040501
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6040500
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6043101
+    ],
+    "name": "Improved Perfuming Arts +2",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6043100
+    ],
+    "name": "Improved Perfuming Arts +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6060300
+    ],
+    "name": "Max HP increased for each great enemy defeated at a Great Church.",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6060400
+    ],
+    "name": "Runes and Item Discovery increased for each great enemy defeated at a Fort",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6060500
+    ],
+    "name": "Arcane increased for each great enemy defeated at a Ruin",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6060600
+    ],
+    "name": "Max stamina increased for each great enemy defeated at a Great Encampment",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6090000
+    ],
+    "name": "Defeating enemies fills more of the Art gauge +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6160000
+    ],
+    "name": "HP Restoration upon Thrusting Counterattack +1",
+    "deepOfNight": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      6260000
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6260001
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy +2",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6260300
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6260301
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy +2",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6260400
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy +1",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6260401
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy +2",
+    "deepOfNight": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6500000
+    ],
+    "name": "[Wylder] Character Skill inflicts Blood Loss",
+    "nightfarer": "Wylder",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500100
+    ],
+    "name": "[Guardian] Character Skill Boosts Damage Negation of Nearby Allies",
+    "nightfarer": "Guardian",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500200
+    ],
+    "name": "[Ironeye] Character Skill Inflicts Heavy Poison Damage on Poisoned Enemies",
+    "nightfarer": "Ironeye",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500300
+    ],
+    "name": "[Duchess] Use Character Skill for Brief Invulnerability",
+    "nightfarer": "Duchess",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500400
+    ],
+    "name": "[Raider] Hit With Character Skill to Reduce Enemy Attack Power",
+    "nightfarer": "Raider",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500500
+    ],
+    "name": "[Revenant] Increased Max FP upon Ability Activation",
+    "nightfarer": "Revenant",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500600
+    ],
+    "name": "[Recluse] Collect Affinity Residues to Negate Affinity",
+    "nightfarer": "Recluse",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6500700
+    ],
+    "name": "[Executor] Slowly Restore HP upon Ability Activation",
+    "nightfarer": "Executor",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6600000
+    ],
+    "name": "Sleep in Vicinity Improves Attack Power",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6600001
+    ],
+    "name": "Sleep in Vicinity Improves Attack Power +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6600100
+    ],
+    "name": "Madness in Vicinity Improves Attack Power",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6600101
+    ],
+    "name": "Madness in Vicinity Improves Attack Power +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6610400
+    ],
+    "name": "Increased Maximum HP",
+    "deepOfNight": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      6610500
+    ],
+    "name": "Increased Maximum FP",
+    "deepOfNight": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      6610600
+    ],
+    "name": "Increased Maximum Stamina",
+    "deepOfNight": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      6610700
+    ],
+    "name": "Reduced FP Consumption",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6610800
+    ],
+    "name": "Improved Affinity Attack Power",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6610801
+    ],
+    "name": "Improved Affinity Attack Power +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6610802
+    ],
+    "name": "Improved Affinity Attack Power +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611001
+    ],
+    "name": "Improved Physical Damage Negation +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611002
+    ],
+    "name": "Improved Physical Damage Negation +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611100
+    ],
+    "name": "Improved Affinity Damage Negation",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611101
+    ],
+    "name": "Improved Affinity Damage Negation +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611102
+    ],
+    "name": "Improved Affinity Damage Negation +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611202
+    ],
+    "name": "Improved Sorceries +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611200
+    ],
+    "name": "Improved Sorceries",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611201
+    ],
+    "name": "Improved Sorceries +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611302
+    ],
+    "name": "Improved Incantations +2",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611300
+    ],
+    "name": "Improved Incantations",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611301
+    ],
+    "name": "Improved Incantations +1",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6611400
+    ],
+    "name": "Improved Flask HP Restoration",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621000
+    ],
+    "name": "Crimsonspill Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621100
+    ],
+    "name": "Crimson Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621200
+    ],
+    "name": "Cerulean Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621300
+    ],
+    "name": "Speckled Hardtear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621400
+    ],
+    "name": "Crimson Bubbletear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621500
+    ],
+    "name": "Opaline Bubbletear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621600
+    ],
+    "name": "Crimsonburst Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621700
+    ],
+    "name": "Greenburst Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621800
+    ],
+    "name": "Opaline Hardtear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6621900
+    ],
+    "name": "Thorny Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622000
+    ],
+    "name": "Spiked Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622100
+    ],
+    "name": "Windy Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622200
+    ],
+    "name": "Ruptured Crystal Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622300
+    ],
+    "name": "Leaden Hardtear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622400
+    ],
+    "name": "Twiggy Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622500
+    ],
+    "name": "Crimsonwhorl Bubbletear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622600
+    ],
+    "name": "Cerulean Hidden Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622700
+    ],
+    "name": "Stonebarb Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622800
+    ],
+    "name": "Flame-Shrouding Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6622900
+    ],
+    "name": "Magic-Shrouding Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6623000
+    ],
+    "name": "Lightning-Shrouding Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6623100
+    ],
+    "name": "Holy-Shrouding Cracked Tear in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6624000
+    ],
+    "name": "Uplifting Aromatic in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6624100
+    ],
+    "name": "Spark Aromatic in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6624200
+    ],
+    "name": "Ironjar Aromatic in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6624300
+    ],
+    "name": "Bloodboil Aromatic in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6624400
+    ],
+    "name": "Poison Spraymist in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6624500
+    ],
+    "name": "Acid Spraymist in possession at start of expedition",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630000
+    ],
+    "name": "Dormant Power Helps Discover Daggers",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630100
+    ],
+    "name": "Dormant Power Helps Discover Straight Swords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630200
+    ],
+    "name": "Dormant Power Helps Discover Greatswords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630300
+    ],
+    "name": "Dormant Power Helps Discover Colossal Swords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630400
+    ],
+    "name": "Dormant Power Helps Discover Curved Swords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630500
+    ],
+    "name": "Dormant Power Helps Discover Curved Greatswords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630600
+    ],
+    "name": "Dormant Power Helps Discover Katana",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630700
+    ],
+    "name": "Dormant Power Helps Discover Twinblades",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630800
+    ],
+    "name": "Dormant Power Helps Discover Thrusting Swords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6630900
+    ],
+    "name": "Dormant Power Helps Discover Heavy Thrusting Swords",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631000
+    ],
+    "name": "Dormant Power Helps Discover Axes",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631100
+    ],
+    "name": "Dormant Power Helps Discover Greataxes",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631200
+    ],
+    "name": "Dormant Power Helps Discover Hammers",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631300
+    ],
+    "name": "Dormant Power Helps Discover Great Hammers",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631400
+    ],
+    "name": "Dormant Power Helps Discover Flails",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631500
+    ],
+    "name": "Dormant Power Helps Discover Spears",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631600
+    ],
+    "name": "Dormant Power Helps Discover Great Spears",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631700
+    ],
+    "name": "Dormant Power Helps Discover Halberds",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631800
+    ],
+    "name": "Dormant Power Helps Discover Reapers",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6631900
+    ],
+    "name": "Dormant Power Helps Discover Fists",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632000
+    ],
+    "name": "Dormant Power Helps Discover Claws",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632100
+    ],
+    "name": "Dormant Power Helps Discover Whips",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632200
+    ],
+    "name": "Dormant Power Helps Discover Colossal Weapons",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632300
+    ],
+    "name": "Dormant Power Helps Discover Bows",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632400
+    ],
+    "name": "Dormant Power Helps Discover Greatbows",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632500
+    ],
+    "name": "Dormant Power Helps Discover Crossbows",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632600
+    ],
+    "name": "Dormant Power Helps Discover Ballistas",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632700
+    ],
+    "name": "Dormant Power Helps Discover Small Shields",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632800
+    ],
+    "name": "Dormant Power Helps Discover Medium Shields",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6632900
+    ],
+    "name": "Dormant Power Helps Discover Greatshields",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6633000
+    ],
+    "name": "Dormant Power Helps Discover Staves",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6633100
+    ],
+    "name": "Dormant Power Helps Discover Sacred Seals",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6633200
+    ],
+    "name": "Dormant Power Helps Discover Torches",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6640000
+    ],
+    "name": "[Wylder] Improved Mind- Reduced Vigor",
+    "nightfarer": "Wylder",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6640100
+    ],
+    "name": "[Wylder] Improved Intelligence and Faith- Reduced Strength and Dexterity",
+    "nightfarer": "Wylder",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6641000
+    ],
+    "name": "[Guardian] Improved Strength and Dexterity- Reduced Vigor",
+    "nightfarer": "Guardian",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6641100
+    ],
+    "name": "[Guardian] Improved Mind and Faith- Reduced Vigor",
+    "nightfarer": "Guardian",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6642000
+    ],
+    "name": "[Ironeye] Improved Arcane- Reduced Dexterity",
+    "nightfarer": "Ironeye",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6642100
+    ],
+    "name": "[Ironeye] Improved Vigor and Strength- Reduced Dexterity",
+    "nightfarer": "Ironeye",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6643000
+    ],
+    "name": "[Duchess] Improved Vigor and Strength- Reduced Mind",
+    "nightfarer": "Duchess",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6643100
+    ],
+    "name": "[Duchess] Improved Mind and Faith- Reduced Intelligence",
+    "nightfarer": "Duchess",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6644000
+    ],
+    "name": "[Raider] Improved Mind and Intelligence- Reduced Vigor and Endurance",
+    "nightfarer": "Raider",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6644100
+    ],
+    "name": "[Raider] Improved Arcane- Reduced Vigor",
+    "nightfarer": "Raider",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6645000
+    ],
+    "name": "[Revenant] Improved Vigor and Endurance- Reduced Mind",
+    "nightfarer": "Revenant",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6645100
+    ],
+    "name": "[Revenant] Improved Strength- Reduced Faith",
+    "nightfarer": "Revenant",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6646000
+    ],
+    "name": "[Recluse] Improved Vigor- Endurance- and Dexterity- Reduced Intelligence and Faith",
+    "nightfarer": "Recluse",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6646100
+    ],
+    "name": "[Recluse] Improved Intelligence and Faith- Reduced Mind",
+    "nightfarer": "Recluse",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6647000
+    ],
+    "name": "[Executor] Improved Vigor and Endurance- Reduced Arcane",
+    "nightfarer": "Executor",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6647100
+    ],
+    "name": "[Executor] Improved Dexterity and Arcane- Reduced Vigor",
+    "nightfarer": "Executor",
+    "deepOfNight": true
+  },
+  {
+    "ids": [
+      6000800
+    ],
+    "name": "Character Skill Cooldown Reduction +4",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6000801
+    ],
+    "name": "Character Skill Cooldown Reduction +5",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6000900
+    ],
+    "name": "Ultimate Art Gauge +4",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6000901
+    ],
+    "name": "Ultimate Art Gauge +5",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6001000
+    ],
+    "name": "Poise +4",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6001001
+    ],
+    "name": "Poise +5",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6006000
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing +1",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006001
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006100
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments +1",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006101
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6012301
+    ],
+    "name": "Improved Damage Negation at Low HP +2",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      6012300
+    ],
+    "name": "Improved Damage Negation at Low HP +1",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      6030201
+    ],
+    "name": "HP restored when using medicinal boluses, etc. +2%",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6030601
+    ],
+    "name": "Art gauge charged from successful guarding +2%",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6030801
+    ],
+    "name": "Art gauge fills moderately upon critical hit +2%",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6031900
+    ],
+    "name": "Critical Hits Earn Runes +1",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      6031901
+    ],
+    "name": "Critical Hits Earn Runes +2",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      6032201
+    ],
+    "name": "Taking attacks improves attack power +2",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6032200
+    ],
+    "name": "Taking attacks improves attack power +1",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6035101
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed +2",
+    "deepOfNight": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      6040000
+    ],
+    "name": "Improved Initial Standard Attack +1",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040001
+    ],
+    "name": "Improved Initial Standard Attack +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040301
+    ],
+    "name": "Improved Throwing Pot Damage +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040401
+    ],
+    "name": "Improved Throwing Knife Damage +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040501
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage +2",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6043000
+    ],
+    "name": "Improved Roar & Breath Attacks +1",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6043001
+    ],
+    "name": "Improved Roar & Breath Attacks +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6043101
+    ],
+    "name": "Improved Perfuming Arts +2",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6090001
+    ],
+    "name": "Defeating enemies fills more of the Art gauge +2%",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6160001
+    ],
+    "name": "HP Restoration upon Thrusting Counterattack +2%",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      6600002
+    ],
+    "name": "Sleep in Vicinity Improves Attack Power +2%",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6600102
+    ],
+    "name": "Madness in Vicinity Improves Attack Power +2%",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6610701
+    ],
+    "name": "Reduced FP Consumption +1",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6610702
+    ],
+    "name": "Reduced FP Consumption +2",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      6611000
+    ],
+    "name": "Improved Physical Damage Negation",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7000000
+    ],
+    "name": "Vigor +1",
+    "deepOfNight": false,
+    "group": "Vigor",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000001
+    ],
+    "name": "Vigor +2",
+    "deepOfNight": false,
+    "group": "Vigor",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000002
+    ],
+    "name": "Vigor +3",
+    "deepOfNight": false,
+    "group": "Vigor",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000100
+    ],
+    "name": "Mind +1",
+    "deepOfNight": false,
+    "group": "Mind",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000101
+    ],
+    "name": "Mind +2",
+    "deepOfNight": false,
+    "group": "Mind",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000102
+    ],
+    "name": "Mind +3",
+    "deepOfNight": false,
+    "group": "Mind",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000200
+    ],
+    "name": "Endurance +1",
+    "deepOfNight": false,
+    "group": "Endurance",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000201
+    ],
+    "name": "Endurance +2",
+    "deepOfNight": false,
+    "group": "Endurance",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000202
+    ],
+    "name": "Endurance +3",
+    "deepOfNight": false,
+    "group": "Endurance",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000300
+    ],
+    "name": "Strength +1",
+    "deepOfNight": false,
+    "group": "Strength",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000301
+    ],
+    "name": "Strength +2",
+    "deepOfNight": false,
+    "group": "Strength",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000302
+    ],
+    "name": "Strength +3",
+    "deepOfNight": false,
+    "group": "Strength",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000400
+    ],
+    "name": "Dexterity +1",
+    "deepOfNight": false,
+    "group": "Dexterity",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000401
+    ],
+    "name": "Dexterity +2",
+    "deepOfNight": false,
+    "group": "Dexterity",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000402
+    ],
+    "name": "Dexterity +3",
+    "deepOfNight": false,
+    "group": "Dexterity",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000500
+    ],
+    "name": "Intelligence +1",
+    "deepOfNight": false,
+    "group": "Intelligence",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000501
+    ],
+    "name": "Intelligence +2",
+    "deepOfNight": false,
+    "group": "Intelligence",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000502
+    ],
+    "name": "Intelligence +3",
+    "deepOfNight": false,
+    "group": "Intelligence",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000600
+    ],
+    "name": "Faith +1",
+    "deepOfNight": false,
+    "group": "Faith",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000601
+    ],
+    "name": "Faith +2",
+    "deepOfNight": false,
+    "group": "Faith",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000602
+    ],
+    "name": "Faith +3",
+    "deepOfNight": false,
+    "group": "Faith",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000700
+    ],
+    "name": "Arcane +1",
+    "deepOfNight": false,
+    "group": "Arcane",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000701
+    ],
+    "name": "Arcane +2",
+    "deepOfNight": false,
+    "group": "Arcane",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000702
+    ],
+    "name": "Arcane +3",
+    "deepOfNight": false,
+    "group": "Arcane",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000800
+    ],
+    "name": "Character Skill Cooldown Reduction +1",
+    "deepOfNight": false,
+    "group": "Character Skill Cooldown Reduction",
+    "level": 1,
+    "stacks": true,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7000801
+    ],
+    "name": "Character Skill Cooldown Reduction +2",
+    "deepOfNight": false,
+    "group": "Character Skill Cooldown Reduction",
+    "level": 2,
+    "stacks": true,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7000802
+    ],
+    "name": "Character Skill Cooldown Reduction +3",
+    "deepOfNight": false,
+    "group": "Character Skill Cooldown Reduction",
+    "level": 3,
+    "stacks": true,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7000900
+    ],
+    "name": "Ultimate Art Gauge +1",
+    "deepOfNight": false,
+    "group": "Ultimate Art Gauge",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7000901
+    ],
+    "name": "Ultimate Art Gauge +2",
+    "deepOfNight": false,
+    "group": "Ultimate Art Gauge",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7000902
+    ],
+    "name": "Ultimate Art Gauge +3",
+    "deepOfNight": false,
+    "group": "Ultimate Art Gauge",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001000
+    ],
+    "name": "Poise +1",
+    "deepOfNight": false,
+    "group": "Poise",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7001001
+    ],
+    "name": "Poise +2",
+    "deepOfNight": false,
+    "group": "Poise",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7001002
+    ],
+    "name": "Poise +3",
+    "deepOfNight": false,
+    "group": "Poise",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7001400
+    ],
+    "name": "Physical Attack Up",
+    "deepOfNight": false,
+    "group": "Physical Attack Up",
+    "level": 0,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001401
+    ],
+    "name": "Physical Attack Up +1",
+    "deepOfNight": false,
+    "group": "Physical Attack Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001402
+    ],
+    "name": "Physical Attack Up +2",
+    "deepOfNight": false,
+    "group": "Physical Attack Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001403
+    ],
+    "name": "Physical Attack Up +3",
+    "deepOfNight": false,
+    "group": "Physical Attack Up",
+    "level": 3,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7001500
+    ],
+    "name": "Magic Attack Power Up",
+    "deepOfNight": false,
+    "group": "Magic Attack Power Up",
+    "level": 0,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001501
+    ],
+    "name": "Magic Attack Power Up +1",
+    "deepOfNight": false,
+    "group": "Magic Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001502
+    ],
+    "name": "Magic Attack Power Up +2",
+    "deepOfNight": false,
+    "group": "Magic Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001600
+    ],
+    "name": "Fire Attack Power Up",
+    "deepOfNight": false,
+    "group": "Fire Attack Power Up",
+    "level": 0,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001601
+    ],
+    "name": "Fire Attack Power Up +1",
+    "deepOfNight": false,
+    "group": "Fire Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001602
+    ],
+    "name": "Fire Attack Power Up +2",
+    "deepOfNight": false,
+    "group": "Fire Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001700
+    ],
+    "name": "Lightning Attack Power Up",
+    "deepOfNight": false,
+    "group": "Lightning Attack Power Up",
+    "level": 0,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001701
+    ],
+    "name": "Lightning Attack Power Up +1",
+    "deepOfNight": false,
+    "group": "Lightning Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001702
+    ],
+    "name": "Lightning Attack Power Up +2",
+    "deepOfNight": false,
+    "group": "Lightning Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001800
+    ],
+    "name": "Holy Attack Power Up",
+    "deepOfNight": false,
+    "group": "Holy Attack Power Up",
+    "level": 0,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001801
+    ],
+    "name": "Holy Attack Power Up +1",
+    "deepOfNight": false,
+    "group": "Holy Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001802
+    ],
+    "name": "Holy Attack Power Up +2",
+    "deepOfNight": false,
+    "group": "Holy Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001900,
+      8110000
+    ],
+    "name": "Attacks Inflict Poison",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Poison",
+    "level": 0
+  },
+  {
+    "ids": [
+      7001901
+    ],
+    "name": "Attacks Inflict Poison +1",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Poison",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001902
+    ],
+    "name": "Attacks Inflict Poison +2",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Poison",
+    "level": 2
+  },
+  {
+    "ids": [
+      7002000,
+      8110100
+    ],
+    "name": "Attacks Inflict Blood Loss",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Blood Loss",
+    "level": 0
+  },
+  {
+    "ids": [
+      7002001
+    ],
+    "name": "Attacks Inflict Blood Loss +1",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Blood Loss",
+    "level": 1
+  },
+  {
+    "ids": [
+      7002002
+    ],
+    "name": "Attacks Inflict Blood Loss +2",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Blood Loss",
+    "level": 2
+  },
+  {
+    "ids": [
+      7002100,
+      8110200
+    ],
+    "name": "Attacks Inflict Sleep",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Sleep",
+    "level": 0
+  },
+  {
+    "ids": [
+      7002101
+    ],
+    "name": "Attacks Inflict Sleep +1",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Sleep",
+    "level": 1
+  },
+  {
+    "ids": [
+      7002102
+    ],
+    "name": "Attacks Inflict Sleep +2",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Sleep",
+    "level": 2
+  },
+  {
+    "ids": [
+      7002103
+    ],
+    "name": "Attacks Inflict Sleep +3",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Sleep",
+    "level": 3
+  },
+  {
+    "ids": [
+      7002200,
+      8110300
+    ],
+    "name": "Attacks Inflict Death Blight",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7002300
+    ],
+    "name": "Attacks Inflict Scarlet Rot",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Scarlet Rot",
+    "level": 0
+  },
+  {
+    "ids": [
+      7002301
+    ],
+    "name": "Attacks Inflict Scarlet Rot +1",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Scarlet Rot",
+    "level": 1
+  },
+  {
+    "ids": [
+      7002302
+    ],
+    "name": "Attacks Inflict Scarlet Rot +2",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Scarlet Rot",
+    "level": 2
+  },
+  {
+    "ids": [
+      7002400,
+      8110500
+    ],
+    "name": "Attacks Inflict Frost",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Frost",
+    "level": 0
+  },
+  {
+    "ids": [
+      7002401
+    ],
+    "name": "Attacks Inflict Frost +1",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Frost",
+    "level": 1
+  },
+  {
+    "ids": [
+      7002402
+    ],
+    "name": "Attacks Inflict Frost +2",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Frost",
+    "level": 2
+  },
+  {
+    "ids": [
+      7002403
+    ],
+    "name": "Attacks Inflict Frost +3",
+    "deepOfNight": false,
+    "group": "Attacks Inflict Frost",
+    "level": 3
+  },
+  {
+    "ids": [
+      7002500,
+      8110600
+    ],
+    "name": "Attacks Inflict Madness",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7002600
+    ],
+    "name": "Magic Damage Negation Up",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002700
+    ],
+    "name": "Fire Damage Negation Up",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002800
+    ],
+    "name": "Lightning Damage Negation Up",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002900
+    ],
+    "name": "Holy Damage Negation Up",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7005600
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7006000,
+      7006001,
+      8300100
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7006100,
+      7006101,
+      8310100
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7010000
+    ],
+    "name": "[Guardian] Improved Character Skill range",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7010200,
+      8440100
+    ],
+    "name": "Flask Also Heals Allies",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7010500
+    ],
+    "name": "[Wylder] Art activation spreads fire in area",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7010700
+    ],
+    "name": "[Duchess] Successive dagger attack reprises event upon nearby enemies",
+    "deepOfNight": false,
+    "nightfarer": "Duchess",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7010800
+    ],
+    "name": "[Raider] Character Skill damage up, damage negation impaired during use",
+    "deepOfNight": false,
+    "nightfarer": "Raider",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7011000
+    ],
+    "name": "[Guardian] Increased duration for Character Skill",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011100
+    ],
+    "name": "[Guardian] Damage negation for allies improved when using Ultimate Art",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7011200
+    ],
+    "name": "[Revenant] Trigger ghostflame explosion during Ultimate Art activation",
+    "deepOfNight": false,
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011400
+    ],
+    "name": "[Guardian] Restores allies' HP when Character Skill is used",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7011500
+    ],
+    "name": "[Wylder] Character Skill inflicts Blood Loss",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7011600
+    ],
+    "name": "[Guardian] Creates whirlwind when charging halberd attacks",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011700
+    ],
+    "name": "[Executor] Roaring restores HP while Art is active",
+    "deepOfNight": false,
+    "nightfarer": "Executor",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011900
+    ],
+    "name": "[Guardian] Character Skill inflicts Holy damage",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7012200
+    ],
+    "name": "Slowly restore HP for self and nearby allies when HP is low",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7012400
+    ],
+    "name": "Strong Attack Creates Wide Wave of Heat",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7012500
+    ],
+    "name": "Jumping Conjures Magic Projectiles",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7012600
+    ],
+    "name": "Attack Boost from Nearby Allies",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7012700
+    ],
+    "name": "Guard Counters Cast Light Pillar",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7020000
+    ],
+    "name": "[Wylder] Standard attacks enhanced with fiery follow-ups when using Character Skill (greatsword only)",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7030000
+    ],
+    "name": "Improved Poise Near Totem Stela",
+    "deepOfNight": false,
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7030200
+    ],
+    "name": "HP restored when using cured meats, medicinal boluses, etc.",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7030500
+    ],
+    "name": "[Wylder] Impaired damage negation, improved attack power & stamina after Art activation",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7030600
+    ],
+    "name": "Art gauge charged from successful guarding",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7030700
+    ],
+    "name": "Draw enemy attention while guarding",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7030800
+    ],
+    "name": "Art gauge fills moderately upon critical hit",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7030900
+    ],
+    "name": "Physical attack power increases after using grease items",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7031200
+    ],
+    "name": "[Revenant] Strengthens family and allies when Ultimate Art is activated",
+    "deepOfNight": false,
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7031300
+    ],
+    "name": "[Raider] Damage taken while using Character Skill improves attack power and stamina",
+    "deepOfNight": false,
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7031400
+    ],
+    "name": "[Wylder] Reduced cooldown time for Character Skill",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7031600
+    ],
+    "name": "Performing consecutive successful guards improves guard ability and deflects big attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7031700
+    ],
+    "name": "Shockwave Produced From Successful Guarding",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7031800
+    ],
+    "name": "[Duchess] Become difficult to spot and silence footsteps after landing critical from behind",
+    "deepOfNight": false,
+    "nightfarer": "Duchess",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7031900
+    ],
+    "name": "Critical Hits Earn Runes",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7032300
+    ],
+    "name": "[Wylder] Improved attack power when Character Skill is activated",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7032700
+    ],
+    "name": "[Duchess] Defeating enemies while Art is active ups attack power",
+    "deepOfNight": false,
+    "nightfarer": "Duchess",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7032800
+    ],
+    "name": "[Recluse] Collecting affinity residue activates Terra Magica",
+    "deepOfNight": false,
+    "nightfarer": "Recluse",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7033000
+    ],
+    "name": "[Wylder] Improved attack power when ability is activated",
+    "deepOfNight": false,
+    "nightfarer": "Wylder",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7033300
+    ],
+    "name": "[Guardian] Become the target of enemy aggression when ability is activated",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7033400
+    ],
+    "name": "[Guardian] Successful guards send out shockwaves while ability is active",
+    "deepOfNight": false,
+    "nightfarer": "Guardian",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7033600
+    ],
+    "name": "[Duchess] Duration of Ultimate Art extended",
+    "deepOfNight": false,
+    "nightfarer": "Duchess",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7033700
+    ],
+    "name": "Colossal armaments are coated in rock when performing charged attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7033800
+    ],
+    "name": "[Raider] Permanently increase attack power when performing Character Skill's final attack",
+    "deepOfNight": false,
+    "nightfarer": "Raider",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7033900
+    ],
+    "name": "[Recluse] Extends duration of blood sigils",
+    "deepOfNight": false,
+    "nightfarer": "Recluse",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7034000
+    ],
+    "name": "[Recluse] Collecting 4 Affinity Residues Improves Affinity Attack Power",
+    "deepOfNight": false,
+    "nightfarer": "Recluse",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7040201
+    ],
+    "name": "Improved Critical Hits +1 (WORKS)",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7034100
+    ],
+    "name": "[Recluse] Activating Ultimate Art raises Max HP",
+    "deepOfNight": false,
+    "nightfarer": "Recluse",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034200
+    ],
+    "name": "[Executor] Attack power up while Ultimate Art is active",
+    "deepOfNight": false,
+    "nightfarer": "Executor",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7034300
+    ],
+    "name": "[Executor] Improves effect of ability but lowers resistance to status ailments",
+    "deepOfNight": false,
+    "nightfarer": "Executor",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7034400
+    ],
+    "name": "[Executor] Character Skill Boosts Attack but Attacking Drains HP",
+    "deepOfNight": false,
+    "nightfarer": "Executor",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034500
+    ],
+    "name": "[Executor] While Character Skill is active, unlocking use of cursed sword restores HP",
+    "deepOfNight": false,
+    "nightfarer": "Executor",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7034600
+    ],
+    "name": "[Ironeye] Art Charge Activation Adds Poison Effect",
+    "deepOfNight": false,
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034700
+    ],
+    "name": "[Ironeye] Boosts thrusting counterattacks after executing Art",
+    "deepOfNight": false,
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034800
+    ],
+    "name": "Fire Critical Hit Grants Max Stamina Boost",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7035000
+    ],
+    "name": "Critical Hit Adds Lightning Effect",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7035100
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed",
+    "deepOfNight": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7035200
+    ],
+    "name": "Consecutive Guards Harden Skin",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7035300
+    ],
+    "name": "Critical Hit Creates Sleep Mist",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7035400,
+      7035410
+    ],
+    "name": "Gesture Crossed Legs Builds Up Madness",
+    "deepOfNight": false,
+    "category": "Status Effect"
+  },
+  {
+    "ids": [
+      7035500,
+      7035510
+    ],
+    "name": "Madness Continually Recovers FP",
+    "deepOfNight": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7035600
+    ],
+    "name": "Surge Sprint Landings Split Earth",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7035700
+    ],
+    "name": "Switching Weapons Adds an Affinity Attack",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7035800
+    ],
+    "name": "Boosts Attack Power of Added Affinity Attacks",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7036100
+    ],
+    "name": "HP Recovery From Successful Guarding",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7040000
+    ],
+    "name": "Improved Initial Standard Attack",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040290
+    ],
+    "name": "Improved Critical Hits +1 (DONT WORK",
+    "deepOfNight": false,
+    "group": "Improved Critical Hits",
+    "level": 1,
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040400
+    ],
+    "name": "Improved Throwing Knife Damage",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040300
+    ],
+    "name": "Improved Throwing Pot Damage",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040500
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043200
+    ],
+    "name": "Improved Stonedigger Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043300
+    ],
+    "name": "Improved Carian Sword Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043400
+    ],
+    "name": "Improved Glintblade Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043500
+    ],
+    "name": "Improved Invisibility Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043600
+    ],
+    "name": "Improved Crystalian sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043700
+    ],
+    "name": "Improved Gravity Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043800
+    ],
+    "name": "Improved Thorn Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7043900
+    ],
+    "name": "Improved Night Sorcery",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7044000
+    ],
+    "name": "Improved Fundamentalist Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044100
+    ],
+    "name": "Improved Dragon Cult Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044200
+    ],
+    "name": "Improved Giants' Flame Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044300
+    ],
+    "name": "Improved Godslayer Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044400
+    ],
+    "name": "Improved Bestial Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044500
+    ],
+    "name": "Improved Frenzied Flame Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044600
+    ],
+    "name": "Improved Dragon Communion Incantations",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7050000
+    ],
+    "name": "Raised stamina recovery for nearby allies, but not for self",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7050100
+    ],
+    "name": "Items confer effect to all nearby allies",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7060000
+    ],
+    "name": "Attack power increased for each evergaol prisoner defeated",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7060100
+    ],
+    "name": "Max FP increased after each Sorcerer's Rise unlocked",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7060200
+    ],
+    "name": "Attack power increased for each Night Invader defeated",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7070000
+    ],
+    "name": "Treasure marked upon map",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7080000
+    ],
+    "name": "Improved Attack Power with 3+ Daggers Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080100
+    ],
+    "name": "Improved Attack Power with 3+ Straight Swords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080200
+    ],
+    "name": "Improved Attack Power with 3+ Greatswords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080300
+    ],
+    "name": "Improved Attack Power with 3+ Colossal Swords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080400
+    ],
+    "name": "Improved Attack Power with 3+ Curved Swords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080500
+    ],
+    "name": "Improved Attack Power with 3+ Curved Greatswords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080600
+    ],
+    "name": "Improved Attack Power with 3+ Katana Equipped",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7080700
+    ],
+    "name": "Improved Attack Power with 3+ Twinblades Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080800
+    ],
+    "name": "Improved Attack Power with 3+ Thrusting Swords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080900
+    ],
+    "name": "Improved Attack Power with 3+ Heavy Thrusting Swords Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081000
+    ],
+    "name": "Improved Attack Power with 3+ Axes Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081100
+    ],
+    "name": "Improved Attack Power with 3+ Greataxes Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081200
+    ],
+    "name": "Improved Attack Power with 3+ Hammers Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081300
+    ],
+    "name": "Improved Attack Power with 3+ Great Hammers Equipped",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7081400
+    ],
+    "name": "Improved Attack Power with 3+ Flails Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081500
+    ],
+    "name": "Improved Attack Power with 3+ Spears Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081700
+    ],
+    "name": "Improved Attack Power with 3+ Great Spears Equipped",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7081800
+    ],
+    "name": "Improved Attack Power with 3+ Halberds Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081900
+    ],
+    "name": "Improved Attack Power with 3+ Reapers Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082000
+    ],
+    "name": "Improved Attack Power with 3+ Fists Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082100
+    ],
+    "name": "Improved Attack Power with 3+ Claws Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082200
+    ],
+    "name": "Improved Attack Power with 3+ Whips Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082300
+    ],
+    "name": "Improved Attack Power with 3+ Colossal Weapons Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082400
+    ],
+    "name": "Improved Attack Power with 3+ Bows Equipped",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082500
+    ],
+    "name": "Max FP Up with 3+ Staves Equipped",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7082600
+    ],
+    "name": "Max FP Up with 3+ Sacred Seals Equipped",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7082700
+    ],
+    "name": "Max HP Up with 3+ Small Shields Equipped",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7082800
+    ],
+    "name": "Max HP Up with 3+ Medium Shields Equipped",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7082900
+    ],
+    "name": "Max HP Up with 3+ Greatshields Equipped",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7090000
+    ],
+    "name": "Defeating enemies fills more of the Art gauge",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7090100
+    ],
+    "name": "Defeating enemies restores HP for allies but not for self",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7090300
+    ],
+    "name": "Defeating enemies near Totem Stela restores HP",
+    "deepOfNight": false,
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7100000
+    ],
+    "name": "Critical hits deal huge damage on poisoned enemies",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7100100
+    ],
+    "name": "Stamina Recovery upon Landing Attacks",
+    "deepOfNight": false,
+    "group": "Stamina Recovery Upon Landing Attacks",
+    "level": 0,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7100110
+    ],
+    "name": "Stamina Recovery upon Landing Attacks +1",
+    "deepOfNight": false,
+    "group": "Stamina Recovery Upon Landing Attacks",
+    "level": 1,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7110000
+    ],
+    "name": "Increased rune acquisition for self and allies",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7120000
+    ],
+    "name": "Starting armament deals magic damage",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7120100
+    ],
+    "name": "Starting armament deals fire damage",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7120101
+    ],
+    "name": "Armament deals fire damage +1 at start of expedition",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7120200
+    ],
+    "name": "Starting armament deals lightning damage",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7120300
+    ],
+    "name": "Starting armament deals holy damage",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7120400
+    ],
+    "name": "Starting armament inflicts frost",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7120500
+    ],
+    "name": "Starting armament inflicts poison",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Status Effect"
+  },
+  {
+    "ids": [
+      7120600
+    ],
+    "name": "Starting armament inflicts blood loss",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7120700
+    ],
+    "name": "Starting armament inflicts scarlet rot",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7120900
+    ],
+    "name": "Stonesword Key in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7121000
+    ],
+    "name": "Small Pouch in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7121100
+    ],
+    "name": "Fire Pots in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121200
+    ],
+    "name": "Magic Pots in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121300
+    ],
+    "name": "Lightning Pots in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121400
+    ],
+    "name": "Holy Water Pots in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121500
+    ],
+    "name": "Poisonbone Darts in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121600
+    ],
+    "name": "Crystal Darts in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121700
+    ],
+    "name": "Throwing Daggers in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121800
+    ],
+    "name": "Glintstone Scraps in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7121900
+    ],
+    "name": "Gravity Stone Chunks in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122000
+    ],
+    "name": "Bewitching Branches in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122100
+    ],
+    "name": "Wraith Calling Bell in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122200
+    ],
+    "name": "Fire Grease in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122300
+    ],
+    "name": "Magic Grease in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122400
+    ],
+    "name": "Lightning Grease in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122500
+    ],
+    "name": "Holy Grease in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122600
+    ],
+    "name": "Shield Grease in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7122700
+    ],
+    "name": "Changes compatible armament's skill to Glintblade Phalanx at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7122800
+    ],
+    "name": "Changes compatible armament's skill to Gravitas at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7122900
+    ],
+    "name": "Changes compatible armament's skill to Flaming Strike at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123000
+    ],
+    "name": "Changes compatible armament's skill to Eruption at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123100
+    ],
+    "name": "Changes compatible armament's skill to Thunderbolt at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123200
+    ],
+    "name": "Changes compatible armament's skill to Lightning Slash at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123300
+    ],
+    "name": "Changes compatible armament's skill to Sacred Blade at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123400
+    ],
+    "name": "Changes compatible armament's skill to Prayerful Strike at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123500
+    ],
+    "name": "Changes compatible armament's skill to Poisonous Mist at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123600
+    ],
+    "name": "Changes compatible armament's skill to Poison Moth Flight at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123700
+    ],
+    "name": "Changes compatible armament's skill to Blood Blade at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123800
+    ],
+    "name": "Changes compatible armament's skill to Seppuku at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7123900
+    ],
+    "name": "Changes compatible armament's skill to Chilling Mist at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124000
+    ],
+    "name": "Changes compatible armament's skill to Hoarfrost Stomp at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124100
+    ],
+    "name": "Changes compatible armament's skill to White Shadow's Lure at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124300
+    ],
+    "name": "Changes compatible armament's skill to Endure at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124400
+    ],
+    "name": "Changes compatible armament's skill to Quickstep at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124500
+    ],
+    "name": "Changes compatible armament's skill to Storm Stomp at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124600
+    ],
+    "name": "Changes compatible armament's skill to Determination at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7124700
+    ],
+    "name": "Changes compatible armament's skill to Rain of Arrows at start of expedition",
+    "deepOfNight": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7126000,
+      7126001,
+      7126002
+    ],
+    "name": "Starlight Shards in possession at start of expedition",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7150000
+    ],
+    "name": "Guard counter is given a boost based on current HP",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7160000
+    ],
+    "name": "HP Restoration upon Thrusting Counterattack",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7200000
+    ],
+    "name": "HP Restoration with Head Shots",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7200100
+    ],
+    "name": "Improved Stance-Breaking with Head Shots",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7220000
+    ],
+    "name": "[Revenant] Power up while fighting alongside family",
+    "deepOfNight": false,
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7230000
+    ],
+    "name": "Rune discount for shop purchases while on expedition",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7230001
+    ],
+    "name": "Huge rune discount for shop purchases while on expedition",
+    "deepOfNight": false,
+    "category": "Utility"
+  },
+  {
+    "ids": [
+      7240000
+    ],
+    "name": "Improved Poise & Damage Negation When Knocked Back by Damage",
+    "deepOfNight": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7260000
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260200
+    ],
+    "name": "Attack power up when facing sleep-afflicted enemy",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7260300
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260400
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy",
+    "deepOfNight": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260600
+    ],
+    "name": "Attacks Create Magic Bursts Versus Sleeping Enemies",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7260700
+    ],
+    "name": "Frostbite in Vicinity Conceals Self",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7260710,
+      7260800
+    ],
+    "name": "Poison & Rot in Vicinity Increases Attack Power",
+    "deepOfNight": false,
+    "category": "Status Effect"
+  },
+  {
+    "ids": [
+      7270100
+    ],
+    "name": "[Ironeye] +1 additional Character Skill use",
+    "deepOfNight": false,
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7280000
+    ],
+    "name": "[Ironeye] Extends duration of weak point",
+    "deepOfNight": false,
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7290000
+    ],
+    "name": "[Duchess] Improved Character Skill Attack Power",
+    "deepOfNight": false,
+    "nightfarer": "Duchess",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7300000
+    ],
+    "name": "[Duchess] Character Skill inflicts sleep upon enemies",
+    "deepOfNight": false,
+    "nightfarer": "Duchess",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7310000
+    ],
+    "name": "[Raider] Duration of Ultimate Art extended",
+    "deepOfNight": false,
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7320000
+    ],
+    "name": "[Revenant] Ability activation chance increased",
+    "deepOfNight": false,
+    "nightfarer": "Revenant",
+    "stacks": false
+  },
+  {
+    "ids": [
+      7330000
+    ],
+    "name": "Improved Dagger Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330100
+    ],
+    "name": "Improved Straight Sword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330200
+    ],
+    "name": "Improved Greatsword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330300
+    ],
+    "name": "Improved Colossal Sword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330400
+    ],
+    "name": "Improved Curved Sword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330500
+    ],
+    "name": "Improved Curved Greatsword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330600
+    ],
+    "name": "Improved Katana Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330700
+    ],
+    "name": "Improved Twinblade Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330800
+    ],
+    "name": "Improved Thrusting Sword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7330900
+    ],
+    "name": "Improved Heavy Thrusting Sword Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331000
+    ],
+    "name": "Improved Axe Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331100
+    ],
+    "name": "Improved Greataxe Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331200
+    ],
+    "name": "Improved Hammer Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331300
+    ],
+    "name": "Improved Great Hammer Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7331400
+    ],
+    "name": "Improved Flail Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331500
+    ],
+    "name": "Improved Spear Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331600
+    ],
+    "name": "Improved Pike Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331700
+    ],
+    "name": "Improved Great Spear Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331800
+    ],
+    "name": "Improved Halberd Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7331900
+    ],
+    "name": "Improved Reaper Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7332000
+    ],
+    "name": "Improved Fist Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7332100
+    ],
+    "name": "Improved Claw Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7332200
+    ],
+    "name": "Improved Whip Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7332300
+    ],
+    "name": "Improved Colossal Weapon Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7332400
+    ],
+    "name": "Improved Bow Attack Power",
+    "deepOfNight": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7340000
+    ],
+    "name": "HP Restoration upon Dagger Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340100
+    ],
+    "name": "HP Restoration upon Straight Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340200
+    ],
+    "name": "HP Restoration upon Greatsword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340300
+    ],
+    "name": "HP Restoration upon Colossal Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340400
+    ],
+    "name": "HP Restoration upon Curved Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340500
+    ],
+    "name": "HP Restoration upon Curved Greatsword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340600
+    ],
+    "name": "HP Restoration upon Katana Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340700
+    ],
+    "name": "HP Restoration upon Twinblade Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340800
+    ],
+    "name": "HP Restoration upon Thrusting Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7340900
+    ],
+    "name": "HP Restoration upon Heavy Thrusting Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341000
+    ],
+    "name": "HP Restoration upon Axe Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341100
+    ],
+    "name": "HP Restoration upon Greataxe Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341200
+    ],
+    "name": "HP Restoration upon Hammer Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341300
+    ],
+    "name": "HP Restoration upon Great Hammer Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341400
+    ],
+    "name": "HP Restoration upon Flail Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341500
+    ],
+    "name": "HP Restoration upon Spear Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341600
+    ],
+    "name": "HP Restoration upon Pike Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341700
+    ],
+    "name": "HP Restoration upon Great Spear Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341800
+    ],
+    "name": "HP Restoration upon Halberd Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7341900
+    ],
+    "name": "HP Restoration upon Reaper Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7342000
+    ],
+    "name": "HP Restoration upon Fist Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7342100
+    ],
+    "name": "HP Restoration upon Claw Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7342200
+    ],
+    "name": "HP Restoration upon Whip Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7342300
+    ],
+    "name": "HP Restoration upon Colossal Weapon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7342400
+    ],
+    "name": "HP Restoration upon Bow Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350000
+    ],
+    "name": "FP Restoration upon Dagger Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350100
+    ],
+    "name": "FP Restoration upon Straight Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350200
+    ],
+    "name": "FP Restoration upon Greatsword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350300
+    ],
+    "name": "FP Restoration upon Colossal Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350400
+    ],
+    "name": "FP Restoration upon Curved Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350500
+    ],
+    "name": "FP Restoration upon Curved Greatsword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350600
+    ],
+    "name": "FP Restoration upon Katana Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350700
+    ],
+    "name": "FP Restoration upon Twinblade Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350800
+    ],
+    "name": "FP Restoration upon Thrusting Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7350900
+    ],
+    "name": "FP Restoration upon Heavy Thrusting Sword Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351000
+    ],
+    "name": "FP Restoration upon Axe Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351100
+    ],
+    "name": "FP Restoration upon Greataxe Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351200
+    ],
+    "name": "FP Restoration upon Hammer Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351300
+    ],
+    "name": "FP Restoration upon Great Hammer Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351400
+    ],
+    "name": "FP Restoration upon Flail Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351500
+    ],
+    "name": "FP Restoration upon Spear Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351600
+    ],
+    "name": "FP Restoration upon Pike Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351700
+    ],
+    "name": "FP Restoration upon Great Spear Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351800
+    ],
+    "name": "FP Restoration upon Halberd Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7351900
+    ],
+    "name": "FP Restoration upon Reaper Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7352000
+    ],
+    "name": "FP Restoration upon Fist Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7352100
+    ],
+    "name": "FP Restoration upon Claw Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7352200
+    ],
+    "name": "FP Restoration upon Whip Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7352300
+    ],
+    "name": "FP Restoration upon Colossal Weapon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      7352400
+    ],
+    "name": "FP Restoration upon Bow Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8010100
+    ],
+    "name": "Reduced FP Consumption",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8020100
+    ],
+    "name": "Reduced Stamina Consumption",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8110400
+    ],
+    "name": "Attacks Inflict Rot",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8110700
+    ],
+    "name": "Add Fire to Weapon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8110800
+    ],
+    "name": "Add Magic to Weapon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8110900
+    ],
+    "name": "Add Lightning to Weapon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8111000
+    ],
+    "name": "Add Holy to Weapon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8120000
+    ],
+    "name": "Improved Stance-Breaking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8150000
+    ],
+    "name": "Attack Boost [Lifeforms Born of Falling Stars]",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8150100
+    ],
+    "name": "Attack Boost [Those Who Live in Death]",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8150300
+    ],
+    "name": "Attack Boost [Dragons]",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8220001
+    ],
+    "name": "Improved Guarding Ability +1",
+    "deepOfNight": false,
+    "group": "Improved Guarding Ability",
+    "level": 1
+  },
+  {
+    "ids": [
+      8220002
+    ],
+    "name": "Improved Guarding Ability +2",
+    "deepOfNight": false,
+    "group": "Improved Guarding Ability",
+    "level": 2
+  },
+  {
+    "ids": [
+      8300000
+    ],
+    "name": "Improved Attack Power when Two-Handing",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8310000
+    ],
+    "name": "Attack Up when Wielding Two Armaments",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8320200
+    ],
+    "name": "Strong Attacks Improve Poise",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8320400
+    ],
+    "name": "Dmg Negation Up while Charging Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8330200
+    ],
+    "name": "Improved Charged Sorceries",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8330300
+    ],
+    "name": "Improved Charged Incantation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8330700
+    ],
+    "name": "Communion Grants Anti-Dragon Effect",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8330900
+    ],
+    "name": "Dmg Negation Up While Casting Spells",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8350100
+    ],
+    "name": "Improved Charged Skill Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8350300
+    ],
+    "name": "Skill Activation Improves Poise",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8350400
+    ],
+    "name": "Parries Activate Golden Retaliation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8360000
+    ],
+    "name": "Ultimate Art Gauge Charge Speed Up",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8370000
+    ],
+    "name": "Character Skill Cooldown Reduction",
+    "deepOfNight": false,
+    "group": "Character Skill Cooldown Reduction",
+    "level": 0,
+    "stacks": true
+  },
+  {
+    "ids": [
+      8410100
+    ],
+    "name": "Lightning upon Dodging",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8420100
+    ],
+    "name": "Guard Counters Activate Holy Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8420200
+    ],
+    "name": "Guard Counters Launch Summoning Attack",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8440200
+    ],
+    "name": "Gradual Restoration by Flask",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8450000
+    ],
+    "name": "Magma Surge Sprint",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8450100
+    ],
+    "name": "Ice Storm Surge Sprint",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8460000
+    ],
+    "name": "Darkness Conceals Caster While Walking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8460100
+    ],
+    "name": "Savage Flames Roar While Walking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8460200
+    ],
+    "name": "Flame of Frenzy While Walking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8460300
+    ],
+    "name": "Wraiths While Walking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8460400
+    ],
+    "name": "Vicious Star Rain Pours While Walking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8460500
+    ],
+    "name": "Storm of Red Lightning While Walking",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8520000
+    ],
+    "name": "Less Likely to Be Targeted",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8530000
+    ],
+    "name": "Multiple Periodical Glintblades",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8530100
+    ],
+    "name": "Many Periodical Glintblades",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8530200
+    ],
+    "name": "Periodical Giant Glintblades",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8600100
+    ],
+    "name": "HP Restoration upon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8600200
+    ],
+    "name": "FP Restoration upon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8600300
+    ],
+    "name": "Sudden Enemy Death upon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8610000
+    ],
+    "name": "HP Restoration upon Successive Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8610300
+    ],
+    "name": "Magic Attack Follows Charge Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8610400
+    ],
+    "name": "Fire Attack Follows Charge Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8610500
+    ],
+    "name": "Lightning Follows Charge Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8610600
+    ],
+    "name": "Holy Attack Follows Charge Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8610700
+    ],
+    "name": "Successive Attacks Negate Damage",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8620000
+    ],
+    "name": "Taking Damage Restores FP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8620100
+    ],
+    "name": "Taking Damage Boosts Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630200
+    ],
+    "name": "Defeating Group Summons Wraiths",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630300
+    ],
+    "name": "Defeating Group Releases Mist of Charm",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630400
+    ],
+    "name": "Defeating Group Calls Vengeful Spirits",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630500
+    ],
+    "name": "Magma upon Defeating Multiple Enemies",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630600
+    ],
+    "name": "Defeating Group Releases Mist of Frost",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630700
+    ],
+    "name": "Defeating Group Unleashes Lightning",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8630800
+    ],
+    "name": "Defeating Group Fires Golden Shockwave",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640200
+    ],
+    "name": "Damage Boosted after Critical Hit",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640300
+    ],
+    "name": "Sacred Order upon Holy Critical Hit",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640400
+    ],
+    "name": "Magma upon Fire Critical Hit",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640500
+    ],
+    "name": "Lightning Critical Hit Imbues Armament",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640600
+    ],
+    "name": "Crystal Shards upon Magic Critical Hit",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640700
+    ],
+    "name": "Poison Mist upon Poison Critical Hit",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640800
+    ],
+    "name": "Blood Loss Crit: Thorns of Punishment",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8640900
+    ],
+    "name": "Rot Critical Hit Fires Pest Threads",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8641000
+    ],
+    "name": "Ice Storm upon Critical Hit with Frost",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8641100
+    ],
+    "name": "Madness Crit. Hit Fires Frenzied Flame",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8641200
+    ],
+    "name": "Death Crit. Hit Calls Death Lightning",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8650000
+    ],
+    "name": "HP Recovery From Successful Guarding",
+    "deepOfNight": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      8650100
+    ],
+    "name": "FP Recovery From Successful Guarding",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8652000
+    ],
+    "name": "Successful Guarding Ups Poise",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8652100
+    ],
+    "name": "Successful Guarding Ups Dmg Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8660200
+    ],
+    "name": "Critical Hits Inflict Blood Loss",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8660300
+    ],
+    "name": "Creates Holy Ground at Low HP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8660400
+    ],
+    "name": "Low HP Crit. Hit Fully Restores HP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8690000
+    ],
+    "name": "Poison Produces a Mist of Poison",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8690100
+    ],
+    "name": "Madness Produces a Flame of Frenzy",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8690200
+    ],
+    "name": "Rot Produces a Mist of Scarlet Rot",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8690300
+    ],
+    "name": "Frostbite Produces a Mist of Frost",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8690400
+    ],
+    "name": "Sleep Produces a Mist of Sleep",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8700000
+    ],
+    "name": "Poison Increases Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8710000
+    ],
+    "name": "Blood Loss Increases Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8720000
+    ],
+    "name": "Sleep Increases Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8740000
+    ],
+    "name": "Frostbite Increases Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8750000
+    ],
+    "name": "Madness Increases Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8880000
+    ],
+    "name": "Ice Storm upon Charged Slash",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8880100
+    ],
+    "name": "Ring of Light upon Charged Slash",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8880200
+    ],
+    "name": "Black Flames upon Charged Slash",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8880300
+    ],
+    "name": "Phantom Attack upon Charged Slash",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8880400
+    ],
+    "name": "Roaring Flames upon Charged Slash",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881000
+    ],
+    "name": "Holy Shockwave upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881100
+    ],
+    "name": "Projectiles upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881200
+    ],
+    "name": "Luring Enemies upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881300
+    ],
+    "name": "Shockwave upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881400
+    ],
+    "name": "Phantom Attack upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881500
+    ],
+    "name": "Magma upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8881600
+    ],
+    "name": "Magic Bubbles upon Charged Strike",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8882000
+    ],
+    "name": "Phantom Attack upon Charged Thrust",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8882100
+    ],
+    "name": "Lightning upon Charged Thrust",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8882200
+    ],
+    "name": "Acid Mist upon Charged Thrust",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8882300
+    ],
+    "name": "Pest Threads upon Charged Thrust",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8882400
+    ],
+    "name": "Poison Mist upon Charged Thrust",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8882500
+    ],
+    "name": "Charged Thrust Invokes Sleep Mist",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8883000
+    ],
+    "name": "Projectiles Launched upon Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8883100
+    ],
+    "name": "Lightning upon Precision Aiming",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8883200
+    ],
+    "name": "Poison Mist upon Precision Aiming",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8883300
+    ],
+    "name": "Rot Mist upon Precision Aiming",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8883400
+    ],
+    "name": "Bloodflies upon Precision Aiming",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8884000
+    ],
+    "name": "Shielding Improves Damage Negation",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8884100
+    ],
+    "name": "Shielding Invokes Indomitable Vow",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8884200
+    ],
+    "name": "Shielding Creates Holy Ground",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8884300
+    ],
+    "name": "Broken Stance Activates Endure",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8885000
+    ],
+    "name": "Flask Healing Also Restores FP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8885100
+    ],
+    "name": "Failing to Cast Sorcery Restores FP",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8885200
+    ],
+    "name": "Guarding Ups Attack & Casting Speeds",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8920100
+    ],
+    "name": "Improved Non-Physical Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8921400
+    ],
+    "name": "Critical Hits Boost Attack Power",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8960100
+    ],
+    "name": "Changed Strong Attacks",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8960200
+    ],
+    "name": "Strong Jump Attacks Create Shockwave",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9021400
+    ],
+    "name": "Power of Night and Flame",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9030900
+    ],
+    "name": "Power of Dark Moon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9031000
+    ],
+    "name": "Power of the Greater Will",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9031400,
+      9122000
+    ],
+    "name": "Power of the Blasphemous",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9031500
+    ],
+    "name": "Power of House Marais",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9031700
+    ],
+    "name": "Power of the Golden Order",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9040200
+    ],
+    "name": "Power of Destined Death",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9040500
+    ],
+    "name": "Power of the Starscourge",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9040800
+    ],
+    "name": "Power of Destruction",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9041000
+    ],
+    "name": "Power of Vengeance",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9060400
+    ],
+    "name": "Power of the Dragonlord",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9071000
+    ],
+    "name": "Power of Despair",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9081000
+    ],
+    "name": "Power of the Omen King",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9090200
+    ],
+    "name": "Power of the Undefeated",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9111500
+    ],
+    "name": "Power of the Queen",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9130300
+    ],
+    "name": "Power of the Lightless Void",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9150400
+    ],
+    "name": "Power of the Golden Lineage",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9151100
+    ],
+    "name": "Power of the Ancestral Spirit",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9160900
+    ],
+    "name": "Power of the Great Ancient Dragon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9170100
+    ],
+    "name": "Power of the Blood Lord",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9200600
+    ],
+    "name": "Power of the Giant",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9210600
+    ],
+    "name": "Power of the Flying Dragon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9230500
+    ],
+    "name": "Power of the First Lord",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9330900
+    ],
+    "name": "Power of Full Moon",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9420000
+    ],
+    "name": "Power of the General",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990100
+    ],
+    "name": "The Wylder's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990200
+    ],
+    "name": "The Guardian's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990300
+    ],
+    "name": "The Ironeye's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990400
+    ],
+    "name": "The Duchess' Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990500
+    ],
+    "name": "The Raider's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990600
+    ],
+    "name": "The Revenant's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990700
+    ],
+    "name": "The Recluse's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      9990800
+    ],
+    "name": "The Executor's Grief",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8500102
+    ],
+    "name": "[Runes] 60k at start, 30k on death",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8330104
+    ],
+    "name": "Raises sorcery/incantation potency",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8210700
+    ],
+    "name": "Raises resistance to all ailments",
+    "deepOfNight": false
+  },
+  {
+    "ids": [
+      8100001
+    ],
+    "name": "Raises physical attack power +1",
+    "deepOfNight": false,
+    "group": "Raises Physical Attack Power",
+    "level": 1
+  },
+  {
+    "ids": [
+      8200001
+    ],
+    "name": "Raises physical damage negation +1",
+    "deepOfNight": false,
+    "group": "Raises Physical Damage Negation",
+    "level": 1
+  },
+  {
+    "ids": [
+      8200501
+    ],
+    "name": "Raises non-physical damage negation +1",
+    "deepOfNight": false,
+    "group": "Raises Non Physical Damage Negation",
+    "level": 1,
+    "stacks": true
+  },
+  {
+    "ids": [
+      8010001
+    ],
+    "name": "Raises maximum FP +1",
+    "deepOfNight": false,
+    "group": "Raises Maximum Fp",
+    "level": 1
+  },
+  {
+    "ids": [
+      8020201
+    ],
+    "name": "Improved stamina recovery +1",
+    "deepOfNight": false,
+    "group": "Improved Stamina Recovery",
+    "level": 1
+  },
+  {
+    "ids": [
+      8340102
+    ],
+    "name": "Projectile damage drop-off reduced +1",
+    "deepOfNight": false,
+    "group": "Projectile Damage Drop Off Reduced",
+    "level": 1
+  }
+]
