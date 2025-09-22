@@ -65,18 +65,19 @@ const DesiredEffects = ({ onChange }) => {
 
 
     const formatEffectName = (effect) => {
-        const characterName = characters.find(char => effect.toLowerCase().startsWith(char));
+        const characterName = characters.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
         if (characterName) {
-            const restOfEffect = effect.slice(characterName.length).trim();
+            const restOfEffect = effect.name.slice(characterName.length + 3).trim();
             const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
             return `[${capitalizedChar}] ${restOfEffect}`;
         }
-        return effect;
+        return effect.name;
     };
-    const handleSelectEffect = (effectName) => {
+    const handleSelectEffect = (effect) => {
         const newEffect = {
             id: Date.now(),
-            name: effectName,
+            name: effect.name,
+            ids: effect.ids,
             weight: 1.0,
             isRequired: false,
             isForbidden: false,
@@ -121,8 +122,8 @@ const DesiredEffects = ({ onChange }) => {
                                     <h3>{category}</h3>
                                     <ul>
                                         {data.singles.map((effect) => (
-                                            <li key={effect.name} onClick={() => handleSelectEffect(formatEffectName(effect.name))}>
-                                                {formatEffectName(effect.name)}
+                                            <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                                {formatEffectName(effect)}
                                             </li>
                                         ))}
                                         {Object.entries(data.groups).map(([groupName, groupEffects]) => (
@@ -134,8 +135,8 @@ const DesiredEffects = ({ onChange }) => {
                                                 {expandedGroups[`${category}-${groupName}`] && (
                                                     <ul className="sub-list">
                                                         {groupEffects.map(effect => (
-                                                            <li key={effect.name} onClick={() => handleSelectEffect(formatEffectName(effect.name))}>
-                                                                {formatEffectName(effect.name)}
+                                                            <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                                                {formatEffectName(effect)}
                                                             </li>
                                                         ))}
                                                     </ul>

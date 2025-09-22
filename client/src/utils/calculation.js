@@ -1,6 +1,5 @@
 import { chaliceData } from '../data/chaliceData.js';
 import items from '../data/items.json';
-import effects from '../data/effects.json';
 
 /**
  * Calculates the best relic combination for a given set of desired effects, available relics, and selected chalices.
@@ -42,9 +41,9 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
   const scoredRelics = validRelics.map(relic => {
     const relicEffects = getRelicEffects(relic);
     const score = calculateRelicScore(relicEffects, desiredEffects);
-    const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.map(e => e.toLowerCase()).includes(de.name.toLowerCase()));
+    const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId => de.ids.includes(effectId)));
     return { ...relic, score, isForbidden };
-  }).filter(relic => relic.score > 0 && !relic.isForbidden);
+  }).filter(relic => !relic.isForbidden);
 
   console.log("Scored and Filtered Relics:", JSON.parse(JSON.stringify(scoredRelics)));
 
@@ -86,16 +85,14 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
 
 /**
  * Calculates the score of a single relic based on its effects and the user's desired effects.
- * @param {Array} relicEffects - An array of effect names for the relic.
+ * @param {Array} relicEffectIds - An array of effect IDs for the relic.
  * @param {Array} desiredEffects - An array of desired effect objects from the user.
  * @returns {number} - The calculated score for the relic.
  */
-function calculateRelicScore(relicEffects, desiredEffects) {
+function calculateRelicScore(relicEffectIds, desiredEffects) {
   let score = 0;
-  const lowerCaseRelicEffects = relicEffects.map(e => e.toLowerCase());
-
   for (const desiredEffect of desiredEffects) {
-    if (lowerCaseRelicEffects.includes(desiredEffect.name.toLowerCase())) {
+    if (relicEffectIds.some(id => desiredEffect.ids.includes(id))) {
       score += desiredEffect.weight || 1;
     }
   }
@@ -177,8 +174,6 @@ function getRelicEffects(relic) {
 
   return effectIds
     .filter(id => id && id !== 0 && id !== EMPTY_SLOT_ID)
-    .map(id => effects[id?.toString()]?.name)
-    .filter(Boolean);
 }
 
 // gets the color of a relic, with fallback to 'white'

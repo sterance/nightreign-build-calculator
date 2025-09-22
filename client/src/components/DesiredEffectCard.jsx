@@ -20,7 +20,7 @@ const DesiredEffectCard = ({ effect, onUpdate, onDelete }) => {
     const adjustWeight = (amount) => {
         const currentWeight = parseFloat(weight);
         if (!isNaN(currentWeight)) {
-            const newWeight = Math.max(0, currentWeight + amount);
+            const newWeight = currentWeight + amount;
             setWeight(newWeight.toFixed(1));
             onUpdate(effect.id, { ...effect, weight: newWeight });
         }

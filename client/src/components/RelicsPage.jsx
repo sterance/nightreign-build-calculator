@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
-import effects from '../data/effects.json';
+import effects from '../data/baseRelicEffects.json';
 import { CloseIcon } from './Icons';
 
-const RelicCard = ({ relic, items, effects }) => {
+const effectMap = new Map();
+effects.forEach(effect => {
+  effect.ids.forEach(id => {
+    effectMap.set(id, effect.name);
+  });
+});
+
+const RelicCard = ({ relic, items }) => {
   const relicInfo = items[relic.item_id.toString()];
 
   if (!relicInfo) {
@@ -14,8 +21,7 @@ const RelicCard = ({ relic, items, effects }) => {
     const EMPTY_SLOT_ID = 4294967295; // 2^32 - 1 (unsigned 32-bit integer)
     if (id === 0 || id === EMPTY_SLOT_ID) return null;
     
-    const effect = effects[id.toString()];
-    return effect ? effect.name : `Unknown Effect (ID: ${id})`;
+    return effectMap.get(id) || `Unknown Effect (ID: ${id})`;
   };
 
   const allEffects = [
@@ -43,11 +49,15 @@ const RelicCard = ({ relic, items, effects }) => {
   );
 };
 
-const CharacterRelics = ({ characterData, items, effects, onSaveNameSelect, selectedSaveName, showRadio }) => {
+const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
-    // hide unknown relics and "Deep" relics
-    if (!relicInfo || relicInfo.name.startsWith('Deep')) {
+    // hide unknown relics
+    if (!relicInfo || !relicInfo.name) {
+      return false;
+    }
+    // toggle "Deep" relics based on checkbox
+    if (!showDeepOfNight && relicInfo.name.startsWith('Deep')) {
       return false;
     }
     return true;
@@ -73,14 +83,14 @@ const CharacterRelics = ({ characterData, items, effects, onSaveNameSelect, sele
         </label>
         <div className="relics-grid">
           {filteredRelics.sort((a, b) => a.sorting - b.sorting).map((relic, index) => (
-            <RelicCard key={index} relic={relic} items={items} effects={effects} />
+            <RelicCard key={index} relic={relic} items={items} />
           ))}
         </div>
       </div>
   )
 };
 
-const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
+const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight }) => {
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -89,7 +99,33 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
       try {
         const storedRelicData = localStorage.getItem('relicData');
         if (storedRelicData) {
-          setRelicData(JSON.parse(storedRelicData));
+          const parsedData = JSON.parse(storedRelicData);
+          setRelicData(parsedData);
+
+          const unknownEffectIds = new Set();
+          const EMPTY_SLOT_ID = 4294967295;
+
+          parsedData.forEach(character => {
+            character.relics.forEach(relic => {
+              const effectIds = [
+                relic.effect1_id,
+                relic.effect2_id,
+                relic.effect3_id,
+                relic.sec_effect1_id,
+                relic.sec_effect2_id,
+                relic.sec_effect3_id,
+              ];
+              effectIds.forEach(id => {
+                if (id && id !== 0 && id !== EMPTY_SLOT_ID && !effectMap.has(id)) {
+                  unknownEffectIds.add(id);
+                }
+              });
+            });
+          });
+
+          if (unknownEffectIds.size > 0) {
+            console.log("Unknown Effect IDs found:", Array.from(unknownEffectIds));
+          }
         }
       } catch (error) {
         console.error("Failed to load relic data:", error);
@@ -107,7 +143,9 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
   const hasVisibleRelics = relicData && items && relicData.some(character => 
     character.relics.some(relic => {
         const relicInfo = items[relic.item_id.toString()];
-        return relicInfo && !relicInfo.name.startsWith('Deep');
+        if (!relicInfo || !relicInfo.name) return false;
+        if (!showDeepOfNight && relicInfo.name.startsWith('Deep')) return false;
+        return true;
     })
   );
   
@@ -128,7 +166,9 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
   const charactersWithRelics = relicData.filter(character => 
     character.relics.some(relic => {
         const relicInfo = items[relic.item_id.toString()];
-        return relicInfo && !relicInfo.name.startsWith('Deep');
+        if (!relicInfo || !relicInfo.name) return false;
+        if (!showDeepOfNight && relicInfo.name.startsWith('Deep')) return false;
+        return true;
     })
   );
 
@@ -147,10 +187,10 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect }) => {
                 key={character.section_number} 
                 characterData={character} 
                 items={items} 
-                effects={effects}
                 selectedSaveName={selectedSaveName}
                 onSaveNameSelect={onSaveNameSelect}
                 showRadio={charactersWithRelics.length > 1}
+                showDeepOfNight={showDeepOfNight}
               />
             ))}
         </div>

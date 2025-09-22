@@ -22,7 +22,7 @@ h1 {
   flex-grow: 1;
   gap: 1rem;
   margin-top: 1rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1.5fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'character chalice effects'
@@ -99,6 +99,16 @@ button:focus-visible {
   width: 16px;
   height: 16px;
   animation: spin 1s linear infinite;
+}
+.floating-checkbox {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background-color: rgba(26, 26, 26, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #555;
 }
 
 /* CHARACTER CARD */
@@ -260,7 +270,7 @@ button:focus-visible {
   gap: 0.25rem;
 }
 .weight-control input {
-  width: 50px !important;
+  width: 60px !important;
   text-align: center;
   background-color: #333;
   border: 1px solid #555;
@@ -375,7 +385,7 @@ button:focus-visible {
     display: flex;
     justify-content: center;
     gap: 4rem;
-    width: 50%;
+    width: 66%;
 }
 
 /* RELIC RESULTS */
@@ -386,9 +396,9 @@ button:focus-visible {
   margin-top: 1rem;
   flex-grow: 1;
 }
-.relic-result-container img{
+/* .relic-result-container img{
   padding-left: 0.5rem;
-}
+} */
 .relic-result-card, .chalice-result-card {
   border: 1px solid #555;
   border-radius: 4px;
@@ -419,7 +429,7 @@ button:focus-visible {
   transform: scale(1.7);
 }
 .relic-stats-table {
-  width: 50%;
+  width: 66%;
   border-collapse: collapse;
   margin-left: auto;
 }

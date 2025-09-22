@@ -49,14 +49,14 @@ const RelicResults = ({ selectedChalices, calculationResult }) => {
           </div>
         </div>
         {relicEntries.map(([relicName, relicData], index) => (
-          <div className={`relic-result-card color-${relicData.color}`} key={index}>
+          <div className={`relic-result-card color-${chaliceSlots[index]}`} key={index}>
             <img src={getImageUrl(relicName, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
             {relicName !== "Scenic Flatstone" && <span>{relicName}</span>}
             <table className="relic-stats-table">
               <tbody>
-                <tr><td>{relicData.effects['effect 1']}</td></tr>
-                <tr><td>{relicData.effects['effect 2']}</td></tr>
-                <tr><td>{relicData.effects['effect 3']}</td></tr>
+                <tr><td>{relicName !== "Scenic Flatstone" && <span>•&nbsp;</span>}{relicData.effects['effect 1']}</td></tr>
+                <tr><td>{relicName !== "Scenic Flatstone" && <span>•&nbsp;</span>}{relicData.effects['effect 2']}</td></tr>
+                <tr><td>{relicName !== "Scenic Flatstone" && <span>•&nbsp;</span>}{relicData.effects['effect 3']}</td></tr>
               </tbody>
             </table>
           </div>

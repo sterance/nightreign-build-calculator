@@ -9,7 +9,14 @@ import { chaliceData } from './data/chaliceData';
 import { CalculatorIcon, RelicIcon, UploadIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
 import items from './data/items.json';
-import effects from './data/effects.json';
+import effects from './data/baseRelicEffects.json';
+
+const effectMap = new Map();
+effects.forEach(effect => {
+  effect.ids.forEach(id => {
+    effectMap.set(id, effect.name);
+  });
+});
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -21,6 +28,7 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   const [hasRelicData, setHasRelicData] = useState(false);
+  const [showDeepOfNight, setShowDeepOfNight] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -151,14 +159,15 @@ function App() {
         "chalice slots": result.chalice.slots,
         ...result.relics.reduce((acc, relic) => {
           const relicInfo = items[relic.item_id.toString()];
-          const relicEffects = [
+          const relicEffectIds = [
             relic.effect1_id,
             relic.effect2_id,
             relic.effect3_id,
             relic.sec_effect1_id,
             relic.sec_effect2_id,
             relic.sec_effect3_id,
-          ].map(id => effects[id.toString()]?.name).filter(Boolean);
+          ];
+          const relicEffects = relicEffectIds.map(id => effectMap.get(id)).filter(Boolean);
 
           acc[relicInfo.name] = {
             color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
@@ -179,6 +188,16 @@ function App() {
 
   return (
     <div className="app-container">
+      <div className="floating-checkbox">
+        <label>
+          <input
+            type="checkbox"
+            checked={showDeepOfNight}
+            onChange={() => setShowDeepOfNight(!showDeepOfNight)}
+          />
+          Deep of Night
+        </label>
+      </div>
       <h1>Nightreign Build Calculator</h1>
 
       <div className="card-container">
@@ -204,7 +223,7 @@ function App() {
         />
       </div>
 
-      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} />}
+      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} showDeepOfNight={showDeepOfNight} />}
 
       {uploadError && <div className="error-popup">{uploadError}</div>}
 
