@@ -282,6 +282,46 @@ button:focus-visible {
   color: #ff4d4d;
 }
 
+
+
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.group-header:hover {
+  background-color: transparent !important;
+}
+.arrow {
+  transition: transform 0.2s;
+}
+.arrow.expanded {
+  transform: rotate(180deg);
+}
+.effects-category .sub-list {
+  margin-top: 5px;
+  list-style-type: none;
+}
+.effects-category .sub-list li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+.effects-category .sub-list li:hover {
+  background-color: #646cff !important;
+}
+.effects-category > ul > li:not(.group-item):hover {
+  background-color: #646cff !important;
+}
+.effects-category > ul > li.group-item:hover {
+  background-color: transparent !important;
+}
+
+
+
+
 /* BOTTOM BAR */
 .bottom-bar {
   position: fixed;
