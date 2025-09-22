@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { relicEffects } from '../data/effectData';
+import relicEffects from '../data/newEffects.json';
 import { characters } from '../data/chaliceData';
 import { StarIcon, ProhibitionIcon, TrashIcon, PlusIcon, MinusIcon } from './Icons';
 
@@ -94,15 +94,16 @@ const DesiredEffects = ({ onChange }) => {
     onChange(selectedEffects);
   }, [selectedEffects, onChange]);
 
-  const filteredEffects = Object.keys(relicEffects).reduce((acc, category) => {
-    const filtered = relicEffects[category].filter((effect) =>
-      effect.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    if (filtered.length > 0) {
-      acc[category] = filtered;
-    }
-    return acc;
-  }, {});
+  const filteredEffects = relicEffects
+    .filter(effect => effect.category && effect.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    .reduce((acc, effect) => {
+      if (!acc[effect.category]) {
+        acc[effect.category] = [];
+      }
+      acc[effect.category].push(effect.name);
+      return acc;
+    }, {});
+
 
   const formatEffectName = (effect) => {
     const characterName = characters.find(char => effect.toLowerCase().startsWith(char));

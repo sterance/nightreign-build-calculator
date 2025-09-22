@@ -1,0 +1,2999 @@
+[
+  {
+    "ids": [
+      10000,
+      7036000,
+      8610100
+    ],
+    "name": "FP Restoration upon Successive Attacks",
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      10001,
+      100000,
+      7032200
+    ],
+    "name": "Taking attacks improves attack power",
+    "group": "Taking attacks improves attack power",
+    "level": 1,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6032200
+    ],
+    "name": "Taking attacks improves attack power +1",
+    "group": "Taking attacks improves attack power",
+    "level": 2,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6032201
+    ],
+    "name": "Taking attacks improves attack power +2",
+    "group": "Taking attacks improves attack power",
+    "level": 3,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      10002,
+      7035900
+    ],
+    "name": "Switching Weapons Boosts Attack Power",
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      11002,
+      7032400
+    ],
+    "name": "[Wylder] Art gauge greatly filled when ability is activated",
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7020000
+    ],
+    "name": "[Wylder] Standard attacks enhanced with fiery follow-ups when using Character Skill (greatsword only)",
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7010500
+    ],
+    "name": "[Wylder] Art activation spreads fire in area",
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      11000,
+      7033200
+    ],
+    "name": "[Wylder] +1 additional Character Skill use",
+    "nightfarer": "Wylder",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011000
+    ],
+    "name": "[Guardian] Increased duration for Character Skill",
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      12002,
+      7012000
+    ],
+    "name": "[Guardian] Slowly restores nearby allies' HP while Art is active",
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011600
+    ],
+    "name": "[Guardian] Creates whirlwind when charging halberd attacks",
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7033400
+    ],
+    "name": "[Guardian] Successful guards send out shockwaves while ability is active",
+    "nightfarer": "Guardian",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034600
+    ],
+    "name": "[Ironeye] Art Charge Activation Adds Poison Effect",
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034700
+    ],
+    "name": "[Ironeye] Boosts thrusting counterattacks after executing Art",
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7270100
+    ],
+    "name": "[Ironeye] +1 additional Character Skill use",
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7280000
+    ],
+    "name": "[Ironeye] Extends duration of weak point",
+    "nightfarer": "Ironeye",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7032700
+    ],
+    "name": "[Duchess] Defeating enemies while Art is active ups attack power",
+    "nightfarer": "Duchess",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7010700
+    ],
+    "name": "[Duchess] Successive dagger attack reprises event upon nearby enemies",
+    "nightfarer": "Duchess",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7290000
+    ],
+    "name": "[Duchess] Improved Character Skill Attack Power",
+    "nightfarer": "Duchess",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7031800
+    ],
+    "name": "[Duchess] Become difficult to spot and silence footsteps after landing critical from behind",
+    "nightfarer": "Duchess",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7310000
+    ],
+    "name": "[Raider] Duration of Ultimate Art extended",
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7031300
+    ],
+    "name": "[Raider] Damage taken while using Character Skill improves attack power and stamina",
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7090300
+    ],
+    "name": "[Raider] Defeating enemies near Totem Stela restores HP",
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7030000
+    ],
+    "name": "[Raider] Improved Poise Near Totem Stela",
+    "nightfarer": "Raider",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      16002,
+      7010900
+    ],
+    "name": "[Revenant] Expend own HP to fully heal nearby allies when activating Art",
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011200
+    ],
+    "name": "[Revenant] Trigger ghostflame explosion during Ultimate Art activation",
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7031200
+    ],
+    "name": "[Revenant] Strengthens family and allies when Ultimate Art is activated",
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7220000
+    ],
+    "name": "[Revenant] Power up while fighting alongside family",
+    "nightfarer": "Revenant",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7032800
+    ],
+    "name": "[Recluse] Collecting affinity residue activates Terra Magica",
+    "nightfarer": "Recluse",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      17002,
+      7032900
+    ],
+    "name": "[Recluse] Suffer blood loss and increase attack power upon Art activation",
+    "nightfarer": "Recluse",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034100
+    ],
+    "name": "[Recluse] Activating Ultimate Art raises Max HP",
+    "nightfarer": "Recluse",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034400
+    ],
+    "name": "[Executor] Character Skill Boosts Attack but Attacking Drains HP",
+    "nightfarer": "Executor",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7034500
+    ],
+    "name": "[Executor] While Character Skill is active, unlocking use of cursed sword restores HP",
+    "nightfarer": "Executor",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      7011700
+    ],
+    "name": "[Executor] Roaring restores HP while Art is active",
+    "nightfarer": "Executor",
+    "stacks": false,
+    "category": "Character Specific"
+  },
+  {
+    "ids": [
+      310000,
+      310400,
+      7000090,
+      8000000
+    ],
+    "name": "Increased Maximum HP",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      310100,
+      7000190,
+      8010000
+    ],
+    "name": "Increased Maximum FP",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      310200,
+      310401,
+      7000290,
+      8020000
+    ],
+    "name": "Increased Maximum Stamina",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      320900,
+      7040200,
+      8130000
+    ],
+    "name": "Improved Critical Hits",
+    "group": "Improved Critical Hits",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040201
+    ],
+    "name": "Improved Critical Hits +1",
+    "group": "Improved Critical Hits",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      321900,
+      7043000,
+      8380000
+    ],
+    "name": "Improved Roar & Breath Attacks",
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      322000,
+      7040100,
+      8420000
+    ],
+    "name": "Improved Guard Counters",
+    "group": "Improved Guard Counters",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      322200,
+      7043100,
+      8400000
+    ],
+    "name": "Improved Perfuming Arts",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      340000,
+      7006200,
+      8200000,
+      6611000
+    ],
+    "name": "Improved Physical Damage Negation",
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      340800,
+      7012300,
+      8660101
+    ],
+    "name": "Improved Damage Negation at Low HP",
+    "stacks": true,
+    "group": "Improved Damage Negation at Low HP",
+    "level": 1,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      6012300
+    ],
+    "name": "Improved Damage Negation at Low HP +1",
+    "stacks": true,
+    "group": "Improved Damage Negation at Low HP",
+    "level": 2,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      6012301
+    ],
+    "name": "Improved Damage Negation at Low HP +2",
+    "stacks": true,
+    "group": "Improved Damage Negation at Low HP",
+    "level": 3,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      350200,
+      7001100,
+      8540000
+    ],
+    "name": "Continuous HP Recovery",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      6031900
+    ],
+    "name": "Critical Hits Earn Runes +1",
+    "group": "Critical Hits Earn Runes",
+    "level": 1,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      6031901
+    ],
+    "name": "Critical Hits Earn Runes +2",
+    "group": "Critical Hits Earn Runes",
+    "level": 2,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      6040000
+    ],
+    "name": "Improved Initial Standard Attack +1",
+    "group": "Improved Initial Standard Attack",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040001
+    ],
+    "name": "Improved Initial Standard Attack +2",
+    "group": "Improved Initial Standard Attack",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7000000
+    ],
+    "name": "Vigor +1",
+    "group": "Vigor",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000001
+    ],
+    "name": "Vigor +2",
+    "group": "Vigor",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000002
+    ],
+    "name": "Vigor +3",
+    "group": "Vigor",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000100
+    ],
+    "name": "Mind +1",
+    "group": "Mind",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000101
+    ],
+    "name": "Mind +2",
+    "group": "Mind",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000102
+    ],
+    "name": "Mind +3",
+    "group": "Mind",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000200
+    ],
+    "name": "Endurance +1",
+    "group": "Endurance",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000201
+    ],
+    "name": "Endurance +2",
+    "group": "Endurance",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000202
+    ],
+    "name": "Endurance +3",
+    "group": "Endurance",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000300
+    ],
+    "name": "Strength +1",
+    "group": "Strength",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000301
+    ],
+    "name": "Strength +2",
+    "group": "Strength",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000302
+    ],
+    "name": "Strength +3",
+    "group": "Strength",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000400
+    ],
+    "name": "Dexterity +1",
+    "group": "Dexterity",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000401
+    ],
+    "name": "Dexterity +2",
+    "group": "Dexterity",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000402
+    ],
+    "name": "Dexterity +3",
+    "group": "Dexterity",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000500
+    ],
+    "name": "Intelligence +1",
+    "group": "Intelligence",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000501
+    ],
+    "name": "Intelligence +2",
+    "group": "Intelligence",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000502
+    ],
+    "name": "Intelligence +3",
+    "group": "Intelligence",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000600
+    ],
+    "name": "Faith +1",
+    "group": "Faith",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000601
+    ],
+    "name": "Faith +2",
+    "group": "Faith",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000602
+    ],
+    "name": "Faith +3",
+    "group": "Faith",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000700
+    ],
+    "name": "Arcane +1",
+    "group": "Arcane",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000701
+    ],
+    "name": "Arcane +2",
+    "group": "Arcane",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000702
+    ],
+    "name": "Arcane +3",
+    "group": "Arcane",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000800,
+      8370000
+    ],
+    "name": "Character Skill Cooldown Reduction +1",
+    "group": "Character Skill Cooldown Reduction",
+    "level": 1,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7000801
+    ],
+    "name": "Character Skill Cooldown Reduction +2",
+    "group": "Character Skill Cooldown Reduction",
+    "level": 2,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7000802
+    ],
+    "name": "Character Skill Cooldown Reduction +3",
+    "group": "Character Skill Cooldown Reduction",
+    "level": 3,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7000900
+    ],
+    "name": "Ultimate Art Gauge +1",
+    "group": "Ultimate Art Gauge",
+    "level": 1,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7000901
+    ],
+    "name": "Ultimate Art Gauge +2",
+    "group": "Ultimate Art Gauge",
+    "level": 2,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7000902
+    ],
+    "name": "Ultimate Art Gauge +3",
+    "group": "Ultimate Art Gauge",
+    "level": 3,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7001000
+    ],
+    "name": "Poise +1",
+    "group": "Poise",
+    "level": 1,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7001001
+    ],
+    "name": "Poise +2",
+    "group": "Poise",
+    "level": 2,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7001002
+    ],
+    "name": "Poise +3",
+    "group": "Poise",
+    "level": 3,
+    "stacks": true,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7001400
+    ],
+    "name": "Physical Attack Up",
+    "group": "Physical Attack Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001401
+    ],
+    "name": "Physical Attack Up +1",
+    "group": "Physical Attack Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001402
+    ],
+    "name": "Physical Attack Up +2",
+    "group": "Physical Attack Up",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001403
+    ],
+    "name": "Physical Attack Up +3",
+    "group": "Physical Attack Up",
+    "level": 4,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001500
+    ],
+    "name": "Magic Attack Power Up",
+    "group": "Magic Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001501
+    ],
+    "name": "Magic Attack Power Up +1",
+    "group": "Magic Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001502
+    ],
+    "name": "Magic Attack Power Up +2",
+    "group": "Magic Attack Power Up",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001600
+    ],
+    "name": "Fire Attack Power Up",
+    "group": "Fire Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001601
+    ],
+    "name": "Fire Attack Power Up +1",
+    "group": "Fire Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001602
+    ],
+    "name": "Fire Attack Power Up +2",
+    "group": "Fire Attack Power Up",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001700
+    ],
+    "name": "Lightning Attack Power Up",
+    "group": "Lightning Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001701
+    ],
+    "name": "Lightning Attack Power Up +1",
+    "group": "Lightning Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001702
+    ],
+    "name": "Lightning Attack Power Up +2",
+    "group": "Lightning Attack Power Up",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001800
+    ],
+    "name": "Holy Attack Power Up",
+    "group": "Holy Attack Power Up",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001801
+    ],
+    "name": "Holy Attack Power Up +1",
+    "group": "Holy Attack Power Up",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001802
+    ],
+    "name": "Holy Attack Power Up +2",
+    "group": "Holy Attack Power Up",
+    "level": 3,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7002600,
+      340100,
+      8200100
+    ],
+    "name": "Magic Damage Negation Up",
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002700,
+      340200,
+      8200200
+    ],
+    "name": "Fire Damage Negation Up",
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002800,
+      340300,
+      8200300
+    ],
+    "name": "Lightning Damage Negation Up",
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002900,
+      340400,
+      8200400
+    ],
+    "name": "Holy Damage Negation Up",
+    "stacks": true,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7005600
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7006000,
+      7006001,
+      8300100
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing",
+    "stacks": true,
+    "group": "Improved Stance-Breaking when Two-Handing",
+    "level": 1,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006000
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing +1",
+    "stacks": true,
+    "group": "Improved Stance-Breaking when Two-Handing",
+    "level": 2,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006001
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing +2",
+    "stacks": true,
+    "group": "Improved Stance-Breaking when Two-Handing",
+    "level": 3,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7006100,
+      7006101,
+      8310100
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments",
+    "stacks": true,
+    "group": "Improved Stance-Breaking when Wielding Two Armaments",
+    "level": 1,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006100
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments +1",
+    "stacks": true,
+    "group": "Improved Stance-Breaking when Wielding Two Armaments",
+    "level": 2,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6006101
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments +2",
+    "stacks": true,
+    "group": "Improved Stance-Breaking when Wielding Two Armaments",
+    "level": 3,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7010200,
+      8440100
+    ],
+    "name": "Flask Also Heals Allies",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7012200
+    ],
+    "name": "Slowly restore HP for self and nearby allies when HP is low",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7030200
+    ],
+    "name": "HP restored when using cured meats, medicinal boluses, etc.",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7030600
+    ],
+    "name": "Art gauge charged from successful guarding",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7030700
+    ],
+    "name": "Draw enemy attention while guarding",
+    "stacks": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7030800
+    ],
+    "name": "Art gauge fills moderately upon critical hit",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7030900
+    ],
+    "name": "Physical attack power increases after using grease items",
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7031900
+    ],
+    "name": "Critical Hits Earn Runes",
+    "group": "Critical Hits Earn Runes",
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7035100
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed +1",
+    "stacks": false,
+    "group": "Critical Hit Boosts Stamina Recovery Speed",
+    "level": 1,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      6035101
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed +2",
+    "stacks": false,
+    "group": "Critical Hit Boosts Stamina Recovery Speed",
+    "level": 2,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7035400,
+      7035410
+    ],
+    "name": "Gesture Crossed Legs Builds Up Madness",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7035500,
+      7035510
+    ],
+    "name": "Madness Continually Recovers FP",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7035800
+    ],
+    "name": "Boosts Attack Power of Added Affinity Attacks",
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7036100
+    ],
+    "name": "HP Recovery From Successful Guarding",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7040000
+    ],
+    "name": "Improved Initial Standard Attack",
+    "group": "Improved Initial Standard Attack",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040400
+    ],
+    "name": "Improved Throwing Knife Damage +1",
+    "group": "Improved Throwing Knife Damage",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040401
+    ],
+    "name": "Improved Throwing Knife Damage +2",
+    "group": "Improved Throwing Knife Damage",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040300
+    ],
+    "name": "Improved Throwing Pot Damage +1",
+    "group": "Improved Throwing Pot Damage",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040301
+    ],
+    "name": "Improved Throwing Pot Damage +2",
+    "group": "Improved Throwing Pot Damage",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7040500
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage +1",
+    "group": "Improved Glintstone and Gravity Stone Damage",
+    "level": 1,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6040501
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage +2",
+    "group": "Improved Glintstone and Gravity Stone Damage",
+    "level": 2,
+    "stacks": true,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6043100
+    ],
+    "name": "Improved Perfuming Arts +1",
+    "group": "Improved Perfuming Arts",
+    "level": 1,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6043101
+    ],
+    "name": "Improved Perfuming Arts +2",
+    "group": "Improved Perfuming Arts",
+    "level": 2,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043200
+    ],
+    "name": "Improved Stonedigger Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043300
+    ],
+    "name": "Improved Carian Sword Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043400
+    ],
+    "name": "Improved Glintblade Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043500
+    ],
+    "name": "Improved Invisibility Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043600
+    ],
+    "name": "Improved Crystalian sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043700
+    ],
+    "name": "Improved Gravity Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043800
+    ],
+    "name": "Improved Thorn Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043900
+    ],
+    "name": "Improved Night Sorcery",
+    "stacks": true,
+    "group": "Improved [Spell School] Sorcery",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044000
+    ],
+    "name": "Improved Fundamentalist Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044100
+    ],
+    "name": "Improved Dragon Cult Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044200
+    ],
+    "name": "Improved Giants' Flame Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044300
+    ],
+    "name": "Improved Godslayer Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044400
+    ],
+    "name": "Improved Bestial Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044500
+    ],
+    "name": "Improved Frenzied Flame Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7044600
+    ],
+    "name": "Improved Dragon Communion Incantations",
+    "stacks": true,
+    "group": "Improved [Spell School] Incantations",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7050000
+    ],
+    "name": "Raised stamina recovery for nearby allies, but not for self",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7050100
+    ],
+    "name": "Items confer effect to all nearby allies",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7060000
+    ],
+    "name": "Attack power increased for each evergaol prisoner defeated",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7060100
+    ],
+    "name": "Max FP increased after each Sorcerer's Rise unlocked",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7060200
+    ],
+    "name": "Attack power increased for each Night Invader defeated",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7070000
+    ],
+    "name": "Treasure marked upon map",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7080000
+    ],
+    "name": "Improved Attack Power with 3+ Daggers Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080100
+    ],
+    "name": "Improved Attack Power with 3+ Straight Swords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080200
+    ],
+    "name": "Improved Attack Power with 3+ Greatswords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080300
+    ],
+    "name": "Improved Attack Power with 3+ Colossal Swords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080400
+    ],
+    "name": "Improved Attack Power with 3+ Curved Swords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080500
+    ],
+    "name": "Improved Attack Power with 3+ Curved Greatswords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080600
+    ],
+    "name": "Improved Attack Power with 3+ Katana Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080700
+    ],
+    "name": "Improved Attack Power with 3+ Twinblades Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080800
+    ],
+    "name": "Improved Attack Power with 3+ Thrusting Swords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7080900
+    ],
+    "name": "Improved Attack Power with 3+ Heavy Thrusting Swords Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081000
+    ],
+    "name": "Improved Attack Power with 3+ Axes Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081100
+    ],
+    "name": "Improved Attack Power with 3+ Greataxes Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081200
+    ],
+    "name": "Improved Attack Power with 3+ Hammers Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081300
+    ],
+    "name": "Improved Attack Power with 3+ Great Hammers Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081400
+    ],
+    "name": "Improved Attack Power with 3+ Flails Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081500
+    ],
+    "name": "Improved Attack Power with 3+ Spears Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081700
+    ],
+    "name": "Improved Attack Power with 3+ Great Spears Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081800
+    ],
+    "name": "Improved Attack Power with 3+ Halberds Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7081900
+    ],
+    "name": "Improved Attack Power with 3+ Reapers Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082000
+    ],
+    "name": "Improved Attack Power with 3+ Fists Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082100
+    ],
+    "name": "Improved Attack Power with 3+ Claws Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082200
+    ],
+    "name": "Improved Attack Power with 3+ Whips Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082300
+    ],
+    "name": "Improved Attack Power with 3+ Colossal Weapons Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082400
+    ],
+    "name": "Improved Attack Power with 3+ Bows Equipped",
+    "stacks": false,
+    "group": "Improved Attack Power with 3+ [Weapons] Equipped",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7082500
+    ],
+    "name": "Max FP Up with 3+ Staves Equipped",
+    "group": "Max FP Up with 3+ [Staves/Sacred Seals] Equipped",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7082600
+    ],
+    "name": "Max FP Up with 3+ Sacred Seals Equipped",
+    "group": "Max FP Up with 3+ [Staves/Sacred Seals] Equipped",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7082700
+    ],
+    "name": "Max HP Up with 3+ Small Shields Equipped",
+    "group": "Max HP Up with 3+ [Shields] Equipped",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7082800
+    ],
+    "name": "Max HP Up with 3+ Medium Shields Equipped",
+    "group": "Max HP Up with 3+ [Shields] Equipped",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7082900
+    ],
+    "name": "Max HP Up with 3+ Greatshields Equipped",
+    "group": "Max HP Up with 3+ [Shields] Equipped",
+    "stacks": false,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7090000
+    ],
+    "name": "Defeating enemies fills more of the Art gauge",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7090100
+    ],
+    "name": "Defeating enemies restores HP for allies but not for self",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7100100
+    ],
+    "name": "Stamina Recovery upon Landing Attacks",
+    "group": "Stamina Recovery Upon Landing Attacks",
+    "level": 1,
+    "stacks": true,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7100110
+    ],
+    "name": "Stamina Recovery upon Landing Attacks +1",
+    "group": "Stamina Recovery Upon Landing Attacks",
+    "level": 2,
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7110000
+    ],
+    "name": "Increased rune acquisition for self and allies",
+    "stacks": true,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7120000
+    ],
+    "name": "Starting armament deals magic damage",
+    "group": "Starting armament deals [Elemental] damage",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120100
+    ],
+    "name": "Starting armament deals fire damage",
+    "group": "Starting armament deals [Elemental] damage",
+    "stacks": false,
+    "level": 1,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120101
+    ],
+    "name": "Armament deals fire damage +1 at start of expedition",
+    "group": "Starting armament deals [Elemental] damage",
+    "level": 2,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120200
+    ],
+    "name": "Starting armament deals lightning damage",
+    "group": "Starting armament deals [Elemental] damage",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120300
+    ],
+    "name": "Starting armament deals holy damage",
+    "group": "Starting armament deals [Elemental] damage",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120400
+    ],
+    "name": "Starting armament inflicts frost",
+    "group": "Starting armament inflicts [Status]",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120500
+    ],
+    "name": "Starting armament inflicts poison",
+    "group": "Starting armament inflicts [Status]",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120600
+    ],
+    "name": "Starting armament inflicts blood loss",
+    "group": "Starting armament inflicts [Status]",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120700
+    ],
+    "name": "Starting armament inflicts scarlet rot",
+    "group": "Starting armament inflicts [Status]",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120900
+    ],
+    "name": "Stonesword Key in possession at start of expedition",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121000
+    ],
+    "name": "Small Pouch in possession at start of expedition",
+    "stacks": true,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121100
+    ],
+    "name": "Fire Pots in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121200
+    ],
+    "name": "Magic Pots in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121300
+    ],
+    "name": "Lightning Pots in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121400
+    ],
+    "name": "Holy Water Pots in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121500
+    ],
+    "name": "Poisonbone Darts in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121600
+    ],
+    "name": "Crystal Darts in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121700
+    ],
+    "name": "Throwing Daggers in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121800
+    ],
+    "name": "Glintstone Scraps in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7121900
+    ],
+    "name": "Gravity Stone Chunks in possession at start of expedition",
+    "stacks": true,
+    "group": "[Throwable] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122000
+    ],
+    "name": "Bewitching Branches in possession at start of expedition",
+    "stacks": true,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122100
+    ],
+    "name": "Wraith Calling Bell in possession at start of expedition",
+    "stacks": true,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122200
+    ],
+    "name": "Fire Grease in possession at start of expedition",
+    "stacks": true,
+    "group": "[Grease] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122300
+    ],
+    "name": "Magic Grease in possession at start of expedition",
+    "stacks": true,
+    "group": "[Grease] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122400
+    ],
+    "name": "Lightning Grease in possession at start of expedition",
+    "stacks": true,
+    "group": "[Grease] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122500
+    ],
+    "name": "Holy Grease in possession at start of expedition",
+    "stacks": true,
+    "group": "[Grease] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122600
+    ],
+    "name": "Shield Grease in possession at start of expedition",
+    "stacks": true,
+    "group": "[Grease] in possession at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122700
+    ],
+    "name": "Changes compatible armament's skill to Glintblade Phalanx at start of expedition",
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "stacks": false,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122800
+    ],
+    "name": "Changes compatible armament's skill to Gravitas at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7122900
+    ],
+    "name": "Changes compatible armament's skill to Flaming Strike at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123000
+    ],
+    "name": "Changes compatible armament's skill to Eruption at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123100
+    ],
+    "name": "Changes compatible armament's skill to Thunderbolt at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123200
+    ],
+    "name": "Changes compatible armament's skill to Lightning Slash at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123300
+    ],
+    "name": "Changes compatible armament's skill to Sacred Blade at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123400
+    ],
+    "name": "Changes compatible armament's skill to Prayerful Strike at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123500
+    ],
+    "name": "Changes compatible armament's skill to Poisonous Mist at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123600
+    ],
+    "name": "Changes compatible armament's skill to Poison Moth Flight at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123700
+    ],
+    "name": "Changes compatible armament's skill to Blood Blade at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123800
+    ],
+    "name": "Changes compatible armament's skill to Seppuku at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7123900
+    ],
+    "name": "Changes compatible armament's skill to Chilling Mist at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124000
+    ],
+    "name": "Changes compatible armament's skill to Hoarfrost Stomp at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124100
+    ],
+    "name": "Changes compatible armament's skill to White Shadow's Lure at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124300
+    ],
+    "name": "Changes compatible armament's skill to Endure at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124400
+    ],
+    "name": "Changes compatible armament's skill to Quickstep at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124500
+    ],
+    "name": "Changes compatible armament's skill to Storm Stomp at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124600
+    ],
+    "name": "Changes compatible armament's skill to Determination at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7124700
+    ],
+    "name": "Changes compatible armament's skill to Rain of Arrows at start of expedition",
+    "stacks": false,
+    "group": "Changes compatible armament's skill to [Skill] at start of expedition",
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7126000,
+      7126001,
+      7126002
+    ],
+    "name": "Starlight Shards in possession at start of expedition",
+    "stacks": true,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7150000
+    ],
+    "name": "Guard counter is given a boost based on current HP",
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7160000
+    ],
+    "name": "HP Restoration upon Thrusting Counterattack",
+    "stacks": false,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7230000
+    ],
+    "name": "Rune discount for shop purchases while on expedition",
+    "group": "Rune discount for shop purchases while on expedition",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7230001
+    ],
+    "name": "Huge rune discount for shop purchases while on expedition",
+    "group": "Rune discount for shop purchases while on expedition",
+    "stacks": false,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7240000
+    ],
+    "name": "Improved Poise & Damage Negation When Knocked Back by Damage",
+    "stacks": false,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7260000
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy",
+    "stacks": false,
+    "group": "Attack power up when facing [Status]-afflicted enemy",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260200
+    ],
+    "name": "Attack power up when facing sleep-afflicted enemy",
+    "stacks": false,
+    "group": "Attack power up when facing [Status]-afflicted enemy",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260300
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy",
+    "stacks": false,
+    "group": "Attack power up when facing [Status]-afflicted enemy",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260400
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy",
+    "stacks": false,
+    "group": "Attack power up when facing [Status]-afflicted enemy",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260700
+    ],
+    "name": "Frostbite in Vicinity Conceals Self",
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260710,
+      7260800
+    ],
+    "name": "Poison & Rot in Vicinity Increases Attack Power",
+    "stacks": false,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330000
+    ],
+    "name": "Improved Dagger Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330100
+    ],
+    "name": "Improved Straight Sword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330200
+    ],
+    "name": "Improved Greatsword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330300
+    ],
+    "name": "Improved Colossal Sword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330400
+    ],
+    "name": "Improved Curved Sword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330500
+    ],
+    "name": "Improved Curved Greatsword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330600
+    ],
+    "name": "Improved Katana Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330700
+    ],
+    "name": "Improved Twinblade Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330800
+    ],
+    "name": "Improved Thrusting Sword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7330900
+    ],
+    "name": "Improved Heavy Thrusting Sword Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331000
+    ],
+    "name": "Improved Axe Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331100
+    ],
+    "name": "Improved Greataxe Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331200
+    ],
+    "name": "Improved Hammer Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331300
+    ],
+    "name": "Improved Great Hammer Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331400
+    ],
+    "name": "Improved Flail Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331500
+    ],
+    "name": "Improved Spear Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331600
+    ],
+    "name": "Improved Pike Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331700
+    ],
+    "name": "Improved Great Spear Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331800
+    ],
+    "name": "Improved Halberd Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7331900
+    ],
+    "name": "Improved Reaper Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7332000
+    ],
+    "name": "Improved Fist Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7332100
+    ],
+    "name": "Improved Claw Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7332200
+    ],
+    "name": "Improved Whip Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7332300
+    ],
+    "name": "Improved Colossal Weapon Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7332400
+    ],
+    "name": "Improved Bow Attack Power",
+    "stacks": true,
+    "group": "Improved [Weapon Type] Attack Power",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7340000
+    ],
+    "name": "HP Restoration upon Dagger Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340100
+    ],
+    "name": "HP Restoration upon Straight Sword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340200
+    ],
+    "name": "HP Restoration upon Greatsword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340300
+    ],
+    "name": "HP Restoration upon Colossal Sword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340400
+    ],
+    "name": "HP Restoration upon Curved Sword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340500
+    ],
+    "name": "HP Restoration upon Curved Greatsword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340600
+    ],
+    "name": "HP Restoration upon Katana Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340700
+    ],
+    "name": "HP Restoration upon Twinblade Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340800
+    ],
+    "name": "HP Restoration upon Thrusting Sword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7340900
+    ],
+    "name": "HP Restoration upon Heavy Thrusting Sword Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341000
+    ],
+    "name": "HP Restoration upon Axe Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341100
+    ],
+    "name": "HP Restoration upon Greataxe Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341200
+    ],
+    "name": "HP Restoration upon Hammer Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341300
+    ],
+    "name": "HP Restoration upon Great Hammer Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341400
+    ],
+    "name": "HP Restoration upon Flail Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341500
+    ],
+    "name": "HP Restoration upon Spear Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341600
+    ],
+    "name": "HP Restoration upon Pike Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341700
+    ],
+    "name": "HP Restoration upon Great Spear Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341800
+    ],
+    "name": "HP Restoration upon Halberd Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7341900
+    ],
+    "name": "HP Restoration upon Reaper Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7342000
+    ],
+    "name": "HP Restoration upon Fist Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7342100
+    ],
+    "name": "HP Restoration upon Claw Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7342200
+    ],
+    "name": "HP Restoration upon Whip Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7342300
+    ],
+    "name": "HP Restoration upon Colossal Weapon Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7342400
+    ],
+    "name": "HP Restoration upon Bow Attacks",
+    "stacks": false,
+    "group": "HP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350000
+    ],
+    "name": "FP Restoration upon Dagger Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350100
+    ],
+    "name": "FP Restoration upon Straight Sword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350200
+    ],
+    "name": "FP Restoration upon Greatsword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350300
+    ],
+    "name": "FP Restoration upon Colossal Sword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350400
+    ],
+    "name": "FP Restoration upon Curved Sword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350500
+    ],
+    "name": "FP Restoration upon Curved Greatsword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350600
+    ],
+    "name": "FP Restoration upon Katana Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350700
+    ],
+    "name": "FP Restoration upon Twinblade Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350800
+    ],
+    "name": "FP Restoration upon Thrusting Sword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7350900
+    ],
+    "name": "FP Restoration upon Heavy Thrusting Sword Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351000
+    ],
+    "name": "FP Restoration upon Axe Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351100
+    ],
+    "name": "FP Restoration upon Greataxe Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351200
+    ],
+    "name": "FP Restoration upon Hammer Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351300
+    ],
+    "name": "FP Restoration upon Great Hammer Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351400
+    ],
+    "name": "FP Restoration upon Flail Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351500
+    ],
+    "name": "FP Restoration upon Spear Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351600
+    ],
+    "name": "FP Restoration upon Pike Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351700
+    ],
+    "name": "FP Restoration upon Great Spear Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351800
+    ],
+    "name": "FP Restoration upon Halberd Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7351900
+    ],
+    "name": "FP Restoration upon Reaper Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7352000
+    ],
+    "name": "FP Restoration upon Fist Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7352100
+    ],
+    "name": "FP Restoration upon Claw Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7352200
+    ],
+    "name": "FP Restoration upon Whip Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7352300
+    ],
+    "name": "FP Restoration upon Colossal Weapon Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7352400
+    ],
+    "name": "FP Restoration upon Bow Attacks",
+    "stacks": false,
+    "group": "FP Restoration upon [Weapon Type] Attacks",
+    "category": "Regen"
+  }
+]
