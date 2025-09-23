@@ -30,6 +30,7 @@ function App() {
   const [hasRelicData, setHasRelicData] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
+  const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -176,6 +177,12 @@ function App() {
       setCalculationResult(null);
     }
   };
+  const handleRelicColorFilterChange = (color) => {
+    setRelicColorFilters(prevFilters => ({
+      ...prevFilters,
+      [color]: !prevFilters[color]
+    }));
+  };
 
   return (
     <div className="app-container">
@@ -222,7 +229,14 @@ function App() {
         />
       </div>
 
-      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} showDeepOfNight={showDeepOfNight} showUnknownRelics={showUnknownRelics} />}
+      {showRelics && <RelicsPage
+        onBack={() => setShowRelics(false)}
+        selectedSaveName={selectedSaveName}
+        onSaveNameSelect={setSelectedSaveName}
+        showDeepOfNight={showDeepOfNight}
+        showUnknownRelics={showUnknownRelics}
+        relicColorFilters={relicColorFilters}
+        onRelicColorFilterChange={handleRelicColorFilterChange} />}
 
       {uploadError && <div className="error-popup">{uploadError}</div>}
 

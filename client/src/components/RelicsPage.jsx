@@ -49,7 +49,7 @@ const RelicCard = ({ relic, items }) => {
   );
 };
 
-const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight, showUnknownRelics }) => {
+const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight, showUnknownRelics, relicColorFilters }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
     // toggle unknown relics based on checkbox
@@ -58,6 +58,10 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
     }
     // toggle "Deep" relics based on checkbox
     if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) {
+      return false;
+    }
+    // filter by relic color
+    if (relicInfo && relicInfo.color && !relicColorFilters[relicInfo.color.toLowerCase()]) {
       return false;
     }
     return true;
@@ -90,7 +94,7 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
   )
 };
 
-const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight, showUnknownRelics }) => {
+const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight, showUnknownRelics, relicColorFilters, onRelicColorFilterChange }) => {
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -145,6 +149,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
         const relicInfo = items[relic.item_id.toString()];
         if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
         if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
+        if (relicInfo && relicInfo.color && !relicColorFilters[relicInfo.color.toLowerCase()]) return false;
         return true;
     })
   );
@@ -168,6 +173,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
         const relicInfo = items[relic.item_id.toString()];
         if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
         if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
+        if (relicInfo && relicInfo.color && !relicColorFilters[relicInfo.color.toLowerCase()]) return false;
         return true;
     })
   );
@@ -181,6 +187,18 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
             <button className="close-button" onClick={onBack}><CloseIcon/></button>
         </div>
         <h2>Your Relics</h2>
+        <div className="relic-color-filters">
+          {Object.keys(relicColorFilters).map(color => (
+            <label key={color}>
+              <input
+                type="checkbox"
+                checked={relicColorFilters[color]}
+                onChange={() => onRelicColorFilterChange(color)}
+              />
+              {color.charAt(0).toUpperCase() + color.slice(1)}
+            </label>
+          ))}
+        </div>
         <div className="relic-data-container">
             {relicData.map(character => (
               <CharacterRelics 
@@ -192,6 +210,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
                 showRadio={charactersWithRelics.length > 1}
                 showDeepOfNight={showDeepOfNight}
                 showUnknownRelics={showUnknownRelics}
+                relicColorFilters={relicColorFilters}
               />
             ))}
         </div>
