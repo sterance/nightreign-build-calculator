@@ -28,6 +28,7 @@ function App() {
   const [uploadError, setUploadError] = useState(null);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
+  const [showUnknownRelics, setShowUnknownRelics] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -186,6 +187,14 @@ function App() {
           />
           Deep of Night
         </label>
+        <label style={{ marginLeft: '1rem' }}>
+          <input
+            type="checkbox"
+            checked={showUnknownRelics}
+            onChange={() => setShowUnknownRelics(!showUnknownRelics)}
+          />
+          Show Unknown Relics
+        </label>
       </div>
       <h1>Nightreign Build Calculator</h1>
 
@@ -212,7 +221,7 @@ function App() {
         />
       </div>
 
-      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} showDeepOfNight={showDeepOfNight} />}
+      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} showDeepOfNight={showDeepOfNight} showUnknownRelics={showUnknownRelics} />}
 
       {uploadError && <div className="error-popup">{uploadError}</div>}
 

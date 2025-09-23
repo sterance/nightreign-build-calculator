@@ -8,7 +8,9 @@ const DesiredEffects = ({ onChange }) => {
     const [selectedEffects, setSelectedEffects] = useState([]);
     const [isListVisible, setListVisible] = useState(false);
     const [expandedGroups, setExpandedGroups] = useState({});
-    const containerRef = useRef(null);
+    const searchContainerRef = useRef(null);
+    const [isSorting, setIsSorting] = useState(false);
+    const sortTimeoutRef = useRef(null);
 
     const categoryOrder = [
         'Attributes',
@@ -23,7 +25,7 @@ const DesiredEffects = ({ onChange }) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (containerRef.current && !containerRef.current.contains(event.target)) {
+            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
                 setListVisible(false);
             }
         };
@@ -36,6 +38,16 @@ const DesiredEffects = ({ onChange }) => {
     useEffect(() => {
         onChange(selectedEffects);
     }, [selectedEffects, onChange]);
+
+    const triggerSortAnimation = () => {
+        if (sortTimeoutRef.current) {
+            clearTimeout(sortTimeoutRef.current);
+        }
+        setIsSorting(true);
+        sortTimeoutRef.current = setTimeout(() => {
+            setIsSorting(false);
+        }, 300);
+    };
 
     const processEffects = (effects) => {
         const categorized = effects.reduce((acc, effect) => {
@@ -83,18 +95,30 @@ const DesiredEffects = ({ onChange }) => {
             isForbidden: false,
         };
         setSelectedEffects((prev) => [...prev, newEffect].sort((a, b) => b.weight - a.weight));
+        triggerSortAnimation();
         setSearchTerm('');
         setListVisible(false);
     };
 
     const handleUpdateEffect = (id, updatedEffect) => {
         setSelectedEffects((prev) =>
-            prev.map((effect) => (effect.id === id ? updatedEffect : effect)).sort((a, b) => b.weight - a.weight)
+            prev.map((effect) => (effect.id === id ? updatedEffect : effect))
         );
     };
 
+    const handleSortEffects = () => {
+        setSelectedEffects((prev) => {
+            const sorted = [...prev].sort((a, b) => b.weight - a.weight);
+            if (JSON.stringify(prev.map(e => e.id)) !== JSON.stringify(sorted.map(e => e.id))) {
+                triggerSortAnimation();
+            }
+            return sorted;
+        });
+    }
+
     const handleDeleteEffect = (id) => {
         setSelectedEffects((prev) => prev.filter((effect) => effect.id !== id));
+        triggerSortAnimation();
     };
 
     const toggleGroup = (category, group) => {
@@ -103,9 +127,9 @@ const DesiredEffects = ({ onChange }) => {
     };
 
     return (
-        <div id="effects-card" className="card" ref={containerRef}>
+        <div id="effects-card" className="card">
             <h2>Desired Effects</h2>
-            <div className="search-container">
+            <div className="search-container" ref={searchContainerRef}>
                 <input
                     type="text"
                     placeholder="Search for relic effects..."
@@ -149,9 +173,9 @@ const DesiredEffects = ({ onChange }) => {
                     </div>
                 )}
             </div>
-            <div className="selected-effects-container">
+            <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
                 {selectedEffects.map((effect) => (
-                    <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} />
+                    <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
                 ))}
             </div>
         </div>

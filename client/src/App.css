@@ -241,6 +241,9 @@ button:focus-visible {
   gap: 0.25rem;
   overflow-y: auto;
 }
+.selected-effects-container.reordering .effect-card {
+  animation: subtle-pulse 0.3s ease-in-out;
+}
 .effect-card {
   display: flex;
   justify-content: space-between;
@@ -531,4 +534,16 @@ button:focus-visible {
   10% { opacity: 1; transform: translate(-50%, 0); }
   90% { opacity: 1; transform: translate(-50%, 0); }
   100% { opacity: 0; transform: translate(-50%, 20px); }
+}
+
+@keyframes subtle-pulse {
+  0% {
+    background-color: #242424;
+  }
+  50% {
+    background-color: #2c2c31;
+  }
+  100% {
+    background-color: #242424;
+  }
 }

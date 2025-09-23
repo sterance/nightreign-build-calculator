@@ -49,15 +49,15 @@ const RelicCard = ({ relic, items }) => {
   );
 };
 
-const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight }) => {
+const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight, showUnknownRelics }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
-    // hide unknown relics
-    if (!relicInfo || !relicInfo.name) {
+    // toggle unknown relics based on checkbox
+    if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) {
       return false;
     }
     // toggle "Deep" relics based on checkbox
-    if (!showDeepOfNight && relicInfo.name.startsWith('Deep')) {
+    if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) {
       return false;
     }
     return true;
@@ -90,14 +90,14 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
   )
 };
 
-const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight }) => {
+const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight, showUnknownRelics }) => {
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadData = async () => {
       try {
-        const storedRelicData = localStorage.getItem('relicData');
+        const storedRelicData = localStorage.getItem('saveData');
         if (storedRelicData) {
           const parsedData = JSON.parse(storedRelicData);
           setRelicData(parsedData);
@@ -143,8 +143,8 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
   const hasVisibleRelics = relicData && items && relicData.some(character => 
     character.relics.some(relic => {
         const relicInfo = items[relic.item_id.toString()];
-        if (!relicInfo || !relicInfo.name) return false;
-        if (!showDeepOfNight && relicInfo.name.startsWith('Deep')) return false;
+        if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
+        if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
         return true;
     })
   );
@@ -166,8 +166,8 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
   const charactersWithRelics = relicData.filter(character => 
     character.relics.some(relic => {
         const relicInfo = items[relic.item_id.toString()];
-        if (!relicInfo || !relicInfo.name) return false;
-        if (!showDeepOfNight && relicInfo.name.startsWith('Deep')) return false;
+        if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
+        if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
         return true;
     })
   );
@@ -191,6 +191,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
                 onSaveNameSelect={onSaveNameSelect}
                 showRadio={charactersWithRelics.length > 1}
                 showDeepOfNight={showDeepOfNight}
+                showUnknownRelics={showUnknownRelics}
               />
             ))}
         </div>

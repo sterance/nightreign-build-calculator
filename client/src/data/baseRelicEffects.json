@@ -17,6 +17,7 @@
     ],
     "name": "Taking attacks improves attack power",
     "group": "Taking attacks improves attack power",
+    "stacks": false,
     "level": 1,
     "category": "Offensive"
   },
@@ -26,6 +27,7 @@
     ],
     "name": "Taking attacks improves attack power +1",
     "group": "Taking attacks improves attack power",
+    "stacks": false,
     "level": 2,
     "category": "Offensive"
   },
@@ -35,6 +37,7 @@
     ],
     "name": "Taking attacks improves attack power +2",
     "group": "Taking attacks improves attack power",
+    "stacks": false,
     "level": 3,
     "category": "Offensive"
   },
@@ -55,6 +58,7 @@
     "name": "[Wylder] Art gauge greatly filled when ability is activated",
     "nightfarer": "Wylder",
     "stacks": false,
+    "group": "Wylder",
     "category": "Character Specific"
   },
   {
@@ -64,6 +68,7 @@
     "name": "[Wylder] Standard attacks enhanced with fiery follow-ups when using Character Skill (greatsword only)",
     "nightfarer": "Wylder",
     "stacks": false,
+    "group": "Wylder",
     "category": "Character Specific"
   },
   {
@@ -73,6 +78,7 @@
     "name": "[Wylder] Art activation spreads fire in area",
     "nightfarer": "Wylder",
     "stacks": false,
+    "group": "Wylder",
     "category": "Character Specific"
   },
   {
@@ -83,6 +89,7 @@
     "name": "[Wylder] +1 additional Character Skill use",
     "nightfarer": "Wylder",
     "stacks": false,
+    "group": "Wylder",
     "category": "Character Specific"
   },
   {
@@ -92,6 +99,7 @@
     "name": "[Guardian] Increased duration for Character Skill",
     "nightfarer": "Guardian",
     "stacks": false,
+    "group": "Guardian",
     "category": "Character Specific"
   },
   {
@@ -102,6 +110,7 @@
     "name": "[Guardian] Slowly restores nearby allies' HP while Art is active",
     "nightfarer": "Guardian",
     "stacks": false,
+    "group": "Guardian",
     "category": "Character Specific"
   },
   {
@@ -111,6 +120,7 @@
     "name": "[Guardian] Creates whirlwind when charging halberd attacks",
     "nightfarer": "Guardian",
     "stacks": false,
+    "group": "Guardian",
     "category": "Character Specific"
   },
   {
@@ -120,6 +130,7 @@
     "name": "[Guardian] Successful guards send out shockwaves while ability is active",
     "nightfarer": "Guardian",
     "stacks": false,
+    "group": "Guardian",
     "category": "Character Specific"
   },
   {
@@ -129,6 +140,7 @@
     "name": "[Ironeye] Art Charge Activation Adds Poison Effect",
     "nightfarer": "Ironeye",
     "stacks": false,
+    "group": "Ironeye",
     "category": "Character Specific"
   },
   {
@@ -138,6 +150,7 @@
     "name": "[Ironeye] Boosts thrusting counterattacks after executing Art",
     "nightfarer": "Ironeye",
     "stacks": false,
+    "group": "Ironeye",
     "category": "Character Specific"
   },
   {
@@ -147,6 +160,7 @@
     "name": "[Ironeye] +1 additional Character Skill use",
     "nightfarer": "Ironeye",
     "stacks": false,
+    "group": "Ironeye",
     "category": "Character Specific"
   },
   {
@@ -156,6 +170,7 @@
     "name": "[Ironeye] Extends duration of weak point",
     "nightfarer": "Ironeye",
     "stacks": false,
+    "group": "Ironeye",
     "category": "Character Specific"
   },
   {
@@ -165,6 +180,7 @@
     "name": "[Duchess] Defeating enemies while Art is active ups attack power",
     "nightfarer": "Duchess",
     "stacks": false,
+    "group": "Duchess",
     "category": "Character Specific"
   },
   {
@@ -174,6 +190,7 @@
     "name": "[Duchess] Successive dagger attack reprises event upon nearby enemies",
     "nightfarer": "Duchess",
     "stacks": false,
+    "group": "Duchess",
     "category": "Character Specific"
   },
   {
@@ -183,6 +200,7 @@
     "name": "[Duchess] Improved Character Skill Attack Power",
     "nightfarer": "Duchess",
     "stacks": false,
+    "group": "Duchess",
     "category": "Character Specific"
   },
   {
@@ -192,6 +210,7 @@
     "name": "[Duchess] Become difficult to spot and silence footsteps after landing critical from behind",
     "nightfarer": "Duchess",
     "stacks": false,
+    "group": "Duchess",
     "category": "Character Specific"
   },
   {
@@ -201,6 +220,7 @@
     "name": "[Raider] Duration of Ultimate Art extended",
     "nightfarer": "Raider",
     "stacks": false,
+    "group": "Raider",
     "category": "Character Specific"
   },
   {
@@ -210,6 +230,7 @@
     "name": "[Raider] Damage taken while using Character Skill improves attack power and stamina",
     "nightfarer": "Raider",
     "stacks": false,
+    "group": "Raider",
     "category": "Character Specific"
   },
   {
@@ -219,6 +240,7 @@
     "name": "[Raider] Defeating enemies near Totem Stela restores HP",
     "nightfarer": "Raider",
     "stacks": false,
+    "group": "Raider",
     "category": "Character Specific"
   },
   {
@@ -228,6 +250,7 @@
     "name": "[Raider] Improved Poise Near Totem Stela",
     "nightfarer": "Raider",
     "stacks": false,
+    "group": "Raider",
     "category": "Character Specific"
   },
   {
@@ -238,6 +261,7 @@
     "name": "[Revenant] Expend own HP to fully heal nearby allies when activating Art",
     "nightfarer": "Revenant",
     "stacks": false,
+    "group": "Revenant",
     "category": "Character Specific"
   },
   {
@@ -247,6 +271,7 @@
     "name": "[Revenant] Trigger ghostflame explosion during Ultimate Art activation",
     "nightfarer": "Revenant",
     "stacks": false,
+    "group": "Revenant",
     "category": "Character Specific"
   },
   {
@@ -256,6 +281,7 @@
     "name": "[Revenant] Strengthens family and allies when Ultimate Art is activated",
     "nightfarer": "Revenant",
     "stacks": false,
+    "group": "Revenant",
     "category": "Character Specific"
   },
   {
@@ -265,6 +291,7 @@
     "name": "[Revenant] Power up while fighting alongside family",
     "nightfarer": "Revenant",
     "stacks": false,
+    "group": "Revenant",
     "category": "Character Specific"
   },
   {
@@ -274,6 +301,7 @@
     "name": "[Recluse] Collecting affinity residue activates Terra Magica",
     "nightfarer": "Recluse",
     "stacks": false,
+    "group": "Recluse",
     "category": "Character Specific"
   },
   {
@@ -284,6 +312,7 @@
     "name": "[Recluse] Suffer blood loss and increase attack power upon Art activation",
     "nightfarer": "Recluse",
     "stacks": false,
+    "group": "Recluse",
     "category": "Character Specific"
   },
   {
@@ -293,6 +322,7 @@
     "name": "[Recluse] Activating Ultimate Art raises Max HP",
     "nightfarer": "Recluse",
     "stacks": false,
+    "group": "Recluse",
     "category": "Character Specific"
   },
   {
@@ -302,6 +332,7 @@
     "name": "[Executor] Character Skill Boosts Attack but Attacking Drains HP",
     "nightfarer": "Executor",
     "stacks": false,
+    "group": "Executor",
     "category": "Character Specific"
   },
   {
@@ -311,6 +342,7 @@
     "name": "[Executor] While Character Skill is active, unlocking use of cursed sword restores HP",
     "nightfarer": "Executor",
     "stacks": false,
+    "group": "Executor",
     "category": "Character Specific"
   },
   {
@@ -320,6 +352,7 @@
     "name": "[Executor] Roaring restores HP while Art is active",
     "nightfarer": "Executor",
     "stacks": false,
+    "group": "Executor",
     "category": "Character Specific"
   },
   {
@@ -436,6 +469,7 @@
       7035700
     ],
     "name": "Switching Weapons Adds an Affinity Attack",
+    "stacks": false,
     "category": "Offensive"
   },
   {
@@ -489,6 +523,9 @@
       8400000
     ],
     "name": "Improved Perfuming Arts",
+    "group": "Improved Perfuming Arts",
+    "level": 1,
+    "stacks": true,
     "category": "Offensive"
   },
   {
@@ -550,6 +587,7 @@
     ],
     "name": "Critical Hits Earn Runes +1",
     "group": "Critical Hits Earn Runes",
+    "stacks": false,
     "level": 1,
     "category": "Exploration"
   },
@@ -559,6 +597,7 @@
     ],
     "name": "Critical Hits Earn Runes +2",
     "group": "Critical Hits Earn Runes",
+    "stacks": false,
     "level": 2,
     "category": "Exploration"
   },
@@ -1248,6 +1287,7 @@
     ],
     "name": "Critical Hits Earn Runes",
     "group": "Critical Hits Earn Runes",
+    "stacks": false,
     "category": "Exploration"
   },
   {
@@ -1380,7 +1420,8 @@
     ],
     "name": "Improved Perfuming Arts +1",
     "group": "Improved Perfuming Arts",
-    "level": 1,
+    "stacks": true,
+    "level": 2,
     "category": "Offensive"
   },
   {
@@ -1389,7 +1430,8 @@
     ],
     "name": "Improved Perfuming Arts +2",
     "group": "Improved Perfuming Arts",
-    "level": 2,
+    "stacks": true,
+    "level": 3,
     "category": "Offensive"
   },
   {

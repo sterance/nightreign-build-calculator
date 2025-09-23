@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { StarIcon, ProhibitionIcon, TrashIcon, PlusIcon, MinusIcon } from './Icons';
+import { StarIcon, ProhibitionIcon, TrashIcon, UpIcon, DownIcon } from './Icons';
 
-const DesiredEffectCard = ({ effect, onUpdate, onDelete }) => {
+const DesiredEffectCard = ({ effect, onUpdate, onDelete, onSort }) => {
     const [weight, setWeight] = useState(effect.weight.toFixed(1));
 
     const handleWeightChange = (e) => {
@@ -15,6 +15,7 @@ const DesiredEffectCard = ({ effect, onUpdate, onDelete }) => {
         } else {
             setWeight(effect.weight.toFixed(1));
         }
+        onSort();
     };
 
     const adjustWeight = (amount) => {
@@ -27,7 +28,7 @@ const DesiredEffectCard = ({ effect, onUpdate, onDelete }) => {
     };
 
     return (
-        <div className="effect-card">
+        <div className="effect-card" onMouseLeave={onSort}>
             <span className="effect-name">{effect.name}</span>
             <div className="effect-controls">
                 <div className="effect-icons">
@@ -51,7 +52,7 @@ const DesiredEffectCard = ({ effect, onUpdate, onDelete }) => {
                 </div>
                 <div className="weight-control">
                     <button className="icon-button" onClick={() => adjustWeight(-0.5)}>
-                        <MinusIcon />
+                        <DownIcon />
                     </button>
                     <input
                         type="number"
@@ -61,7 +62,7 @@ const DesiredEffectCard = ({ effect, onUpdate, onDelete }) => {
                         step="0.1"
                     />
                     <button className="icon-button" onClick={() => adjustWeight(0.5)}>
-                        <PlusIcon />
+                        <UpIcon />
                     </button>
                 </div>
             </div>
