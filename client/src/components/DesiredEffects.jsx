@@ -1,9 +1,11 @@
+// sterance/nightreign-build-calculator/nightreign-build-calculator-experimental/client/src/components/DesiredEffects.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import relicEffects from '../data/baseRelicEffects.json';
 import { characters } from '../data/chaliceData';
 import DesiredEffectCard from './DesiredEffectCard';
+import { SelectAllIcon } from './Icons';
 
-const DesiredEffects = ({ onChange }) => {
+const DesiredEffects = ({ onChange, selectedCharacter }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedEffects, setSelectedEffects] = useState([]);
     const [isListVisible, setListVisible] = useState(false);
@@ -11,15 +13,16 @@ const DesiredEffects = ({ onChange }) => {
     const searchContainerRef = useRef(null);
     const [isSorting, setIsSorting] = useState(false);
     const sortTimeoutRef = useRef(null);
+    const [hoveredGroup, setHoveredGroup] = useState(null);
 
     const categoryOrder = [
+        'Character Specific',
         'Attributes',
         'Offensive',
         'Defensive',
         'Regen',
         'Starting Bonus',
-        'Exploration',
-        'Character Specific'
+        'Exploration'
     ];
 
 
@@ -67,6 +70,27 @@ const DesiredEffects = ({ onChange }) => {
             return acc;
         }, {});
 
+        if (selectedCharacter && categorized['Character Specific']) {
+            const characterSpecificGroups = categorized['Character Specific'].groups;
+            const sortedGroupNames = Object.keys(characterSpecificGroups).sort((a, b) => {
+                if (a.toLowerCase() === selectedCharacter) return -1;
+                if (b.toLowerCase() === selectedCharacter) return 1;
+                // Keep original order for other characters
+                const aIndex = characters.indexOf(a.toLowerCase());
+                const bIndex = characters.indexOf(b.toLowerCase());
+                if (aIndex !== -1 && bIndex !== -1) {
+                    return aIndex - bIndex;
+                }
+                return 0;
+            });
+
+            const sortedGroups = {};
+            sortedGroupNames.forEach(name => {
+                sortedGroups[name] = characterSpecificGroups[name];
+            });
+            categorized['Character Specific'].groups = sortedGroups;
+        }
+
         return categorized;
     };
 
@@ -99,6 +123,20 @@ const DesiredEffects = ({ onChange }) => {
         setSearchTerm('');
         setListVisible(false);
     };
+
+    const handleSelectAllFromGroup = (groupEffects) => {
+        const newEffects = groupEffects.map(effect => ({
+            id: Date.now() + Math.random(),
+            name: effect.name,
+            ids: effect.ids,
+            weight: 1.0,
+            isRequired: false,
+            isForbidden: false,
+        }));
+        setSelectedEffects(prev => [...prev, ...newEffects].sort((a, b) => b.weight - a.weight));
+        triggerSortAnimation();
+        setListVisible(false);
+    }
 
     const handleUpdateEffect = (id, updatedEffect) => {
         setSelectedEffects((prev) =>
@@ -151,10 +189,26 @@ const DesiredEffects = ({ onChange }) => {
                                             </li>
                                         ))}
                                         {Object.entries(data.groups).map(([groupName, groupEffects]) => (
-                                            <li key={groupName} className="group-item">
+                                            <li key={groupName} className={`group-item ${hoveredGroup === groupName ? 'hovered' : ''}`}>
                                                 <div onClick={() => toggleGroup(category, groupName)} className="group-header">
                                                     <span>{groupName}</span>
-                                                    <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
+                                                    <div className="group-header-controls">
+                                                        {expandedGroups[`${category}-${groupName}`] && (
+                                                            <button
+                                                                className="icon-button select-all-button"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    handleSelectAllFromGroup(groupEffects);
+                                                                }}
+                                                                onMouseEnter={() => setHoveredGroup(groupName)}
+                                                                onMouseLeave={() => setHoveredGroup(null)}
+                                                                title="Add all effects"
+                                                            >
+                                                                <SelectAllIcon />
+                                                            </button>
+                                                        )}
+                                                        <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
+                                                    </div>
                                                 </div>
                                                 {expandedGroups[`${category}-${groupName}`] && (
                                                     <ul className="sub-list">

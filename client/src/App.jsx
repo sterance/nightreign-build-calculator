@@ -1,3 +1,4 @@
+// sterance/nightreign-build-calculator/nightreign-build-calculator-experimental/client/src/App.jsx
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
@@ -213,7 +214,7 @@ function App() {
           onClearAll={handleClearAllChalices}
         />
 
-        <DesiredEffects onChange={setDesiredEffects} />
+        <DesiredEffects onChange={setDesiredEffects} selectedCharacter={selectedCharacter} />
 
         <RelicResults
           selectedChalices={selectedChalices}

@@ -306,6 +306,16 @@ button:focus-visible {
 .group-header:hover {
   background-color: transparent !important;
 }
+.group-header-controls {
+    display: flex;
+    align-items: center;
+}
+.select-all-button {
+    margin-right: 0.5rem;
+}
+.group-item.hovered {
+    background-color: #646cff !important;
+}
 .arrow {
   transition: transform 0.2s;
 }
@@ -328,8 +338,8 @@ button:focus-visible {
 .effects-category > ul > li:not(.group-item):hover {
   background-color: #646cff !important;
 }
-.effects-category > ul > li.group-item:hover {
-  background-color: transparent !important;
+.effects-category > ul > li.group-item:hover:not(.hovered) {
+    background-color: transparent !important;
 }
 
 
