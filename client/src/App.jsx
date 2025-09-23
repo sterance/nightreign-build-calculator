@@ -1,4 +1,3 @@
-// sterance/nightreign-build-calculator/nightreign-build-calculator-experimental/client/src/App.jsx
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';

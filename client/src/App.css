@@ -5,6 +5,7 @@
   padding: 0;
   text-align: center;
   flex-grow: 1;
+  --primary-color: #646cff;
 }
 .app-container {
   display: flex;
@@ -57,7 +58,7 @@ h1 {
   border-radius: 4px;
 }
 .card-button:hover {
-  border-color: #646cff;
+  border-color: var(--primary-color);
 }
 .button-group {
   position: absolute;
@@ -79,6 +80,9 @@ button:focus,
 button:focus-visible {
   outline: none;
 }
+button:hover{
+  border-color: var(--primary-color);
+}
 .error-popup {
   position: fixed;
   bottom: 5rem;
@@ -94,7 +98,7 @@ button:focus-visible {
 }
 .loader {
   border: 2px solid #f3f3f3;
-  border-top: 2px solid #646cff;
+  border-top: 2px solid var(--primary-color);
   border-radius: 50%;
   width: 16px;
   height: 16px;
@@ -103,7 +107,7 @@ button:focus-visible {
 .floating-checkbox {
   position: fixed;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   z-index: 1001;
   background-color: rgba(26, 26, 26, 0.8);
   padding: 0.5rem 1rem;
@@ -123,7 +127,7 @@ button:focus-visible {
   display: inline-flex;
 }
 .character-image-wrapper.selected {
-  border-color: #646cff;
+  border-color: var(--primary-color);
 }
 .image-grid {
   display: grid;
@@ -153,7 +157,7 @@ button:focus-visible {
   cursor: pointer;
 }
 .chalice.selected {
-  border-color: #646cff;
+  border-color: var(--primary-color);
 }
 .relic-slots {
   display: flex;
@@ -229,7 +233,7 @@ button:focus-visible {
   font-size: 0.9em;
 }
 .effects-category li:hover {
-  background-color: #646cff;
+  background-color: var(--primary-color);
 }
 .effects-category li:last-child {
   border-bottom: none;
@@ -289,7 +293,7 @@ button:focus-visible {
   -moz-appearance: textfield; /* spinner suppression for firefox */
 }
 .icon-button.required svg {
-  fill: #646cff;
+  fill: var(--primary-color);
 }
 .icon-button.forbidden svg {
   color: #ff4d4d;
@@ -314,7 +318,7 @@ button:focus-visible {
     margin-right: 0.5rem;
 }
 .group-item.hovered {
-    background-color: #646cff !important;
+    background-color: var(--primary-color) !important;
 }
 .arrow {
   transition: transform 0.2s;
@@ -333,10 +337,10 @@ button:focus-visible {
     font-size: 0.9em;
 }
 .effects-category .sub-list li:hover {
-  background-color: #646cff !important;
+  background-color: var(--primary-color) !important;
 }
 .effects-category > ul > li:not(.group-item):hover {
-  background-color: #646cff !important;
+  background-color: var(--primary-color) !important;
 }
 .effects-category > ul > li.group-item:hover:not(.hovered) {
     background-color: transparent !important;
@@ -491,9 +495,9 @@ button:focus-visible {
   line-height: 1;
   padding: 0.25rem 0.5rem;
 }
-.relic-data-container {
+/* .relic-data-container {
   margin-top: 1rem;
-}
+} */
 .character-relics {
   margin-bottom: 1.5rem;
 }
@@ -536,7 +540,7 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 /* ANIMATIONS */
