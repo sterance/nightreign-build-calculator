@@ -356,6 +356,90 @@
   },
   {
     "ids": [
+      311700,
+      7003000,
+      8210000
+    ],
+    "name": "Improved Poison Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311600,
+      7003100,
+      8210100
+    ],
+    "name": "Improved Blood Loss Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311800,
+      7003200,
+      8210200
+    ],
+    "name": "Improved Sleep Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311900,
+      7003300,
+      8210300
+    ],
+    "name": "Improved Death Blight Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311701,
+      7003400,
+      8210400
+    ],
+    "name": "Improved Rot Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311601,
+      7003500,
+      8210500
+    ],
+    "name": "Improved Frost Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      311801,
+      7003600,
+      8210600
+    ],
+    "name": "Improved Madness Resistance",
+    "stacks": true,
+    "group": "Improved [Status] Resistance",
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7035700
+    ],
+    "name": "Switching Weapons Adds an Affinity Attack",
+    "category": "Offensive"
+  },
+  {
+    "ids": [
       320900,
       7040200,
       8130000

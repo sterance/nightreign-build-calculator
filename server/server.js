@@ -35,11 +35,11 @@ app.post('/upload', upload.single('savefile'), (req, res) => {
   const filePath = req.file.path;
   const pythonProcess = spawn('python3', ['relic_extractor.py', filePath]);
 
-  let relicData = '';
+  let saveData = '';
   let errorData = '';
 
   pythonProcess.stdout.on('data', (data) => {
-    relicData += data.toString();
+    saveData += data.toString();
   });
 
   pythonProcess.stderr.on('data', (data) => {
@@ -47,7 +47,7 @@ app.post('/upload', upload.single('savefile'), (req, res) => {
   });
 
   pythonProcess.on('close', (code) => {
-    // Clean up the uploaded file
+    // clean up the uploaded file
     fs.unlink(filePath, (err) => {
       if (err) console.error("Error deleting uploaded file:", err);
     });
@@ -59,18 +59,18 @@ app.post('/upload', upload.single('savefile'), (req, res) => {
     }
 
     try {
-      const jsonData = JSON.parse(relicData);
+      const jsonData = JSON.parse(saveData);
       res.json(jsonData);
     } catch (e) {
       console.error('Error parsing JSON from python script:', e);
-      console.error('Python script output:', relicData);
-      res.status(500).json({ error: 'Failed to parse relic data.', details: relicData });
+      console.error('Python script output:', saveData);
+      res.status(500).json({ error: 'Failed to parse relic data.', details: saveData });
     }
   });
 });
 
 if (process.env.NODE_ENV !== 'production') {
-  // Serve the React app for development
+  // serve the React app for development
   const clientBuildPath = path.join(__dirname, '../client/dist');
   app.use(express.static(clientBuildPath));
   app.get('*', (req, res) => {

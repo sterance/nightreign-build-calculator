@@ -54,9 +54,9 @@ const RelicResults = ({ selectedChalices, calculationResult }) => {
             {relicName !== "Scenic Flatstone" && <span>{relicName}</span>}
             <table className="relic-stats-table">
               <tbody>
-                <tr><td>{relicName !== "Scenic Flatstone" && <span>•&nbsp;</span>}{relicData.effects['effect 1']}</td></tr>
-                <tr><td>{relicName !== "Scenic Flatstone" && <span>•&nbsp;</span>}{relicData.effects['effect 2']}</td></tr>
-                <tr><td>{relicName !== "Scenic Flatstone" && <span>•&nbsp;</span>}{relicData.effects['effect 3']}</td></tr>
+                <tr><td>{relicData.effects['effect 1'] && <>• {relicData.effects['effect 1']}</>}</td></tr>
+                <tr><td>{relicData.effects['effect 2'] && <>• {relicData.effects['effect 2']}</>}</td></tr>
+                <tr><td>{relicData.effects['effect 3'] && <>• {relicData.effects['effect 3']}</>}</td></tr>
               </tbody>
             </table>
           </div>

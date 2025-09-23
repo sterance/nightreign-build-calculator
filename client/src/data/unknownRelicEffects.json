@@ -48,76 +48,7 @@
         "group": "Improved Stamina Recovery",
         "level": 1
     },
-    {
-        "ids": [
-            311600,
-            7003100,
-            8210100
-        ],
-        "name": "Improved Blood Loss Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
-    {
-        "ids": [
-            311601,
-            7003500,
-            8210500
-        ],
-        "name": "Improved Frost Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
-    {
-        "ids": [
-            311700,
-            7003000,
-            8210000
-        ],
-        "name": "Improved Poison Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
-    {
-        "ids": [
-            311701,
-            7003400,
-            8210400
-        ],
-        "name": "Improved Rot Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
-    {
-        "ids": [
-            311800,
-            7003200,
-            8210200
-        ],
-        "name": "Improved Sleep Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
-    {
-        "ids": [
-            311801,
-            7003600,
-            8210600
-        ],
-        "name": "Improved Madness Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
-    {
-        "ids": [
-            311900,
-            7003300,
-            8210300
-        ],
-        "name": "Improved Death Blight Resistance",
-        "group": "Improved Status Resistance",
-        "stacks": true
-    },
+    
     {
         "ids": [
             312000
@@ -864,13 +795,7 @@
         ],
         "name": "Surge Sprint Landings Split Earth"
     },
-    {
-        "ids": [
-            7035700
-        ],
-        "name": "Switching Weapons Adds an Affinity Attack",
-        "category": "Offensive"
-    },
+    
     {
         "ids": [
             7100000

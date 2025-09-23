@@ -8,7 +8,6 @@ import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
 import { CalculatorIcon, RelicIcon, UploadIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
-import items from './data/items.json';
 import effects from './data/baseRelicEffects.json';
 
 const effectMap = new Map();
@@ -33,7 +32,7 @@ function App() {
 
   useEffect(() => {
     // check for existing relic data on initial load
-    const storedData = localStorage.getItem('relicData');
+    const storedData = localStorage.getItem('saveData');
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
@@ -45,7 +44,7 @@ function App() {
           }
         }
       } catch (e) {
-        localStorage.removeItem('relicData');
+        localStorage.removeItem('saveData');
         console.log(e);
       }
     }
@@ -108,7 +107,7 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('relicData', JSON.stringify(data));
+        localStorage.setItem('saveData', JSON.stringify(data));
         setHasRelicData(true);
         if (data.length === 1) {
           setSelectedSaveName(data[0].character_name);
@@ -129,26 +128,26 @@ function App() {
   };
 
   const handleCalculate = () => {
-    const relicData = JSON.parse(localStorage.getItem('relicData'));
+    const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-    if (!relicData || !selectedCharacter || selectedChalices.length === 0 || !selectedSaveName) {
+    if (!saveData || !selectedCharacter || selectedChalices.length === 0 || !selectedSaveName) {
       console.log("Cannot calculate: Missing relic data, character selection, chalice selection, or save name selection.");
       return;
     }
 
     // Find the character data for the selected save name
-    const characterRelicData = relicData.find(
+    const characterSaveData = saveData.find(
       (character) => character.character_name === selectedSaveName
     );
 
-    if (!characterRelicData) {
+    if (!characterSaveData) {
       console.log(`No relic data found for character: ${selectedSaveName}`);
       return;
     }
 
     const result = calculateBestRelics(
       desiredEffects,
-      characterRelicData,
+      characterSaveData,
       selectedChalices,
       selectedCharacter
     );
@@ -158,23 +157,13 @@ function App() {
         "chalice name": result.chalice.name,
         "chalice slots": result.chalice.slots,
         ...result.relics.reduce((acc, relic) => {
-          const relicInfo = items[relic.item_id.toString()];
-          const relicEffectIds = [
-            relic.effect1_id,
-            relic.effect2_id,
-            relic.effect3_id,
-            relic.sec_effect1_id,
-            relic.sec_effect2_id,
-            relic.sec_effect3_id,
-          ];
-          const relicEffects = relicEffectIds.map(id => effectMap.get(id)).filter(Boolean);
 
-          acc[relicInfo.name] = {
-            color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
+          acc[relic['relic name']] = {
+            color: relic.color,
             effects: {
-              "effect 1": relicEffects[0] || "",
-              "effect 2": relicEffects[1] || "",
-              "effect 3": relicEffects[2] || "",
+              "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
+              "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
+              "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
             }
           };
           return acc;
