@@ -6,7 +6,7 @@ import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
-import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon } from './components/Icons';
+import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
 import effects from './data/baseRelicEffects.json';
 
@@ -30,11 +30,13 @@ function App() {
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
   const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
+  const [showUploadTooltip, setShowUploadTooltip] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     // check for existing relic data on initial load
     const storedData = localStorage.getItem('saveData');
+
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
@@ -44,14 +46,23 @@ function App() {
           if (parsedData.length === 1) {
             setSelectedSaveName(parsedData[0].character_name);
           }
+        } else {
+            setShowUploadTooltip(true);
         }
       } catch (e) {
         localStorage.removeItem('saveData');
+        setShowUploadTooltip(true);
         console.log(e);
       }
+    } else {
+        setShowUploadTooltip(true);
     }
   }, []);
 
+
+  const handleCloseTooltip = () => {
+      setShowUploadTooltip(false);
+  };
 
   const selectAllChalicesForCharacter = (character) => {
     if (!character) return;
@@ -96,6 +107,7 @@ function App() {
 
     setIsUploading(true);
     setUploadError(null);
+    setShowUploadTooltip(false);
 
     const formData = new FormData();
     formData.append('savefile', file);
@@ -260,16 +272,29 @@ function App() {
           <span style={{ marginLeft: '0.5rem' }}>Relics</span>
         </button>
         
-        <button className="upload-button-center" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
-          {isUploading ? (
-            <div className="loader"></div>
-          ) : (
-            <>
-              <UploadIcon />
-              <span style={{ marginLeft: '0.5rem' }}>Upload</span>
-            </>
-          )}
-        </button>
+        <div className="upload-button-container">
+            <button className="upload-button-center" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
+              {isUploading ? (
+                <div className="loader"></div>
+              ) : (
+                <>
+                  <UploadIcon />
+                  <span style={{ marginLeft: '0.5rem' }}>Upload</span>
+                </>
+              )}
+            </button>
+            {showUploadTooltip && (
+                <div className="upload-tooltip">
+                    <button className="close-tooltip-button" onClick={handleCloseTooltip}>
+                        <CloseIcon />
+                    </button>
+                    <div className="tooltip-content">
+                        <p className="tooltip-main-text">Upload your save file here to get started!</p>
+                        <p className="tooltip-sub-text">.sl2 file, found at <span className='code-block'>C:\Users\[username]\AppData\Roaming\Nightreign on Windows</span></p>
+                    </div>
+                </div>
+            )}
+        </div>
 
         <button className="settings-button" title='Settings'>
           <SwordIcon />
