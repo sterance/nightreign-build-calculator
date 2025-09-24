@@ -6,7 +6,7 @@ import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
-import { CalculatorIcon, RelicIcon, UploadIcon } from './components/Icons';
+import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
 import effects from './data/baseRelicEffects.json';
 
@@ -203,6 +203,11 @@ function App() {
           Show Unknown Relics
         </label>
       </div>
+
+      <button className="floating-button" title='Settings'>
+        <SettingsIcon />
+      </button>
+
       <h1>Nightreign Build Calculator</h1>
 
       <div className="card-container">
@@ -220,7 +225,11 @@ function App() {
           onClearAll={handleClearAllChalices}
         />
 
-        <DesiredEffects onChange={setDesiredEffects} selectedCharacter={selectedCharacter} />
+        <DesiredEffects
+          onChange={setDesiredEffects}
+          selectedCharacter={selectedCharacter}
+          handleCalculate={handleCalculate}
+        />
 
         <RelicResults
           selectedChalices={selectedChalices}
@@ -240,6 +249,7 @@ function App() {
       {uploadError && <div className="error-popup">{uploadError}</div>}
 
       <div className="bottom-bar">
+
         <button
           className='relic-button'
           title={hasRelicData ? 'View your relics' : 'Upload a save file to view relics'}
@@ -249,11 +259,8 @@ function App() {
           <RelicIcon />
           <span style={{ marginLeft: '0.5rem' }}>Relics</span>
         </button>
-        <button className='calculate-button' title='Calculate optimal relics' onClick={handleCalculate}>
-          <CalculatorIcon />
-          <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
-        </button>
-        <button className="upload-button" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
+        
+        <button className="upload-button-center" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
           {isUploading ? (
             <div className="loader"></div>
           ) : (
@@ -263,6 +270,12 @@ function App() {
             </>
           )}
         </button>
+
+        <button className="settings-button" title='Settings'>
+          <SwordIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Saved Builds</span>
+        </button>
+
         <input
           type="file"
           ref={fileInputRef}

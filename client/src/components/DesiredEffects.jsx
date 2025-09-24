@@ -3,9 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import relicEffects from '../data/baseRelicEffects.json';
 import { characters } from '../data/chaliceData';
 import DesiredEffectCard from './DesiredEffectCard';
-import { SelectAllIcon } from './Icons';
+import { SelectAllIcon, CalculatorIcon, SaveIcon } from './Icons';
 
-const DesiredEffects = ({ onChange, selectedCharacter }) => {
+const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedEffects, setSelectedEffects] = useState([]);
     const [isListVisible, setListVisible] = useState(false);
@@ -166,71 +166,82 @@ const DesiredEffects = ({ onChange, selectedCharacter }) => {
 
     return (
         <div id="effects-card" className="card">
-            <h2>Desired Effects</h2>
-            <div className="search-container" ref={searchContainerRef}>
-                <input
-                    type="text"
-                    placeholder="Search for relic effects..."
-                    value={searchTerm}
-                    onClick={() => setListVisible(true)}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                {isListVisible && (
-                    <div className="effects-list-container">
-                        {Object.entries(filteredEffects)
-                            .sort(([a], [b]) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b))
-                            .map(([category, data]) => (
-                                <div key={category} className="effects-category">
-                                    <h3>{category}</h3>
-                                    <ul>
-                                        {data.singles.map((effect) => (
-                                            <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                                {formatEffectName(effect)}
-                                            </li>
-                                        ))}
-                                        {Object.entries(data.groups).map(([groupName, groupEffects]) => (
-                                            <li key={groupName} className={`group-item ${hoveredGroup === groupName ? 'hovered' : ''}`}>
-                                                <div onClick={() => toggleGroup(category, groupName)} className="group-header">
-                                                    <span>{groupName}</span>
-                                                    <div className="group-header-controls">
-                                                        {expandedGroups[`${category}-${groupName}`] && (
-                                                            <button
-                                                                className="icon-button select-all-button"
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    handleSelectAllFromGroup(groupEffects);
-                                                                }}
-                                                                onMouseEnter={() => setHoveredGroup(groupName)}
-                                                                onMouseLeave={() => setHoveredGroup(null)}
-                                                                title="Add all effects"
-                                                            >
-                                                                <SelectAllIcon />
-                                                            </button>
-                                                        )}
-                                                        <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
+            <button className="corner-button" title='Save'>
+                <SaveIcon />
+            </button>
+            <div className="card-content">
+                <h2>Desired Effects</h2>
+                <div className="search-container" ref={searchContainerRef}>
+                    <input
+                        type="text"
+                        placeholder="Search for relic effects..."
+                        value={searchTerm}
+                        onClick={() => setListVisible(true)}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    {isListVisible && (
+                        <div className="effects-list-container">
+                            {Object.entries(filteredEffects)
+                                .sort(([a], [b]) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b))
+                                .map(([category, data]) => (
+                                    <div key={category} className="effects-category">
+                                        <h3>{category}</h3>
+                                        <ul>
+                                            {data.singles.map((effect) => (
+                                                <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                                    {formatEffectName(effect)}
+                                                </li>
+                                            ))}
+                                            {Object.entries(data.groups).map(([groupName, groupEffects]) => (
+                                                <li key={groupName} className={`group-item ${hoveredGroup === groupName ? 'hovered' : ''}`}>
+                                                    <div onClick={() => toggleGroup(category, groupName)} className="group-header">
+                                                        <span>{groupName}</span>
+                                                        <div className="group-header-controls">
+                                                            {expandedGroups[`${category}-${groupName}`] && (
+                                                                <button
+                                                                    className="icon-button select-all-button"
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        handleSelectAllFromGroup(groupEffects);
+                                                                    }}
+                                                                    onMouseEnter={() => setHoveredGroup(groupName)}
+                                                                    onMouseLeave={() => setHoveredGroup(null)}
+                                                                    title="Add all effects"
+                                                                >
+                                                                    <SelectAllIcon />
+                                                                </button>
+                                                            )}
+                                                            <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                {expandedGroups[`${category}-${groupName}`] && (
-                                                    <ul className="sub-list">
-                                                        {groupEffects.map(effect => (
-                                                            <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                                                {formatEffectName(effect)}
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            ))}
-                    </div>
-                )}
+                                                    {expandedGroups[`${category}-${groupName}`] && (
+                                                        <ul className="sub-list">
+                                                            {groupEffects.map(effect => (
+                                                                <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                                                    {formatEffectName(effect)}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                        </div>
+                    )}
+                </div>
+                <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
+                    {selectedEffects.map((effect) => (
+                        <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
+                    ))}
+                </div>
             </div>
-            <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
-                {selectedEffects.map((effect) => (
-                    <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
-                ))}
+            <div className="bottom-bar-effects">
+                <button className='calculate-button' title='Calculate optimal relics' onClick={handleCalculate}>
+                    <CalculatorIcon />
+                    <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+                </button>
             </div>
         </div>
     );

@@ -160,7 +160,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
          <div className="relic-page card">
            <div className="card-header">
              <h2>Your Relics</h2>
-             <button className="close-button" onClick={onBack}><CloseIcon /></button>
+             <button className="corner-button" onClick={onBack}><CloseIcon /></button>
            </div>
            <p>No displayable relic data found. Upload a save file or check your filters.</p>
          </div>
@@ -178,13 +178,11 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
     })
   );
 
-
   return (
     <div className="relic-page-backdrop">
       <div className="relic-page card">
         <div className='card-header'>
-            
-            <button className="close-button" onClick={onBack}><CloseIcon/></button>
+            <button className="corner-button" onClick={onBack}><CloseIcon/></button>
         </div>
         <h2>Your Relics</h2>
         <div className="relic-color-filters">

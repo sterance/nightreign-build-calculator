@@ -107,12 +107,39 @@ button:hover{
 .floating-checkbox {
   position: fixed;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   z-index: 1001;
   background-color: rgba(26, 26, 26, 0.8);
   padding: 0.5rem 1rem;
   border-radius: 8px;
   border: 1px solid #555;
+}
+.floating-button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  background-color: rgba(26, 26, 26, 0.8);
+  border: 1px solid #555;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+}
+.corner-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
 }
 
 /* CHARACTER CARD */
@@ -203,7 +230,7 @@ button:hover{
   top: 100%;
   left: 0;
   width: 100%;
-  max-height: 575px;
+  max-height: 500px;
   overflow-y: auto;
   background-color: #1a1a1a;
   border: 1px solid #555;
@@ -355,6 +382,7 @@ button:hover{
   bottom: 0;
   left: 0;
   width: 100%;
+  height: 40px;
   background-color: #1a1a1a;
   padding: 0.5rem;
   display: flex;
@@ -363,23 +391,32 @@ button:hover{
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
 }
 .bottom-bar button {
-  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 200px;
 }
-.bottom-bar .upload-button {
+.bottom-bar-effects {
+    margin-top: auto; /* Push to the bottom */
+    padding-top: 0.5rem;
+    border-top: 1px solid #555;
+    display: flex;
+    justify-content: center;
+}
+.bottom-bar .upload-button-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.bottom-bar .settings-button {
   position: absolute;
   right: 2rem;
-}
-.bottom-bar .relics-button {
-  position: absolute;
-  left: 2rem;
 }
 .bottom-bar .relic-button {
   position: absolute;
   left: 2rem;
 }
+
 .bottom-bar .relic-button:disabled {
   background-color: #333;
   color: #777;
@@ -482,19 +519,7 @@ button:hover{
   background-color: none;
   z-index: 1;
 }
-.relic-page .close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid #555;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  color: #ccc;
-  cursor: pointer;
-  line-height: 1;
-  padding: 0.25rem 0.5rem;
-}
+
 /* .relic-data-container {
   margin-top: 1rem;
 } */
