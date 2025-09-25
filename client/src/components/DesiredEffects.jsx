@@ -186,7 +186,7 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
             )}
             <button
                 className="corner-button"
-                title={desiredEffects.length === 0 ? 'Save current build' : 'Select effects to save build'}
+                title={desiredEffects.length === 0 ? 'Select effects to save build' : 'Save current build'}
                 onClick={() => setShowNameSaveCard(true)}
                 disabled={desiredEffects.length === 0}
             >
@@ -263,7 +263,7 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
             <div className="bottom-bar-effects">
                 <button
                     className='calculate-button'
-                    title={desiredEffects.length === 0 ? 'Calculate optimal relics' : 'Select effects to calculate'}
+                    title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
                     onClick={handleCalculate}
                     disabled={desiredEffects.length === 0}
                 >
