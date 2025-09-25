@@ -48,19 +48,29 @@ const RelicResults = ({ selectedChalices, calculationResult }) => {
             ))}
           </div>
         </div>
-        {relicEntries.map(([relicName, relicData], index) => (
-          <div className={`relic-result-card color-${chaliceSlots[index]}`} key={index}>
-            <img src={getImageUrl(relicName, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
-            {relicName !== "Scenic Flatstone" && <span>{relicName}</span>}
-            <table className="relic-stats-table">
-              <tbody>
-                <tr><td>{relicData.effects['effect 1'] && <>• {relicData.effects['effect 1']}</>}</td></tr>
-                <tr><td>{relicData.effects['effect 2'] && <>• {relicData.effects['effect 2']}</>}</td></tr>
-                <tr><td>{relicData.effects['effect 3'] && <>• {relicData.effects['effect 3']}</>}</td></tr>
-              </tbody>
-            </table>
-          </div>
-        ))}
+        {relicEntries.map(([relicName, relicData], index) => {
+          if (relicName === "Scenic Flatstone") {
+            return (
+              <div className={`relic-result-card empty-relic-slot color-${chaliceSlots[index]}`} key={index}>
+                <span>No relic found for {chaliceSlots[index]} slot</span>
+              </div>
+            );
+          } else {
+            return (
+              <div className={`relic-result-card color-${chaliceSlots[index]}`} key={index}>
+                <img src={getImageUrl(relicName, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
+                <span>{relicName}</span>
+                <table className="relic-stats-table">
+                  <tbody>
+                    <tr><td>{relicData.effects['effect 1'] && <>• {relicData.effects['effect 1']}</>}</td></tr>
+                    <tr><td>{relicData.effects['effect 2'] && <>• {relicData.effects['effect 2']}</>}</td></tr>
+                    <tr><td>{relicData.effects['effect 3'] && <>• {relicData.effects['effect 3']}</>}</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            )
+          }
+        })}
       </>
     );
   };

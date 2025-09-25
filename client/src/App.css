@@ -505,14 +505,27 @@ button:hover {
 /* CHALICE RESULTS */
 .chalice-result-card {
   font-size: x-large;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chalice-result-card img {
+  flex-shrink: 0;
+}
+
+#chalice-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
 }
 
 .chalice-result-card .relic-slots-container {
-  margin-left: auto;
   display: flex;
   justify-content: center;
   gap: 4rem;
-  width: 66%;
+  flex-grow: 1;
 }
 
 /* RELIC RESULTS */
@@ -538,7 +551,7 @@ button:hover {
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0 0.5rem 1rem;
 }
 
 .relic-result-card {
@@ -616,9 +629,6 @@ button:hover {
   z-index: 1;
 }
 
-/* .relic-data-container {
-  margin-top: 1rem;
-} */
 .character-relics {
   margin-bottom: 1.5rem;
 }
@@ -686,6 +696,48 @@ button:hover {
   margin-top: 1rem;
 }
 
+.color-filter-card {
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.7;
+}
+
+.color-filter-card.checked {
+  border-width: 2px;
+  opacity: 1;
+}
+
+.color-filter-card.color-red {
+  background-color: #4d2d2d;
+  border-color: #ff4d4d;
+  width: 50px;
+}
+
+.color-filter-card.color-blue {
+  background-color: #2d3b4d;
+  border-color: #4d94ff;
+  width: 50px;
+}
+
+.color-filter-card.color-yellow {
+  background-color: #4d4d2d;
+  border-color: #ffff4d;
+  width: 50px;
+}
+
+.color-filter-card.color-green {
+  background-color: #2d4d2d;
+  border-color: #4dff4d;
+  width: 50px;
+}
+
+
 /* SETTINGS PAGE */
 .settings-page-backdrop {
   position: fixed;
@@ -705,6 +757,64 @@ button:hover {
   max-width: 900px;
   max-height: 80vh;
   overflow-y: auto;
+}
+
+.settings-body {
+  text-align: left;
+  display: flex;
+}
+
+.settings-column {
+  flex: 1;
+  box-sizing: border-box;
+}
+.settings-option {
+  margin: 10px;
+  display: flex;
+}
+
+.color-picker-wrapper {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  margin-right: 10px;
+}
+
+.color-picker-wrapper input[type="color"] {
+  background-color: transparent;
+  border: none;
+  width: 40px;
+  height: 25px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.color-picker-wrapper input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.color-picker-wrapper input[type="color"]::-webkit-color-swatch {
+  border: 1px solid #555;
+  border-radius: 4px;
+}
+
+.color-picker-reset {
+  background: none;
+  border: none;
+  border-left: 1px solid #555;
+  color: #ccc;
+  cursor: pointer;
+  padding: 0em 1em;
+  font-size: 0.9em;
+  border-radius: 0 7px 7px 0;
+}
+
+.color-picker-reset:hover {
+  color: var(--primary-color);
+  border-color: #555; /* Keep border color on hover */
+  background-color: #2a2a2a;
 }
 
 /* UPLOAD TOOLTIP */

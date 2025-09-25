@@ -135,6 +135,7 @@ const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
         setSelectedEffects(prev => [...prev, ...newEffects].sort((a, b) => b.weight - a.weight));
         triggerSortAnimation();
         setListVisible(false);
+        setHoveredGroup(null);
     }
 
     const handleUpdateEffect = (id, updatedEffect) => {

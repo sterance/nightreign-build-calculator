@@ -10,6 +10,23 @@ effects.forEach(effect => {
   });
 });
 
+const ColorFilterCard = ({ color, isChecked, onChange }) => {
+  return (
+    <div
+      className={`color-filter-card color-${color} ${isChecked ? 'checked' : ''}`}
+      onClick={() => onChange(color)}
+    >
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={() => onChange(color)}
+        style={{ display: 'none' }}
+      />
+      <span>{color.charAt(0).toUpperCase() + color.slice(1)}</span>
+    </div>
+  );
+};
+
 const RelicCard = ({ relic, items }) => {
   const relicInfo = items[relic.item_id.toString()];
 
@@ -140,6 +157,28 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
     loadData();
   }, []);
 
+  const renderContent = (children) => (
+    <div className="relic-page-backdrop">
+      <div className="relic-page card">
+        <div className='card-header'>
+          <button className="corner-button" onClick={onBack}><CloseIcon /></button>
+        </div>
+        <h2>Your Relics</h2>
+        <div className="relic-color-filters">
+          {Object.keys(relicColorFilters).map(color => (
+            <ColorFilterCard
+              key={color}
+              color={color}
+              isChecked={relicColorFilters[color]}
+              onChange={onRelicColorFilterChange}
+            />
+          ))}
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+
   if (isLoading) {
     return <div className="relic-page-backdrop"><div className="relic-page card"><p>Loading relic data...</p></div></div>;
   }
@@ -155,29 +194,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
   );
 
   if (!relicData || !hasVisibleRelics) {
-    return (
-      <div className="relic-page-backdrop">
-        <div className="relic-page card">
-          <div className="card-header">
-            <button className="corner-button" onClick={onBack}><CloseIcon /></button>
-          </div>
-          <h2>Your Relics</h2>
-          <div className="relic-color-filters">
-            {Object.keys(relicColorFilters).map(color => (
-              <label key={color}>
-                <input
-                  type="checkbox"
-                  checked={relicColorFilters[color]}
-                  onChange={() => onRelicColorFilterChange(color)}
-                />
-                {color.charAt(0).toUpperCase() + color.slice(1)}
-              </label>
-            ))}
-          </div>
-          <p>No displayable relic data found. Upload a save file or check your filters.</p>
-        </div>
-      </div>
-    );
+    return renderContent(<p>No displayable relic data found. Upload a save file or check your filters.</p>);
   }
 
   const charactersWithRelics = relicData.filter(character =>
@@ -190,41 +207,21 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
     })
   );
 
-  return (
-    <div className="relic-page-backdrop">
-      <div className="relic-page card">
-        <div className='card-header'>
-          <button className="corner-button" onClick={onBack}><CloseIcon /></button>
-        </div>
-        <h2>Your Relics</h2>
-        <div className="relic-color-filters">
-          {Object.keys(relicColorFilters).map(color => (
-            <label key={color}>
-              <input
-                type="checkbox"
-                checked={relicColorFilters[color]}
-                onChange={() => onRelicColorFilterChange(color)}
-              />
-              {color.charAt(0).toUpperCase() + color.slice(1)}
-            </label>
-          ))}
-        </div>
-        <div className="relic-data-container">
-          {relicData.map(character => (
-            <CharacterRelics
-              key={character.section_number}
-              characterData={character}
-              items={items}
-              selectedSaveName={selectedSaveName}
-              onSaveNameSelect={onSaveNameSelect}
-              showRadio={charactersWithRelics.length > 1}
-              showDeepOfNight={showDeepOfNight}
-              showUnknownRelics={showUnknownRelics}
-              relicColorFilters={relicColorFilters}
-            />
-          ))}
-        </div>
-      </div>
+  return renderContent(
+    <div className="relic-data-container">
+      {relicData.map(character => (
+        <CharacterRelics
+          key={character.section_number}
+          characterData={character}
+          items={items}
+          selectedSaveName={selectedSaveName}
+          onSaveNameSelect={onSaveNameSelect}
+          showRadio={charactersWithRelics.length > 1}
+          showDeepOfNight={showDeepOfNight}
+          showUnknownRelics={showUnknownRelics}
+          relicColorFilters={relicColorFilters}
+        />
+      ))}
     </div>
   );
 };

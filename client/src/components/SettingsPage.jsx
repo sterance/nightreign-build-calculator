@@ -9,24 +9,30 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics }) => {
           <button className="corner-button" onClick={onBack}><CloseIcon /></button>
         </div>
         <h2>Settings</h2>
-        <ColorPicker />
-        <div style={{ margin: '20px' }}>
-          <label>
-            <input
-              type="checkbox"
-              checked={showUnknownRelics}
-              onChange={() => setShowUnknownRelics(!showUnknownRelics)}
-            />
-            Display Unknown Relics
-          </label>
-        </div>
-        <div style={{ margin: '20px' }}>
-          <label>
-            <input
-              type="checkbox"
-            />
-            Display Score Info
-          </label>
+        <div className="settings-body">
+          <div className="settings-column left-column">
+            <ColorPicker />
+          </div>
+          <div className="settings-column right-column">
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showUnknownRelics}
+                  onChange={() => setShowUnknownRelics(!showUnknownRelics)}
+                />
+                Display Unknown Relics
+              </label>
+            </div>
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                />
+                Display Score Info
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>

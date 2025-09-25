@@ -218,7 +218,7 @@ function App() {
       <button
         className="floating-button"
         title='Settings'
-        onClick={() => setShowSettings(true)}
+        onClick={() => setShowSettings(!showSettings)}
       >
         <SettingsIcon />
       </button>

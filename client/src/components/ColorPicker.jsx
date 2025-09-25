@@ -15,17 +15,19 @@ function ColorPicker() {
   const handleReset = () => {
     setColor(defaultColor);
   };
-  
+
   return (
-    <div style={{ margin: '20px' }}>
-      <label htmlFor="colorPicker">Select Primary Color: </label>
-      <input
-        type="color"
-        id="colorPicker"
-        value={color}
-        onChange={handleColorChange}
-      />
-      <button onClick={handleReset} style={{ marginLeft: '10px' }}>Default</button>
+    <div className="settings-option">
+      <div className="color-picker-wrapper">
+        <input
+          type="color"
+          id="colorPicker"
+          value={color}
+          onChange={handleColorChange}
+        />
+        <button onClick={handleReset} className="color-picker-reset">Reset</button>
+      </div>
+      <label htmlFor="colorPicker">Select Primary Color</label>
     </div>
   );
 }
