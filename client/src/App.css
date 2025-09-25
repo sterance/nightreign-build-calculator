@@ -537,9 +537,6 @@ button:hover {
   flex-grow: 1;
 }
 
-/* .relic-result-container img{
-  padding-left: 0.5rem;
-} */
 .relic-result-card,
 .chalice-result-card {
   border: 1px solid #555;
@@ -552,6 +549,11 @@ button:hover {
   align-items: center;
   gap: 1rem;
   padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.empty-relic-slot {
+  justify-content: center !important;
+  margin: auto;
 }
 
 .relic-result-card {
@@ -599,6 +601,10 @@ button:hover {
   padding: 0.2rem 0.5rem;
   text-align: left;
   font-size: 0.8em;
+}
+
+.info-button {
+  display: flex;
 }
 
 /* RELICS PAGE */
@@ -759,6 +765,10 @@ button:hover {
   overflow-y: auto;
 }
 
+.settings-page h2{
+  margin-bottom: 1rem;
+}
+
 .settings-body {
   text-align: left;
   display: flex;
@@ -768,6 +778,7 @@ button:hover {
   flex: 1;
   box-sizing: border-box;
 }
+
 .settings-option {
   margin: 10px;
   display: flex;
@@ -809,11 +820,12 @@ button:hover {
   padding: 0em 1em;
   font-size: 0.9em;
   border-radius: 0 7px 7px 0;
+
 }
 
 .color-picker-reset:hover {
-  color: var(--primary-color);
-  border-color: #555; /* Keep border color on hover */
+  color: #646cff;
+  border-color: #555;
   background-color: #2a2a2a;
 }
 
