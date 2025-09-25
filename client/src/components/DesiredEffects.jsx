@@ -1,4 +1,3 @@
-// sterance/nightreign-build-calculator/nightreign-build-calculator-experimental/client/src/components/DesiredEffects.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import relicEffects from '../data/baseRelicEffects.json';
 import { characters } from '../data/chaliceData';
@@ -166,7 +165,7 @@ const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
 
     return (
         <div id="effects-card" className="card">
-            <button className="corner-button" title='Save'>
+            <button className="corner-button" title='Save current build'>
                 <SaveIcon />
             </button>
             <div className="card-content">

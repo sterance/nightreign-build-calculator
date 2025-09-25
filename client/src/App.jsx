@@ -9,6 +9,7 @@ import { chaliceData } from './data/chaliceData';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
 import effects from './data/baseRelicEffects.json';
+import SettingsPage from './components/SettingsPage';
 
 const effectMap = new Map();
 effects.forEach(effect => {
@@ -24,6 +25,7 @@ function App() {
   const [desiredEffects, setDesiredEffects] = useState([]);
   const [calculationResult, setCalculationResult] = useState(null);
   const [showRelics, setShowRelics] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadError, setUploadError] = useState(null);
   const [hasRelicData, setHasRelicData] = useState(false);
@@ -216,7 +218,11 @@ function App() {
         </label>
       </div>
 
-      <button className="floating-button" title='Settings'>
+      <button
+        className="floating-button"
+        title='Settings'
+        onClick={() => setShowSettings(true)}
+      >
         <SettingsIcon />
       </button>
 
@@ -258,6 +264,9 @@ function App() {
         relicColorFilters={relicColorFilters}
         onRelicColorFilterChange={handleRelicColorFilterChange} />}
 
+      {showSettings && <SettingsPage
+        onBack={() => setShowSettings(false)} />}
+
       {uploadError && <div className="error-popup">{uploadError}</div>}
 
       <div className="bottom-bar">
@@ -289,14 +298,14 @@ function App() {
                         <CloseIcon />
                     </button>
                     <div className="tooltip-content">
-                        <p className="tooltip-main-text">Upload your save file here to get started!</p>
-                        <p className="tooltip-sub-text">.sl2 file, found at <span className='code-block'>C:\Users\[username]\AppData\Roaming\Nightreign on Windows</span></p>
+                        <p className="tooltip-main-text"><span className="underlined-text">Upload your save file here to get started!</span></p>
+                        <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign</span> on Windows</p>
                     </div>
                 </div>
             )}
         </div>
 
-        <button className="settings-button" title='Settings'>
+        <button className="builds-button" title='View saved builds'>
           <SwordIcon />
           <span style={{ marginLeft: '0.5rem' }}>Saved Builds</span>
         </button>
