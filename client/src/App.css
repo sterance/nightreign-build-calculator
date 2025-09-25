@@ -96,6 +96,21 @@ button:focus-visible {
   outline: none;
 }
 
+button:disabled {
+  background-color: #333;
+  color: #777;
+  cursor: not-allowed;
+  border-color: #555;
+}
+
+button:disabled:hover {
+  border-color: #555;
+}
+
+button:disabled svg {
+  color: #777;
+}
+
 button:hover {
   border-color: var(--primary-color);
 }
@@ -146,7 +161,7 @@ button:hover {
   color: #ccc;
   cursor: pointer;
   line-height: 1;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.25rem;
 }
 
 .corner-button {
@@ -160,7 +175,7 @@ button:hover {
   color: #ccc;
   cursor: pointer;
   line-height: 1;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.25rem;
 }
 
 /* CHARACTER CARD */
@@ -379,8 +394,6 @@ button:hover {
   color: #ff4d4d;
 }
 
-
-
 .group-header {
   display: flex;
   justify-content: space-between;
@@ -440,6 +453,7 @@ button:hover {
 
 
 
+
 /* BOTTOM BAR */
 .bottom-bar {
   position: fixed;
@@ -485,21 +499,6 @@ button:hover {
 .bottom-bar .relic-button {
   position: absolute;
   left: 2rem;
-}
-
-.bottom-bar .relic-button:disabled {
-  background-color: #333;
-  color: #777;
-  cursor: not-allowed;
-  border-color: #555;
-}
-
-.bottom-bar .relic-button:disabled:hover {
-  border-color: #555;
-}
-
-.bottom-bar .relic-button:disabled svg {
-  color: #777;
 }
 
 /* CHALICE RESULTS */
@@ -605,6 +604,15 @@ button:hover {
 
 .info-button {
   display: flex;
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem 0.25rem;
+  margin-right: 1rem;
 }
 
 /* RELICS PAGE */
@@ -765,7 +773,7 @@ button:hover {
   overflow-y: auto;
 }
 
-.settings-page h2{
+.settings-page h2 {
   margin-bottom: 1rem;
 }
 
@@ -846,7 +854,6 @@ button:hover {
   color: white;
   padding: 1rem;
   border-radius: 8px;
-  /* The border on the main box */
   border: 1px solid var(--primary-color);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   width: 600px;
@@ -854,7 +861,6 @@ button:hover {
   text-align: center;
 }
 
-/* NEW: The larger triangle that acts as the BORDER */
 .upload-tooltip::before {
   content: '';
   position: absolute;
@@ -916,6 +922,57 @@ button:hover {
   height: 100%;
 }
 
+/* INFO TOOLTIP */
+.info-button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.info-tooltip {
+  position: absolute;
+  right: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #3a3a3a;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: max-content;
+  z-index: 1002;
+  text-align: left;
+}
+
+.info-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 11.5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--primary-color);
+}
+
+.info-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent #3a3a3a;
+}
+
+.info-tooltip p {
+  font-size: medium;
+  margin: 0;
+  text-align: center;
+}
+
 .code-inline {
   background-color: #2d333b;
   color: #c9d1d9;
@@ -925,6 +982,56 @@ button:hover {
   border-radius: 6px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   white-space: nowrap;
+}
+
+/* TOAST NOTIFICATIONS */
+.toast-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1002;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.toast {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.5s forwards, slideOut 0.5s forwards 4.5s;
+}
+
+.toast-success {
+  background-color: #4CAF50; /* Green */
+}
+
+.toast-error {
+  background-color: #f44336; /* Red */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 

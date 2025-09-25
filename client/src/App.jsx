@@ -10,6 +10,7 @@ import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './com
 import { calculateBestRelics } from './utils/calculation';
 import effects from './data/baseRelicEffects.json';
 import SettingsPage from './components/SettingsPage';
+import ToastNotification from './components/ToastNotification';
 
 const effectMap = new Map();
 effects.forEach(effect => {
@@ -27,12 +28,12 @@ function App() {
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState(null);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
   const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
+  const [toasts, setToasts] = useState([]);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -66,6 +67,13 @@ function App() {
     }
   }, []);
 
+  const addToast = (message, type = 'error', duration = 5000) => {
+    const id = Date.now();
+    setToasts(prevToasts => [...prevToasts, { id, message, type }]);
+    setTimeout(() => {
+      setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
+    }, duration);
+  };
 
   const handleCloseTooltip = () => {
       setShowUploadTooltip(false);
@@ -113,7 +121,6 @@ function App() {
     if (!file) return;
 
     setIsUploading(true);
-    setUploadError(null);
     setShowUploadTooltip(false);
 
     const formData = new FormData();
@@ -128,12 +135,17 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('saveData', JSON.stringify(data));
-        setHasRelicData(true);
-        if (data.length === 1) {
-          setSelectedSaveName(data[0].character_name);
+        if (data && data.length > 0) {
+          localStorage.setItem('saveData', JSON.stringify(data));
+          setHasRelicData(true);
+          addToast('Save file uploaded successfully!', 'success');
+          if (data.length === 1) {
+            setSelectedSaveName(data[0].character_name);
+          } else {
+            setSelectedSaveName(null); // require user to select a character
+          }
         } else {
-          setSelectedSaveName(null); // require user to select a character
+          addToast('Relic information not found in save file.', 'error');
         }
       } else {
         const errorText = await response.text();
@@ -141,8 +153,7 @@ function App() {
       }
     } catch (error) {
       console.error('Upload failed:', error);
-      setUploadError(error.message);
-      setTimeout(() => setUploadError(null), 5000);
+      addToast('Save file failed to upload.', 'error');
     } finally {
       setIsUploading(false);
     }
@@ -151,8 +162,20 @@ function App() {
   const handleCalculate = () => {
     const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-    if (!saveData || !selectedCharacter || selectedChalices.length === 0 || !selectedSaveName) {
-      console.log("Cannot calculate: Missing relic data, character selection, chalice selection, or save name selection.");
+    if (!saveData) {
+      addToast('Calculation failed: missing relic data.', 'error');
+      return;
+    }
+    if (!selectedCharacter) {
+      addToast('Calculation failed: missing character selection.', 'error');
+      return;
+    }
+    if (selectedChalices.length === 0) {
+      addToast('Calculation failed: missing chalice selection.', 'error');
+      return;
+    }
+    if (desiredEffects.length === 0) {
+      addToast('Calculation failed: no desired effects.', 'error');
       return;
     }
 
@@ -162,7 +185,7 @@ function App() {
     );
 
     if (!characterSaveData) {
-      console.log(`No relic data found for character: ${selectedSaveName}`);
+      addToast('No relic data found for the selected character.', 'error');
       return;
     }
 
@@ -177,24 +200,23 @@ function App() {
       const formattedResult = {
         "chalice name": result.chalice.name,
         "chalice slots": result.chalice.slots,
-        ...result.relics.reduce((acc, relic) => {
-
-          acc[relic['relic name']] = {
+        "chalice description": result.chalice.description,
+        "relics": result.relics.map(relic => ({
+            name: relic['relic name'],
             color: relic.color,
             effects: {
-              "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
-              "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
-              "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
+                "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
+                "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
+                "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
             }
-          };
-          return acc;
-        }, {})
+        }))
       };
       setCalculationResult(formattedResult);
     } else {
       setCalculationResult(null);
     }
   };
+  
   const handleRelicColorFilterChange = (color) => {
     setRelicColorFilters(prevFilters => ({
       ...prevFilters,
@@ -204,6 +226,7 @@ function App() {
 
   return (
     <div className="app-container">
+      <ToastNotification toasts={toasts} />
       <div className="floating-checkbox">
         <label>
           <input
@@ -266,8 +289,6 @@ function App() {
         showUnknownRelics={showUnknownRelics}
         setShowUnknownRelics={setShowUnknownRelics}
       />}
-
-      {uploadError && <div className="error-popup">{uploadError}</div>}
 
       <div className="bottom-bar">
 

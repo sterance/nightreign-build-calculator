@@ -178,6 +178,7 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
         chalice: {
             name: chalice.name,
             slots: chalice.slots,
+            description: chalice.description
         },
         relics: bestRelicsForChalice,
         score: totalScore,

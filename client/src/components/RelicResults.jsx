@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon } from './Icons';
 
 const RelicResults = ({ selectedChalices, calculationResult }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const getImageUrl = (name, type) => {
     const cleanedName = name
@@ -27,23 +28,36 @@ const RelicResults = ({ selectedChalices, calculationResult }) => {
                   <RelicSlot key={index} color={color} />
                 ))}
               </div>
-              <buttton className="info-button">
-                <InformationIcon />
-              </buttton>
+              <div className="info-button-container">
+                <button className="info-button" onClick={() => setShowTooltip(!showTooltip)}>
+                  <InformationIcon />
+                </button>
+                {showTooltip && (
+                  <div className="info-tooltip">
+                    <p>
+                      {calculationResult["chalice description"].split('\n').map((line, i) => (
+                        <React.Fragment key={i}>
+                          {line}
+                          <br />
+                        </React.Fragment>
+                      ))}
+                    </p>
+                  </div>
+                )}
+              </div>
             </div>
-            {calculationResult["chalice slots"].map((slotColor, index) => {
-              const relicEntry = Object.entries(calculationResult).filter(([key]) => !["chalice name", "chalice slots"].includes(key))[index];
-              if (relicEntry) {
-                const [relicName, relicData] = relicEntry;
+            {calculationResult.relics.map((relic, index) => {
+              const slotColor = calculationResult["chalice slots"][index];
+              if (relic) {
                 return (
                   <div className={`relic-result-card color-${slotColor}`} key={index}>
-                    <img src={getImageUrl(relicName, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
-                    <span>{relicName}</span>
+                    <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
+                    <span>{relic.name}</span>
                     <table className="relic-stats-table">
                       <tbody>
-                        <tr><td>{relicData.effects['effect 1'] && <>• {relicData.effects['effect 1']}</>}</td></tr>
-                        <tr><td>{relicData.effects['effect 2'] && <>• {relicData.effects['effect 2']}</>}</td></tr>
-                        <tr><td>{relicData.effects['effect 3'] && <>• {relicData.effects['effect 3']}</>}</td></tr>
+                        <tr><td>{relic.effects['effect 1'] && <>• {relic.effects['effect 1']}</>}</td></tr>
+                        <tr><td>{relic.effects['effect 2'] && <>• {relic.effects['effect 2']}</>}</td></tr>
+                        <tr><td>{relic.effects['effect 3'] && <>• {relic.effects['effect 3']}</>}</td></tr>
                       </tbody>
                     </table>
                   </div>

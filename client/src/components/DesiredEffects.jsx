@@ -238,7 +238,12 @@ const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
                 </div>
             </div>
             <div className="bottom-bar-effects">
-                <button className='calculate-button' title='Calculate optimal relics' onClick={handleCalculate}>
+                <button
+                    className='calculate-button'
+                    title='Calculate optimal relics'
+                    onClick={handleCalculate}
+                    disabled={selectedEffects.length === 0}
+                >
                     <CalculatorIcon />
                     <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
                 </button>
