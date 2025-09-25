@@ -288,6 +288,7 @@ function App() {
           onChange={setDesiredEffects}
           selectedCharacter={selectedCharacter}
           handleCalculate={handleCalculate}
+          setHasSavedBuilds={setHasSavedBuilds}
         />
 
         <RelicResults

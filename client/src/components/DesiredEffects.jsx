@@ -5,7 +5,7 @@ import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon } from './Icons';
 
-const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate }) => {
+const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
     const [isListVisible, setListVisible] = useState(false);
@@ -174,6 +174,7 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
         savedBuilds[buildName] = selectedEffects;
         localStorage.setItem('savedBuilds', JSON.stringify(savedBuilds));
         setShowNameSaveCard(false);
+        setHasSavedBuilds(true);
     };
 
     return (
