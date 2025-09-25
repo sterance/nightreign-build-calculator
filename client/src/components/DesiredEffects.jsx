@@ -2,17 +2,19 @@ import React, { useState, useEffect, useRef } from 'react';
 import relicEffects from '../data/baseRelicEffects.json';
 import { characters } from '../data/chaliceData';
 import DesiredEffectCard from './DesiredEffectCard';
+import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon } from './Icons';
 
-const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
+const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [selectedEffects, setSelectedEffects] = useState([]);
+    const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
     const [isListVisible, setListVisible] = useState(false);
     const [expandedGroups, setExpandedGroups] = useState({});
     const searchContainerRef = useRef(null);
     const [isSorting, setIsSorting] = useState(false);
     const sortTimeoutRef = useRef(null);
     const [hoveredGroup, setHoveredGroup] = useState(null);
+    const [showNameSaveCard, setShowNameSaveCard] = useState(false);
 
     const categoryOrder = [
         'Character Specific',
@@ -24,6 +26,9 @@ const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
         'Exploration'
     ];
 
+    useEffect(() => {
+        setSelectedEffects(desiredEffects);
+    }, [desiredEffects]);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -164,9 +169,27 @@ const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
         setExpandedGroups(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
+    const handleSaveBuild = (buildName) => {
+        const savedBuilds = JSON.parse(localStorage.getItem('savedBuilds') || '{}');
+        savedBuilds[buildName] = selectedEffects;
+        localStorage.setItem('savedBuilds', JSON.stringify(savedBuilds));
+        setShowNameSaveCard(false);
+    };
+
     return (
         <div id="effects-card" className="card">
-            <button className="corner-button" title='Save current build'>
+            {showNameSaveCard && (
+                <NameSaveCard
+                    onSave={handleSaveBuild}
+                    onCancel={() => setShowNameSaveCard(false)}
+                />
+            )}
+            <button
+                className="corner-button"
+                title={desiredEffects.length === 0 ? 'Save current build' : 'Select effects to save build'}
+                onClick={() => setShowNameSaveCard(true)}
+                disabled={desiredEffects.length === 0}
+            >
                 <SaveIcon />
             </button>
             <div className="card-content">
@@ -240,9 +263,9 @@ const DesiredEffects = ({ onChange, selectedCharacter, handleCalculate }) => {
             <div className="bottom-bar-effects">
                 <button
                     className='calculate-button'
-                    title='Calculate optimal relics'
+                    title={desiredEffects.length === 0 ? 'Calculate optimal relics' : 'Select effects to calculate'}
                     onClick={handleCalculate}
-                    disabled={selectedEffects.length === 0}
+                    disabled={desiredEffects.length === 0}
                 >
                     <CalculatorIcon />
                     <span style={{ marginLeft: '0.5rem' }}>Calculate</span>

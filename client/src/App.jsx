@@ -10,6 +10,7 @@ import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './com
 import { calculateBestRelics } from './utils/calculation';
 import effects from './data/baseRelicEffects.json';
 import SettingsPage from './components/SettingsPage';
+import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
 
 const effectMap = new Map();
@@ -27,6 +28,7 @@ function App() {
   const [calculationResult, setCalculationResult] = useState(null);
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
@@ -98,7 +100,7 @@ function App() {
   const handleChaliceToggle = (chaliceName) => {
     setSelectedChalices((prevSelected) =>
       prevSelected.includes(chaliceName)
-        ? prevSelected.filter((name) => name !== chaliceName)
+        ? prevSelected.filter((name) => name !== name)
         : [...prevSelected, chaliceName]
     );
   };
@@ -224,6 +226,10 @@ function App() {
     }));
   };
 
+  const handleLoadBuild = (buildEffects) => {
+      setDesiredEffects(buildEffects);
+  };
+
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
@@ -264,6 +270,7 @@ function App() {
         />
 
         <DesiredEffects
+          desiredEffects={desiredEffects}
           onChange={setDesiredEffects}
           selectedCharacter={selectedCharacter}
           handleCalculate={handleCalculate}
@@ -288,6 +295,11 @@ function App() {
         onBack={() => setShowSettings(false)}
         showUnknownRelics={showUnknownRelics}
         setShowUnknownRelics={setShowUnknownRelics}
+      />}
+      
+      {showSavedBuilds && <SavedBuildsPage
+          onBack={() => setShowSavedBuilds(false)}
+          onLoadBuild={handleLoadBuild}
       />}
 
       <div className="bottom-bar">
@@ -326,7 +338,7 @@ function App() {
             )}
         </div>
 
-        <button className="builds-button" title='View saved builds'>
+        <button className="builds-button" title='View saved builds' onClick={() => setShowSavedBuilds(true)}>
           <SwordIcon />
           <span style={{ marginLeft: '0.5rem' }}>Saved Builds</span>
         </button>
