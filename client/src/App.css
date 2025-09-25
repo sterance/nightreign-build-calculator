@@ -1,11 +1,14 @@
 /* GLOBAL */
+:root {
+  --primary-color: #646cff;
+}
+
 #root {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0;
   text-align: center;
   flex-grow: 1;
-  --primary-color: #646cff;
 }
 
 .app-container {
@@ -696,6 +699,7 @@ button:hover {
   align-items: center;
   z-index: 1000;
 }
+
 .settings-page {
   width: 80%;
   max-width: 900px;

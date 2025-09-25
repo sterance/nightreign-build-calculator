@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function ColorPicker() {
+  const defaultColor = '#646cff';
   const [color, setColor] = useState(localStorage.getItem('primaryColor') || '#007bff');
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-color', color);
@@ -11,6 +12,10 @@ function ColorPicker() {
     setColor(e.target.value);
   };
 
+  const handleReset = () => {
+    setColor(defaultColor);
+  };
+  
   return (
     <div style={{ margin: '20px' }}>
       <label htmlFor="colorPicker">Select Primary Color: </label>
@@ -20,6 +25,7 @@ function ColorPicker() {
         value={color}
         onChange={handleColorChange}
       />
+      <button onClick={handleReset} style={{ marginLeft: '10px' }}>Default</button>
     </div>
   );
 }

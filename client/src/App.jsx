@@ -36,6 +36,11 @@ function App() {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
+    const primaryColor = localStorage.getItem('primaryColor') || '#646cff';
+    document.documentElement.style.setProperty('--primary-color', primaryColor);
+  }, []);
+
+  useEffect(() => {
     // check for existing relic data on initial load
     const storedData = localStorage.getItem('saveData');
 
@@ -44,7 +49,7 @@ function App() {
         const parsedData = JSON.parse(storedData);
         if (parsedData && parsedData.length > 0) {
           setHasRelicData(true);
-          // If there's only one character, pre-select it
+          // if there's only one character, pre-select it
           if (parsedData.length === 1) {
             setSelectedSaveName(parsedData[0].character_name);
           }
@@ -128,7 +133,7 @@ function App() {
         if (data.length === 1) {
           setSelectedSaveName(data[0].character_name);
         } else {
-          setSelectedSaveName(null); // Require user to select a character
+          setSelectedSaveName(null); // require user to select a character
         }
       } else {
         const errorText = await response.text();
@@ -151,7 +156,7 @@ function App() {
       return;
     }
 
-    // Find the character data for the selected save name
+    // find the character data for the selected save name
     const characterSaveData = saveData.find(
       (character) => character.character_name === selectedSaveName
     );
@@ -208,14 +213,6 @@ function App() {
           />
           Deep of Night
         </label>
-        <label style={{ marginLeft: '1rem' }}>
-          <input
-            type="checkbox"
-            checked={showUnknownRelics}
-            onChange={() => setShowUnknownRelics(!showUnknownRelics)}
-          />
-          Show Unknown Relics
-        </label>
       </div>
 
       <button
@@ -265,7 +262,10 @@ function App() {
         onRelicColorFilterChange={handleRelicColorFilterChange} />}
 
       {showSettings && <SettingsPage
-        onBack={() => setShowSettings(false)} />}
+        onBack={() => setShowSettings(false)}
+        showUnknownRelics={showUnknownRelics}
+        setShowUnknownRelics={setShowUnknownRelics}
+      />}
 
       {uploadError && <div className="error-popup">{uploadError}</div>}
 
