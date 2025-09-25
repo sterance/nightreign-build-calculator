@@ -31,6 +31,7 @@ function App() {
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
+  const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
   const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
@@ -46,7 +47,6 @@ function App() {
   useEffect(() => {
     // check for existing relic data on initial load
     const storedData = localStorage.getItem('saveData');
-
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
@@ -57,7 +57,7 @@ function App() {
             setSelectedSaveName(parsedData[0].character_name);
           }
         } else {
-            setShowUploadTooltip(true);
+          setShowUploadTooltip(true);
         }
       } catch (e) {
         localStorage.removeItem('saveData');
@@ -65,7 +65,21 @@ function App() {
         console.log(e);
       }
     } else {
-        setShowUploadTooltip(true);
+      setShowUploadTooltip(true);
+    }
+
+    // check for existing saved builds on initial load
+    const storedBuilds = localStorage.getItem('savedBuilds');
+    if (storedBuilds) {
+      try {
+        const parsedBuilds = JSON.parse(storedBuilds);
+        if (parsedBuilds && Object.keys(parsedBuilds).length > 0) {
+          setHasSavedBuilds(true);
+        }
+      } catch (e) {
+        console.log("Error parsing saved builds:", e);
+        localStorage.removeItem('savedBuilds');
+      }
     }
   }, []);
 
@@ -78,7 +92,7 @@ function App() {
   };
 
   const handleCloseTooltip = () => {
-      setShowUploadTooltip(false);
+    setShowUploadTooltip(false);
   };
 
   const selectAllChalicesForCharacter = (character) => {
@@ -204,13 +218,13 @@ function App() {
         "chalice slots": result.chalice.slots,
         "chalice description": result.chalice.description,
         "relics": result.relics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            effects: {
-                "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
-                "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
-                "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
-            }
+          name: relic['relic name'],
+          color: relic.color,
+          effects: {
+            "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
+            "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
+            "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
+          }
         }))
       };
       setCalculationResult(formattedResult);
@@ -218,7 +232,7 @@ function App() {
       setCalculationResult(null);
     }
   };
-  
+
   const handleRelicColorFilterChange = (color) => {
     setRelicColorFilters(prevFilters => ({
       ...prevFilters,
@@ -227,7 +241,7 @@ function App() {
   };
 
   const handleLoadBuild = (buildEffects) => {
-      setDesiredEffects(buildEffects);
+    setDesiredEffects(buildEffects);
   };
 
   return (
@@ -296,10 +310,10 @@ function App() {
         showUnknownRelics={showUnknownRelics}
         setShowUnknownRelics={setShowUnknownRelics}
       />}
-      
+
       {showSavedBuilds && <SavedBuildsPage
-          onBack={() => setShowSavedBuilds(false)}
-          onLoadBuild={handleLoadBuild}
+        onBack={() => setShowSavedBuilds(false)}
+        onLoadBuild={handleLoadBuild}
       />}
 
       <div className="bottom-bar">
@@ -313,32 +327,37 @@ function App() {
           <RelicIcon />
           <span style={{ marginLeft: '0.5rem' }}>Relics</span>
         </button>
-        
+
         <div className="upload-button-container">
-            <button className="upload-button-center" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
-              {isUploading ? (
-                <div className="loader"></div>
-              ) : (
-                <>
-                  <UploadIcon />
-                  <span style={{ marginLeft: '0.5rem' }}>Upload</span>
-                </>
-              )}
-            </button>
-            {showUploadTooltip && (
-                <div className="upload-tooltip">
-                    <button className="close-tooltip-button" onClick={handleCloseTooltip}>
-                        <CloseIcon />
-                    </button>
-                    <div className="tooltip-content">
-                        <p className="tooltip-main-text"><span className="underlined-text">Upload your save file here to get started!</span></p>
-                        <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign</span> on Windows</p>
-                    </div>
-                </div>
+          <button className="upload-button-center" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
+            {isUploading ? (
+              <div className="loader"></div>
+            ) : (
+              <>
+                <UploadIcon />
+                <span style={{ marginLeft: '0.5rem' }}>Upload</span>
+              </>
             )}
+          </button>
+          {showUploadTooltip && (
+            <div className="upload-tooltip">
+              <button className="close-tooltip-button" onClick={handleCloseTooltip}>
+                <CloseIcon />
+              </button>
+              <div className="tooltip-content">
+                <p className="tooltip-main-text"><span className="underlined-text">Upload your save file here to get started!</span></p>
+                <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign</span> on Windows</p>
+              </div>
+            </div>
+          )}
         </div>
 
-        <button className="builds-button" title='View saved builds' onClick={() => setShowSavedBuilds(true)}>
+        <button
+          className="builds-button"
+          title={hasSavedBuilds ? 'View saved builds' : 'No saved builds'}
+          onClick={() => setShowSavedBuilds(true)}
+          disabled={!hasSavedBuilds}
+        >
           <SwordIcon />
           <span style={{ marginLeft: '0.5rem' }}>Saved Builds</span>
         </button>
