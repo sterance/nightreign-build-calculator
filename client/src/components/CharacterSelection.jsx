@@ -24,9 +24,9 @@ const CharacterSelection = ({
               title='Clear Selection'
             >
               <ClearSelectionIcon />
+              &nbsp;Clear Selection
             </button>
           </div>
-
         )}
       </div>
       <div className="image-grid">
@@ -41,8 +41,8 @@ const CharacterSelection = ({
             <img
               src={`/characters/${character}.png`}
               alt={character}
-              height={60}
-              width={60}
+              height={65}
+              width={65}
             />
           </div>
         ))}

@@ -63,7 +63,7 @@ h1 {
   background: none;
   border: 1px solid #555;
   color: #ccc;
-  font-size: 0.8em;
+  font-size: 0.75em;
   padding: 0.2em 0.6em;
   border-radius: 4px;
 }
@@ -114,6 +114,7 @@ button:disabled svg {
 button:hover {
   border-color: var(--primary-color);
 }
+
 
 .error-popup {
   position: fixed;
@@ -195,18 +196,19 @@ button:hover {
 }
 
 .image-grid {
-  display: grid;
-  grid-template-columns: repeat(8, auto);
-  justify-content: center;
-  gap: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 1rem;
 }
 
 /* CHALICE BUTTON */
 #chalice-card {
   grid-area: chalice;
   width: fit-content;
-  align-self: start;
+  align-self: stretch;
 }
+
 .chalice-preview {
   display: flex;
   align-items: center;
@@ -231,7 +233,6 @@ button:hover {
 
 #chalice-card:not(.disabled):hover {
   border-color: var(--primary-color);
-  background-color: #222;
 }
 
 /* CHALICE PAGE */
@@ -266,6 +267,23 @@ button:hover {
   grid-area: chalice;
 }
 
+.chalice-card-header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.chalice-button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 #chalice-card.disabled {
   background-color: #333;
   color: #777;
@@ -274,9 +292,13 @@ button:hover {
 .chalice-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.1rem;
+  gap: 1rem;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.chalice-grid p {
+  margin: 0;
 }
 
 .chalice {
@@ -304,6 +326,7 @@ button:hover {
 #relics-card.disabled {
   background-color: #333;
   color: #777;
+  cursor: not-allowed;
 }
 
 #relics-card.disabled .relic-result-container img {
@@ -512,35 +535,36 @@ button:hover {
 
 /* NAME SAVE CARD */
 .save-build-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
 }
 
 .save-build-card {
-    padding: 2rem;
-    width: 300px;
+  padding: 2rem;
+  width: 300px;
 }
 
 .save-build-card input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 1rem;
-    box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 1rem;
+  box-sizing: border-box;
 }
 
 .save-build-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1rem;
 }
+
 
 /* BOTTOM BAR */
 .bottom-bar {
@@ -1074,45 +1098,49 @@ button:hover {
 
 /* SAVED BUILDS PAGE */
 .saved-builds-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .saved-builds-page {
-    width: 80%;
-    max-width: 600px;
-    max-height: 80vh;
-    overflow-y: auto;
+  width: 80%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .saved-builds-list {
-    margin-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .saved-build-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem;
-    background-color: #242424;
-    border: 1px solid #555;
-    border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #242424;
+  border: 1px solid #555;
+  border-radius: 4px;
 }
 
 .build-actions {
-    display: flex;
-    gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.build-actions button {
+  padding: 0.3em 0.6em;
 }
 
 /* TOAST NOTIFICATIONS */
@@ -1136,11 +1164,13 @@ button:hover {
 }
 
 .toast-success {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
+  /* Green */
 }
 
 .toast-error {
-  background-color: #f44336; /* Red */
+  background-color: #f44336;
+  /* Red */
 }
 
 @keyframes slideIn {
@@ -1148,6 +1178,7 @@ button:hover {
     transform: translateX(100%);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -1159,6 +1190,7 @@ button:hover {
     transform: translateX(0);
     opacity: 1;
   }
+
   to {
     transform: translateX(100%);
     opacity: 0;

@@ -181,19 +181,19 @@ function App() {
     const saveData = JSON.parse(localStorage.getItem('saveData'));
 
     if (!saveData) {
-      addToast('Calculation failed: missing relic data.', 'error');
+      addToast('Calculation failed: Missing relic data.', 'error');
       return;
     }
     if (!selectedCharacter) {
-      addToast('Calculation failed: missing character selection.', 'error');
+      addToast('Calculation failed: Missing character selection.', 'error');
       return;
     }
     if (selectedChalices.length === 0) {
-      addToast('Calculation failed: missing chalice selection.', 'error');
+      addToast('Calculation failed: Missing chalice selection.', 'error');
       return;
     }
     if (desiredEffects.length === 0) {
-      addToast('Calculation failed: no desired effects.', 'error');
+      addToast('Calculation failed: No desired effects.', 'error');
       return;
     }
 
@@ -230,6 +230,7 @@ function App() {
         }))
       };
       setCalculationResult(formattedResult);
+      addToast('Calculation sucessful!', 'success')
     } else {
       setCalculationResult(null);
     }

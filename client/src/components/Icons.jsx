@@ -65,8 +65,8 @@ export const CalculatorIcon = () => (
 export const UploadIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width="24"
+    height="24"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -101,8 +101,8 @@ export const QuestionMarkIcon = () => (
 export const RelicIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
+    width="24"
+    height="24"
     viewBox="0 0 122.88 95.01"
     fill="currentColor"
   >

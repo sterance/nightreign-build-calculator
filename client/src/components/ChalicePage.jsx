@@ -19,9 +19,9 @@ const ChalicePage = ({
   return (
     <div className="chalice-page-backdrop">
       <div className="chalice-page card">
-        <div className="card-header">
+        <div className="chalice-card-header">
           <h2>Vessel Selection</h2>
-          <div className="button-group">
+          <div className="chalice-button-group">
             {isEnabled && (
               <>
                 <button
@@ -30,6 +30,7 @@ const ChalicePage = ({
                   title='Select All'
                 >
                   <SelectAllIcon />
+                  &nbsp;Select All
                 </button>
                 <button
                   className="card-button icon-button"
@@ -37,6 +38,7 @@ const ChalicePage = ({
                   title="Clear Selection"
                 >
                   <ClearSelectionIcon />
+                  &nbsp;Clear Selection
                 </button>
               </>
             )}
@@ -45,7 +47,7 @@ const ChalicePage = ({
             </button>
           </div>
         </div>
-        
+
         <div className="chalice-grid">
           {chalices.map((chalice, index) => (
             <Chalice

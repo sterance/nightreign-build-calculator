@@ -92,7 +92,11 @@ const RelicResults = ({ selectedChalices, calculationResult }) => {
   };
 
   return (
-    <div id="relics-card" className={`card ${!isEnabled ? 'disabled' : ''}`}>
+    <div
+      id="relics-card"
+      className={`card ${!isEnabled ? 'disabled' : ''}`}
+      title={!isEnabled ? 'Select at least one Vessel to enable relic calculation' : undefined}
+    >
       <h2>Recommended Relics</h2>
       <div className="relic-result-container">
         {renderContent()}
