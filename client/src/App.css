@@ -745,6 +745,19 @@ button:hover {
   margin-right: 1rem;
 }
 
+.centered-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.centered-text-container p {
+  font-size: xx-large;
+  margin: 0.5rem 0;
+}
+
 /* RELICS PAGE */
 .relic-page-backdrop {
   position: fixed;
