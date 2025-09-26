@@ -31,8 +31,13 @@ html, body {
 body {
   display: flex;
   min-width: 320px;
-  align-items: center;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 h1 {

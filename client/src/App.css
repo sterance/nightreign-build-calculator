@@ -1285,10 +1285,3 @@ button:hover {
     background-color: #242424;
   }
 }
-
-/* RESOLUTIONS */
-@media (min-height: 1081px) {
-  .content-wrapper {
-    justify-content: center;
-  }
-}
