@@ -114,7 +114,7 @@ function App() {
   const handleChaliceToggle = (chaliceName) => {
     setSelectedChalices((prevSelected) =>
       prevSelected.includes(chaliceName)
-        ? prevSelected.filter((name) => name !== name)
+        ? prevSelected.filter((name) => name !== chaliceName)
         : [...prevSelected, chaliceName]
     );
   };

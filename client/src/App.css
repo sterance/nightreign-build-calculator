@@ -139,10 +139,9 @@ button:hover {
 }
 
 .floating-checkbox {
-  position: fixed;
+  position: absolute;
   top: 1rem;
   left: 1rem;
-  z-index: 1001;
   background-color: rgba(26, 26, 26, 0.8);
   padding: 0.5rem 1rem;
   border-radius: 8px;
@@ -160,7 +159,7 @@ button:hover {
   font-size: 1.5rem;
   color: #ccc;
   cursor: pointer;
-  line-height: 1;
+  line-height: 0;
   padding: 0.25rem 0.25rem;
 }
 
@@ -174,7 +173,7 @@ button:hover {
   font-size: 1.5rem;
   color: #ccc;
   cursor: pointer;
-  line-height: 1;
+  line-height: 0;
   padding: 0.25rem 0.25rem;
 }
 
@@ -638,7 +637,7 @@ button:hover {
   font-size: 1.5rem;
   color: #ccc;
   cursor: pointer;
-  line-height: 1;
+  line-height: 0;
   padding: 0.25rem 0.25rem;
   margin-right: 1rem;
 }
