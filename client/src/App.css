@@ -1288,11 +1288,7 @@ button:hover {
 
 /* RESOLUTIONS */
 @media (min-height: 1081px) {
-  .app-container {
-    justify-content: center;
-  }
-
   .content-wrapper {
-    flex-grow: 0;
+    justify-content: center;
   }
 }
