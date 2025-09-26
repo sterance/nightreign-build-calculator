@@ -29,7 +29,7 @@ h1 {
   flex-grow: 1;
   gap: 1rem;
   margin-top: 1rem;
-  grid-template-columns: 1fr 1fr 1.5fr;
+  grid-template-columns: 1.25fr auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'character chalice effects'
@@ -196,11 +196,72 @@ button:hover {
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(8, auto);
   justify-content: center;
+  gap: 1rem;
 }
 
-/* CHALICE CARD */
+/* CHALICE BUTTON */
+#chalice-card {
+  grid-area: chalice;
+  width: fit-content;
+  align-self: start;
+}
+.chalice-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+.chalice-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.3rem;
+  padding: 1rem;
+}
+
+.chalice-preview-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+#chalice-card:not(.disabled):hover {
+  border-color: var(--primary-color);
+  background-color: #222;
+}
+
+/* CHALICE PAGE */
+.chalice-page-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.chalice-page {
+  width: 80%;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.chalice-page .card-header {
+  position: sticky;
+  top: 0;
+  background-color: #1a1a1a;
+  z-index: 1;
+}
+
 #chalice-card {
   grid-area: chalice;
 }

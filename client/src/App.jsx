@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
-import ChaliceSelection from './components/ChaliceSelection';
+import ChaliceButton from './components/ChaliceButton';
+import ChalicePage from './components/ChalicePage';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
@@ -26,6 +27,7 @@ function App() {
   const [selectedChalices, setSelectedChalices] = useState([]);
   const [desiredEffects, setDesiredEffects] = useState([]);
   const [calculationResult, setCalculationResult] = useState(null);
+  const [showChalices, setShowChalices] = useState(false);
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
@@ -275,12 +277,10 @@ function App() {
           onClear={handleClearCharacter}
         />
 
-        <ChaliceSelection
+        <ChaliceButton
           selectedCharacter={selectedCharacter}
           selectedChalices={selectedChalices}
-          onChaliceToggle={handleChaliceToggle}
-          onSelectAll={handleSelectAllChalices}
-          onClearAll={handleClearAllChalices}
+          onClick={() => setShowChalices(true)}
         />
 
         <DesiredEffects
@@ -296,6 +296,15 @@ function App() {
           calculationResult={calculationResult}
         />
       </div>
+
+      {showChalices && <ChalicePage
+        onBack={() => setShowChalices(false)}
+        selectedCharacter={selectedCharacter}
+        selectedChalices={selectedChalices}
+        onChaliceToggle={handleChaliceToggle}
+        onSelectAll={handleSelectAllChalices}
+        onClearAll={handleClearAllChalices}
+      />}
 
       {showRelics && <RelicsPage
         onBack={() => setShowRelics(false)}

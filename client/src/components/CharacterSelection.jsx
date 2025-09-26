@@ -15,7 +15,7 @@ const CharacterSelection = ({
   return (
     <div id="character-card" className="card">
       <div className="card-header">
-        <h2>Character Selection</h2>
+        <h2>Nightfarer</h2>
         {selectedCharacter && (
           <div className='button-group'>
             <button
@@ -41,8 +41,8 @@ const CharacterSelection = ({
             <img
               src={`/characters/${character}.png`}
               alt={character}
-              height={50}
-              width={50}
+              height={60}
+              width={60}
             />
           </div>
         ))}
