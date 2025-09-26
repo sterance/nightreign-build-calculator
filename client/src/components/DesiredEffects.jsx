@@ -1,176 +1,279 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { relicEffects } from '../data/effectData';
+import relicEffects from '../data/baseRelicEffects.json';
 import { characters } from '../data/chaliceData';
-import { StarIcon, ProhibitionIcon, TrashIcon, PlusIcon, MinusIcon } from './Icons';
+import DesiredEffectCard from './DesiredEffectCard';
+import NameSaveCard from './NameSaveCard';
+import { SelectAllIcon, CalculatorIcon, SaveIcon } from './Icons';
 
-const EffectCard = ({ effect, onUpdate, onDelete }) => {
-  const [weight, setWeight] = useState(effect.weight.toFixed(1));
+const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds }) => {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
+    const [isListVisible, setListVisible] = useState(false);
+    const [expandedGroups, setExpandedGroups] = useState({});
+    const searchContainerRef = useRef(null);
+    const [isSorting, setIsSorting] = useState(false);
+    const sortTimeoutRef = useRef(null);
+    const [hoveredGroup, setHoveredGroup] = useState(null);
+    const [showNameSaveCard, setShowNameSaveCard] = useState(false);
 
-  const handleWeightChange = (e) => {
-    setWeight(e.target.value);
-  };
+    const categoryOrder = [
+        'Character Specific',
+        'Attributes',
+        'Offensive',
+        'Defensive',
+        'Regen',
+        'Starting Bonus',
+        'Exploration'
+    ];
 
-  const handleWeightBlur = () => {
-    const newWeight = parseFloat(weight);
-    if (!isNaN(newWeight)) {
-      onUpdate(effect.id, { ...effect, weight: newWeight });
-    } else {
-      setWeight(effect.weight.toFixed(1));
-    }
-  };
+    useEffect(() => {
+        setSelectedEffects(desiredEffects);
+    }, [desiredEffects]);
 
-  const adjustWeight = (amount) => {
-    const currentWeight = parseFloat(weight);
-    if (!isNaN(currentWeight)) {
-      const newWeight = Math.max(0, currentWeight + amount);
-      setWeight(newWeight.toFixed(1));
-      onUpdate(effect.id, { ...effect, weight: newWeight });
-    }
-  };
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+                setListVisible(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
-  return (
-    <div className="effect-card">
-      <span className="effect-name">{effect.name}</span>
-      <div className="effect-controls">
-        <div className="effect-icons">
-          <button
-            className={`icon-button ${effect.isRequired ? 'required' : ''}`}
-            onClick={() => onUpdate(effect.id, { ...effect, isRequired: !effect.isRequired })}
-            title={effect.isRequired ? 'Required' : 'Optional'}
-          >
-            <StarIcon isRequired={effect.isRequired} />
-          </button>
-          <button
-            className={`icon-button ${effect.isForbidden ? 'forbidden' : ''}`}
-            onClick={() => onUpdate(effect.id, { ...effect, isForbidden: !effect.isForbidden })}
-            title={effect.isForbidden ? 'Forbidden' : 'Allowed'}
-          >
-            <ProhibitionIcon />
-          </button>
-          <button className="icon-button" onClick={() => onDelete(effect.id)} title="Delete">
-            <TrashIcon />
-          </button>
-        </div>
-        <div className="weight-control">
-          <button className="icon-button" onClick={() => adjustWeight(-0.5)}>
-            <MinusIcon />
-          </button>
-          <input
-            type="number"
-            value={weight}
-            onChange={handleWeightChange}
-            onBlur={handleWeightBlur}
-            step="0.1"
-          />
-          <button className="icon-button" onClick={() => adjustWeight(0.5)}>
-            <PlusIcon />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
+    useEffect(() => {
+        onChange(selectedEffects);
+    }, [selectedEffects, onChange]);
 
-const DesiredEffects = ({ onChange }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedEffects, setSelectedEffects] = useState([]);
-  const [isListVisible, setListVisible] = useState(false);
-  const containerRef = useRef(null);
+    const triggerSortAnimation = () => {
+        if (sortTimeoutRef.current) {
+            clearTimeout(sortTimeoutRef.current);
+        }
+        setIsSorting(true);
+        sortTimeoutRef.current = setTimeout(() => {
+            setIsSorting(false);
+        }, 300);
+    };
 
-  // hide the list when clicking outside the component
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+    const processEffects = (effects) => {
+        const categorized = effects.reduce((acc, effect) => {
+            if (!effect.category) return acc;
+            if (!acc[effect.category]) {
+                acc[effect.category] = { groups: {}, singles: [] };
+            }
+
+            if (effect.group) {
+                if (!acc[effect.category].groups[effect.group]) {
+                    acc[effect.category].groups[effect.group] = [];
+                }
+                acc[effect.category].groups[effect.group].push(effect);
+            } else {
+                acc[effect.category].singles.push(effect);
+            }
+            return acc;
+        }, {});
+
+        if (selectedCharacter && categorized['Character Specific']) {
+            const characterSpecificGroups = categorized['Character Specific'].groups;
+            const sortedGroupNames = Object.keys(characterSpecificGroups).sort((a, b) => {
+                if (a.toLowerCase() === selectedCharacter) return -1;
+                if (b.toLowerCase() === selectedCharacter) return 1;
+                // Keep original order for other characters
+                const aIndex = characters.indexOf(a.toLowerCase());
+                const bIndex = characters.indexOf(b.toLowerCase());
+                if (aIndex !== -1 && bIndex !== -1) {
+                    return aIndex - bIndex;
+                }
+                return 0;
+            });
+
+            const sortedGroups = {};
+            sortedGroupNames.forEach(name => {
+                sortedGroups[name] = characterSpecificGroups[name];
+            });
+            categorized['Character Specific'].groups = sortedGroups;
+        }
+
+        return categorized;
+    };
+
+
+    const filteredEffects = processEffects(
+        relicEffects.filter(effect => effect.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
+
+    const formatEffectName = (effect) => {
+        const characterName = characters.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
+        if (characterName) {
+            const restOfEffect = effect.name.slice(characterName.length + 3).trim();
+            const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
+            return `[${capitalizedChar}] ${restOfEffect}`;
+        }
+        return effect.name;
+    };
+    const handleSelectEffect = (effect) => {
+        const newEffect = {
+            id: Date.now(),
+            name: effect.name,
+            ids: effect.ids,
+            weight: 1.0,
+            isRequired: false,
+            isForbidden: false,
+        };
+        setSelectedEffects((prev) => [...prev, newEffect].sort((a, b) => b.weight - a.weight));
+        triggerSortAnimation();
+        setSearchTerm('');
         setListVisible(false);
-      }
     };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
-  useEffect(() => {
-    onChange(selectedEffects);
-  }, [selectedEffects, onChange]);
-
-  const filteredEffects = Object.keys(relicEffects).reduce((acc, category) => {
-    const filtered = relicEffects[category].filter((effect) =>
-      effect.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    if (filtered.length > 0) {
-      acc[category] = filtered;
+    const handleSelectAllFromGroup = (groupEffects) => {
+        const newEffects = groupEffects.map(effect => ({
+            id: Date.now() + Math.random(),
+            name: effect.name,
+            ids: effect.ids,
+            weight: 1.0,
+            isRequired: false,
+            isForbidden: false,
+        }));
+        setSelectedEffects(prev => [...prev, ...newEffects].sort((a, b) => b.weight - a.weight));
+        triggerSortAnimation();
+        setListVisible(false);
+        setHoveredGroup(null);
     }
-    return acc;
-  }, {});
 
-  const formatEffectName = (effect) => {
-    const characterName = characters.find(char => effect.toLowerCase().startsWith(char));
-    if (characterName) {
-      const restOfEffect = effect.slice(characterName.length).trim();
-      const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
-      return `[${capitalizedChar}] ${restOfEffect}`;
-    }
-    return effect;
-  };
-  const handleSelectEffect = (effectName) => {
-    const newEffect = {
-      id: Date.now(),
-      name: effectName,
-      weight: 1.0,
-      isRequired: false,
-      isForbidden: false,
+    const handleUpdateEffect = (id, updatedEffect) => {
+        setSelectedEffects((prev) =>
+            prev.map((effect) => (effect.id === id ? updatedEffect : effect))
+        );
     };
-    setSelectedEffects((prev) => [...prev, newEffect].sort((a, b) => b.weight - a.weight));
-    setSearchTerm('');
-    setListVisible(false);
-  };
 
-  const handleUpdateEffect = (id, updatedEffect) => {
-    setSelectedEffects((prev) =>
-      prev.map((effect) => (effect.id === id ? updatedEffect : effect)).sort((a, b) => b.weight - a.weight)
+    const handleSortEffects = () => {
+        setSelectedEffects((prev) => {
+            const sorted = [...prev].sort((a, b) => b.weight - a.weight);
+            if (JSON.stringify(prev.map(e => e.id)) !== JSON.stringify(sorted.map(e => e.id))) {
+                triggerSortAnimation();
+            }
+            return sorted;
+        });
+    }
+
+    const handleDeleteEffect = (id) => {
+        setSelectedEffects((prev) => prev.filter((effect) => effect.id !== id));
+        triggerSortAnimation();
+    };
+
+    const toggleGroup = (category, group) => {
+        const key = `${category}-${group}`;
+        setExpandedGroups(prev => ({ ...prev, [key]: !prev[key] }));
+    };
+
+    const handleSaveBuild = (buildName) => {
+        const savedBuilds = JSON.parse(localStorage.getItem('savedBuilds') || '{}');
+        savedBuilds[buildName] = selectedEffects;
+        localStorage.setItem('savedBuilds', JSON.stringify(savedBuilds));
+        setShowNameSaveCard(false);
+        setHasSavedBuilds(true);
+    };
+
+    return (
+        <div id="effects-card" className="card">
+            {showNameSaveCard && (
+                <NameSaveCard
+                    onSave={handleSaveBuild}
+                    onCancel={() => setShowNameSaveCard(false)}
+                />
+            )}
+            <button
+                className="corner-button"
+                title={desiredEffects.length === 0 ? 'Select effects to save build' : 'Save current build'}
+                onClick={() => setShowNameSaveCard(true)}
+                disabled={desiredEffects.length === 0}
+            >
+                <SaveIcon />
+            </button>
+            <div className="card-content">
+                <h2>Desired Effects</h2>
+                <div className="search-container" ref={searchContainerRef}>
+                    <input
+                        type="text"
+                        placeholder="Search for relic effects..."
+                        value={searchTerm}
+                        onClick={() => setListVisible(true)}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    {isListVisible && (
+                        <div className="effects-list-container">
+                            {Object.entries(filteredEffects)
+                                .sort(([a], [b]) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b))
+                                .map(([category, data]) => (
+                                    <div key={category} className="effects-category">
+                                        <h3>{category}</h3>
+                                        <ul>
+                                            {data.singles.map((effect) => (
+                                                <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                                    {formatEffectName(effect)}
+                                                </li>
+                                            ))}
+                                            {Object.entries(data.groups).map(([groupName, groupEffects]) => (
+                                                <li key={groupName} className={`group-item ${hoveredGroup === groupName ? 'hovered' : ''}`}>
+                                                    <div onClick={() => toggleGroup(category, groupName)} className="group-header">
+                                                        <span>{groupName}</span>
+                                                        <div className="group-header-controls">
+                                                            {expandedGroups[`${category}-${groupName}`] && (
+                                                                <button
+                                                                    className="icon-button select-all-button"
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation();
+                                                                        handleSelectAllFromGroup(groupEffects);
+                                                                    }}
+                                                                    onMouseEnter={() => setHoveredGroup(groupName)}
+                                                                    onMouseLeave={() => setHoveredGroup(null)}
+                                                                    title="Add all effects"
+                                                                >
+                                                                    <SelectAllIcon />
+                                                                </button>
+                                                            )}
+                                                            <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
+                                                        </div>
+                                                    </div>
+                                                    {expandedGroups[`${category}-${groupName}`] && (
+                                                        <ul className="sub-list">
+                                                            {groupEffects.map(effect => (
+                                                                <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                                                    {formatEffectName(effect)}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                        </div>
+                    )}
+                </div>
+                <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
+                    {selectedEffects.map((effect) => (
+                        <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
+                    ))}
+                </div>
+            </div>
+            <div className="bottom-bar-effects">
+                <button
+                    className='calculate-button'
+                    title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
+                    onClick={handleCalculate}
+                    disabled={desiredEffects.length === 0}
+                >
+                    <CalculatorIcon />
+                    <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+                </button>
+            </div>
+        </div>
     );
-  };
-
-  const handleDeleteEffect = (id) => {
-    setSelectedEffects((prev) => prev.filter((effect) => effect.id !== id));
-  };
-
-  return (
-    <div id="effects-card" className="card" ref={containerRef}>
-      <h2>Desired Effects</h2>
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search for relic effects..."
-          value={searchTerm}
-          onClick={() => setListVisible(true)}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        {isListVisible && (
-          <div className="effects-list-container">
-            {Object.keys(filteredEffects).map((category) => (
-              <div key={category} className="effects-category">
-                <h3>{category}</h3>
-                <ul>
-                  {filteredEffects[category].map((effect) => (
-                    <li key={effect} onClick={() => handleSelectEffect(formatEffectName(effect))}>
-                      {formatEffectName(effect)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="selected-effects-container">
-        {selectedEffects.map((effect) => (
-          <EffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} />
-        ))}
-      </div>
-    </div>
-  );
 };
 
 export default DesiredEffects;

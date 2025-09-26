@@ -1,6 +1,13 @@
 import { chaliceData } from '../data/chaliceData.js';
 import items from '../data/items.json';
-import effects from '../data/effects.json';
+import baseRelicEffects from '../data/baseRelicEffects.json';
+
+const effectMap = new Map();
+baseRelicEffects.forEach(effect => {
+  effect.ids.forEach(id => {
+    effectMap.set(id, effect);
+  });
+});
 
 /**
  * Calculates the best relic combination for a given set of desired effects, available relics, and selected chalices.
@@ -24,27 +31,45 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
     return null;
   }
 
-  // filter out invalid relics
-  const validRelics = characterRelicData.relics.filter(relic => {
+  const processedRelics = characterRelicData.relics.map(relic => {
     const relicInfo = items[relic.item_id?.toString()];
-    return relicInfo && !relicInfo.name?.startsWith('Deep');
-  });
+    if (!relicInfo || relicInfo.name?.startsWith('Deep')) {
+      return null;
+    }
 
-  if (validRelics.length === 0) {
+    const getEffect = (id) => effectMap.get(id) || null;
+
+    return {
+      'relic id': relic.item_id,
+      'relic name': relicInfo.name,
+      'effect 1': getEffect(relic.effect1_id),
+      'effect 2': getEffect(relic.effect2_id),
+      'effect 3': getEffect(relic.effect3_id),
+      'sec_effect1': getEffect(relic.sec_effect1_id),
+      'sec_effect2': getEffect(relic.sec_effect2_id),
+      'sec_effect3': getEffect(relic.sec_effect3_id),
+      sorting: relic.sorting,
+      color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white'
+    };
+  }).filter(Boolean);
+
+
+  if (processedRelics.length === 0) {
     console.warn('No valid relics found for character after filtering');
     return null;
   }
 
-  console.log(`Processing ${validRelics.length} valid relics for ${selectedChalices.length} selected chalices.`);
+  console.log(`Processing ${processedRelics.length} valid relics for ${selectedChalices.length} selected chalices.`);
 
   // score each relic based on desired effects and filter out forbidden/zero-score relics.
   console.log("--- Step 1: Scoring and Filtering Relics ---");
-  const scoredRelics = validRelics.map(relic => {
+  const scoredRelics = processedRelics.map(relic => {
     const relicEffects = getRelicEffects(relic);
     const score = calculateRelicScore(relicEffects, desiredEffects);
-    const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.map(e => e.toLowerCase()).includes(de.name.toLowerCase()));
+    const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effect => effect && de.ids.includes(effect.ids[0])));
     return { ...relic, score, isForbidden };
-  }).filter(relic => relic.score > 0 && !relic.isForbidden);
+  }).filter(relic => !relic.isForbidden && relic.score > 0)
+    .sort((a, b) => b.score - a.score);
 
   console.log("Scored and Filtered Relics:", JSON.parse(JSON.stringify(scoredRelics)));
 
@@ -86,16 +111,14 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
 
 /**
  * Calculates the score of a single relic based on its effects and the user's desired effects.
- * @param {Array} relicEffects - An array of effect names for the relic.
+ * @param {Array} relicEffects - An array of effect objects for the relic.
  * @param {Array} desiredEffects - An array of desired effect objects from the user.
  * @returns {number} - The calculated score for the relic.
  */
 function calculateRelicScore(relicEffects, desiredEffects) {
   let score = 0;
-  const lowerCaseRelicEffects = relicEffects.map(e => e.toLowerCase());
-
   for (const desiredEffect of desiredEffects) {
-    if (lowerCaseRelicEffects.includes(desiredEffect.name.toLowerCase())) {
+    if (relicEffects.some(effect => effect && effect.ids.some(id => desiredEffect.ids.includes(id)))) {
       score += desiredEffect.weight || 1;
     }
   }
@@ -114,11 +137,11 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
     const usedRelicIds = new Set();
 
     const relicsByColor = {
-        red: scoredRelics.filter(r => getRelicColor(r) === 'red').sort((a, b) => b.score - a.score),
-        blue: scoredRelics.filter(r => getRelicColor(r) === 'blue').sort((a, b) => b.score - a.score),
-        yellow: scoredRelics.filter(r => getRelicColor(r) === 'yellow').sort((a, b) => b.score - a.score),
-        green: scoredRelics.filter(r => getRelicColor(r) === 'green').sort((a, b) => b.score - a.score),
-        white: scoredRelics.filter(r => getRelicColor(r) === 'white').sort((a, b) => b.score - a.score),
+        red: scoredRelics.filter(r => r.color === 'red'),
+        blue: scoredRelics.filter(r => r.color === 'blue'),
+        yellow: scoredRelics.filter(r => r.color === 'yellow'),
+        green: scoredRelics.filter(r => r.color === 'green'),
+        white: scoredRelics.filter(r => r.color === 'white'),
     };
 
     for (const slotColor of chalice.slots) {
@@ -152,7 +175,11 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
     }
 
     return {
-        chalice: chalice,
+        chalice: {
+            name: chalice.name,
+            slots: chalice.slots,
+            description: chalice.description
+        },
         relics: bestRelicsForChalice,
         score: totalScore,
     };
@@ -160,34 +187,16 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
 
 // HELPER FUNCTIONS
 
-// gets all effect names for a relic, handling null/undefined values
+// gets all effect objects for a relic
 function getRelicEffects(relic) {
   if (!relic) return [];
   
-  const EMPTY_SLOT_ID = 4294967295; // 2^32 - 1 (unsigned 32-bit integer)
-  
-  const effectIds = [
-    relic.effect1_id,
-    relic.effect2_id,
-    relic.effect3_id,
-    relic.sec_effect1_id,
-    relic.sec_effect2_id,
-    relic.sec_effect3_id,
-  ];
-
-  return effectIds
-    .filter(id => id && id !== 0 && id !== EMPTY_SLOT_ID)
-    .map(id => effects[id?.toString()]?.name)
-    .filter(Boolean);
-}
-
-// gets the color of a relic, with fallback to 'white'
-function getRelicColor(relic) {
-  if (!relic || !relic.item_id) return 'white';
-  
-  const relicInfo = items[relic.item_id.toString()];
-  if (relicInfo && relicInfo.color) {
-    return relicInfo.color.toLowerCase();
-  }
-  return 'white'; // default color if not specified
+  return [
+    relic['effect 1'],
+    relic['effect 2'],
+    relic['effect 3'],
+    relic['sec_effect1'],
+    relic['sec_effect2'],
+    relic['sec_effect3'],
+  ].filter(Boolean);
 }

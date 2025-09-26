@@ -6,10 +6,19 @@ import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
-import { CalculatorIcon, RelicIcon, UploadIcon } from './components/Icons';
+import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
-import items from './data/items.json';
-import effects from './data/effects.json';
+import effects from './data/baseRelicEffects.json';
+import SettingsPage from './components/SettingsPage';
+import SavedBuildsPage from './components/SavedBuildsPage';
+import ToastNotification from './components/ToastNotification';
+
+const effectMap = new Map();
+effects.forEach(effect => {
+  effect.ids.forEach(id => {
+    effectMap.set(id, effect.name);
+  });
+});
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -18,31 +27,73 @@ function App() {
   const [desiredEffects, setDesiredEffects] = useState([]);
   const [calculationResult, setCalculationResult] = useState(null);
   const [showRelics, setShowRelics] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [uploadError, setUploadError] = useState(null);
   const [hasRelicData, setHasRelicData] = useState(false);
+  const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
+  const [showDeepOfNight, setShowDeepOfNight] = useState(false);
+  const [showUnknownRelics, setShowUnknownRelics] = useState(false);
+  const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
+  const [showUploadTooltip, setShowUploadTooltip] = useState(false);
+  const [toasts, setToasts] = useState([]);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
+    const primaryColor = localStorage.getItem('primaryColor') || '#646cff';
+    document.documentElement.style.setProperty('--primary-color', primaryColor);
+  }, []);
+
+  useEffect(() => {
     // check for existing relic data on initial load
-    const storedData = localStorage.getItem('relicData');
+    const storedData = localStorage.getItem('saveData');
     if (storedData) {
       try {
         const parsedData = JSON.parse(storedData);
         if (parsedData && parsedData.length > 0) {
           setHasRelicData(true);
-          // If there's only one character, pre-select it
+          // if there's only one character, pre-select it
           if (parsedData.length === 1) {
             setSelectedSaveName(parsedData[0].character_name);
           }
+        } else {
+          setShowUploadTooltip(true);
         }
       } catch (e) {
-        localStorage.removeItem('relicData');
+        localStorage.removeItem('saveData');
+        setShowUploadTooltip(true);
         console.log(e);
+      }
+    } else {
+      setShowUploadTooltip(true);
+    }
+
+    // check for existing saved builds on initial load
+    const storedBuilds = localStorage.getItem('savedBuilds');
+    if (storedBuilds) {
+      try {
+        const parsedBuilds = JSON.parse(storedBuilds);
+        if (parsedBuilds && Object.keys(parsedBuilds).length > 0) {
+          setHasSavedBuilds(true);
+        }
+      } catch (e) {
+        console.log("Error parsing saved builds:", e);
+        localStorage.removeItem('savedBuilds');
       }
     }
   }, []);
 
+  const addToast = (message, type = 'error', duration = 5000) => {
+    const id = Date.now();
+    setToasts(prevToasts => [...prevToasts, { id, message, type }]);
+    setTimeout(() => {
+      setToasts(prevToasts => prevToasts.filter(toast => toast.id !== id));
+    }, duration);
+  };
+
+  const handleCloseTooltip = () => {
+    setShowUploadTooltip(false);
+  };
 
   const selectAllChalicesForCharacter = (character) => {
     if (!character) return;
@@ -86,7 +137,7 @@ function App() {
     if (!file) return;
 
     setIsUploading(true);
-    setUploadError(null);
+    setShowUploadTooltip(false);
 
     const formData = new FormData();
     formData.append('savefile', file);
@@ -100,12 +151,17 @@ function App() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('relicData', JSON.stringify(data));
-        setHasRelicData(true);
-        if (data.length === 1) {
-          setSelectedSaveName(data[0].character_name);
+        if (data && data.length > 0) {
+          localStorage.setItem('saveData', JSON.stringify(data));
+          setHasRelicData(true);
+          addToast('Save file uploaded successfully!', 'success');
+          if (data.length === 1) {
+            setSelectedSaveName(data[0].character_name);
+          } else {
+            setSelectedSaveName(null); // require user to select a character
+          }
         } else {
-          setSelectedSaveName(null); // Require user to select a character
+          addToast('Relic information not found in save file.', 'error');
         }
       } else {
         const errorText = await response.text();
@@ -113,34 +169,45 @@ function App() {
       }
     } catch (error) {
       console.error('Upload failed:', error);
-      setUploadError(error.message);
-      setTimeout(() => setUploadError(null), 5000);
+      addToast('Save file failed to upload.', 'error');
     } finally {
       setIsUploading(false);
     }
   };
 
   const handleCalculate = () => {
-    const relicData = JSON.parse(localStorage.getItem('relicData'));
+    const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-    if (!relicData || !selectedCharacter || selectedChalices.length === 0 || !selectedSaveName) {
-      console.log("Cannot calculate: Missing relic data, character selection, chalice selection, or save name selection.");
+    if (!saveData) {
+      addToast('Calculation failed: missing relic data.', 'error');
+      return;
+    }
+    if (!selectedCharacter) {
+      addToast('Calculation failed: missing character selection.', 'error');
+      return;
+    }
+    if (selectedChalices.length === 0) {
+      addToast('Calculation failed: missing chalice selection.', 'error');
+      return;
+    }
+    if (desiredEffects.length === 0) {
+      addToast('Calculation failed: no desired effects.', 'error');
       return;
     }
 
-    // Find the character data for the selected save name
-    const characterRelicData = relicData.find(
+    // find the character data for the selected save name
+    const characterSaveData = saveData.find(
       (character) => character.character_name === selectedSaveName
     );
 
-    if (!characterRelicData) {
-      console.log(`No relic data found for character: ${selectedSaveName}`);
+    if (!characterSaveData) {
+      addToast('No relic data found for the selected character.', 'error');
       return;
     }
 
     const result = calculateBestRelics(
       desiredEffects,
-      characterRelicData,
+      characterSaveData,
       selectedChalices,
       selectedCharacter
     );
@@ -149,27 +216,16 @@ function App() {
       const formattedResult = {
         "chalice name": result.chalice.name,
         "chalice slots": result.chalice.slots,
-        ...result.relics.reduce((acc, relic) => {
-          const relicInfo = items[relic.item_id.toString()];
-          const relicEffects = [
-            relic.effect1_id,
-            relic.effect2_id,
-            relic.effect3_id,
-            relic.sec_effect1_id,
-            relic.sec_effect2_id,
-            relic.sec_effect3_id,
-          ].map(id => effects[id.toString()]?.name).filter(Boolean);
-
-          acc[relicInfo.name] = {
-            color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
-            effects: {
-              "effect 1": relicEffects[0] || "",
-              "effect 2": relicEffects[1] || "",
-              "effect 3": relicEffects[2] || "",
-            }
-          };
-          return acc;
-        }, {})
+        "chalice description": result.chalice.description,
+        "relics": result.relics.map(relic => ({
+          name: relic['relic name'],
+          color: relic.color,
+          effects: {
+            "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
+            "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
+            "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
+          }
+        }))
       };
       setCalculationResult(formattedResult);
     } else {
@@ -177,8 +233,39 @@ function App() {
     }
   };
 
+  const handleRelicColorFilterChange = (color) => {
+    setRelicColorFilters(prevFilters => ({
+      ...prevFilters,
+      [color]: !prevFilters[color]
+    }));
+  };
+
+  const handleLoadBuild = (buildEffects) => {
+    setDesiredEffects(buildEffects);
+  };
+
   return (
     <div className="app-container">
+      <ToastNotification toasts={toasts} />
+      <div className="floating-checkbox">
+        <label>
+          <input
+            type="checkbox"
+            checked={showDeepOfNight}
+            onChange={() => setShowDeepOfNight(!showDeepOfNight)}
+          />
+          Deep of Night
+        </label>
+      </div>
+
+      <button
+        className="floating-button"
+        title='Settings'
+        onClick={() => setShowSettings(!showSettings)}
+      >
+        <SettingsIcon />
+      </button>
+
       <h1>Nightreign Build Calculator</h1>
 
       <div className="card-container">
@@ -196,7 +283,13 @@ function App() {
           onClearAll={handleClearAllChalices}
         />
 
-        <DesiredEffects onChange={setDesiredEffects} />
+        <DesiredEffects
+          desiredEffects={desiredEffects}
+          onChange={setDesiredEffects}
+          selectedCharacter={selectedCharacter}
+          handleCalculate={handleCalculate}
+          setHasSavedBuilds={setHasSavedBuilds}
+        />
 
         <RelicResults
           selectedChalices={selectedChalices}
@@ -204,11 +297,28 @@ function App() {
         />
       </div>
 
-      {showRelics && <RelicsPage onBack={() => setShowRelics(false)} selectedSaveName={selectedSaveName} onSaveNameSelect={setSelectedSaveName} />}
+      {showRelics && <RelicsPage
+        onBack={() => setShowRelics(false)}
+        selectedSaveName={selectedSaveName}
+        onSaveNameSelect={setSelectedSaveName}
+        showDeepOfNight={showDeepOfNight}
+        showUnknownRelics={showUnknownRelics}
+        relicColorFilters={relicColorFilters}
+        onRelicColorFilterChange={handleRelicColorFilterChange} />}
 
-      {uploadError && <div className="error-popup">{uploadError}</div>}
+      {showSettings && <SettingsPage
+        onBack={() => setShowSettings(false)}
+        showUnknownRelics={showUnknownRelics}
+        setShowUnknownRelics={setShowUnknownRelics}
+      />}
+
+      {showSavedBuilds && <SavedBuildsPage
+        onBack={() => setShowSavedBuilds(false)}
+        onLoadBuild={handleLoadBuild}
+      />}
 
       <div className="bottom-bar">
+
         <button
           className='relic-button'
           title={hasRelicData ? 'View your relics' : 'Upload a save file to view relics'}
@@ -218,20 +328,41 @@ function App() {
           <RelicIcon />
           <span style={{ marginLeft: '0.5rem' }}>Relics</span>
         </button>
-        <button className='calculate-button' title='Calculate optimal relics' onClick={handleCalculate}>
-          <CalculatorIcon />
-          <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
-        </button>
-        <button className="upload-button" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
-          {isUploading ? (
-            <div className="loader"></div>
-          ) : (
-            <>
-              <UploadIcon />
-              <span style={{ marginLeft: '0.5rem' }}>Upload</span>
-            </>
+
+        <div className="upload-button-container">
+          <button className="upload-button-center" title='Upload your save file' onClick={handleUploadClick} disabled={isUploading}>
+            {isUploading ? (
+              <div className="loader"></div>
+            ) : (
+              <>
+                <UploadIcon />
+                <span style={{ marginLeft: '0.5rem' }}>Upload</span>
+              </>
+            )}
+          </button>
+          {showUploadTooltip && (
+            <div className="upload-tooltip">
+              <button className="close-tooltip-button" onClick={handleCloseTooltip}>
+                <CloseIcon />
+              </button>
+              <div className="tooltip-content">
+                <p className="tooltip-main-text"><span className="underlined-text">Upload your save file here to get started!</span></p>
+                <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign</span> on Windows</p>
+              </div>
+            </div>
           )}
+        </div>
+
+        <button
+          className="builds-button"
+          title={hasSavedBuilds ? 'View saved builds' : 'No saved builds'}
+          onClick={() => setShowSavedBuilds(true)}
+          disabled={!hasSavedBuilds}
+        >
+          <SwordIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Saved Builds</span>
         </button>
+
         <input
           type="file"
           ref={fileInputRef}

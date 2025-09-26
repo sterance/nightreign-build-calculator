@@ -45,3 +45,5 @@ node_modules/
 # /client/public/relics
 # /client/public/relic-slots
 *:Zone.Identifier
+/client/src/references
+diary.txt
