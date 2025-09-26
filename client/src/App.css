@@ -23,6 +23,12 @@
   width: 100%;
 }
 
+.content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 h1 {
   top: 0px;
   margin: 0.5rem 0;
@@ -1277,5 +1283,16 @@ button:hover {
 
   100% {
     background-color: #242424;
+  }
+}
+
+/* RESOLUTIONS */
+@media (min-height: 1081px) {
+  .app-container {
+    justify-content: center;
+  }
+
+  .content-wrapper {
+    flex-grow: 0;
   }
 }

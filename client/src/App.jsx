@@ -269,33 +269,34 @@ function App() {
         <SettingsIcon />
       </button>
 
-      <h1>Nightreign Build Calculator</h1>
+      <div className="content-wrapper">
+        <h1>Nightreign Build Calculator</h1>
+        <div className="card-container">
+          <CharacterSelection
+            selectedCharacter={selectedCharacter}
+            onCharacterSelect={handleCharacterSelect}
+            onClear={handleClearCharacter}
+          />
 
-      <div className="card-container">
-        <CharacterSelection
-          selectedCharacter={selectedCharacter}
-          onCharacterSelect={handleCharacterSelect}
-          onClear={handleClearCharacter}
-        />
+          <ChaliceButton
+            selectedCharacter={selectedCharacter}
+            selectedChalices={selectedChalices}
+            onClick={() => setShowChalices(true)}
+          />
 
-        <ChaliceButton
-          selectedCharacter={selectedCharacter}
-          selectedChalices={selectedChalices}
-          onClick={() => setShowChalices(true)}
-        />
+          <DesiredEffects
+            desiredEffects={desiredEffects}
+            onChange={setDesiredEffects}
+            selectedCharacter={selectedCharacter}
+            handleCalculate={handleCalculate}
+            setHasSavedBuilds={setHasSavedBuilds}
+          />
 
-        <DesiredEffects
-          desiredEffects={desiredEffects}
-          onChange={setDesiredEffects}
-          selectedCharacter={selectedCharacter}
-          handleCalculate={handleCalculate}
-          setHasSavedBuilds={setHasSavedBuilds}
-        />
-
-        <RelicResults
-          selectedChalices={selectedChalices}
-          calculationResult={calculationResult}
-        />
+          <RelicResults
+            selectedChalices={selectedChalices}
+            calculationResult={calculationResult}
+          />
+        </div>
       </div>
 
       {showChalices && <ChalicePage
