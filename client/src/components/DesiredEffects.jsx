@@ -1,279 +1,494 @@
 import React, { useState, useEffect, useRef } from 'react';
-import relicEffects from '../data/baseRelicEffects.json';
+import relicEffects from '../data/relicEffects.json';
 import { characters } from '../data/chaliceData';
 import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon } from './Icons';
 
-const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds }) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
-    const [isListVisible, setListVisible] = useState(false);
-    const [expandedGroups, setExpandedGroups] = useState({});
-    const searchContainerRef = useRef(null);
-    const [isSorting, setIsSorting] = useState(false);
-    const sortTimeoutRef = useRef(null);
-    const [hoveredGroup, setHoveredGroup] = useState(null);
-    const [showNameSaveCard, setShowNameSaveCard] = useState(false);
+const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds, showDeepOfNight }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
+  const [isListVisible, setListVisible] = useState(false);
+  const [expandedGroups, setExpandedGroups] = useState({});
+  const searchContainerRef = useRef(null);
+  const [isSorting, setIsSorting] = useState(false);
+  const sortTimeoutRef = useRef(null);
+  const [hoveredGroup, setHoveredGroup] = useState(null);
+  const [showNameSaveCard, setShowNameSaveCard] = useState(false);
 
-    const categoryOrder = [
-        'Character Specific',
-        'Attributes',
-        'Offensive',
-        'Defensive',
-        'Regen',
-        'Starting Bonus',
-        'Exploration'
-    ];
+  const categoryOrder = [
+    'Character Specific',
+    'Attributes',
+    'Offensive',
+    'Defensive',
+    'Regen',
+    'Starting Bonus',
+    'Exploration',
+    'Dormant Power',
+    'Debuff'
+  ];
 
-    useEffect(() => {
-        setSelectedEffects(desiredEffects);
-    }, [desiredEffects]);
+  useEffect(() => {
+    setSelectedEffects(desiredEffects);
+  }, [desiredEffects]);
 
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
-                setListVisible(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, []);
-
-    useEffect(() => {
-        onChange(selectedEffects);
-    }, [selectedEffects, onChange]);
-
-    const triggerSortAnimation = () => {
-        if (sortTimeoutRef.current) {
-            clearTimeout(sortTimeoutRef.current);
-        }
-        setIsSorting(true);
-        sortTimeoutRef.current = setTimeout(() => {
-            setIsSorting(false);
-        }, 300);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchContainerRef.current && !searchContainerRef.current.contains(event.target)) {
+        setListVisible(false);
+      }
     };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
-    const processEffects = (effects) => {
-        const categorized = effects.reduce((acc, effect) => {
-            if (!effect.category) return acc;
-            if (!acc[effect.category]) {
-                acc[effect.category] = { groups: {}, singles: [] };
+  useEffect(() => {
+    onChange(selectedEffects);
+  }, [selectedEffects, onChange]);
+
+  const triggerSortAnimation = () => {
+    if (sortTimeoutRef.current) {
+      clearTimeout(sortTimeoutRef.current);
+    }
+    setIsSorting(true);
+    sortTimeoutRef.current = setTimeout(() => {
+      setIsSorting(false);
+    }, 300);
+  };
+
+  const processEffects = (effects) => {
+    const categorized = effects.reduce((acc, effect) => {
+      if (!effect.category) return acc;
+      if (!acc[effect.category]) {
+        acc[effect.category] = { groups: {}, singles: [] };
+      }
+
+      if (!acc[effect.category].groups) {
+        acc[effect.category].groups = {};
+      }
+
+      if (effect.display_group && effect.stack_group) {
+        // both display_group and stack_group exist - create nested structure
+        if (!acc[effect.category].groups[effect.display_group]) {
+          acc[effect.category].groups[effect.display_group] = {
+            type: 'nested',
+            subgroups: {},
+            singles: []
+          };
+        } else if (acc[effect.category].groups[effect.display_group].type === 'simple') {
+          // convert existing simple group to nested group
+          const existingEffects = acc[effect.category].groups[effect.display_group].effects || [];
+          acc[effect.category].groups[effect.display_group] = {
+            type: 'nested',
+            subgroups: {},
+            singles: existingEffects
+          };
+        }
+        // ensure subgroups object exists
+        if (!acc[effect.category].groups[effect.display_group].subgroups) {
+          acc[effect.category].groups[effect.display_group].subgroups = {};
+        }
+        if (!acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group]) {
+          acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group] = [];
+        }
+        acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group].push(effect);
+      } else if (effect.display_group) {
+        // only display_group exists
+        if (!acc[effect.category].groups[effect.display_group]) {
+          acc[effect.category].groups[effect.display_group] = {
+            type: 'simple',
+            effects: []
+          };
+        } else if (acc[effect.category].groups[effect.display_group].type === 'nested') {
+          // add to singles if it's already a nested group
+          if (!acc[effect.category].groups[effect.display_group].singles) {
+            acc[effect.category].groups[effect.display_group].singles = [];
+          }
+          acc[effect.category].groups[effect.display_group].singles.push(effect);
+          return acc;
+        }
+        // ensure effects array exists
+        if (!acc[effect.category].groups[effect.display_group].effects) {
+          acc[effect.category].groups[effect.display_group].effects = [];
+        }
+        acc[effect.category].groups[effect.display_group].effects.push(effect);
+      } else if (effect.stack_group) {
+        // only stack_group exists (fallback for old data)
+        if (!acc[effect.category].groups[effect.stack_group]) {
+          acc[effect.category].groups[effect.stack_group] = {
+            type: 'simple',
+            effects: []
+          };
+        } else if (acc[effect.category].groups[effect.stack_group].type === 'nested') {
+          // add to singles if it's already a nested group
+          if (!acc[effect.category].groups[effect.stack_group].singles) {
+            acc[effect.category].groups[effect.stack_group].singles = [];
+          }
+          acc[effect.category].groups[effect.stack_group].singles.push(effect);
+          return acc;
+        }
+        // ensure effects array exists
+        if (!acc[effect.category].groups[effect.stack_group].effects) {
+          acc[effect.category].groups[effect.stack_group].effects = [];
+        }
+        acc[effect.category].groups[effect.stack_group].effects.push(effect);
+      } else {
+        acc[effect.category].singles.push(effect);
+      }
+      return acc;
+    }, {});
+
+    // flatten single-child stack groups in nested structures
+    Object.keys(categorized).forEach(category => {
+      Object.keys(categorized[category].groups).forEach(groupName => {
+        const group = categorized[category].groups[groupName];
+        if (group.type === 'nested' && group.subgroups) {
+          // check if any stack group has only one child
+          Object.keys(group.subgroups).forEach(stackGroupName => {
+            if (group.subgroups[stackGroupName].length === 1) {
+              // move the single effect to the parent group's singles
+              const singleEffect = group.subgroups[stackGroupName][0];
+              if (!group.singles) {
+                group.singles = [];
+              }
+              group.singles.push(singleEffect);
+              delete group.subgroups[stackGroupName];
             }
+          });
 
-            if (effect.group) {
-                if (!acc[effect.category].groups[effect.group]) {
-                    acc[effect.category].groups[effect.group] = [];
-                }
-                acc[effect.category].groups[effect.group].push(effect);
-            } else {
-                acc[effect.category].singles.push(effect);
-            }
-            return acc;
-        }, {});
+          // if no subgroups remain, convert to simple group
+          if (Object.keys(group.subgroups).length === 0) {
+            group.type = 'simple';
+            group.effects = group.singles || [];
+            delete group.subgroups;
+            delete group.singles;
+          }
+        }
+      });
+    });
 
-        if (selectedCharacter && categorized['Character Specific']) {
-            const characterSpecificGroups = categorized['Character Specific'].groups;
-            const sortedGroupNames = Object.keys(characterSpecificGroups).sort((a, b) => {
-                if (a.toLowerCase() === selectedCharacter) return -1;
-                if (b.toLowerCase() === selectedCharacter) return 1;
-                // Keep original order for other characters
-                const aIndex = characters.indexOf(a.toLowerCase());
-                const bIndex = characters.indexOf(b.toLowerCase());
-                if (aIndex !== -1 && bIndex !== -1) {
-                    return aIndex - bIndex;
-                }
-                return 0;
-            });
+    // flatten single-child display groups
+    Object.keys(categorized).forEach(category => {
+      const groupsToFlatten = [];
+      Object.keys(categorized[category].groups).forEach(groupName => {
+        const group = categorized[category].groups[groupName];
 
-            const sortedGroups = {};
-            sortedGroupNames.forEach(name => {
-                sortedGroups[name] = characterSpecificGroups[name];
-            });
-            categorized['Character Specific'].groups = sortedGroups;
+        // check if this group should be flattened
+        let shouldFlatten = false;
+        let effectsToMove = [];
+
+        if (group.type === 'simple' && group.effects && group.effects.length === 1) {
+          // simple group with only one effect
+          shouldFlatten = true;
+          effectsToMove = group.effects;
+        } else if (group.type === 'nested') {
+          // nested group - check if it only has one subgroup or only singles
+          const subgroupCount = group.subgroups ? Object.keys(group.subgroups).length : 0;
+          const singlesCount = group.singles ? group.singles.length : 0;
+
+          if (subgroupCount === 1 && singlesCount === 0) {
+            // only one subgroup, move its effects
+            const subgroupName = Object.keys(group.subgroups)[0];
+            effectsToMove = group.subgroups[subgroupName];
+            shouldFlatten = true;
+          } else if (subgroupCount === 0 && singlesCount === 1) {
+            // only singles, move them
+            effectsToMove = group.singles;
+            shouldFlatten = true;
+          }
         }
 
-        return categorized;
+        if (shouldFlatten) {
+          // move effects to category singles
+          if (!categorized[category].singles) {
+            categorized[category].singles = [];
+          }
+          categorized[category].singles.push(...effectsToMove);
+          groupsToFlatten.push(groupName);
+        }
+      });
+
+      // remove flattened groups
+      groupsToFlatten.forEach(groupName => {
+        delete categorized[category].groups[groupName];
+      });
+    });
+
+    if (categorized['Character Specific']) {
+      const characterSpecificGroups = categorized['Character Specific'].groups;
+      const sortedGroupNames = Object.keys(characterSpecificGroups).sort((a, b) => {
+        // If a character is selected, put it first
+        if (selectedCharacter) {
+          if (a.toLowerCase() === selectedCharacter) return -1;
+          if (b.toLowerCase() === selectedCharacter) return 1;
+        }
+        // Always maintain the defined character order
+        const aIndex = characters.indexOf(a.toLowerCase());
+        const bIndex = characters.indexOf(b.toLowerCase());
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex;
+        }
+        return 0;
+      });
+
+      const sortedGroups = {};
+      sortedGroupNames.forEach(name => {
+        sortedGroups[name] = characterSpecificGroups[name];
+      });
+      categorized['Character Specific'].groups = sortedGroups;
+    }
+
+    return categorized;
+  };
+
+
+  const filteredEffects = processEffects(
+    relicEffects.filter(effect => {
+      const matchesSearch = effect.name.toLowerCase().includes(searchTerm.toLowerCase());
+      const isDeepEffect = effect.deep === true;
+      const shouldShowDeep = showDeepOfNight || !isDeepEffect;
+      return matchesSearch && shouldShowDeep;
+    })
+  );
+
+
+  const formatEffectName = (effect) => {
+    const characterName = characters.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
+    if (characterName) {
+      const restOfEffect = effect.name.slice(characterName.length + 3).trim();
+      const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
+      return `[${capitalizedChar}] ${restOfEffect}`;
+    }
+    return effect.name;
+  };
+  const handleSelectEffect = (effect) => {
+    const newEffect = {
+      id: Date.now(),
+      name: effect.name,
+      ids: effect.ids,
+      weight: effect.debuff === true ? -1.0 : 1.0,
+      isRequired: false,
+      isForbidden: false,
+      isDebuff: effect.debuff === true,
     };
+    setSelectedEffects((prev) => [...prev, newEffect].sort((a, b) => b.weight - a.weight));
+    triggerSortAnimation();
+    setSearchTerm('');
+    setListVisible(false);
+  };
 
+  const handleSelectAllFromGroup = (groupEffects) => {
+    const newEffects = groupEffects.map(effect => ({
+      id: Date.now() + Math.random(),
+      name: effect.name,
+      ids: effect.ids,
+      weight: effect.debuff === true ? -1.0 : 1.0,
+      isRequired: false,
+      isForbidden: false,
+      isDebuff: effect.debuff === true,
+    }));
+    setSelectedEffects(prev => [...prev, ...newEffects].sort((a, b) => b.weight - a.weight));
+    triggerSortAnimation();
+    setListVisible(false);
+    setHoveredGroup(null);
+  }
 
-    const filteredEffects = processEffects(
-        relicEffects.filter(effect => effect.name.toLowerCase().includes(searchTerm.toLowerCase()))
+  const handleUpdateEffect = (id, updatedEffect) => {
+    setSelectedEffects((prev) =>
+      prev.map((effect) => (effect.id === id ? updatedEffect : effect))
     );
+  };
 
-
-    const formatEffectName = (effect) => {
-        const characterName = characters.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
-        if (characterName) {
-            const restOfEffect = effect.name.slice(characterName.length + 3).trim();
-            const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
-            return `[${capitalizedChar}] ${restOfEffect}`;
-        }
-        return effect.name;
-    };
-    const handleSelectEffect = (effect) => {
-        const newEffect = {
-            id: Date.now(),
-            name: effect.name,
-            ids: effect.ids,
-            weight: 1.0,
-            isRequired: false,
-            isForbidden: false,
-        };
-        setSelectedEffects((prev) => [...prev, newEffect].sort((a, b) => b.weight - a.weight));
+  const handleSortEffects = () => {
+    setSelectedEffects((prev) => {
+      const sorted = [...prev].sort((a, b) => b.weight - a.weight);
+      if (JSON.stringify(prev.map(e => e.id)) !== JSON.stringify(sorted.map(e => e.id))) {
         triggerSortAnimation();
-        setSearchTerm('');
-        setListVisible(false);
-    };
+      }
+      return sorted;
+    });
+  }
 
-    const handleSelectAllFromGroup = (groupEffects) => {
-        const newEffects = groupEffects.map(effect => ({
-            id: Date.now() + Math.random(),
-            name: effect.name,
-            ids: effect.ids,
-            weight: 1.0,
-            isRequired: false,
-            isForbidden: false,
-        }));
-        setSelectedEffects(prev => [...prev, ...newEffects].sort((a, b) => b.weight - a.weight));
-        triggerSortAnimation();
-        setListVisible(false);
-        setHoveredGroup(null);
-    }
+  const handleDeleteEffect = (id) => {
+    setSelectedEffects((prev) => prev.filter((effect) => effect.id !== id));
+    triggerSortAnimation();
+  };
 
-    const handleUpdateEffect = (id, updatedEffect) => {
-        setSelectedEffects((prev) =>
-            prev.map((effect) => (effect.id === id ? updatedEffect : effect))
-        );
-    };
+  const toggleGroup = (category, group) => {
+    const key = `${category}-${group}`;
+    setExpandedGroups(prev => ({ ...prev, [key]: !prev[key] }));
+  };
 
-    const handleSortEffects = () => {
-        setSelectedEffects((prev) => {
-            const sorted = [...prev].sort((a, b) => b.weight - a.weight);
-            if (JSON.stringify(prev.map(e => e.id)) !== JSON.stringify(sorted.map(e => e.id))) {
-                triggerSortAnimation();
-            }
-            return sorted;
-        });
-    }
+  const handleSaveBuild = (buildName) => {
+    const savedBuilds = JSON.parse(localStorage.getItem('savedBuilds') || '{}');
+    savedBuilds[buildName] = selectedEffects;
+    localStorage.setItem('savedBuilds', JSON.stringify(savedBuilds));
+    setShowNameSaveCard(false);
+    setHasSavedBuilds(true);
+  };
 
-    const handleDeleteEffect = (id) => {
-        setSelectedEffects((prev) => prev.filter((effect) => effect.id !== id));
-        triggerSortAnimation();
-    };
-
-    const toggleGroup = (category, group) => {
-        const key = `${category}-${group}`;
-        setExpandedGroups(prev => ({ ...prev, [key]: !prev[key] }));
-    };
-
-    const handleSaveBuild = (buildName) => {
-        const savedBuilds = JSON.parse(localStorage.getItem('savedBuilds') || '{}');
-        savedBuilds[buildName] = selectedEffects;
-        localStorage.setItem('savedBuilds', JSON.stringify(savedBuilds));
-        setShowNameSaveCard(false);
-        setHasSavedBuilds(true);
-    };
-
-    return (
-        <div id="effects-card" className="card">
-            {showNameSaveCard && (
-                <NameSaveCard
-                    onSave={handleSaveBuild}
-                    onCancel={() => setShowNameSaveCard(false)}
-                />
-            )}
-            <button
-                className="corner-button"
-                title={desiredEffects.length === 0 ? 'Select effects to save build' : 'Save current build'}
-                onClick={() => setShowNameSaveCard(true)}
-                disabled={desiredEffects.length === 0}
-            >
-                <SaveIcon />
-            </button>
-            <div className="card-content">
-                <h2>Desired Effects</h2>
-                <div className="search-container" ref={searchContainerRef}>
-                    <input
-                        type="text"
-                        placeholder="Search for relic effects..."
-                        value={searchTerm}
-                        onClick={() => setListVisible(true)}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    {isListVisible && (
-                        <div className="effects-list-container">
-                            {Object.entries(filteredEffects)
-                                .sort(([a], [b]) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b))
-                                .map(([category, data]) => (
-                                    <div key={category} className="effects-category">
-                                        <h3>{category}</h3>
-                                        <ul>
-                                            {data.singles.map((effect) => (
-                                                <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                                    {formatEffectName(effect)}
-                                                </li>
-                                            ))}
-                                            {Object.entries(data.groups).map(([groupName, groupEffects]) => (
-                                                <li key={groupName} className={`group-item ${hoveredGroup === groupName ? 'hovered' : ''}`}>
-                                                    <div onClick={() => toggleGroup(category, groupName)} className="group-header">
-                                                        <span>{groupName}</span>
-                                                        <div className="group-header-controls">
-                                                            {expandedGroups[`${category}-${groupName}`] && (
-                                                                <button
-                                                                    className="icon-button select-all-button"
-                                                                    onClick={(e) => {
-                                                                        e.stopPropagation();
-                                                                        handleSelectAllFromGroup(groupEffects);
-                                                                    }}
-                                                                    onMouseEnter={() => setHoveredGroup(groupName)}
-                                                                    onMouseLeave={() => setHoveredGroup(null)}
-                                                                    title="Add all effects"
-                                                                >
-                                                                    <SelectAllIcon />
-                                                                </button>
-                                                            )}
-                                                            <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
-                                                        </div>
-                                                    </div>
-                                                    {expandedGroups[`${category}-${groupName}`] && (
-                                                        <ul className="sub-list">
-                                                            {groupEffects.map(effect => (
-                                                                <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                                                    {formatEffectName(effect)}
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    )}
-                                                </li>
-                                            ))}
+  return (
+    <div id="effects-card" className="card">
+      {showNameSaveCard && (
+        <NameSaveCard
+          onSave={handleSaveBuild}
+          onCancel={() => setShowNameSaveCard(false)}
+        />
+      )}
+      <button
+        className="corner-button"
+        title={desiredEffects.length === 0 ? 'Select effects to save build' : 'Save current build'}
+        onClick={() => setShowNameSaveCard(true)}
+        disabled={desiredEffects.length === 0}
+      >
+        <SaveIcon />
+      </button>
+      <div className="card-content">
+        <h2>Desired Effects</h2>
+        <div className="search-container" ref={searchContainerRef}>
+          <input
+            type="text"
+            placeholder="Search for relic effects..."
+            value={searchTerm}
+            onClick={() => setListVisible(true)}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          {isListVisible && (
+            <div className="effects-list-container">
+              {Object.entries(filteredEffects)
+                .sort(([a], [b]) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b))
+                .map(([category, data]) => (
+                  <div key={category} className="effects-category">
+                    <h3>{category}</h3>
+                    <ul>
+                      {data.singles.map((effect) => (
+                        <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                          {formatEffectName(effect)}
+                        </li>
+                      ))}
+                      {Object.entries(data.groups).map(([groupName, groupData]) => (
+                        <li key={groupName} className={`group-item ${hoveredGroup === groupName ? 'hovered' : ''}`}>
+                          <div onClick={() => toggleGroup(category, groupName)} className="group-header">
+                            <span>{groupName}</span>
+                            <div className="group-header-controls">
+                              {expandedGroups[`${category}-${groupName}`] && (
+                                <button
+                                  className="icon-button select-all-button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    if (groupData.type === 'simple') {
+                                      handleSelectAllFromGroup(groupData.effects);
+                                    } else if (groupData.type === 'nested') {
+                                      // collect all effects from subgroups and singles
+                                      const allEffects = [];
+                                      if (groupData.singles) {
+                                        allEffects.push(...groupData.singles);
+                                      }
+                                      if (groupData.subgroups) {
+                                        Object.values(groupData.subgroups).forEach(subGroupEffects => {
+                                          allEffects.push(...subGroupEffects);
+                                        });
+                                      }
+                                      handleSelectAllFromGroup(allEffects);
+                                    }
+                                  }}
+                                  onMouseEnter={() => setHoveredGroup(groupName)}
+                                  onMouseLeave={() => setHoveredGroup(null)}
+                                  title="Add all effects"
+                                >
+                                  <SelectAllIcon />
+                                </button>
+                              )}
+                              <span className={`arrow ${expandedGroups[`${category}-${groupName}`] ? 'expanded' : ''}`}>▼</span>
+                            </div>
+                          </div>
+                          {expandedGroups[`${category}-${groupName}`] && (
+                            <ul className="sub-list">
+                              {groupData.type === 'nested' ? (
+                                // render nested groups
+                                <>
+                                  {/* render singles first if any */}
+                                  {groupData.singles && groupData.singles.length > 0 && (
+                                    groupData.singles.map(effect => (
+                                      <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                        {formatEffectName(effect)}
+                                      </li>
+                                    ))
+                                  )}
+                                  {/* render subgroups */}
+                                  {Object.entries(groupData.subgroups).map(([subGroupName, subGroupEffects]) => (
+                                    <li key={subGroupName} className={`subgroup-item ${hoveredGroup === `${groupName}-${subGroupName}` ? 'hovered' : ''}`}>
+                                      <div onClick={() => toggleGroup(category, `${groupName}-${subGroupName}`)} className="subgroup-header">
+                                        <span>{subGroupName}</span>
+                                        <div className="group-header-controls">
+                                          {expandedGroups[`${category}-${groupName}-${subGroupName}`] && (
+                                            <button
+                                              className="icon-button select-all-button"
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleSelectAllFromGroup(subGroupEffects);
+                                              }}
+                                              onMouseEnter={() => setHoveredGroup(`${groupName}-${subGroupName}`)}
+                                              onMouseLeave={() => setHoveredGroup(null)}
+                                              title="Add all effects"
+                                            >
+                                              <SelectAllIcon />
+                                            </button>
+                                          )}
+                                          <span className={`arrow ${expandedGroups[`${category}-${groupName}-${subGroupName}`] ? 'expanded' : ''}`}>▼</span>
+                                        </div>
+                                      </div>
+                                      {expandedGroups[`${category}-${groupName}-${subGroupName}`] && (
+                                        <ul className="sub-sub-list">
+                                          {subGroupEffects.map(effect => (
+                                            <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                              {formatEffectName(effect)}
+                                            </li>
+                                          ))}
                                         </ul>
-                                    </div>
-                                ))}
-                        </div>
-                    )}
-                </div>
-                <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
-                    {selectedEffects.map((effect) => (
-                        <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
-                    ))}
-                </div>
+                                      )}
+                                    </li>
+                                  ))}
+                                </>
+                              ) : (
+                                // render simple groups
+                                groupData.effects.map(effect => (
+                                  <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
+                                    {formatEffectName(effect)}
+                                  </li>
+                                ))
+                              )}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
             </div>
-            <div className="bottom-bar-effects">
-                <button
-                    className='calculate-button'
-                    title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
-                    onClick={handleCalculate}
-                    disabled={desiredEffects.length === 0}
-                >
-                    <CalculatorIcon />
-                    <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
-                </button>
-            </div>
+          )}
         </div>
-    );
+        <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
+          {selectedEffects.map((effect) => (
+            <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
+          ))}
+        </div>
+      </div>
+      <div className="bottom-bar-effects">
+        <button
+          className='calculate-button'
+          title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
+          onClick={handleCalculate}
+          disabled={desiredEffects.length === 0}
+        >
+          <CalculatorIcon />
+          <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default DesiredEffects;

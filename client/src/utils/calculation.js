@@ -1,13 +1,8 @@
 import { chaliceData } from '../data/chaliceData.js';
 import items from '../data/items.json';
-import baseRelicEffects from '../data/baseRelicEffects.json';
+import baseRelicEffects from '../data/relicEffects.json';
 
-const effectMap = new Map();
-baseRelicEffects.forEach(effect => {
-  effect.ids.forEach(id => {
-    effectMap.set(id, effect);
-  });
-});
+// effectMap is now passed as a parameter to the function
 
 /**
  * Calculates the best relic combination for a given set of desired effects, available relics, and selected chalices.
@@ -17,16 +12,24 @@ baseRelicEffects.forEach(effect => {
  * @param {string} selectedNightfarer - The name of the selected Nightfarer (e.g., 'wylder').
  * @returns {Object|null} - The best relic combination found, or null if none could be determined.
  */
-export function calculateBestRelics(desiredEffects, characterRelicData, selectedChalices, selectedNightfarer) {
+export function calculateBestRelics(desiredEffects, characterRelicData, selectedChalices, selectedNightfarer, effectMap) {
   console.log("--- Starting Relic Calculation ---");
 
   // input validation
-  if (!desiredEffects || !characterRelicData || !selectedChalices || !selectedNightfarer) {
-    console.error('Missing required parameters for calculation:', { desiredEffects, characterRelicData, selectedChalices, selectedNightfarer });
-    return null;
+  if (!desiredEffects || !characterRelicData || !selectedChalices || !selectedNightfarer || !effectMap) {
+    console.error('Missing required parameters for calculation:', { desiredEffects, characterRelicData, selectedChalices, selectedNightfarer, effectMap });
+    throw new Error('Missing required parameters for calculation');
   }
 
-  if (!characterRelicData.relics || characterRelicData.relics.length === 0) {
+  if (!Array.isArray(desiredEffects) || desiredEffects.length === 0) {
+    throw new Error('No desired effects provided');
+  }
+
+  if (!characterRelicData.relics || !Array.isArray(characterRelicData.relics)) {
+    throw new Error('Invalid character relic data');
+  }
+
+  if (characterRelicData.relics.length === 0) {
     console.warn('No relics found for character');
     return null;
   }
@@ -59,23 +62,19 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
     return null;
   }
 
-  console.log(`Processing ${processedRelics.length} valid relics for ${selectedChalices.length} selected chalices.`);
-
   // score each relic based on desired effects and filter out forbidden/zero-score relics.
-  console.log("--- Step 1: Scoring and Filtering Relics ---");
   const scoredRelics = processedRelics.map(relic => {
-    const relicEffects = getRelicEffects(relic);
+    const relicEffects = getRelicEffects(relic, effectMap);
     const score = calculateRelicScore(relicEffects, desiredEffects);
-    const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effect => effect && de.ids.includes(effect.ids[0])));
+    const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
+      de.ids.includes(effectId)
+    ));
+
     return { ...relic, score, isForbidden };
   }).filter(relic => !relic.isForbidden && relic.score > 0)
     .sort((a, b) => b.score - a.score);
 
-  console.log("Scored and Filtered Relics:", JSON.parse(JSON.stringify(scoredRelics)));
-
-
   // for each chalice, find the best combination of relics.
-  console.log("--- Step 2: Finding Best Combination for Each Chalice ---");
   let bestCombination = null;
   let highestScore = -Infinity;
 
@@ -88,8 +87,8 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
   for (const chaliceName of selectedChalices) {
     const chalice = chaliceDataForCharacter.find(c => c.name === chaliceName);
     if (!chalice) {
-        console.warn(`Could not find data for chalice: ${chaliceName}`);
-        continue;
+      console.warn(`Could not find data for chalice: ${chaliceName}`);
+      continue;
     }
 
     const combination = findBestCombinationForChalice(chalice, scoredRelics);
@@ -100,12 +99,10 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
         bestCombination = combination;
       }
     } else {
-        console.log(`No valid combination found for ${chalice.name}.`);
+      console.log(`No valid combination found for ${chalice.name}.`);
     }
   }
 
-  console.log("--- Step 3: Final Result ---");
-  console.log("Best overall combination found:", JSON.parse(JSON.stringify(bestCombination)));
   return bestCombination;
 }
 
@@ -118,7 +115,11 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
 function calculateRelicScore(relicEffects, desiredEffects) {
   let score = 0;
   for (const desiredEffect of desiredEffects) {
-    if (relicEffects.some(effect => effect && effect.ids.some(id => desiredEffect.ids.includes(id)))) {
+    // Check if any of the relic's effect IDs match any of the desired effect's IDs
+    const hasMatch = relicEffects.some(effectId =>
+      desiredEffect.ids.includes(effectId)
+    );
+    if (hasMatch) {
       score += desiredEffect.weight || 1;
     }
   }
@@ -132,66 +133,66 @@ function calculateRelicScore(relicEffects, desiredEffects) {
  * @returns {Object|null} - The best combination for the chalice, or null if slots cannot be filled.
  */
 function findBestCombinationForChalice(chalice, scoredRelics) {
-    const bestRelicsForChalice = [];
-    let totalScore = 0;
-    const usedRelicIds = new Set();
+  const bestRelicsForChalice = [];
+  let totalScore = 0;
+  const usedRelicIds = new Set();
 
-    const relicsByColor = {
-        red: scoredRelics.filter(r => r.color === 'red'),
-        blue: scoredRelics.filter(r => r.color === 'blue'),
-        yellow: scoredRelics.filter(r => r.color === 'yellow'),
-        green: scoredRelics.filter(r => r.color === 'green'),
-        white: scoredRelics.filter(r => r.color === 'white'),
-    };
+  const relicsByColor = {
+    red: scoredRelics.filter(r => r.color === 'red'),
+    blue: scoredRelics.filter(r => r.color === 'blue'),
+    yellow: scoredRelics.filter(r => r.color === 'yellow'),
+    green: scoredRelics.filter(r => r.color === 'green'),
+    white: scoredRelics.filter(r => r.color === 'white'),
+  };
 
-    for (const slotColor of chalice.slots) {
-        let bestRelicForSlot = null;
-        // white slots are wildcards
-        if (slotColor === 'white') {
-            let bestOverallRelic = null;
-            // find the best relic from any color that hasn't been used yet
-            for (const color of Object.keys(relicsByColor)) {
-                const availableRelics = relicsByColor[color].filter(r => !usedRelicIds.has(r.sorting));
-                if (availableRelics.length > 0) {
-                    if (!bestOverallRelic || availableRelics[0].score > bestOverallRelic.score) {
-                        bestOverallRelic = availableRelics[0];
-                    }
-                }
-            }
-            bestRelicForSlot = bestOverallRelic;
-        } else {
-            // find the best relic for the specific color that hasn't been used yet
-            bestRelicForSlot = relicsByColor[slotColor].find(r => !usedRelicIds.has(r.sorting)) || null;
+  for (const slotColor of chalice.slots) {
+    let bestRelicForSlot = null;
+    // white slots are wildcards
+    if (slotColor === 'white') {
+      let bestOverallRelic = null;
+      // find the best relic from any color that hasn't been used yet
+      for (const color of Object.keys(relicsByColor)) {
+        const availableRelics = relicsByColor[color].filter(r => !usedRelicIds.has(r.sorting));
+        if (availableRelics.length > 0) {
+          if (!bestOverallRelic || availableRelics[0].score > bestOverallRelic.score) {
+            bestOverallRelic = availableRelics[0];
+          }
         }
-        
-        if (bestRelicForSlot) {
-            bestRelicsForChalice.push(bestRelicForSlot);
-            totalScore += bestRelicForSlot.score;
-            usedRelicIds.add(bestRelicForSlot.sorting);
-        } else {
-            console.warn(`Could not find a unique relic for a ${slotColor} slot in ${chalice.name}.`);
-            return null; // not enough unique relics to fill this chalice
-        }
+      }
+      bestRelicForSlot = bestOverallRelic;
+    } else {
+      // find the best relic for the specific color that hasn't been used yet
+      bestRelicForSlot = relicsByColor[slotColor].find(r => !usedRelicIds.has(r.sorting)) || null;
     }
 
-    return {
-        chalice: {
-            name: chalice.name,
-            slots: chalice.slots,
-            description: chalice.description
-        },
-        relics: bestRelicsForChalice,
-        score: totalScore,
-    };
+    if (bestRelicForSlot) {
+      bestRelicsForChalice.push(bestRelicForSlot);
+      totalScore += bestRelicForSlot.score;
+      usedRelicIds.add(bestRelicForSlot.sorting);
+    } else {
+      console.warn(`Could not find a unique relic for a ${slotColor} slot in ${chalice.name}.`);
+      return null; // not enough unique relics to fill this chalice
+    }
+  }
+
+  return {
+    chalice: {
+      name: chalice.name,
+      slots: chalice.slots,
+      description: chalice.description
+    },
+    relics: bestRelicsForChalice,
+    score: totalScore,
+  };
 }
 
 // HELPER FUNCTIONS
 
-// gets all effect objects for a relic
-function getRelicEffects(relic) {
+// gets all effect IDs for a relic by converting effect names to IDs using effectMap
+function getRelicEffects(relic, effectMap) {
   if (!relic) return [];
-  
-  return [
+
+  const effectNames = [
     relic['effect 1'],
     relic['effect 2'],
     relic['effect 3'],
@@ -199,4 +200,14 @@ function getRelicEffects(relic) {
     relic['sec_effect2'],
     relic['sec_effect3'],
   ].filter(Boolean);
+
+  // Convert effect names to IDs using the effectMap
+  const effectIds = [];
+  for (const [effectId, effectName] of effectMap.entries()) {
+    if (effectNames.includes(effectName)) {
+      effectIds.push(parseInt(effectId));
+    }
+  }
+
+  return effectIds;
 }

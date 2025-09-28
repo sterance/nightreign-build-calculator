@@ -41,8 +41,8 @@ const CharacterSelection = ({
             <img
               src={`/characters/${character}.png`}
               alt={character}
-              height={65}
-              width={65}
+              height={70}
+              width={70}
             />
           </div>
         ))}

@@ -29,7 +29,7 @@ const DesiredEffectCard = ({ effect, onUpdate, onDelete, onSort }) => {
 
     return (
         <div className="effect-card" onMouseLeave={onSort}>
-            <span className="effect-name">{effect.name}</span>
+            <span className={`effect-name ${effect.isDebuff ? 'debuff' : ''}`}>{effect.name}</span>
             <div className="effect-controls">
                 <div className="effect-icons">
                     <button

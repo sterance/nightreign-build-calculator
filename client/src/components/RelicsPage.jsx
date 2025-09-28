@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
-import effects from '../data/baseRelicEffects.json';
+import effects from '../data/relicEffects.json';
 import { CloseIcon } from './Icons';
 
-const effectMap = new Map();
-effects.forEach(effect => {
-  effect.ids.forEach(id => {
-    effectMap.set(id, effect.name);
+const createEffectMap = (showDeepOfNight) => {
+  const effectMap = new Map();
+  effects.forEach(effect => {
+    // filter out deep effects if showDeepOfNight is false
+    if (effect.deep === true && !showDeepOfNight) {
+      return;
+    }
+    effect.ids.forEach(id => {
+      effectMap.set(id, effect.name);
+    });
   });
-});
+  return effectMap;
+};
 
 const ColorFilterCard = ({ color, isChecked, onChange }) => {
   return (
@@ -27,7 +34,7 @@ const ColorFilterCard = ({ color, isChecked, onChange }) => {
   );
 };
 
-const RelicCard = ({ relic, items }) => {
+const RelicCard = ({ relic, items, effectMap }) => {
   const relicInfo = items[relic.item_id.toString()];
 
   if (!relicInfo) {
@@ -66,7 +73,7 @@ const RelicCard = ({ relic, items }) => {
   );
 };
 
-const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight, showUnknownRelics, relicColorFilters }) => {
+const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight, showUnknownRelics, relicColorFilters, effectMap }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
     // toggle unknown relics based on checkbox
@@ -104,7 +111,7 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
       </label>
       <div className="relics-grid">
         {filteredRelics.sort((a, b) => a.sorting - b.sorting).map((relic, index) => (
-          <RelicCard key={index} relic={relic} items={items} />
+          <RelicCard key={index} relic={relic} items={items} effectMap={effectMap} />
         ))}
       </div>
     </div>
@@ -114,6 +121,11 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
 const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight, showUnknownRelics, relicColorFilters, onRelicColorFilterChange }) => {
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [effectMap, setEffectMap] = useState(new Map());
+
+  useEffect(() => {
+    setEffectMap(createEffectMap(showDeepOfNight));
+  }, [showDeepOfNight]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -220,6 +232,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
           showDeepOfNight={showDeepOfNight}
           showUnknownRelics={showUnknownRelics}
           relicColorFilters={relicColorFilters}
+          effectMap={effectMap}
         />
       ))}
     </div>

@@ -446,6 +446,65 @@ button:hover {
   font-size: 0.9em;
 }
 
+.effect-name.debuff {
+  color: #4a9eff;
+}
+
+/* Nested group styling - match single-level groups exactly */
+.subgroup-item {
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+}
+
+.subgroup-item.hovered {
+  background-color: var(--primary-color) !important;
+}
+
+.subgroup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  /* padding: 0.5rem;
+  border-bottom: 1px solid #333; */
+  /* font-size: 0.9em; */
+}
+
+.subgroup-header:hover {
+  background-color: transparent !important;
+}
+
+.subgroup-header .group-header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.subgroup-header .select-all-button {
+  margin-right: 0.5rem;
+}
+
+.sub-sub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+}
+
+.sub-sub-list li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.sub-sub-list li:hover {
+  background-color: var(--primary-color) !important;
+}
+
+.sub-sub-list li:last-child {
+  border-bottom: none;
+}
+
 .effect-controls {
   display: flex;
   align-items: center;
@@ -535,9 +594,9 @@ button:hover {
   font-size: 0.9em;
 }
 
-.effects-category .sub-list li:hover {
+/* .effects-category .sub-list li:hover {
   background-color: var(--primary-color) !important;
-}
+} */
 
 .effects-category>ul>li:not(.group-item):hover {
   background-color: var(--primary-color) !important;
