@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
 import effects from '../data/relicEffects.json';
 import { CloseIcon } from './Icons';
+import RelicFilterCard from './RelicFilterCard';
 
 const createEffectMap = (showDeepOfNight) => {
   const effectMap = new Map();
@@ -15,23 +16,6 @@ const createEffectMap = (showDeepOfNight) => {
     });
   });
   return effectMap;
-};
-
-const ColorFilterCard = ({ color, isChecked, onChange }) => {
-  return (
-    <div
-      className={`color-filter-card color-${color} ${isChecked ? 'checked' : ''}`}
-      onClick={() => onChange(color)}
-    >
-      <input
-        type="checkbox"
-        checked={isChecked}
-        onChange={() => onChange(color)}
-        style={{ display: 'none' }}
-      />
-      <span>{color.charAt(0).toUpperCase() + color.slice(1)}</span>
-    </div>
-  );
 };
 
 const RelicCard = ({ relic, items, effectMap }) => {
@@ -167,7 +151,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
       }
     };
     loadData();
-  }, []);
+  }, [effectMap]);
 
   const renderContent = (children) => (
     <div className="relic-page-backdrop">
@@ -178,7 +162,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
         <h2>Your Relics</h2>
         <div className="relic-color-filters">
           {Object.keys(relicColorFilters).map(color => (
-            <ColorFilterCard
+            <RelicFilterCard
               key={color}
               color={color}
               isChecked={relicColorFilters[color]}

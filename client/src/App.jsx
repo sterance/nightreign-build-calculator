@@ -338,7 +338,8 @@ function App() {
         showDeepOfNight={showDeepOfNight}
         showUnknownRelics={showUnknownRelics}
         relicColorFilters={relicColorFilters}
-        onRelicColorFilterChange={handleRelicColorFilterChange} />}
+        onRelicColorFilterChange={handleRelicColorFilterChange}
+      />}
 
       {showSettings && <SettingsPage
         onBack={() => setShowSettings(false)}
