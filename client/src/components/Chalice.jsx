@@ -8,6 +8,7 @@ const Chalice = ({ chalice, isSelected, onToggle }) => {
       onClick={() => onToggle(chalice.name)}
       title={chalice.name}
     >
+      <p>{chalice.name}</p>
       <div className="relic-slots">
         {chalice.slots.map((color, index) => (
           <RelicSlot key={index} color={color} />

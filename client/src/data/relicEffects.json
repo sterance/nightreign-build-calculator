@@ -1,0 +1,6446 @@
+[
+  {
+    "ids": [
+      7000700
+    ],
+    "name": "Arcane +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000700,
+    "stack_group": "Arcane",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000701
+    ],
+    "name": "Arcane +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000700,
+    "stack_group": "Arcane",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000702
+    ],
+    "name": "Arcane +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000700,
+    "stack_group": "Arcane",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7000400
+    ],
+    "name": "Dexterity +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000400,
+    "stack_group": "Dexterity",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000401
+    ],
+    "name": "Dexterity +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000400,
+    "stack_group": "Dexterity",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000402
+    ],
+    "name": "Dexterity +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000400,
+    "stack_group": "Dexterity",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7000200
+    ],
+    "name": "Endurance +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000200,
+    "stack_group": "Endurance",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000201
+    ],
+    "name": "Endurance +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000200,
+    "stack_group": "Endurance",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000202
+    ],
+    "name": "Endurance +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000200,
+    "stack_group": "Endurance",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7000600
+    ],
+    "name": "Faith +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000600,
+    "stack_group": "Faith",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000601
+    ],
+    "name": "Faith +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000600,
+    "stack_group": "Faith",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000602
+    ],
+    "name": "Faith +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000600,
+    "stack_group": "Faith",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      6610500,
+      7000190,
+      7610500
+    ],
+    "name": "Increased Maximum FP",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7000190,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      6610400,
+      7000090,
+      7610400
+    ],
+    "name": "Increased Maximum HP",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7000090,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      6610600,
+      7000290,
+      7610600
+    ],
+    "name": "Increased Maximum Stamina",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7000290,
+    "category": "Attributes"
+  },
+  {
+    "ids": [
+      7000500
+    ],
+    "name": "Intelligence +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000500,
+    "stack_group": "Intelligence",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000501
+    ],
+    "name": "Intelligence +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000500,
+    "stack_group": "Intelligence",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000502
+    ],
+    "name": "Intelligence +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000500,
+    "stack_group": "Intelligence",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7000100
+    ],
+    "name": "Mind +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000100,
+    "stack_group": "Mind",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000101
+    ],
+    "name": "Mind +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000100,
+    "stack_group": "Mind",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000102
+    ],
+    "name": "Mind +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000100,
+    "stack_group": "Mind",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7001000
+    ],
+    "name": "Poise +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001000,
+    "stack_group": "Poise",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001001
+    ],
+    "name": "Poise +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001000,
+    "stack_group": "Poise",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7001002
+    ],
+    "name": "Poise +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001000,
+    "stack_group": "Poise",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7000300
+    ],
+    "name": "Strength +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000300,
+    "stack_group": "Strength",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000301
+    ],
+    "name": "Strength +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000300,
+    "stack_group": "Strength",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000302
+    ],
+    "name": "Strength +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000300,
+    "stack_group": "Strength",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7000000
+    ],
+    "name": "Vigor +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000000,
+    "stack_group": "Vigor",
+    "category": "Attributes",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000001
+    ],
+    "name": "Vigor +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000000,
+    "stack_group": "Vigor",
+    "category": "Attributes",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000002
+    ],
+    "name": "Vigor +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000000,
+    "stack_group": "Vigor",
+    "category": "Attributes",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003100
+    ],
+    "name": "Improved Blood Loss Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003100,
+    "stack_group": "Improved Blood Loss Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003100,
+      7003101
+    ],
+    "name": "Improved Blood Loss Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003100,
+    "stack_group": "Improved Blood Loss Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003101,
+      7003102
+    ],
+    "name": "Improved Blood Loss Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003100,
+    "stack_group": "Improved Blood Loss Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003300
+    ],
+    "name": "Improved Death Blight Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003300,
+    "stack_group": "Improved Death Blight Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003300,
+      7003301
+    ],
+    "name": "Improved Death Blight Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003300,
+    "stack_group": "Improved Death Blight Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003301,
+      7003302
+    ],
+    "name": "Improved Death Blight Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003300,
+    "stack_group": "Improved Death Blight Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003500
+    ],
+    "name": "Improved Frost Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003500,
+    "stack_group": "Improved Frost Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003500,
+      7003501
+    ],
+    "name": "Improved Frost Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003500,
+    "stack_group": "Improved Frost Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003501,
+      7003502
+    ],
+    "name": "Improved Frost Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003500,
+    "stack_group": "Improved Frost Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003600
+    ],
+    "name": "Improved Madness Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003600,
+    "stack_group": "Improved Madness Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003600,
+      7003601
+    ],
+    "name": "Improved Madness Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003600,
+    "stack_group": "Improved Madness Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003601,
+      7003602
+    ],
+    "name": "Improved Madness Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003600,
+    "stack_group": "Improved Madness Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003000
+    ],
+    "name": "Improved Poison Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003000,
+    "stack_group": "Improved Poison Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003000,
+      7003001
+    ],
+    "name": "Improved Poison Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003000,
+    "stack_group": "Improved Poison Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003001,
+      7003002
+    ],
+    "name": "Improved Poison Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003000,
+    "stack_group": "Improved Poison Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003400
+    ],
+    "name": "Improved Rot Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003400,
+    "stack_group": "Improved Rot Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003400,
+      7003401
+    ],
+    "name": "Improved Rot Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003400,
+    "stack_group": "Improved Rot Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003401,
+      7003402
+    ],
+    "name": "Improved Rot Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003400,
+    "stack_group": "Improved Rot Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7003200
+    ],
+    "name": "Improved Sleep Resistance",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7003200,
+    "stack_group": "Improved Sleep Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 1
+  },
+  {
+    "ids": [
+      6003200,
+      7003201
+    ],
+    "name": "Improved Sleep Resistance +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003200,
+    "stack_group": "Improved Sleep Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 2
+  },
+  {
+    "ids": [
+      6003201,
+      7003202
+    ],
+    "name": "Improved Sleep Resistance +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7003200,
+    "stack_group": "Improved Sleep Resistance",
+    "category": "Attributes",
+    "display_group": "Improved [Status] Resistance",
+    "level": 3
+  },
+  {
+    "ids": [
+      7082600
+    ],
+    "name": "Max FP Up with 3+ Sacred Seals Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082600,
+    "category": "Attributes",
+    "display_group": "Max FP Up with 3+ [Staves/Sacred Seals] Equipped"
+  },
+  {
+    "ids": [
+      17001,
+      7082500
+    ],
+    "name": "Max FP Up with 3+ Staves Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082500,
+    "category": "Attributes",
+    "display_group": "Max FP Up with 3+ [Staves/Sacred Seals] Equipped"
+  },
+  {
+    "ids": [
+      7082900
+    ],
+    "name": "Max HP Up with 3+ Greatshields Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082900,
+    "category": "Attributes",
+    "display_group": "Max HP Up with 3+ [Shields] Equipped"
+  },
+  {
+    "ids": [
+      7082800
+    ],
+    "name": "Max HP Up with 3+ Medium Shields Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082800,
+    "category": "Attributes",
+    "display_group": "Max HP Up with 3+ [Shields] Equipped"
+  },
+  {
+    "ids": [
+      7082700
+    ],
+    "name": "Max HP Up with 3+ Small Shields Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082700,
+    "category": "Attributes",
+    "display_group": "Max HP Up with 3+ [Shields] Equipped"
+  },
+  {
+    "ids": [
+      14001,
+      7031800
+    ],
+    "name": "[Duchess] Become difficult to spot and silence footsteps after landing critical from behind",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 7031800,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      14000,
+      7010700
+    ],
+    "name": "[Duchess] Dagger chain attack reprises event upon nearby enemies",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 7010700,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      7032700
+    ],
+    "name": "[Duchess] Defeating enemies while Art is active ups attack power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 7032700,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      7290000
+    ],
+    "name": "[Duchess] Improved Character Skill Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 7290000,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      6643100,
+      7643100
+    ],
+    "name": "[Duchess] Improved Mind and Faith, Reduced Intelligence",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 6643100,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      6643000,
+      7643000
+    ],
+    "name": "[Duchess] Improved Vigor and Strength, Reduced Mind",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 6643000,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      6500300,
+      7500300
+    ],
+    "name": "[Duchess] Use Character Skill for Brief Invulnerability",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "stack_id": 6500300,
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      7034400
+    ],
+    "name": "[Executor] Character Skill Boosts Attack but Attacking Drains HP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "stack_id": 7034400,
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      6647100,
+      7647100
+    ],
+    "name": "[Executor] Improved Dexterity and Arcane, Reduced Vigor",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "stack_id": 6647100,
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      6647000,
+      7647000
+    ],
+    "name": "[Executor] Improved Vigor and Endurance, Reduced Arcane",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "stack_id": 6647000,
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      18002,
+      7011700
+    ],
+    "name": "[Executor] Roaring restores HP while Art is active",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "stack_id": 7011700,
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      6500700,
+      7500700
+    ],
+    "name": "[Executor] Slowly Restore HP upon Ability Activation",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "stack_id": 6500700,
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      7034500
+    ],
+    "name": "[Executor] While Character Skill is active, unlocking use of cursed sword restores HP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "stack_id": 7034500,
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      6500100,
+      7500100
+    ],
+    "name": "[Guardian] Character Skill Boosts Damage Negation of Nearby Allies",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 6500100,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      7011600
+    ],
+    "name": "[Guardian] Creates whirlwind when charging halberd attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 7011600,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      6641100,
+      7641100
+    ],
+    "name": "[Guardian] Improved Mind and Faith, Reduced Vigor",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 6641100,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      6641000,
+      7641000
+    ],
+    "name": "[Guardian] Improved Strength and Dexterity, Reduced Vigor",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 6641000,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      12000,
+      7011000
+    ],
+    "name": "[Guardian] Increased duration for Character Skill",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 7011000,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      12002,
+      12003,
+      7012000
+    ],
+    "name": "[Guardian] Slowly restores nearby allies' HP while Art is active",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 7012000,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      7033400,
+      7033402
+    ],
+    "name": "[Guardian] Successful guards send out shockwaves while ability is active",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "stack_id": 7033400,
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      7270100
+    ],
+    "name": "[Ironeye] +1 additional Character Skill use",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 7270100,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      7034600
+    ],
+    "name": "[Ironeye] Art Charge Activation Adds Poison Effect",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 7034600,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      7034700
+    ],
+    "name": "[Ironeye] Boosts thrusting counterattacks after executing Art",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 7034700,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      7124700
+    ],
+    "name": "[Ironeye] Changes compatible armament's skill to Rain of Arrows at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 7124700,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      6500200,
+      7500200
+    ],
+    "name": "[Ironeye] Character Skill Inflicts Heavy Poison Damage on Poisoned Enemies",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 6500200,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      7280000
+    ],
+    "name": "[Ironeye] Extends duration of weak point",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 7280000,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      6642000,
+      7642000
+    ],
+    "name": "[Ironeye] Improved Arcane, Reduced Dexterity",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 6642000,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      6642100,
+      7642100
+    ],
+    "name": "[Ironeye] Improved Vigor and Strength, Reduced Dexterity",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "stack_id": 6642100,
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      7123400
+    ],
+    "name": "[Raider] Changes compatible armament's skill to Prayerful Strike at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 7123400,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      15001,
+      7031300
+    ],
+    "name": "[Raider] Damage taken while using Character Skill improves attack power and stamina",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 7031300,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      15002,
+      7090300
+    ],
+    "name": "[Raider] Defeating enemies near Totem Stela restores HP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 7090300,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      15000,
+      7310000
+    ],
+    "name": "[Raider] Duration of Ultimate Art extended",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 7310000,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      6500400,
+      7500400
+    ],
+    "name": "[Raider] Hit With Character Skill to Reduce Enemy Attack Power",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 6500400,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      6644100,
+      7644100
+    ],
+    "name": "[Raider] Improved Arcane, Reduced Vigor",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 6644100,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      6644000,
+      7644000
+    ],
+    "name": "[Raider] Improved Mind and Intelligence, Reduced Vigor and Endurance",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "stack_id": 6644000,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      7030000
+    ],
+    "name": "[Raider] Improved Poise Near Totem Stela",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7030000,
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      7034100
+    ],
+    "name": "[Recluse] Activating Ultimate Art raises Max HP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "stack_id": 7034100,
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      6500600,
+      7500600
+    ],
+    "name": "[Recluse] Collect Affinity Residues to Negate Affinity",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "stack_id": 6500600,
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      7032800
+    ],
+    "name": "[Recluse] Collecting affinity residue activates Terra Magica",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "stack_id": 7032800,
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      6646100,
+      7646100
+    ],
+    "name": "[Recluse] Improved Intelligence and Faith, Reduced Mind",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "stack_id": 6646100,
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      6646000,
+      7646000
+    ],
+    "name": "[Recluse] Improved Vigor, Endurance, and Dexterity, Reduced Intelligence and Faith",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "stack_id": 6646000,
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      17002,
+      7032900
+    ],
+    "name": "[Recluse] Suffer blood loss and increase attack power upon Art activation",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "stack_id": 7032900,
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      16002,
+      7010900
+    ],
+    "name": "[Revenant] Expend own HP to fully heal nearby allies when activating Art",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 7010900,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      6645100,
+      7645100
+    ],
+    "name": "[Revenant] Improved Strength, Reduced Faith",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 6645100,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      6645000,
+      7645000
+    ],
+    "name": "[Revenant] Improved Vigor and Endurance, Reduced Mind",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 6645000,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      6500500,
+      7500500
+    ],
+    "name": "[Revenant] Increased Max FP upon Ability Activation",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 6500500,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      7220000,
+      7220001,
+      7220002
+    ],
+    "name": "[Revenant] Power up while fighting alongside family",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 7220000,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      16000,
+      7031200
+    ],
+    "name": "[Revenant] Strengthens family and allies when Ultimate Art is activated",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 7031200,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      7011200
+    ],
+    "name": "[Revenant] Trigger ghostflame explosion during Ultimate Art activation",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "stack_id": 7011200,
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      11000,
+      7033200
+    ],
+    "name": "[Wylder] +1 additional Character Skill use",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 7033200,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      7010500
+    ],
+    "name": "[Wylder] Art activation spreads fire in area",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 7010500,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      9760,
+      11002,
+      7032400
+    ],
+    "name": "[Wylder] Art gauge greatly filled when ability is activated",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 7032400,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      6500000,
+      7500000
+    ],
+    "name": "[Wylder] Character Skill inflicts Blood Loss",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 6500000,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      7020000
+    ],
+    "name": "[Wylder] Follow-up attacks possible when using Character Skill (greatsword only)",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 7020000,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      6640100,
+      7640100
+    ],
+    "name": "[Wylder] Improved Intelligence and Faith, Reduced Strength and Dexterity",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 6640100,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      6640000,
+      7640000
+    ],
+    "name": "[Wylder] Improved Mind, Reduced Vigor",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "stack_id": 6640000,
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      6850200
+    ],
+    "name": "All Resistances Down",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6850200,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6850500
+    ],
+    "name": "Continuous HP Loss",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6850500,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6851200
+    ],
+    "name": "Lower Attack When Below Max HP",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6851200,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6850700
+    ],
+    "name": "More Damage Taken After Evasion",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6850700,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6851700
+    ],
+    "name": "Near Death Reduces Max HP",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6851700,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6851300
+    ],
+    "name": "Poison Buildup When Below Max HP",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6851300,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6850900
+    ],
+    "name": "Reduced Damage Negation for Flask Usages",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6850900,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6840000
+    ],
+    "name": "Reduced Rune Acquisition",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6840000,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6850800,
+      8800201,
+      8800230
+    ],
+    "name": "Repeated Evasions Lower Damage Negation",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6850800,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6851400
+    ],
+    "name": "Rot Buildup When Below Max HP",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6851400,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6840200
+    ],
+    "name": "Ultimate Art Charging Impaired",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6840200,
+    "category": "Debuff"
+  },
+  {
+    "ids": [
+      6830100
+    ],
+    "name": "Reduced Dexterity and Faith",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6830100,
+    "category": "Debuff",
+    "display_group": "Reduced [Attributes]"
+  },
+  {
+    "ids": [
+      6830300
+    ],
+    "name": "Reduced Faith and Strength",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6830300,
+    "category": "Debuff",
+    "display_group": "Reduced [Attributes]"
+  },
+  {
+    "ids": [
+      6840100
+    ],
+    "name": "Reduced Flask HP Restoration",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6840100,
+    "category": "Debuff",
+    "display_group": "Reduced [Attributes]"
+  },
+  {
+    "ids": [
+      6830200
+    ],
+    "name": "Reduced Intelligence and Dexterity",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6830200,
+    "category": "Debuff",
+    "display_group": "Reduced [Attributes]"
+  },
+  {
+    "ids": [
+      6830000
+    ],
+    "name": "Reduced Strength and Intelligence",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6830000,
+    "category": "Debuff",
+    "display_group": "Reduced [Attributes]"
+  },
+  {
+    "ids": [
+      6830400
+    ],
+    "name": "Reduced Vigor and Arcane",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6830400,
+    "category": "Debuff",
+    "display_group": "Reduced [Attributes]"
+  },
+  {
+    "ids": [
+      6820300
+    ],
+    "name": "Taking Damage Causes Blood Loss Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820300,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      6820600
+    ],
+    "name": "Taking Damage Causes Death Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820600,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      6820200
+    ],
+    "name": "Taking Damage Causes Frost Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820200,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      6820400
+    ],
+    "name": "Taking Damage Causes Madness Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820400,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      6820000
+    ],
+    "name": "Taking Damage Causes Poison Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820000,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      6820100
+    ],
+    "name": "Taking Damage Causes Rot Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820100,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      6820500
+    ],
+    "name": "Taking Damage Causes Sleep Buildup",
+    "debuff": true,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6820500,
+    "category": "Debuff",
+    "display_group": "Taking Damage Causes [Status] Buildup"
+  },
+  {
+    "ids": [
+      7030700
+    ],
+    "name": "Draw enemy attention while guarding",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7030700,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7012300
+    ],
+    "name": "Improved Damage Negation at Low HP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7012300,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7006200
+    ],
+    "name": "Improved Physical Damage Negation",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7006200,
+    "stack_group": "Improved Physical Damage Negation",
+    "category": "Defensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      6611001,
+      7006201
+    ],
+    "name": "Improved Physical Damage Negation +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7006200,
+    "stack_group": "Improved Physical Damage Negation",
+    "category": "Defensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      6611002,
+      7006202
+    ],
+    "name": "Improved Physical Damage Negation +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7006200,
+    "stack_group": "Improved Physical Damage Negation",
+    "category": "Defensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      7240000,
+      7240003,
+      7240006
+    ],
+    "name": "Improved Poise & Damage Negation When Knocked Back by Damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7240000,
+    "category": "Defensive"
+  },
+  {
+    "ids": [
+      7002700
+    ],
+    "name": "Fire Damage Negation Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7002700,
+    "stack_group": "Fire Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 1
+  },
+  {
+    "ids": [
+      7002900
+    ],
+    "name": "Holy Damage Negation Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7002900,
+    "stack_group": "Holy Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 1
+  },
+  {
+    "ids": [
+      6611100,
+      7611100
+    ],
+    "name": "Improved Affinity Damage Negation",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6611100,
+    "stack_group": "Improved Affinity Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 1
+  },
+  {
+    "ids": [
+      6611101,
+      7611101
+    ],
+    "name": "Improved Affinity Damage Negation +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6611100,
+    "stack_group": "Improved Affinity Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 2
+  },
+  {
+    "ids": [
+      6611102,
+      7611102
+    ],
+    "name": "Improved Affinity Damage Negation +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6611100,
+    "stack_group": "Improved Affinity Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 3
+  },
+  {
+    "ids": [
+      6002700,
+      7002701
+    ],
+    "name": "Improved Fire Damage Negation +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002700,
+    "stack_group": "Fire Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 2
+  },
+  {
+    "ids": [
+      6002701,
+      7002702
+    ],
+    "name": "Improved Fire Damage Negation +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002700,
+    "stack_group": "Fire Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 3
+  },
+  {
+    "ids": [
+      6002900,
+      7002901
+    ],
+    "name": "Improved Holy Damage Negation +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002900,
+    "stack_group": "Holy Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 2
+  },
+  {
+    "ids": [
+      6002901,
+      7002902
+    ],
+    "name": "Improved Holy Damage Negation +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002900,
+    "stack_group": "Holy Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 3
+  },
+  {
+    "ids": [
+      6002800,
+      7002801
+    ],
+    "name": "Improved Lightning Damage Negation +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002800,
+    "stack_group": "Lightning Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 2
+  },
+  {
+    "ids": [
+      6002801,
+      7002802
+    ],
+    "name": "Improved Lightning Damage Negation +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002800,
+    "stack_group": "Lightning Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 3
+  },
+  {
+    "ids": [
+      6002600,
+      7002601
+    ],
+    "name": "Improved Magic Damage Negation +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002600,
+    "stack_group": "Magic Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 2
+  },
+  {
+    "ids": [
+      6002601,
+      7002602
+    ],
+    "name": "Improved Magic Damage Negation +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7002600,
+    "stack_group": "Magic Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 3
+  },
+  {
+    "ids": [
+      7002800
+    ],
+    "name": "Lightning Damage Negation Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7002800,
+    "stack_group": "Lightning Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 1
+  },
+  {
+    "ids": [
+      7002600
+    ],
+    "name": "Magic Damage Negation Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7002600,
+    "stack_group": "Magic Damage Negation",
+    "category": "Defensive",
+    "display_group": "[Element] Damage Negation",
+    "level": 1
+  },
+  {
+    "ids": [
+      6632600,
+      7632600
+    ],
+    "name": "Dormant Power Helps Discover Ballistas",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632600,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Bows]"
+  },
+  {
+    "ids": [
+      6632300,
+      7632300
+    ],
+    "name": "Dormant Power Helps Discover Bows",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632300,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Bows]"
+  },
+  {
+    "ids": [
+      6632500,
+      7632500
+    ],
+    "name": "Dormant Power Helps Discover Crossbows",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632500,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Bows]"
+  },
+  {
+    "ids": [
+      6632400,
+      7632400
+    ],
+    "name": "Dormant Power Helps Discover Greatbows",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632400,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Bows]"
+  },
+  {
+    "ids": [
+      6631000,
+      7631000
+    ],
+    "name": "Dormant Power Helps Discover Axes",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631000,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6632000,
+      7632000
+    ],
+    "name": "Dormant Power Helps Discover Claws",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632000,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630300,
+      7630300
+    ],
+    "name": "Dormant Power Helps Discover Colossal Swords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630300,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6632200,
+      7632200
+    ],
+    "name": "Dormant Power Helps Discover Colossal Weapons",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632200,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630500,
+      7630500
+    ],
+    "name": "Dormant Power Helps Discover Curved Greatswords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630500,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630400,
+      7630400
+    ],
+    "name": "Dormant Power Helps Discover Curved Swords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630400,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630000,
+      7630000
+    ],
+    "name": "Dormant Power Helps Discover Daggers",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630000,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631900,
+      7631900
+    ],
+    "name": "Dormant Power Helps Discover Fists",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631900,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631400,
+      7631400
+    ],
+    "name": "Dormant Power Helps Discover Flails",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631400,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631300,
+      7631300
+    ],
+    "name": "Dormant Power Helps Discover Great Hammers",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631300,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631600,
+      7631600
+    ],
+    "name": "Dormant Power Helps Discover Great Spears",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631600,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631100,
+      7631100
+    ],
+    "name": "Dormant Power Helps Discover Greataxes",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631100,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630200,
+      7630200
+    ],
+    "name": "Dormant Power Helps Discover Greatswords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630200,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631700,
+      7631700
+    ],
+    "name": "Dormant Power Helps Discover Halberds",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631700,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631200,
+      7631200
+    ],
+    "name": "Dormant Power Helps Discover Hammers",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631200,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630900,
+      7630900
+    ],
+    "name": "Dormant Power Helps Discover Heavy Thrusting Swords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630900,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630600,
+      7630600
+    ],
+    "name": "Dormant Power Helps Discover Katana",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630600,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631800,
+      7631800
+    ],
+    "name": "Dormant Power Helps Discover Reapers",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631800,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6631500,
+      7631500
+    ],
+    "name": "Dormant Power Helps Discover Spears",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6631500,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630100,
+      7630100
+    ],
+    "name": "Dormant Power Helps Discover Straight Swords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630100,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630800,
+      7630800
+    ],
+    "name": "Dormant Power Helps Discover Thrusting Swords",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630800,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6633200,
+      7633200
+    ],
+    "name": "Dormant Power Helps Discover Torches",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6633200,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6630700,
+      7630700
+    ],
+    "name": "Dormant Power Helps Discover Twinblades",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6630700,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6632100,
+      7632100
+    ],
+    "name": "Dormant Power Helps Discover Whips",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632100,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Melee]"
+  },
+  {
+    "ids": [
+      6632900,
+      7632900
+    ],
+    "name": "Dormant Power Helps Discover Greatshields",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632900,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Shields]"
+  },
+  {
+    "ids": [
+      6632800,
+      7632800
+    ],
+    "name": "Dormant Power Helps Discover Medium Shields",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632800,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Shields]"
+  },
+  {
+    "ids": [
+      6632700,
+      7632700
+    ],
+    "name": "Dormant Power Helps Discover Small Shields",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6632700,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Shields]"
+  },
+  {
+    "ids": [
+      6633100,
+      7633100
+    ],
+    "name": "Dormant Power Helps Discover Sacred Seals",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6633100,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Staves/Sacred Seals]"
+  },
+  {
+    "ids": [
+      6633000,
+      7633000
+    ],
+    "name": "Dormant Power Helps Discover Staves",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6633000,
+    "category": "Dormant Power",
+    "display_group": "Helps Discover [Staves/Sacred Seals]"
+  },
+  {
+    "ids": [
+      6060500,
+      7060500
+    ],
+    "name": "Arcane increased for each great enemy defeated at a Ruin",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6060500,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7060200,
+      7060201
+    ],
+    "name": "Attack power increased for each Night Invader defeated",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7060200,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      17000,
+      7060000,
+      7060001
+    ],
+    "name": "Attack power permanently increased for each evergaol prisoner defeated",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7060000,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      13001,
+      7031900
+    ],
+    "name": "Critical Hits Earn Runes",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7031900,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      11001,
+      7010200
+    ],
+    "name": "Flask Also Heals Allies",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7010200,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      16001,
+      7110000
+    ],
+    "name": "Increased rune acquisition for self and allies",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7110000,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7050100,
+      7050200,
+      7050300
+    ],
+    "name": "Items confer effect to all nearby allies",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7050100,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7060100,
+      7060101
+    ],
+    "name": "Max FP increased for each Sorcerer's Rise unlocked",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7060100,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      6060300,
+      7060300
+    ],
+    "name": "Max HP increased for each great enemy defeated at a Great Church.",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6060300,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      6060600,
+      7060600
+    ],
+    "name": "Max stamina increased for each great enemy defeated at a Great Encampment",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6060600,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      6060400,
+      7060400
+    ],
+    "name": "Runes and Item Discovery increased for each great enemy defeated at a Fort",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6060400,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7070000,
+      7070001
+    ],
+    "name": "Treasure marked upon map",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7070000,
+    "category": "Exploration"
+  },
+  {
+    "ids": [
+      7230001
+    ],
+    "name": "Huge rune discount for shop purchases while on expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7230001,
+    "category": "Exploration",
+    "display_group": "Rune discount for shop purchases while on expedition"
+  },
+  {
+    "ids": [
+      7230000
+    ],
+    "name": "Rune discount for shop purchases while on expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7230000,
+    "category": "Exploration",
+    "display_group": "Rune discount for shop purchases while on expedition"
+  },
+  {
+    "ids": [
+      13000,
+      7030900
+    ],
+    "name": "Attack power increases after using grease items",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7030900,
+    "stack_group": "Attack power increases after using grease items",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      7035800
+    ],
+    "name": "Boosts Attack Power of Added Affinity Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7035800,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7260700,
+      7260702
+    ],
+    "name": "Frostbite in Vicinity Conceals Self",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7260700,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7150000
+    ],
+    "name": "Guard counter is given a boost based on current HP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7150000,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6610800,
+      7610800
+    ],
+    "name": "Improved Affinity Attack Power",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6610800,
+    "stack_group": "Improved Affinity Attack Power",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      6610801,
+      7610801
+    ],
+    "name": "Improved Affinity Attack Power +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6610800,
+    "stack_group": "Improved Affinity Attack Power",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      6610802,
+      7610802
+    ],
+    "name": "Improved Affinity Attack Power +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6610800,
+    "stack_group": "Improved Affinity Attack Power",
+    "category": "Offensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      7040200
+    ],
+    "name": "Improved Critical Hits",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040200,
+    "stack_group": "Improved Critical Hits",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      7040201
+    ],
+    "name": "Improved Critical Hits +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040200,
+    "stack_group": "Improved Critical Hits",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      7040100
+    ],
+    "name": "Improved Guard Counters",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040100,
+    "stack_group": "Improved Guard Counters",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      6040100,
+      7040101
+    ],
+    "name": "Improved Guard Counters +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7040100,
+    "stack_group": "Improved Guard Counters",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      6040101,
+      7040102
+    ],
+    "name": "Improved Guard Counters +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7040100,
+    "stack_group": "Improved Guard Counters",
+    "category": "Offensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      6611300,
+      7611300
+    ],
+    "name": "Improved Incantations",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611300,
+    "stack_group": "Improved Incantations",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      6611301,
+      7611301
+    ],
+    "name": "Improved Incantations +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611300,
+    "stack_group": "Improved Incantations",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      6611302,
+      7611302
+    ],
+    "name": "Improved Incantations +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611300,
+    "stack_group": "Improved Incantations",
+    "category": "Offensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      7040000
+    ],
+    "name": "Improved Initial Standard Attack",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040000,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7043100,
+      8400000
+    ],
+    "name": "Improved Perfuming Arts",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043100,
+    "stack_group": "Improved Perfuming Arts",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      6043100,
+      8400001
+    ],
+    "name": "Improved Perfuming Arts +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7043100,
+    "stack_group": "Improved Perfuming Arts",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      7043000,
+      8380000
+    ],
+    "name": "Improved Roar & Breath Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043000,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      6611200,
+      7611200
+    ],
+    "name": "Improved Sorceries",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611200,
+    "stack_group": "Improved Sorceries",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      6611201,
+      7611201
+    ],
+    "name": "Improved Sorceries +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611200,
+    "stack_group": "Improved Sorceries",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      6611202,
+      7611202
+    ],
+    "name": "Improved Sorceries +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611200,
+    "stack_group": "Improved Sorceries",
+    "category": "Offensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      6030900,
+      7030910
+    ],
+    "name": "Physical attack power increases after using grease items +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7030900,
+    "stack_group": "Attack power increases after using grease items",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      6030901,
+      7030920
+    ],
+    "name": "Physical attack power increases after using grease items +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7030900,
+    "stack_group": "Attack power increases after using grease items",
+    "category": "Offensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      7001400
+    ],
+    "name": "Physical Attack Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001400,
+    "stack_group": "Physical Attack Up",
+    "category": "Offensive",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001401
+    ],
+    "name": "Physical Attack Up +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001400,
+    "stack_group": "Physical Attack Up",
+    "category": "Offensive",
+    "level": 2
+  },
+  {
+    "ids": [
+      7001402
+    ],
+    "name": "Physical Attack Up +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001400,
+    "stack_group": "Physical Attack Up",
+    "category": "Offensive",
+    "level": 3
+  },
+  {
+    "ids": [
+      6001400,
+      7001403
+    ],
+    "name": "Physical Attack Up +3",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001400,
+    "stack_group": "Physical Attack Up",
+    "category": "Offensive",
+    "level": 4
+  },
+  {
+    "ids": [
+      6001401,
+      7001404
+    ],
+    "name": "Physical Attack Up +4",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001400,
+    "stack_group": "Physical Attack Up",
+    "category": "Offensive",
+    "level": 5
+  },
+  {
+    "ids": [
+      6610700,
+      7610700
+    ],
+    "name": "Reduced FP Consumption",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 6610700,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7035700
+    ],
+    "name": "Switching Weapons Adds an Affinity Attack",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7035700,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      10002,
+      7035900
+    ],
+    "name": "Switching Weapons Boosts Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7035900,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      9762,
+      10001,
+      7032200,
+      7032201
+    ],
+    "name": "Taking attacks improves attack power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7032200,
+    "category": "Offensive"
+  },
+  {
+    "ids": [
+      7001600
+    ],
+    "name": "Fire Attack Power Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001600,
+    "stack_group": "Fire Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001601
+    ],
+    "name": "Fire Attack Power Up +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001600,
+    "stack_group": "Fire Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 2
+  },
+  {
+    "ids": [
+      7001602
+    ],
+    "name": "Fire Attack Power Up +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001600,
+    "stack_group": "Fire Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 3
+  },
+  {
+    "ids": [
+      6001600,
+      7001603
+    ],
+    "name": "Fire Attack Power Up +3",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001600,
+    "stack_group": "Fire Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 4
+  },
+  {
+    "ids": [
+      6001601,
+      7001604
+    ],
+    "name": "Fire Attack Power Up +4",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001600,
+    "stack_group": "Fire Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 5
+  },
+  {
+    "ids": [
+      7001800
+    ],
+    "name": "Holy Attack Power Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001800,
+    "stack_group": "Holy Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001801
+    ],
+    "name": "Holy Attack Power Up +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001800,
+    "stack_group": "Holy Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 2
+  },
+  {
+    "ids": [
+      7001802
+    ],
+    "name": "Holy Attack Power Up +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001800,
+    "stack_group": "Holy Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 3
+  },
+  {
+    "ids": [
+      6001800,
+      7001803
+    ],
+    "name": "Holy Attack Power Up +3",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001800,
+    "stack_group": "Holy Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 4
+  },
+  {
+    "ids": [
+      6001801,
+      7001804
+    ],
+    "name": "Holy Attack Power Up +4",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001800,
+    "stack_group": "Holy Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 5
+  },
+  {
+    "ids": [
+      7001700
+    ],
+    "name": "Lightning Attack Power Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001700,
+    "stack_group": "Lightning Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001701
+    ],
+    "name": "Lightning Attack Power Up +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001700,
+    "stack_group": "Lightning Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 2
+  },
+  {
+    "ids": [
+      7001702
+    ],
+    "name": "Lightning Attack Power Up +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001700,
+    "stack_group": "Lightning Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 3
+  },
+  {
+    "ids": [
+      6001700,
+      7001703
+    ],
+    "name": "Lightning Attack Power Up +3",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001700,
+    "stack_group": "Lightning Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 4
+  },
+  {
+    "ids": [
+      6001701,
+      7001704
+    ],
+    "name": "Lightning Attack Power Up +4",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001700,
+    "stack_group": "Lightning Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 5
+  },
+  {
+    "ids": [
+      7001500
+    ],
+    "name": "Magic Attack Power Up",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001500,
+    "stack_group": "Magic Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 1
+  },
+  {
+    "ids": [
+      7001501
+    ],
+    "name": "Magic Attack Power Up +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001500,
+    "stack_group": "Magic Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 2
+  },
+  {
+    "ids": [
+      7001502
+    ],
+    "name": "Magic Attack Power Up +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7001500,
+    "stack_group": "Magic Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 3
+  },
+  {
+    "ids": [
+      6001500,
+      7001503
+    ],
+    "name": "Magic Attack Power Up +3",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001500,
+    "stack_group": "Magic Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 4
+  },
+  {
+    "ids": [
+      6001501,
+      7001504
+    ],
+    "name": "Magic Attack Power Up +4",
+    "debuff": false,
+    "deep": true,
+    "stacks": true,
+    "stack_id": 7001500,
+    "stack_group": "Magic Attack Power Up",
+    "category": "Offensive",
+    "display_group": "[Element] Attack Power Up",
+    "level": 5
+  },
+  {
+    "ids": [
+      6600100,
+      7600100
+    ],
+    "name": "Madness in Vicinity Improves Attack Power",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6600100,
+    "stack_group": "Madness in Vicinity Improves Attack Power",
+    "category": "Offensive",
+    "display_group": "[Status] in Vicinity Improves Attack Power",
+    "level": 1
+  },
+  {
+    "ids": [
+      6600101,
+      7600110
+    ],
+    "name": "Madness in Vicinity Improves Attack Power +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6600100,
+    "stack_group": "Madness in Vicinity Improves Attack Power",
+    "category": "Offensive",
+    "display_group": "[Status] in Vicinity Improves Attack Power",
+    "level": 2
+  },
+  {
+    "ids": [
+      7260800,
+      7260802
+    ],
+    "name": "Poison & Rot in Vicinity Increases Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7260800,
+    "category": "Offensive",
+    "display_group": "[Status] in Vicinity Improves Attack Power"
+  },
+  {
+    "ids": [
+      6600000,
+      7600000
+    ],
+    "name": "Sleep in Vicinity Improves Attack Power",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6600000,
+    "stack_group": "Sleep in Vicinity Improves Attack Power",
+    "category": "Offensive",
+    "display_group": "[Status] in Vicinity Improves Attack Power",
+    "level": 1
+  },
+  {
+    "ids": [
+      6600001,
+      7600010
+    ],
+    "name": "Sleep in Vicinity Improves Attack Power +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6600000,
+    "stack_group": "Sleep in Vicinity Improves Attack Power",
+    "category": "Offensive",
+    "display_group": "[Status] in Vicinity Improves Attack Power",
+    "level": 2
+  },
+  {
+    "ids": [
+      7260400
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7260400,
+    "stack_group": "Attack power up when facing frostbite-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 1
+  },
+  {
+    "ids": [
+      6260400,
+      7260401
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7260400,
+    "stack_group": "Attack power up when facing frostbite-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 2
+  },
+  {
+    "ids": [
+      6260401,
+      7260402
+    ],
+    "name": "Attack power up when facing frostbite-afflicted enemy +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7260400,
+    "stack_group": "Attack power up when facing frostbite-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 3
+  },
+  {
+    "ids": [
+      7260000
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7260000,
+    "stack_group": "Attack power up when facing poison-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 1
+  },
+  {
+    "ids": [
+      6260000,
+      7260001
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7260000,
+    "stack_group": "Attack power up when facing poison-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 2
+  },
+  {
+    "ids": [
+      6260001,
+      7260002
+    ],
+    "name": "Attack power up when facing poison-afflicted enemy +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7260000,
+    "stack_group": "Attack power up when facing poison-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 3
+  },
+  {
+    "ids": [
+      7260300
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7260300,
+    "stack_group": "Attack power up when facing scarlet rot-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 1
+  },
+  {
+    "ids": [
+      6260300,
+      7260301
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7260300,
+    "stack_group": "Attack power up when facing scarlet rot-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 2
+  },
+  {
+    "ids": [
+      6260301,
+      7260302
+    ],
+    "name": "Attack power up when facing scarlet rot-afflicted enemy +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7260300,
+    "stack_group": "Attack power up when facing scarlet rot-afflicted enemy",
+    "category": "Offensive",
+    "display_group": "Attack power up when facing [Status]-afflicted enemy",
+    "level": 3
+  },
+  {
+    "ids": [
+      7044400
+    ],
+    "name": "Improved Bestial Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044400,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7044600
+    ],
+    "name": "Improved Dragon Communion Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044600,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7044100
+    ],
+    "name": "Improved Dragon Cult Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044100,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7044500
+    ],
+    "name": "Improved Frenzied Flame Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044500,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7044000
+    ],
+    "name": "Improved Fundamentalist Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044000,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7044200
+    ],
+    "name": "Improved Giants' Flame Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044200,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7044300
+    ],
+    "name": "Improved Godslayer Incantations",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7044300,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Incantations"
+  },
+  {
+    "ids": [
+      7043300
+    ],
+    "name": "Improved Carian Sword Sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043300,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7043600
+    ],
+    "name": "Improved Crystalian sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043600,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7043400
+    ],
+    "name": "Improved Glintblade Sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043400,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7043700
+    ],
+    "name": "Improved Gravity Sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043700,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7043500
+    ],
+    "name": "Improved Invisibility Sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043500,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7043200
+    ],
+    "name": "Improved Stonedigger Sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043200,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7043800
+    ],
+    "name": "Improved Thorn Sorcery",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7043800,
+    "category": "Offensive",
+    "display_group": "Improved [Spell School] Sorcery"
+  },
+  {
+    "ids": [
+      7040500
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040500,
+    "stack_group": "Improved Glintstone and Gravity Stone Damage",
+    "category": "Offensive",
+    "display_group": "Improved [Throwable] Damage",
+    "level": 1
+  },
+  {
+    "ids": [
+      6040500,
+      7040501
+    ],
+    "name": "Improved Glintstone and Gravity Stone Damage +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7040500,
+    "stack_group": "Improved Glintstone and Gravity Stone Damage",
+    "category": "Offensive",
+    "display_group": "Improved [Throwable] Damage",
+    "level": 2
+  },
+  {
+    "ids": [
+      7040400
+    ],
+    "name": "Improved Throwing Knife Damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040400,
+    "stack_group": "Improved Throwing Knife Damage",
+    "category": "Offensive",
+    "display_group": "Improved [Throwable] Damage",
+    "level": 1
+  },
+  {
+    "ids": [
+      6040400,
+      7040401
+    ],
+    "name": "Improved Throwing Knife Damage +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7040400,
+    "stack_group": "Improved Throwing Knife Damage",
+    "category": "Offensive",
+    "display_group": "Improved [Throwable] Damage",
+    "level": 2
+  },
+  {
+    "ids": [
+      7040300
+    ],
+    "name": "Improved Throwing Pot Damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7040300,
+    "stack_group": "Improved Throwing Pot Damage",
+    "category": "Offensive",
+    "display_group": "Improved [Throwable] Damage",
+    "level": 1
+  },
+  {
+    "ids": [
+      6040300,
+      7040301
+    ],
+    "name": "Improved Throwing Pot Damage +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7040300,
+    "stack_group": "Improved Throwing Pot Damage",
+    "category": "Offensive",
+    "display_group": "Improved [Throwable] Damage",
+    "level": 2
+  },
+  {
+    "ids": [
+      7331000,
+      8161000
+    ],
+    "name": "Improved Axe Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331000,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7332400,
+      8162400
+    ],
+    "name": "Improved Bow Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7332400,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7332100,
+      8162100
+    ],
+    "name": "Improved Claw Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7332100,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330300,
+      8160300
+    ],
+    "name": "Improved Colossal Sword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330300,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7332300,
+      8162300
+    ],
+    "name": "Improved Colossal Weapon Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7332300,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330500,
+      8160500
+    ],
+    "name": "Improved Curved Greatsword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330500,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330400,
+      8160400
+    ],
+    "name": "Improved Curved Sword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330400,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330000,
+      8160000
+    ],
+    "name": "Improved Dagger Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330000,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7332000,
+      8162000
+    ],
+    "name": "Improved Fist Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7332000,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331400,
+      8161400
+    ],
+    "name": "Improved Flail Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331400,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331300,
+      8161300
+    ],
+    "name": "Improved Great Hammer Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331300,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331700,
+      8161700
+    ],
+    "name": "Improved Great Spear Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331700,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331100,
+      8161100
+    ],
+    "name": "Improved Greataxe Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331100,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330200,
+      8160200
+    ],
+    "name": "Improved Greatsword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330200,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331800,
+      8161800
+    ],
+    "name": "Improved Halberd Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331800,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331200,
+      8161200
+    ],
+    "name": "Improved Hammer Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331200,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330900,
+      8160900
+    ],
+    "name": "Improved Heavy Thrusting Sword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330900,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330600,
+      8160600
+    ],
+    "name": "Improved Katana Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330600,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331900,
+      8161900
+    ],
+    "name": "Improved Reaper Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331900,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7331500,
+      8161500
+    ],
+    "name": "Improved Spear Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7331500,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330100,
+      8160100
+    ],
+    "name": "Improved Straight Sword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330100,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330800,
+      8160800
+    ],
+    "name": "Improved Thrusting Sword Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330800,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7330700,
+      8160700
+    ],
+    "name": "Improved Twinblade Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7330700,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7332200,
+      8162200
+    ],
+    "name": "Improved Whip Attack Power",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7332200,
+    "category": "Offensive",
+    "display_group": "Improved [Weapon Type] Attack Power"
+  },
+  {
+    "ids": [
+      7081000
+    ],
+    "name": "Improved Attack Power with 3+ Axes Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081000,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      13002,
+      7082400
+    ],
+    "name": "Improved Attack Power with 3+ Bows Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082400,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7082100
+    ],
+    "name": "Improved Attack Power with 3+ Claws Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082100,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080300
+    ],
+    "name": "Improved Attack Power with 3+ Colossal Swords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080300,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7082300
+    ],
+    "name": "Improved Attack Power with 3+ Colossal Weapons Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082300,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080500
+    ],
+    "name": "Improved Attack Power with 3+ Curved Greatswords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080500,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080400
+    ],
+    "name": "Improved Attack Power with 3+ Curved Swords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080400,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080000
+    ],
+    "name": "Improved Attack Power with 3+ Daggers Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080000,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7082000
+    ],
+    "name": "Improved Attack Power with 3+ Fists Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082000,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081400
+    ],
+    "name": "Improved Attack Power with 3+ Flails Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081400,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081300
+    ],
+    "name": "Improved Attack Power with 3+ Great Hammers Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081300,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081700
+    ],
+    "name": "Improved Attack Power with 3+ Great Spears Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081700,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081100
+    ],
+    "name": "Improved Attack Power with 3+ Greataxes Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081100,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080200
+    ],
+    "name": "Improved Attack Power with 3+ Greatswords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080200,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081800
+    ],
+    "name": "Improved Attack Power with 3+ Halberds Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081800,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081200
+    ],
+    "name": "Improved Attack Power with 3+ Hammers Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081200,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080900
+    ],
+    "name": "Improved Attack Power with 3+ Heavy Thrusting Swords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080900,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080600
+    ],
+    "name": "Improved Attack Power with 3+ Katana Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080600,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081900
+    ],
+    "name": "Improved Attack Power with 3+ Reapers Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081900,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7081500
+    ],
+    "name": "Improved Attack Power with 3+ Spears Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7081500,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080100
+    ],
+    "name": "Improved Attack Power with 3+ Straight Swords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080100,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080800
+    ],
+    "name": "Improved Attack Power with 3+ Thrusting Swords Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080800,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7080700
+    ],
+    "name": "Improved Attack Power with 3+ Twinblades Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7080700,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7082200
+    ],
+    "name": "Improved Attack Power with 3+ Whips Equipped",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7082200,
+    "category": "Offensive",
+    "display_group": "Improved Attack Power with 3+ [Weapons] Equipped"
+  },
+  {
+    "ids": [
+      7006000,
+      7006001,
+      8300100
+    ],
+    "name": "Improved Stance-Breaking when Two-Handing",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7006000,
+    "category": "Offensive",
+    "display_group": "Improved Stance Breaking"
+  },
+  {
+    "ids": [
+      7006100,
+      7006101,
+      8310100
+    ],
+    "name": "Improved Stance-Breaking when Wielding Two Armaments",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7006100,
+    "category": "Offensive",
+    "display_group": "Improved Stance Breaking"
+  },
+  {
+    "ids": [
+      12001,
+      7030600
+    ],
+    "name": "Art gauge charged from successful guarding",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7030600,
+    "stack_group": "Art gauge charged from successful guarding",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6030600,
+      7030610
+    ],
+    "name": "Art gauge charged from successful guarding +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7030600,
+    "stack_group": "Art gauge charged from successful guarding",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      18001,
+      7030800
+    ],
+    "name": "Art gauge fills moderately upon critical hit",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7030800,
+    "stack_group": "Art gauge fills moderately upon critical hit",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6030800,
+      7030810
+    ],
+    "name": "Art gauge fills moderately upon critical hit +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7030800,
+    "stack_group": "Art gauge fills moderately upon critical hit",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000800
+    ],
+    "name": "Character Skill Cooldown Reduction +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000800,
+    "stack_group": "Character Skill Cooldown Reduction",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000801
+    ],
+    "name": "Character Skill Cooldown Reduction +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000800,
+    "stack_group": "Character Skill Cooldown Reduction",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000802
+    ],
+    "name": "Character Skill Cooldown Reduction +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000800,
+    "stack_group": "Character Skill Cooldown Reduction",
+    "category": "Regen",
+    "level": 3
+  },
+  {
+    "ids": [
+      7035100
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7035100,
+    "stack_group": "Critical Hit Boosts Stamina Recovery Speed",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6035100,
+      7035110
+    ],
+    "name": "Critical Hit Boosts Stamina Recovery Speed +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7035100,
+    "stack_group": "Critical Hit Boosts Stamina Recovery Speed",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      7090000
+    ],
+    "name": "Defeating enemies fills more of the Art gauge",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7090000,
+    "stack_group": "Defeating enemies fills more of the Art gauge",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6090000,
+      7090010
+    ],
+    "name": "Defeating enemies fills more of the Art gauge +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7090000,
+    "stack_group": "Defeating enemies fills more of the Art gauge",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      7090100
+    ],
+    "name": "Defeating enemies restores HP for allies but not for self",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7090100,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7035400,
+      7035410
+    ],
+    "name": "Gesture \"Crossed Legs\" Builds Up Madness",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7035400,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7036100
+    ],
+    "name": "HP Recovery From Successful Guarding",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7036100,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7001100
+    ],
+    "name": "HP Restoration",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7001100,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7160000
+    ],
+    "name": "HP Restoration upon Thrusting Counterattack",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7160000,
+    "stack_group": "HP Restoration upon Thrusting Counterattack",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6160000,
+      7160001
+    ],
+    "name": "HP Restoration upon Thrusting Counterattack +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7160000,
+    "stack_group": "HP Restoration upon Thrusting Counterattack",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      18000,
+      7030200
+    ],
+    "name": "HP restored when using cured meats, medicinal boluses, etc.",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7030200,
+    "stack_group": "HP restored when using cured meats, medicinal boluses, etc.",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6030200,
+      7030210
+    ],
+    "name": "HP restored when using medicinal boluses, etc. +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7030200,
+    "stack_group": "HP restored when using cured meats, medicinal boluses, etc.",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      6611400,
+      7611400
+    ],
+    "name": "Improved Flask HP Restoration",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6611400,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7035500,
+      7035510
+    ],
+    "name": "Madness Continually Recovers FP",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7035500,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7005600
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7005600,
+    "stack_group": "Partial HP Restoration upon Post-Damage Attacks",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      6005600,
+      7005601
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks +1",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7005600,
+    "stack_group": "Partial HP Restoration upon Post-Damage Attacks",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      6005601,
+      7005602
+    ],
+    "name": "Partial HP Restoration upon Post-Damage Attacks +2",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 7005600,
+    "stack_group": "Partial HP Restoration upon Post-Damage Attacks",
+    "category": "Regen",
+    "level": 3
+  },
+  {
+    "ids": [
+      7050000
+    ],
+    "name": "Raised stamina recovery for nearby allies, but not for self",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7050000,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      14002,
+      7012200
+    ],
+    "name": "Slowly restore HP for self and nearby allies when HP is low",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7012200,
+    "category": "Regen"
+  },
+  {
+    "ids": [
+      7000900
+    ],
+    "name": "Ultimate Art Gauge +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000900,
+    "stack_group": "Ultimate Art Gauge",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      7000901
+    ],
+    "name": "Ultimate Art Gauge +2",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000900,
+    "stack_group": "Ultimate Art Gauge",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      7000902
+    ],
+    "name": "Ultimate Art Gauge +3",
+    "debuff": false,
+    "deep": false,
+    "stacks": true,
+    "stack_id": 7000900,
+    "stack_group": "Ultimate Art Gauge",
+    "category": "Regen",
+    "level": 3
+  },
+  {
+    "ids": [
+      7351000,
+      8600230
+    ],
+    "name": "FP Restoration upon Axe Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351000,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7352400,
+      8600258
+    ],
+    "name": "FP Restoration upon Bow Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7352400,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7352100,
+      8600252
+    ],
+    "name": "FP Restoration upon Claw Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7352100,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350300,
+      8600216
+    ],
+    "name": "FP Restoration upon Colossal Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350300,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7352300,
+      8600256
+    ],
+    "name": "FP Restoration upon Colossal Weapon Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7352300,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350500,
+      8600220
+    ],
+    "name": "FP Restoration upon Curved Greatsword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350500,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350400,
+      8600218
+    ],
+    "name": "FP Restoration upon Curved Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350400,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350000,
+      8600210
+    ],
+    "name": "FP Restoration upon Dagger Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350000,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7352000,
+      8600250
+    ],
+    "name": "FP Restoration upon Fist Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7352000,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351400,
+      8600238
+    ],
+    "name": "FP Restoration upon Flail Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351400,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351300,
+      8600236
+    ],
+    "name": "FP Restoration upon Great Hammer Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351300,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351700,
+      8600244
+    ],
+    "name": "FP Restoration upon Great Spear Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351700,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351100,
+      8600232
+    ],
+    "name": "FP Restoration upon Greataxe Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351100,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350200,
+      8600214
+    ],
+    "name": "FP Restoration upon Greatsword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350200,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351800,
+      8600246
+    ],
+    "name": "FP Restoration upon Halberd Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351800,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351200,
+      8600234
+    ],
+    "name": "FP Restoration upon Hammer Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351200,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350900,
+      8600228
+    ],
+    "name": "FP Restoration upon Heavy Thrusting Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350900,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350600,
+      8600222
+    ],
+    "name": "FP Restoration upon Katana Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350600,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351900,
+      8600248
+    ],
+    "name": "FP Restoration upon Reaper Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351900,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7351500,
+      8600240
+    ],
+    "name": "FP Restoration upon Spear Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7351500,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350100,
+      8600212
+    ],
+    "name": "FP Restoration upon Straight Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350100,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      10000,
+      7036000
+    ],
+    "name": "FP Restoration upon Successive Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7036000,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350800,
+      8600226
+    ],
+    "name": "FP Restoration upon Thrusting Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350800,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7350700,
+      8600224
+    ],
+    "name": "FP Restoration upon Twinblade Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7350700,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7352200,
+      8600254
+    ],
+    "name": "FP Restoration upon Whip Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7352200,
+    "category": "Regen",
+    "display_group": "FP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341000,
+      8600130
+    ],
+    "name": "HP Restoration upon Axe Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341000,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7342400,
+      8600158
+    ],
+    "name": "HP Restoration upon Bow Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7342400,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7342100,
+      8600152
+    ],
+    "name": "HP Restoration upon Claw Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7342100,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340300,
+      8600116
+    ],
+    "name": "HP Restoration upon Colossal Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340300,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7342300,
+      8600156
+    ],
+    "name": "HP Restoration upon Colossal Weapon Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7342300,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340500,
+      8600120
+    ],
+    "name": "HP Restoration upon Curved Greatsword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340500,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340400,
+      8600118
+    ],
+    "name": "HP Restoration upon Curved Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340400,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340000,
+      8600110
+    ],
+    "name": "HP Restoration upon Dagger Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340000,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7342000,
+      8600150
+    ],
+    "name": "HP Restoration upon Fist Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7342000,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341400,
+      8600138
+    ],
+    "name": "HP Restoration upon Flail Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341400,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341300,
+      8600136
+    ],
+    "name": "HP Restoration upon Great Hammer Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341300,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341700,
+      8600144
+    ],
+    "name": "HP Restoration upon Great Spear Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341700,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341100,
+      8600132
+    ],
+    "name": "HP Restoration upon Greataxe Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341100,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340200,
+      8600114
+    ],
+    "name": "HP Restoration upon Greatsword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340200,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341800,
+      8600146
+    ],
+    "name": "HP Restoration upon Halberd Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341800,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341200,
+      8600134
+    ],
+    "name": "HP Restoration upon Hammer Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341200,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340900,
+      8600128
+    ],
+    "name": "HP Restoration upon Heavy Thrusting Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340900,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340600,
+      8600122
+    ],
+    "name": "HP Restoration upon Katana Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340600,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341900,
+      8600148
+    ],
+    "name": "HP Restoration upon Reaper Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341900,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7341500,
+      8600140
+    ],
+    "name": "HP Restoration upon Spear Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7341500,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340100,
+      8600112
+    ],
+    "name": "HP Restoration upon Straight Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340100,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340800,
+      8600126
+    ],
+    "name": "HP Restoration upon Thrusting Sword Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340800,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7340700,
+      8600124
+    ],
+    "name": "HP Restoration upon Twinblade Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7340700,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7342200,
+      8600154
+    ],
+    "name": "HP Restoration upon Whip Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7342200,
+    "category": "Regen",
+    "display_group": "HP Restoration upon [Weapon Type] Attacks"
+  },
+  {
+    "ids": [
+      7100100
+    ],
+    "name": "Stamina Recovery upon Landing Attacks",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7100100,
+    "stack_group": "Stamina Recovery upon Landing Attacks",
+    "category": "Regen",
+    "level": 1
+  },
+  {
+    "ids": [
+      7100110
+    ],
+    "name": "Stamina Recovery upon Landing Attacks +1",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7100100,
+    "stack_group": "Stamina Recovery upon Landing Attacks",
+    "category": "Regen",
+    "level": 2
+  },
+  {
+    "ids": [
+      6624500,
+      7624500
+    ],
+    "name": "Acid Spraymist in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6624500,
+    "category": "Starting Bonus",
+    "display_group": "[Perfume] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122000
+    ],
+    "name": "Bewitching Branches in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122000,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      6624300,
+      7624300
+    ],
+    "name": "Bloodboil Aromatic in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6624300,
+    "category": "Starting Bonus",
+    "display_group": "[Perfume] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621200,
+      7621200
+    ],
+    "name": "Cerulean Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621200,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622600,
+      7622600
+    ],
+    "name": "Cerulean Hidden Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622600,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7123700
+    ],
+    "name": "Changes compatible armament's skill to Blood Blade at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123700,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123900
+    ],
+    "name": "Changes compatible armament's skill to Chilling Mist at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123900,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7124600
+    ],
+    "name": "Changes compatible armament's skill to Determination at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7124600,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7124300
+    ],
+    "name": "Changes compatible armament's skill to Endure at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7124300,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123000
+    ],
+    "name": "Changes compatible armament's skill to Eruption at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123000,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7122900
+    ],
+    "name": "Changes compatible armament's skill to Flaming Strike at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122900,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7122700
+    ],
+    "name": "Changes compatible armament's skill to Glintblade Phalanx at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122700,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7122800
+    ],
+    "name": "Changes compatible armament's skill to Gravitas at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122800,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7124000
+    ],
+    "name": "Changes compatible armament's skill to Hoarfrost Stomp at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7124000,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123200
+    ],
+    "name": "Changes compatible armament's skill to Lightning Slash at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123200,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123600
+    ],
+    "name": "Changes compatible armament's skill to Poison Moth Flight at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123600,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123500
+    ],
+    "name": "Changes compatible armament's skill to Poisonous Mist at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123500,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7124400
+    ],
+    "name": "Changes compatible armament's skill to Quickstep at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7124400,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123300
+    ],
+    "name": "Changes compatible armament's skill to Sacred Blade at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123300,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123800
+    ],
+    "name": "Changes compatible armament's skill to Seppuku at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123800,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7124500
+    ],
+    "name": "Changes compatible armament's skill to Storm Stomp at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7124500,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7123100
+    ],
+    "name": "Changes compatible armament's skill to Thunderbolt at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7123100,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      7124100
+    ],
+    "name": "Changes compatible armament's skill to White Shadow's Lure at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7124100,
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's skill to [Skill] at start of expedition"
+  },
+  {
+    "ids": [
+      6621400,
+      7621400
+    ],
+    "name": "Crimson Bubbletear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621400,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621100,
+      7621100
+    ],
+    "name": "Crimson Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621100,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621600,
+      7621600
+    ],
+    "name": "Crimsonburst Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621600,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621000,
+      7621000
+    ],
+    "name": "Crimsonspill Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621000,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622500,
+      7622500
+    ],
+    "name": "Crimsonwhorl Bubbletear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622500,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121600
+    ],
+    "name": "Crystal Darts in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121600,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122200
+    ],
+    "name": "Fire Grease in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122200,
+    "category": "Starting Bonus",
+    "display_group": "[Grease] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121100
+    ],
+    "name": "Fire Pots in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121100,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622800,
+      7622800
+    ],
+    "name": "Flame-Shrouding Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622800,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121800
+    ],
+    "name": "Glintstone Scraps in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121800,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121900
+    ],
+    "name": "Gravity Stone Chunks in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121900,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621700,
+      7621700
+    ],
+    "name": "Greenburst Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621700,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122500
+    ],
+    "name": "Holy Grease in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122500,
+    "category": "Starting Bonus",
+    "display_group": "[Grease] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121400
+    ],
+    "name": "Holy Water Pots in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121400,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6623100,
+      7623100
+    ],
+    "name": "Holy-Shrouding Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6623100,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6624200,
+      7624200
+    ],
+    "name": "Ironjar Aromatic in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6624200,
+    "category": "Starting Bonus",
+    "display_group": "[Perfume] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622300,
+      7622300
+    ],
+    "name": "Leaden Hardtear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622300,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122400
+    ],
+    "name": "Lightning Grease in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122400,
+    "category": "Starting Bonus",
+    "display_group": "[Grease] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121300
+    ],
+    "name": "Lightning Pots in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121300,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6623000,
+      7623000
+    ],
+    "name": "Lightning-Shrouding Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6623000,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122300
+    ],
+    "name": "Magic Grease in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122300,
+    "category": "Starting Bonus",
+    "display_group": "[Grease] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121200
+    ],
+    "name": "Magic Pots in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121200,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622900,
+      7622900
+    ],
+    "name": "Magic-Shrouding Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622900,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621500,
+      7621500
+    ],
+    "name": "Opaline Bubbletear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621500,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621800,
+      7621800
+    ],
+    "name": "Opaline Hardtear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621800,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6624400,
+      7624400
+    ],
+    "name": "Poison Spraymist in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6624400,
+    "category": "Starting Bonus",
+    "display_group": "[Perfume] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121500
+    ],
+    "name": "Poisonbone Darts in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121500,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622200,
+      7622200
+    ],
+    "name": "Ruptured Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622200,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122600
+    ],
+    "name": "Shield Grease in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122600,
+    "category": "Starting Bonus",
+    "display_group": "[Grease] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121000
+    ],
+    "name": "Small Pouch in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121000,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      6624100,
+      7624100
+    ],
+    "name": "Spark Aromatic in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6624100,
+    "category": "Starting Bonus",
+    "display_group": "[Perfume] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6621300,
+      7621300
+    ],
+    "name": "Speckled Hardtear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621300,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622000,
+      7622000
+    ],
+    "name": "Spiked Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622000,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7126000,
+      7126001,
+      7126002
+    ],
+    "name": "Starlight Shards in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7126000,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      7120100
+    ],
+    "name": "Starting armament deals fire damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120100,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament deal [Element] damage"
+  },
+  {
+    "ids": [
+      7120300
+    ],
+    "name": "Starting armament deals holy damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120300,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament deal [Element] damage"
+  },
+  {
+    "ids": [
+      7120200
+    ],
+    "name": "Starting armament deals lightning damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120200,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament deal [Element] damage"
+  },
+  {
+    "ids": [
+      7120000
+    ],
+    "name": "Starting armament deals magic damage",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120000,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament deal [Element] damage"
+  },
+  {
+    "ids": [
+      7120600
+    ],
+    "name": "Starting armament inflicts blood loss",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120600,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament inflicts [Status]"
+  },
+  {
+    "ids": [
+      7120400
+    ],
+    "name": "Starting armament inflicts frost",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120400,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament inflicts [Status]"
+  },
+  {
+    "ids": [
+      7120500
+    ],
+    "name": "Starting armament inflicts poison",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120500,
+    "category": "Starting Bonus",
+    "display_group": "Starting armament inflicts [Status]"
+  },
+  {
+    "ids": [
+      6622700,
+      7622700
+    ],
+    "name": "Stonebarb Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622700,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7120900
+    ],
+    "name": "Stonesword Key in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7120900,
+    "category": "Starting Bonus"
+  },
+  {
+    "ids": [
+      6621900,
+      7621900
+    ],
+    "name": "Thorny Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6621900,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7121700
+    ],
+    "name": "Throwing Daggers in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7121700,
+    "category": "Starting Bonus",
+    "display_group": "[Throwable] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622400,
+      7622400
+    ],
+    "name": "Twiggy Cracked Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622400,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6624000,
+      7624000
+    ],
+    "name": "Uplifting Aromatic in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6624000,
+    "category": "Starting Bonus",
+    "display_group": "[Perfume] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      6622100,
+      7622100
+    ],
+    "name": "Windy Crystal Tear in possession at start of expedition",
+    "debuff": false,
+    "deep": true,
+    "stacks": false,
+    "stack_id": 6622100,
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition"
+  },
+  {
+    "ids": [
+      7122100
+    ],
+    "name": "Wraith Calling Bell in possession at start of expedition",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "stack_id": 7122100,
+    "category": "Starting Bonus"
+  }
+]

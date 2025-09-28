@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
-import ChaliceSelection from './components/ChaliceSelection';
+import ChaliceButton from './components/ChaliceButton';
+import ChalicePage from './components/ChalicePage';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
@@ -26,6 +27,7 @@ function App() {
   const [selectedChalices, setSelectedChalices] = useState([]);
   const [desiredEffects, setDesiredEffects] = useState([]);
   const [calculationResult, setCalculationResult] = useState(null);
+  const [showChalices, setShowChalices] = useState(false);
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
@@ -179,19 +181,19 @@ function App() {
     const saveData = JSON.parse(localStorage.getItem('saveData'));
 
     if (!saveData) {
-      addToast('Calculation failed: missing relic data.', 'error');
+      addToast('Calculation failed: Missing relic data.', 'error');
       return;
     }
     if (!selectedCharacter) {
-      addToast('Calculation failed: missing character selection.', 'error');
+      addToast('Calculation failed: Missing character selection.', 'error');
       return;
     }
     if (selectedChalices.length === 0) {
-      addToast('Calculation failed: missing chalice selection.', 'error');
+      addToast('Calculation failed: Missing chalice selection.', 'error');
       return;
     }
     if (desiredEffects.length === 0) {
-      addToast('Calculation failed: no desired effects.', 'error');
+      addToast('Calculation failed: No desired effects.', 'error');
       return;
     }
 
@@ -228,6 +230,7 @@ function App() {
         }))
       };
       setCalculationResult(formattedResult);
+      addToast('Calculation sucessful!', 'success')
     } else {
       setCalculationResult(null);
     }
@@ -266,36 +269,44 @@ function App() {
         <SettingsIcon />
       </button>
 
-      <h1>Nightreign Build Calculator</h1>
+      <div className="content-wrapper">
+        <h1>Nightreign Build Calculator</h1>
+        <div className="card-container">
+          <CharacterSelection
+            selectedCharacter={selectedCharacter}
+            onCharacterSelect={handleCharacterSelect}
+            onClear={handleClearCharacter}
+          />
 
-      <div className="card-container">
-        <CharacterSelection
-          selectedCharacter={selectedCharacter}
-          onCharacterSelect={handleCharacterSelect}
-          onClear={handleClearCharacter}
-        />
+          <ChaliceButton
+            selectedCharacter={selectedCharacter}
+            selectedChalices={selectedChalices}
+            onClick={() => setShowChalices(true)}
+          />
 
-        <ChaliceSelection
-          selectedCharacter={selectedCharacter}
-          selectedChalices={selectedChalices}
-          onChaliceToggle={handleChaliceToggle}
-          onSelectAll={handleSelectAllChalices}
-          onClearAll={handleClearAllChalices}
-        />
+          <DesiredEffects
+            desiredEffects={desiredEffects}
+            onChange={setDesiredEffects}
+            selectedCharacter={selectedCharacter}
+            handleCalculate={handleCalculate}
+            setHasSavedBuilds={setHasSavedBuilds}
+          />
 
-        <DesiredEffects
-          desiredEffects={desiredEffects}
-          onChange={setDesiredEffects}
-          selectedCharacter={selectedCharacter}
-          handleCalculate={handleCalculate}
-          setHasSavedBuilds={setHasSavedBuilds}
-        />
-
-        <RelicResults
-          selectedChalices={selectedChalices}
-          calculationResult={calculationResult}
-        />
+          <RelicResults
+            selectedChalices={selectedChalices}
+            calculationResult={calculationResult}
+          />
+        </div>
       </div>
+
+      {showChalices && <ChalicePage
+        onBack={() => setShowChalices(false)}
+        selectedCharacter={selectedCharacter}
+        selectedChalices={selectedChalices}
+        onChaliceToggle={handleChaliceToggle}
+        onSelectAll={handleSelectAllChalices}
+        onClearAll={handleClearAllChalices}
+      />}
 
       {showRelics && <RelicsPage
         onBack={() => setShowRelics(false)}
