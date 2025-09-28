@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
 import effects from '../data/relicEffects.json';
 import { CloseIcon } from './Icons';
-import RelicFilterCard from './RelicFilterCard';
+import RelicFilters from './RelicFilters';
 
 const createEffectMap = (showDeepOfNight) => {
   const effectMap = new Map();
@@ -162,7 +162,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
         <h2>Your Relics</h2>
         <div className="relic-color-filters">
           {Object.keys(relicColorFilters).map(color => (
-            <RelicFilterCard
+            <RelicFilters
               key={color}
               color={color}
               isChecked={relicColorFilters[color]}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RelicFilterCard = ({ color, isChecked, onChange }) => {
+const RelicFilters = ({ color, isChecked, onChange }) => {
   return (
     <div
       className={`color-filter-card color-${color} ${isChecked ? 'checked' : ''}`}
@@ -17,4 +17,4 @@ const RelicFilterCard = ({ color, isChecked, onChange }) => {
   );
 };
 
-export default RelicFilterCard;
+export default RelicFilters;
