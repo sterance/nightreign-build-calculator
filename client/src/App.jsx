@@ -51,6 +51,8 @@ function App() {
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
   const [toasts, setToasts] = useState([]);
   const [effectMap, setEffectMap] = useState(new Map());
+  const [showDeepConfirmation, setShowDeepConfirmation] = useState(false);
+  const [pendingDeepOfNight, setPendingDeepOfNight] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
@@ -66,6 +68,8 @@ function App() {
     const newEffectMap = createEffectMap(showDeepOfNight);
     console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
+    setCalculationResult(null);
+    setDesiredEffects([]);
   }, [showDeepOfNight]);
 
   useEffect(() => {
@@ -165,13 +169,18 @@ function App() {
 
     const formData = new FormData();
     formData.append('savefile', file);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
       const response = await fetch(`${apiUrl}/upload`, {
         method: 'POST',
         body: formData,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         const data = await response.json();
@@ -192,8 +201,12 @@ function App() {
         throw new Error(errorText || 'Failed to process file');
       }
     } catch (error) {
-      console.error('Upload failed:', error);
-      addToast('Save file failed to upload.', 'error');
+      if (error.name === 'AbortError') {
+        addToast('Save file upload to failed.\nServer is busy', 'error');
+      } else {
+        console.error('Upload failed:', error);
+        addToast('Save file failed to upload.\nUnknown error', 'error');
+      }
     } finally {
       setIsUploading(false);
     }
@@ -204,19 +217,19 @@ function App() {
       const saveData = JSON.parse(localStorage.getItem('saveData'));
 
       if (!saveData) {
-        addToast('Calculation failed: Missing relic data.', 'error');
+        addToast('Calculation failed.\nMissing save data.', 'error');
         return;
       }
       if (!selectedCharacter) {
-        addToast('Calculation failed: Missing character selection.', 'error');
+        addToast('Calculation failed.\nMissing character selection.', 'error');
         return;
       }
       if (selectedChalices.length === 0) {
-        addToast('Calculation failed: Missing chalice selection.', 'error');
+        addToast('Calculation failed.\nMissing chalice selection.', 'error');
         return;
       }
       if (desiredEffects.length === 0) {
-        addToast('Calculation failed: No desired effects.', 'error');
+        addToast('Calculation failed.\nNo desired effects.', 'error');
         return;
       }
 
@@ -226,7 +239,7 @@ function App() {
       );
 
       if (!characterSaveData) {
-        addToast('No relic data found for the selected character.', 'error');
+        addToast('No relics found for the selected save name.', 'error');
         return;
       }
 
@@ -238,12 +251,13 @@ function App() {
         effectMap
       );
 
-      if (result) {
-        const formattedResult = {
-          "chalice name": result.chalice.name,
-          "chalice slots": result.chalice.slots,
-          "chalice description": result.chalice.description,
-          "relics": result.relics.map(relic => ({
+      if (result && result.length > 0) {
+        // format all results for display
+        const formattedResults = result.map(bestResult => ({
+          "chalice name": bestResult.chalice.name,
+          "chalice slots": bestResult.chalice.slots,
+          "chalice description": bestResult.chalice.description,
+          "relics": bestResult.relics.map(relic => ({
             name: relic['relic name'],
             color: relic.color,
             effects: {
@@ -252,16 +266,16 @@ function App() {
               "effect 3": relic['effect 3'] || "",
             }
           }))
-        };
-        setCalculationResult(formattedResult);
-        addToast('Calculation successful!', 'success');
+        }));
+        setCalculationResult(formattedResults);
+        addToast(`Calculation successful!\n${result.length} relic combo${result.length === 1 ? '' : 's'} found (${result.length === 1 ? 'with' : 'tied for'} max score)`, 'success');
       } else {
         setCalculationResult(null);
         addToast('No valid relic combination found for the selected criteria.', 'error');
       }
     } catch (error) {
       console.error('Calculation error:', error);
-      addToast(`Calculation failed: ${error.message}`, 'error');
+      addToast(`Calculation failed:\n${error.message}`, 'error');
       setCalculationResult(null);
     }
   };
@@ -284,12 +298,34 @@ function App() {
     setDesiredEffects(buildEffects);
   };
 
+  const handleDeepOfNightToggle = () => {
+    const newValue = !showDeepOfNight;
+    const hasData = calculationResult || desiredEffects.length > 0;
+    
+    if (hasData) {
+      setPendingDeepOfNight(newValue);
+      setShowDeepConfirmation(true);
+    } else {
+      setShowDeepOfNight(newValue);
+    }
+  };
+
+  const confirmDeepOfNightToggle = () => {
+    setShowDeepOfNight(pendingDeepOfNight);
+    setShowDeepConfirmation(false);
+  };
+
+  const cancelDeepOfNightToggle = () => {
+    setShowDeepConfirmation(false);
+    setPendingDeepOfNight(false);
+  };
+
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
       <div
         className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
-        onClick={() => setShowDeepOfNight(prev => !prev)}
+        onClick={handleDeepOfNightToggle}
       >
         Deep of Night
       </div>
@@ -329,6 +365,7 @@ function App() {
           <RelicResults
             selectedChalices={selectedChalices}
             calculationResult={calculationResult}
+            showDeepOfNight={showDeepOfNight}
           />
         </div>
       </div>
@@ -419,6 +456,24 @@ function App() {
           onChange={handleFileChange}
         />
       </div>
+
+      {showDeepConfirmation && (
+        <div className="confirmation-backdrop">
+          <div className="confirmation-dialog">
+            <p>
+              Changing the Deep of Night setting will clear your current desired effects and calculation results.
+            </p>
+            <div className="confirmation-buttons">
+              <button className="confirm-button" onClick={confirmDeepOfNightToggle}>
+                Continue
+              </button>
+              <button className="cancel-button" onClick={cancelDeepOfNightToggle}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -10,11 +10,15 @@ import baseRelicEffects from '../data/relicEffects.json';
  * @param {Object} characterRelicData - The relic data for the selected character from the user's save file.
  * @param {Array} selectedChalices - An array of names of the selected chalices.
  * @param {string} selectedNightfarer - The name of the selected Nightfarer (e.g., 'wylder').
- * @returns {Object|null} - The best relic combination found, or null if none could be determined.
+ * @returns {Array|null} - Array of best relic combinations with max score, or null if none could be determined.
  */
-export function calculateBestRelics(desiredEffects, characterRelicData, selectedChalices, selectedNightfarer, effectMap) {
+export function calculateBestRelics(desiredEffects,
+  characterRelicData,
+  selectedChalices,
+  selectedNightfarer,
+  effectMap) {
+    
   console.log("--- Starting Relic Calculation ---");
-
   // input validation
   if (!desiredEffects || !characterRelicData || !selectedChalices || !selectedNightfarer || !effectMap) {
     console.error('Missing required parameters for calculation:', { desiredEffects, characterRelicData, selectedChalices, selectedNightfarer, effectMap });
@@ -75,8 +79,7 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
     .sort((a, b) => b.score - a.score);
 
   // for each chalice, find the best combination of relics.
-  let bestCombination = null;
-  let highestScore = -Infinity;
+  const allCombinations = [];
 
   const chaliceDataForCharacter = chaliceData[selectedNightfarer];
   if (!chaliceDataForCharacter) {
@@ -84,6 +87,7 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
     return null;
   }
 
+  // first pass: collect all valid combinations
   for (const chaliceName of selectedChalices) {
     const chalice = chaliceDataForCharacter.find(c => c.name === chaliceName);
     if (!chalice) {
@@ -94,16 +98,21 @@ export function calculateBestRelics(desiredEffects, characterRelicData, selected
     const combination = findBestCombinationForChalice(chalice, scoredRelics);
     if (combination) {
       console.log(`Best combination found for ${chalice.name}:`, JSON.parse(JSON.stringify(combination)));
-      if (combination.score > highestScore) {
-        highestScore = combination.score;
-        bestCombination = combination;
-      }
+      allCombinations.push(combination);
     } else {
       console.log(`No valid combination found for ${chalice.name}.`);
     }
   }
 
-  return bestCombination;
+  if (allCombinations.length === 0) {
+    return null;
+  }
+
+  // second pass: find maximum score and return all combinations with that score
+  const maxScore = Math.max(...allCombinations.map(combo => combo.score));
+  const bestCombinations = allCombinations.filter(combo => combo.score === maxScore);
+
+  return bestCombinations;
 }
 
 /**

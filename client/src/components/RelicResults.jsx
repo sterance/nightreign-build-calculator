@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon } from './Icons';
 
-const RelicResults = ({ calculationResult }) => {
+const RelicResults = ({ calculationResult, showDeepOfNight }) => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const getImageUrl = (name, type) => {
     const cleanedName = name
@@ -13,7 +14,41 @@ const RelicResults = ({ calculationResult }) => {
     return `/${type}/${cleanedName}.png`;
   };
 
+  // reset index when calculationResult changes (must be before any early returns)
+  React.useEffect(() => {
+    setCurrentIndex(0);
+  }, [calculationResult]);
+
   const isEnabled = !!calculationResult;
+  const isMultipleResults = Array.isArray(calculationResult) && calculationResult.length > 1;
+  const currentResult = Array.isArray(calculationResult) ? calculationResult[currentIndex] : calculationResult;
+  
+  if (!currentResult) {
+    return (
+      <div
+        id="relics-card"
+        className="card disabled"
+        title='No calculation result available.'
+      >
+        <h2>Recommended Relics</h2>
+        <div className="centered-text-container">
+          <p>No calculation result available.</p>
+        </div>
+      </div>
+    );
+  }
+
+  const handlePrevious = () => {
+    setCurrentIndex(prev => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    const maxIndex = Array.isArray(calculationResult) ? calculationResult.length - 1 : 0;
+    setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+  };
+
+  const showLeftArrow = isMultipleResults && currentIndex > 0;
+  const showRightArrow = isMultipleResults && currentIndex < calculationResult.length - 1;
 
   if (!isEnabled) {
     return (
@@ -36,21 +71,39 @@ const RelicResults = ({ calculationResult }) => {
       id="relics-card"
       className="card"
     >
+      {isMultipleResults && (
+        <div className="position-indicator">
+          {currentIndex + 1}/{calculationResult.length}
+        </div>
+      )}
       <div className="relic-result-header">
-        <button className="arrow-button">
+        <button
+          className="arrow-button"
+          onClick={handlePrevious}
+          disabled={!showLeftArrow}
+        >
           <LeftArrowIcon />
         </button>
         <h2>Recommended Relics</h2>
-        <button className="arrow-button">
+        <button
+          className="arrow-button"
+          onClick={handleNext}
+          disabled={!showRightArrow}
+        >
           <RightArrowIcon />
         </button>
       </div>
+      {showDeepOfNight && (
+        <button className="deep-flip">
+          Deep Relics
+        </button>
+      )}
       <div className="relic-result-container">
         <div className="chalice-result-card">
-          <img src={getImageUrl(calculationResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '60px', height: '60px' }} />
-          <span id='chalice-name'>{calculationResult["chalice name"]}</span>
+          <img src={getImageUrl(currentResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '60px', height: '60px' }} />
+          <span id='chalice-name'>{currentResult["chalice name"]}</span>
           <div className="relic-slots-container">
-            {calculationResult["chalice slots"].map((color, index) => (
+            {currentResult["chalice slots"].map((color, index) => (
               <RelicSlot key={index} color={color} />
             ))}
           </div>
@@ -61,7 +114,7 @@ const RelicResults = ({ calculationResult }) => {
             {showTooltip && (
               <div className="info-tooltip">
                 <p>
-                  {calculationResult["chalice description"].split('\n').map((line, i) => (
+                  {currentResult["chalice description"].split('\n').map((line, i) => (
                     <React.Fragment key={i}>
                       {line}
                       <br />
@@ -72,8 +125,8 @@ const RelicResults = ({ calculationResult }) => {
             )}
           </div>
         </div>
-        {calculationResult.relics.map((relic, index) => {
-          const slotColor = calculationResult["chalice slots"][index];
+        {currentResult.relics.map((relic, index) => {
+          const slotColor = currentResult["chalice slots"][index];
           if (relic) {
             return (
               <div className={`relic-result-card color-${slotColor}`} key={index}>

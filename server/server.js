@@ -38,6 +38,14 @@ app.post('/upload', upload.single('savefile'), (req, res) => {
   let saveData = '';
   let errorData = '';
 
+  const timeout = setTimeout(() => {
+    pythonProcess.kill();
+    fs.unlink(filePath, (err) => {
+      if (err) console.error("Error deleting uploaded file on timeout:", err);
+    });
+    res.status(504).json({ error: 'Processing timed out.' });
+  }, 20000); // 20-second timeout
+
   pythonProcess.stdout.on('data', (data) => {
     saveData += data.toString();
   });
@@ -47,6 +55,7 @@ app.post('/upload', upload.single('savefile'), (req, res) => {
   });
 
   pythonProcess.on('close', (code) => {
+    clearTimeout(timeout);
     // clean up the uploaded file
     fs.unlink(filePath, (err) => {
       if (err) console.error("Error deleting uploaded file:", err);
