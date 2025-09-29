@@ -5,7 +5,13 @@ import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon, TrashIcon } from './Icons';
 
-const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds, showDeepOfNight }) => {
+const DesiredEffects = ({
+  desiredEffects,
+  onChange,
+  selectedCharacter,
+  handleCalculate,
+  setHasSavedBuilds,
+  showDeepOfNight }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
   const [isListVisible, setListVisible] = useState(false);
