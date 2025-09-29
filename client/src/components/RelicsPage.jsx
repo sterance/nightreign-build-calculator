@@ -33,15 +33,20 @@ const RelicCard = ({ relic, items, effectMap }) => {
   };
 
   const allEffects = [
-    relic.effect1_id,
-    relic.effect2_id,
-    relic.effect3_id,
-    relic.sec_effect1_id,
-    relic.sec_effect2_id,
-    relic.sec_effect3_id,
+    { id: relic.effect1_id, isSecondary: false },
+    { id: relic.sec_effect1_id, isSecondary: true },
+    { id: relic.effect2_id, isSecondary: false },
+    { id: relic.sec_effect2_id, isSecondary: true },
+    { id: relic.effect3_id, isSecondary: false },
+    { id: relic.sec_effect3_id, isSecondary: true },
   ];
 
-  const validEffectNames = allEffects.map(getEffectName).filter(name => name !== null);
+  const validEffects = allEffects
+    .map(effect => ({
+      name: getEffectName(effect.id),
+      isSecondary: effect.isSecondary
+    }))
+    .filter(effect => effect.name !== null);
 
   const color = relicInfo.color ? relicInfo.color.toLowerCase() : 'white';
   const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
@@ -51,8 +56,13 @@ const RelicCard = ({ relic, items, effectMap }) => {
     <div className={`${relicType}-relic-card color-${color}`}>
       <h4>{relicInfo.name}</h4>
       <ul>
-        {validEffectNames.map((name, index) => (
-          <li key={index}>{name}</li>
+        {validEffects.map((effect, index) => (
+          <li
+            key={index}
+            className={effect.isSecondary ? 'secondary-effect' : ''}
+          >
+            {effect.name}
+          </li>
         ))}
       </ul>
     </div>
@@ -119,7 +129,15 @@ const CharacterRelics = ({ characterData,
   )
 };
 
-const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight, showUnknownRelics, baseRelicColorFilters, deepRelicColorFilters, onBaseRelicColorFilterChange, onDeepRelicColorFilterChange }) => {
+const RelicsPage = ({ onBack,
+  selectedSaveName,
+  onSaveNameSelect,
+  showDeepOfNight,
+  showUnknownRelics,
+  baseRelicColorFilters,
+  deepRelicColorFilters,
+  onBaseRelicColorFilterChange,
+  onDeepRelicColorFilterChange }) => {
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [effectMap, setEffectMap] = useState(new Map());

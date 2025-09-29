@@ -437,11 +437,16 @@ button:hover {
 }
 
 .selected-effects-container {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 0.25rem;
+  margin-top: 0.75rem;
+  height: calc(99.5% - 1rem);
+}
+
+.selected-effects-list {
+  height: 100%;
+  overflow-y: scroll;
+  border-radius: 0 0 4px 4px;
+  gap: .25rem;
+  
 }
 
 .selected-effects-container.reordering .effect-card {
@@ -453,6 +458,7 @@ button:hover {
   flex-direction: column;
   flex-grow: 1;
   min-height: 0;
+  max-height: 500px;
 }
 
 .effect-card {
@@ -463,6 +469,7 @@ button:hover {
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   border: 1px solid #555;
+  margin-top: 0.25rem;
 }
 
 .effect-name {
@@ -680,7 +687,6 @@ button:hover {
 
 .bottom-bar-effects {
   margin-top: auto;
-  /* Push to the bottom */
   padding-top: 0.5rem;
   border-top: 1px solid #555;
   display: flex;
@@ -917,6 +923,15 @@ button:hover {
 
 .base-relic-card li, .deep-relic-card li {
   text-align: left;
+}
+
+.base-relic-card li.secondary-effect, .deep-relic-card li.secondary-effect {
+  color: #4d94ff;
+  list-style-type: disc;
+}
+
+.base-relic-card li.secondary-effect::marker, .deep-relic-card li.secondary-effect::marker {
+  color: #4d94ff;
 }
 
 .base-relic-card.color-red, .deep-relic-card.color-red {
