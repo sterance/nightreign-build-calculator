@@ -344,10 +344,10 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
         />
       )}
       <button
-      className="corner-button-left"
-      title="Clear all effects"
-      onClick={() => setSelectedEffects([])}
-      disabled={selectedEffects.length === 0}
+        className="corner-button-left"
+        title="Clear all effects"
+        onClick={() => setSelectedEffects([])}
+        disabled={selectedEffects.length === 0}
       >
         <TrashIcon />
       </button>

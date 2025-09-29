@@ -280,21 +280,17 @@ function App() {
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
-      <div className="floating-checkbox">
-        <label>
-          <input
-            type="checkbox"
-            checked={showDeepOfNight}
-            onChange={() => setShowDeepOfNight(!showDeepOfNight)}
-          />
-          Deep of Night
-        </label>
+      <div
+        className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
+        onClick={() => setShowDeepOfNight(prev => !prev)}
+      >
+        Deep of Night
       </div>
 
       <button
         className="floating-button"
         title='Settings'
-        onClick={() => setShowSettings(!showSettings)}
+        onClick={() => setShowSettings(prev => !prev)}
       >
         <SettingsIcon />
       </button>

@@ -19,7 +19,7 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics }) => {
                 <input
                   type="checkbox"
                   checked={showUnknownRelics}
-                  onChange={() => setShowUnknownRelics(!showUnknownRelics)}
+                  onChange={() => setShowUnknownRelics(prev => !prev)}
                 />
                 Display Unknown Relics
               </label>
