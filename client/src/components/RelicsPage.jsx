@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
-import effects from '../data/baseRelicEffects.json';
+import effects from '../data/relicEffects.json';
 import { CloseIcon } from './Icons';
+import RelicFilters from './RelicFilters';
 
-const effectMap = new Map();
-effects.forEach(effect => {
-  effect.ids.forEach(id => {
-    effectMap.set(id, effect.name);
+const createEffectMap = (showDeepOfNight) => {
+  const effectMap = new Map();
+  effects.forEach(effect => {
+    // filter out deep effects if showDeepOfNight is false
+    if (effect.deep === true && !showDeepOfNight) {
+      return;
+    }
+    effect.ids.forEach(id => {
+      effectMap.set(id, effect.name);
+    });
   });
-});
-
-const ColorFilterCard = ({ color, isChecked, onChange }) => {
-  return (
-    <div
-      className={`color-filter-card color-${color} ${isChecked ? 'checked' : ''}`}
-      onClick={() => onChange(color)}
-    >
-      <input
-        type="checkbox"
-        checked={isChecked}
-        onChange={() => onChange(color)}
-        style={{ display: 'none' }}
-      />
-      <span>{color.charAt(0).toUpperCase() + color.slice(1)}</span>
-    </div>
-  );
+  return effectMap;
 };
 
-const RelicCard = ({ relic, items }) => {
+const RelicCard = ({ relic, items, effectMap }) => {
   const relicInfo = items[relic.item_id.toString()];
 
   if (!relicInfo) {
@@ -42,31 +33,52 @@ const RelicCard = ({ relic, items }) => {
   };
 
   const allEffects = [
-    relic.effect1_id,
-    relic.effect2_id,
-    relic.effect3_id,
-    relic.sec_effect1_id,
-    relic.sec_effect2_id,
-    relic.sec_effect3_id,
+    { id: relic.effect1_id, isSecondary: false },
+    { id: relic.sec_effect1_id, isSecondary: true },
+    { id: relic.effect2_id, isSecondary: false },
+    { id: relic.sec_effect2_id, isSecondary: true },
+    { id: relic.effect3_id, isSecondary: false },
+    { id: relic.sec_effect3_id, isSecondary: true },
   ];
 
-  const validEffectNames = allEffects.map(getEffectName).filter(name => name !== null);
+  const validEffects = allEffects
+    .map(effect => ({
+      name: getEffectName(effect.id),
+      isSecondary: effect.isSecondary
+    }))
+    .filter(effect => effect.name !== null);
 
   const color = relicInfo.color ? relicInfo.color.toLowerCase() : 'white';
+  const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
+  const relicType = isDeepRelic ? 'deep' : 'base';
 
   return (
-    <div className={`relic-card color-${color}`}>
+    <div className={`${relicType}-relic-card color-${color}`}>
       <h4>{relicInfo.name}</h4>
       <ul>
-        {validEffectNames.map((name, index) => (
-          <li key={index}>{name}</li>
+        {validEffects.map((effect, index) => (
+          <li
+            key={index}
+            className={effect.isSecondary ? 'secondary-effect' : ''}
+          >
+            {effect.name}
+          </li>
         ))}
       </ul>
     </div>
   );
 };
 
-const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveName, showRadio, showDeepOfNight, showUnknownRelics, relicColorFilters }) => {
+const CharacterRelics = ({ characterData,
+  items,
+  onSaveNameSelect,
+  selectedSaveName,
+  showRadio,
+  showDeepOfNight,
+  showUnknownRelics,
+  baseRelicColorFilters,
+  deepRelicColorFilters,
+  effectMap }) => {
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
     // toggle unknown relics based on checkbox
@@ -77,9 +89,15 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
     if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) {
       return false;
     }
-    // filter by relic color
-    if (relicInfo && relicInfo.color && !relicColorFilters[relicInfo.color.toLowerCase()]) {
-      return false;
+    // filter by relic color - use appropriate filter based on relic type
+    if (relicInfo && relicInfo.color) {
+      const color = relicInfo.color.toLowerCase();
+      const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
+      const colorFilters = isDeepRelic ? deepRelicColorFilters : baseRelicColorFilters;
+
+      if (!colorFilters[color]) {
+        return false;
+      }
     }
     return true;
   });
@@ -104,16 +122,29 @@ const CharacterRelics = ({ characterData, items, onSaveNameSelect, selectedSaveN
       </label>
       <div className="relics-grid">
         {filteredRelics.sort((a, b) => a.sorting - b.sorting).map((relic, index) => (
-          <RelicCard key={index} relic={relic} items={items} />
+          <RelicCard key={index} relic={relic} items={items} effectMap={effectMap} />
         ))}
       </div>
     </div>
   )
 };
 
-const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNight, showUnknownRelics, relicColorFilters, onRelicColorFilterChange }) => {
+const RelicsPage = ({ onBack,
+  selectedSaveName,
+  onSaveNameSelect,
+  showDeepOfNight,
+  showUnknownRelics,
+  baseRelicColorFilters,
+  deepRelicColorFilters,
+  onBaseRelicColorFilterChange,
+  onDeepRelicColorFilterChange }) => {
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [effectMap, setEffectMap] = useState(new Map());
+
+  useEffect(() => {
+    setEffectMap(createEffectMap(showDeepOfNight));
+  }, [showDeepOfNight]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -155,7 +186,7 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
       }
     };
     loadData();
-  }, []);
+  }, [effectMap]);
 
   const renderContent = (children) => (
     <div className="relic-page-backdrop">
@@ -164,16 +195,13 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
           <button className="corner-button" onClick={onBack}><CloseIcon /></button>
         </div>
         <h2>Your Relics</h2>
-        <div className="relic-color-filters">
-          {Object.keys(relicColorFilters).map(color => (
-            <ColorFilterCard
-              key={color}
-              color={color}
-              isChecked={relicColorFilters[color]}
-              onChange={onRelicColorFilterChange}
-            />
-          ))}
-        </div>
+        <RelicFilters
+          baseRelicColorFilters={baseRelicColorFilters}
+          deepRelicColorFilters={deepRelicColorFilters}
+          onBaseRelicColorFilterChange={onBaseRelicColorFilterChange}
+          onDeepRelicColorFilterChange={onDeepRelicColorFilterChange}
+          showDeepOfNight={showDeepOfNight}
+        />
         {children}
       </div>
     </div>
@@ -188,7 +216,12 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
       const relicInfo = items[relic.item_id.toString()];
       if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
       if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
-      if (relicInfo && relicInfo.color && !relicColorFilters[relicInfo.color.toLowerCase()]) return false;
+      if (relicInfo && relicInfo.color) {
+        const color = relicInfo.color.toLowerCase();
+        const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
+        const colorFilters = isDeepRelic ? deepRelicColorFilters : baseRelicColorFilters;
+        if (!colorFilters[color]) return false;
+      }
       return true;
     })
   );
@@ -202,7 +235,12 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
       const relicInfo = items[relic.item_id.toString()];
       if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
       if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
-      if (relicInfo && relicInfo.color && !relicColorFilters[relicInfo.color.toLowerCase()]) return false;
+      if (relicInfo && relicInfo.color) {
+        const color = relicInfo.color.toLowerCase();
+        const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
+        const colorFilters = isDeepRelic ? deepRelicColorFilters : baseRelicColorFilters;
+        if (!colorFilters[color]) return false;
+      }
       return true;
     })
   );
@@ -219,7 +257,9 @@ const RelicsPage = ({ onBack, selectedSaveName, onSaveNameSelect, showDeepOfNigh
           showRadio={charactersWithRelics.length > 1}
           showDeepOfNight={showDeepOfNight}
           showUnknownRelics={showUnknownRelics}
-          relicColorFilters={relicColorFilters}
+          baseRelicColorFilters={baseRelicColorFilters}
+          deepRelicColorFilters={deepRelicColorFilters}
+          effectMap={effectMap}
         />
       ))}
     </div>

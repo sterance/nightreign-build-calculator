@@ -47,7 +47,7 @@ const RelicResults = ({ calculationResult }) => {
             ))}
           </div>
           <div className="info-button-container">
-            <button className="info-button" onClick={() => setShowTooltip(!showTooltip)}>
+            <button className="info-button" onClick={() => setShowTooltip(prev => !prev)}>
               <InformationIcon />
             </button>
             {showTooltip && (

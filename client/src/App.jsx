@@ -9,17 +9,24 @@ import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
-import effects from './data/baseRelicEffects.json';
+import effects from './data/relicEffects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
 
-const effectMap = new Map();
-effects.forEach(effect => {
-  effect.ids.forEach(id => {
-    effectMap.set(id, effect.name);
+const createEffectMap = (showDeepOfNight) => {
+  const effectMap = new Map();
+  effects.forEach(effect => {
+    // filter out deep effects if showDeepOfNight is false
+    if (effect.deep === true && !showDeepOfNight) {
+      return;
+    }
+    effect.ids.forEach(id => {
+      effectMap.set(id, effect.name);
+    });
   });
-});
+  return effectMap;
+};
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -34,17 +41,32 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
-  const [showDeepOfNight, setShowDeepOfNight] = useState(false);
+  const [showDeepOfNight, setShowDeepOfNight] = useState(() => {
+    const saved = localStorage.getItem('showDeepOfNight');
+    return saved !== null ? JSON.parse(saved) : false;
+  });
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
-  const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
+  const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
+  const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
   const [toasts, setToasts] = useState([]);
+  const [effectMap, setEffectMap] = useState(new Map());
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     const primaryColor = localStorage.getItem('primaryColor') || '#646cff';
     document.documentElement.style.setProperty('--primary-color', primaryColor);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('showDeepOfNight', JSON.stringify(showDeepOfNight));
+  }, [showDeepOfNight]);
+
+  useEffect(() => {
+    const newEffectMap = createEffectMap(showDeepOfNight);
+    console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
+    setEffectMap(newEffectMap);
+  }, [showDeepOfNight]);
 
   useEffect(() => {
     // check for existing relic data on initial load
@@ -178,66 +200,81 @@ function App() {
   };
 
   const handleCalculate = () => {
-    const saveData = JSON.parse(localStorage.getItem('saveData'));
+    try {
+      const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-    if (!saveData) {
-      addToast('Calculation failed: Missing relic data.', 'error');
-      return;
-    }
-    if (!selectedCharacter) {
-      addToast('Calculation failed: Missing character selection.', 'error');
-      return;
-    }
-    if (selectedChalices.length === 0) {
-      addToast('Calculation failed: Missing chalice selection.', 'error');
-      return;
-    }
-    if (desiredEffects.length === 0) {
-      addToast('Calculation failed: No desired effects.', 'error');
-      return;
-    }
+      if (!saveData) {
+        addToast('Calculation failed: Missing relic data.', 'error');
+        return;
+      }
+      if (!selectedCharacter) {
+        addToast('Calculation failed: Missing character selection.', 'error');
+        return;
+      }
+      if (selectedChalices.length === 0) {
+        addToast('Calculation failed: Missing chalice selection.', 'error');
+        return;
+      }
+      if (desiredEffects.length === 0) {
+        addToast('Calculation failed: No desired effects.', 'error');
+        return;
+      }
 
-    // find the character data for the selected save name
-    const characterSaveData = saveData.find(
-      (character) => character.character_name === selectedSaveName
-    );
+      // find the character data for the selected save name
+      const characterSaveData = saveData.find(
+        (character) => character.character_name === selectedSaveName
+      );
 
-    if (!characterSaveData) {
-      addToast('No relic data found for the selected character.', 'error');
-      return;
-    }
+      if (!characterSaveData) {
+        addToast('No relic data found for the selected character.', 'error');
+        return;
+      }
 
-    const result = calculateBestRelics(
-      desiredEffects,
-      characterSaveData,
-      selectedChalices,
-      selectedCharacter
-    );
+      const result = calculateBestRelics(
+        desiredEffects,
+        characterSaveData,
+        selectedChalices,
+        selectedCharacter,
+        effectMap
+      );
 
-    if (result) {
-      const formattedResult = {
-        "chalice name": result.chalice.name,
-        "chalice slots": result.chalice.slots,
-        "chalice description": result.chalice.description,
-        "relics": result.relics.map(relic => ({
-          name: relic['relic name'],
-          color: relic.color,
-          effects: {
-            "effect 1": relic['effect 1'] ? relic['effect 1'].name : "",
-            "effect 2": relic['effect 2'] ? relic['effect 2'].name : "",
-            "effect 3": relic['effect 3'] ? relic['effect 3'].name : "",
-          }
-        }))
-      };
-      setCalculationResult(formattedResult);
-      addToast('Calculation sucessful!', 'success')
-    } else {
+      if (result) {
+        const formattedResult = {
+          "chalice name": result.chalice.name,
+          "chalice slots": result.chalice.slots,
+          "chalice description": result.chalice.description,
+          "relics": result.relics.map(relic => ({
+            name: relic['relic name'],
+            color: relic.color,
+            effects: {
+              "effect 1": relic['effect 1'] || "",
+              "effect 2": relic['effect 2'] || "",
+              "effect 3": relic['effect 3'] || "",
+            }
+          }))
+        };
+        setCalculationResult(formattedResult);
+        addToast('Calculation successful!', 'success');
+      } else {
+        setCalculationResult(null);
+        addToast('No valid relic combination found for the selected criteria.', 'error');
+      }
+    } catch (error) {
+      console.error('Calculation error:', error);
+      addToast(`Calculation failed: ${error.message}`, 'error');
       setCalculationResult(null);
     }
   };
 
-  const handleRelicColorFilterChange = (color) => {
-    setRelicColorFilters(prevFilters => ({
+  const handleBaseRelicColorFilterChange = (color) => {
+    setBaseRelicColorFilters(prevFilters => ({
+      ...prevFilters,
+      [color]: !prevFilters[color]
+    }));
+  };
+
+  const handleDeepRelicColorFilterChange = (color) => {
+    setDeepRelicColorFilters(prevFilters => ({
       ...prevFilters,
       [color]: !prevFilters[color]
     }));
@@ -250,21 +287,17 @@ function App() {
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
-      <div className="floating-checkbox">
-        <label>
-          <input
-            type="checkbox"
-            checked={showDeepOfNight}
-            onChange={() => setShowDeepOfNight(!showDeepOfNight)}
-          />
-          Deep of Night
-        </label>
+      <div
+        className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
+        onClick={() => setShowDeepOfNight(prev => !prev)}
+      >
+        Deep of Night
       </div>
 
       <button
         className="floating-button"
         title='Settings'
-        onClick={() => setShowSettings(!showSettings)}
+        onClick={() => setShowSettings(prev => !prev)}
       >
         <SettingsIcon />
       </button>
@@ -290,6 +323,7 @@ function App() {
             selectedCharacter={selectedCharacter}
             handleCalculate={handleCalculate}
             setHasSavedBuilds={setHasSavedBuilds}
+            showDeepOfNight={showDeepOfNight}
           />
 
           <RelicResults
@@ -314,8 +348,11 @@ function App() {
         onSaveNameSelect={setSelectedSaveName}
         showDeepOfNight={showDeepOfNight}
         showUnknownRelics={showUnknownRelics}
-        relicColorFilters={relicColorFilters}
-        onRelicColorFilterChange={handleRelicColorFilterChange} />}
+        baseRelicColorFilters={baseRelicColorFilters}
+        deepRelicColorFilters={deepRelicColorFilters}
+        onBaseRelicColorFilterChange={handleBaseRelicColorFilterChange}
+        onDeepRelicColorFilterChange={handleDeepRelicColorFilterChange}
+      />}
 
       {showSettings && <SettingsPage
         onBack={() => setShowSettings(false)}

@@ -161,6 +161,18 @@ button:hover {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   border: 1px solid #555;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.floating-checkbox:hover {
+  border-color: var(--primary-color);
+}
+
+.floating-checkbox.checked {
+  border-color: #4a9eff;
+  background-color: #2d3b4d;
+  opacity: 1;
 }
 
 .floating-button {
@@ -190,6 +202,24 @@ button:hover {
   cursor: pointer;
   line-height: 0;
   padding: 0.25rem 0.25rem;
+}
+.corner-button-left {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(40, 40, 40, 0.8);
+  border: 1px solid #555;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+  line-height: 0;
+  padding: 0.25rem 0.25rem;
+}
+
+.corner-button-left svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* CHARACTER CARD */
@@ -419,15 +449,27 @@ button:hover {
 }
 
 .selected-effects-container {
-  margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  margin-top: 0.75rem;
+  height: calc(99.5% - 1rem);
+}
+
+.selected-effects-list {
+  height: 100%;
   overflow-y: auto;
+  border-radius: 0 0 4px 4px;
+  gap: .25rem;
 }
 
 .selected-effects-container.reordering .effect-card {
   animation: subtle-pulse 0.3s ease-in-out;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 0;
+  max-height: 500px;
 }
 
 .effect-card {
@@ -438,12 +480,68 @@ button:hover {
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   border: 1px solid #555;
+  margin-top: 0.25rem;
 }
 
 .effect-name {
   text-align: left;
   margin-right: 0.5rem;
   font-size: 0.9em;
+}
+
+.effect-name.debuff {
+  color: #4a9eff;
+}
+
+.subgroup-item {
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+}
+
+.subgroup-item.hovered {
+  background-color: var(--primary-color) !important;
+}
+
+.subgroup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.subgroup-header:hover {
+  background-color: transparent !important;
+}
+
+.subgroup-header .group-header-controls {
+  display: flex;
+  align-items: center;
+}
+
+.subgroup-header .select-all-button {
+  margin-right: 0.5rem;
+}
+
+.sub-sub-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 0.5rem !important;
+}
+
+.sub-sub-list li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.sub-sub-list li:hover {
+  background-color: var(--primary-color) !important;
+}
+
+.sub-sub-list li:last-child {
+  border-bottom: none;
 }
 
 .effect-controls {
@@ -535,15 +633,16 @@ button:hover {
   font-size: 0.9em;
 }
 
-.effects-category .sub-list li:hover {
+.effects-category>ul>li:not(.group-item, .subgroup-item):hover {
   background-color: var(--primary-color) !important;
 }
 
-.effects-category>ul>li:not(.group-item):hover {
-  background-color: var(--primary-color) !important;
+.effects-category>ul>li.group-item:hover:not(.hovered),
+.effects-category>ul>li.subgroup-item:hover:not(.hovered) {
+  background-color: transparent !important;
 }
 
-.effects-category>ul>li.group-item:hover:not(.hovered) {
+.subgroup-item {
   background-color: transparent !important;
 }
 
@@ -604,7 +703,6 @@ button:hover {
 
 .bottom-bar-effects {
   margin-top: auto;
-  /* Push to the bottom */
   padding-top: 0.5rem;
   border-top: 1px solid #555;
   display: flex;
@@ -813,95 +911,158 @@ button:hover {
   gap: 1rem;
 }
 
-.relic-card {
+.base-relic-card, .deep-relic-card {
   border: 1px solid #555;
   border-radius: 4px;
   padding: 1rem;
+}
+
+.base-relic-card {
   background-color: #242424;
 }
 
-.relic-card h4 {
+.deep-relic-card {
+  background-color: #2d3b4d;
+}
+
+.base-relic-card h4, .deep-relic-card h4 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-size: 1em;
 }
 
-.relic-card ul {
+.base-relic-card ul, .deep-relic-card ul {
   padding-left: 1.2rem;
   margin: 0;
   font-size: 0.85em;
 }
 
-.relic-card li {
+.base-relic-card li, .deep-relic-card li {
   text-align: left;
 }
 
-.relic-card.color-red {
+.base-relic-card li.secondary-effect, .deep-relic-card li.secondary-effect {
+  color: #4d94ff;
+  list-style-type: disc;
+}
+
+.base-relic-card li.secondary-effect::marker, .deep-relic-card li.secondary-effect::marker {
+  color: #4d94ff;
+}
+
+.base-relic-card.color-red, .deep-relic-card.color-red {
   border-left: 5px solid #ff4d4d;
 }
 
-.relic-card.color-blue {
+.base-relic-card.color-blue, .deep-relic-card.color-blue {
   border-left: 5px solid #4d94ff;
 }
 
-.relic-card.color-yellow {
+.base-relic-card.color-yellow, .deep-relic-card.color-yellow {
   border-left: 5px solid #ffff4d;
 }
 
-.relic-card.color-green {
+.base-relic-card.color-green, .deep-relic-card.color-green {
   border-left: 5px solid #4dff4d;
 }
 
-.relic-card.color-white {
+.base-relic-card.color-white, .deep-relic-card.color-white {
   border-left: 5px solid #ffffff;
 }
 
 .relic-color-filters {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 2rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.color-filter-label {
+  margin: 0 0 0.75rem 0;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #fff;
+}
+
+.base-color-filter-group,
+.deep-color-filter-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #555;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  position: relative;
+  min-height: 100px;
+  width: 350px;
+  box-sizing: border-box;
+}
+
+.base-color-filter-group:hover,
+.deep-color-filter-group:hover {
+  border-color: var(--primary-color);
+}
+
+.base-color-filter-group.enabled,
+.deep-color-filter-group.enabled {
+  border-color: var(--primary-color);
+}
+
+
+.base-color-filters,
+.deep-color-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .color-filter-card {
-  border: 1px solid #555;
+  border: 2px solid #555;
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease-in-out;
   opacity: 0.7;
+  width: 50px;
+  flex-shrink: 0;
 }
 
 .color-filter-card.checked {
-  border-width: 2px;
   opacity: 1;
 }
 
 .color-filter-card.color-red {
   background-color: #4d2d2d;
   border-color: #ff4d4d;
-  width: 50px;
 }
 
 .color-filter-card.color-blue {
   background-color: #2d3b4d;
   border-color: #4d94ff;
-  width: 50px;
 }
 
 .color-filter-card.color-yellow {
   background-color: #4d4d2d;
   border-color: #ffff4d;
-  width: 50px;
 }
 
 .color-filter-card.color-green {
   background-color: #2d4d2d;
   border-color: #4dff4d;
-  width: 50px;
+}
+
+.color-filter-card.color-white {
+  background-color: #4d4d4d;
+  border-color: #ffffff;
 }
 
 
