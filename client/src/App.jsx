@@ -41,7 +41,10 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
-  const [showDeepOfNight, setShowDeepOfNight] = useState(false);
+  const [showDeepOfNight, setShowDeepOfNight] = useState(() => {
+    const saved = localStorage.getItem('showDeepOfNight');
+    return saved !== null ? JSON.parse(saved) : false;
+  });
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
@@ -54,6 +57,10 @@ function App() {
     const primaryColor = localStorage.getItem('primaryColor') || '#646cff';
     document.documentElement.style.setProperty('--primary-color', primaryColor);
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('showDeepOfNight', JSON.stringify(showDeepOfNight));
+  }, [showDeepOfNight]);
 
   useEffect(() => {
     const newEffectMap = createEffectMap(showDeepOfNight);
