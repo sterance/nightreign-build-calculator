@@ -43,7 +43,8 @@ function App() {
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = useState(false);
   const [showUnknownRelics, setShowUnknownRelics] = useState(false);
-  const [relicColorFilters, setRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
+  const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
+  const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
   const [toasts, setToasts] = useState([]);
   const [effectMap, setEffectMap] = useState(new Map());
@@ -258,8 +259,15 @@ function App() {
     }
   };
 
-  const handleRelicColorFilterChange = (color) => {
-    setRelicColorFilters(prevFilters => ({
+  const handleBaseRelicColorFilterChange = (color) => {
+    setBaseRelicColorFilters(prevFilters => ({
+      ...prevFilters,
+      [color]: !prevFilters[color]
+    }));
+  };
+
+  const handleDeepRelicColorFilterChange = (color) => {
+    setDeepRelicColorFilters(prevFilters => ({
       ...prevFilters,
       [color]: !prevFilters[color]
     }));
@@ -337,8 +345,10 @@ function App() {
         onSaveNameSelect={setSelectedSaveName}
         showDeepOfNight={showDeepOfNight}
         showUnknownRelics={showUnknownRelics}
-        relicColorFilters={relicColorFilters}
-        onRelicColorFilterChange={handleRelicColorFilterChange}
+        baseRelicColorFilters={baseRelicColorFilters}
+        deepRelicColorFilters={deepRelicColorFilters}
+        onBaseRelicColorFilterChange={handleBaseRelicColorFilterChange}
+        onDeepRelicColorFilterChange={handleDeepRelicColorFilterChange}
       />}
 
       {showSettings && <SettingsPage

@@ -3,7 +3,7 @@ import relicEffects from '../data/relicEffects.json';
 import { characters } from '../data/chaliceData';
 import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
-import { SelectAllIcon, CalculatorIcon, SaveIcon } from './Icons';
+import { SelectAllIcon, CalculatorIcon, SaveIcon, TrashIcon } from './Icons';
 
 const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds, showDeepOfNight }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -15,6 +15,7 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
   const sortTimeoutRef = useRef(null);
   const [hoveredGroup, setHoveredGroup] = useState(null);
   const [showNameSaveCard, setShowNameSaveCard] = useState(false);
+  const prevSelectedEffectsRef = useRef(selectedEffects);
 
   const categoryOrder = [
     'Character Specific',
@@ -45,8 +46,13 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
   }, []);
 
   useEffect(() => {
-    onChange(selectedEffects);
-  }, [selectedEffects, onChange]);
+    // Only call onChange if the effects have actually changed
+    const prevEffects = prevSelectedEffectsRef.current;
+    if (JSON.stringify(selectedEffects) !== JSON.stringify(prevEffects)) {
+      prevSelectedEffectsRef.current = selectedEffects;
+      onChange(selectedEffects);
+    }
+  }, [selectedEffects]);
 
   const triggerSortAnimation = () => {
     if (sortTimeoutRef.current) {
@@ -338,6 +344,14 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
         />
       )}
       <button
+      className="corner-button-left"
+      title="Clear all effects"
+      onClick={() => setSelectedEffects([])}
+      disabled={selectedEffects.length === 0}
+      >
+        <TrashIcon />
+      </button>
+      <button
         className="corner-button"
         title={desiredEffects.length === 0 ? 'Select effects to save build' : 'Save current build'}
         onClick={() => setShowNameSaveCard(true)}
@@ -471,9 +485,11 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
           )}
         </div>
         <div className={`selected-effects-container ${isSorting ? 'reordering' : ''}`}>
-          {selectedEffects.map((effect) => (
-            <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
-          ))}
+          <div className="selected-effects-list">
+            {selectedEffects.map((effect) => (
+              <DesiredEffectCard key={effect.id} effect={effect} onUpdate={handleUpdateEffect} onDelete={handleDeleteEffect} onSort={handleSortEffects} />
+            ))}
+          </div>
         </div>
       </div>
       <div className="bottom-bar-effects">
