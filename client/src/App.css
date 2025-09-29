@@ -866,6 +866,18 @@ button:hover {
   margin: 0.5rem 0;
 }
 
+.relic-result-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.arrow-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  margin: 0 0.5rem;
+}
+
 /* RELICS PAGE */
 .relic-page-backdrop {
   position: fixed;

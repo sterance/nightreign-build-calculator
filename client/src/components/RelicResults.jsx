@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
-import { InformationIcon } from './Icons';
+import { InformationIcon, LeftArrowIcon, RightArrowIcon } from './Icons';
 
 const RelicResults = ({ calculationResult }) => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -36,7 +36,15 @@ const RelicResults = ({ calculationResult }) => {
       id="relics-card"
       className="card"
     >
-      <h2>Recommended Relics</h2>
+      <div className="relic-result-header">
+        <button className="arrow-button">
+          <LeftArrowIcon />
+        </button>
+        <h2>Recommended Relics</h2>
+        <button className="arrow-button">
+          <RightArrowIcon />
+        </button>
+      </div>
       <div className="relic-result-container">
         <div className="chalice-result-card">
           <img src={getImageUrl(calculationResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '60px', height: '60px' }} />
