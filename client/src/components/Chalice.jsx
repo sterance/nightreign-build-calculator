@@ -10,7 +10,7 @@ const Chalice = ({ chalice, isSelected, onToggle }) => {
     >
       <p>{chalice.name}</p>
       <div className="relic-slots">
-        {chalice.slots.map((color, index) => (
+        {chalice.baseSlots.map((color, index) => (
           <RelicSlot key={index} color={color} />
         ))}
       </div>

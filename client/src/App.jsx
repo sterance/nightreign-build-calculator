@@ -255,7 +255,7 @@ function App() {
         // format all results for display
         const formattedResults = result.map(bestResult => ({
           "chalice name": bestResult.chalice.name,
-          "chalice slots": bestResult.chalice.slots,
+          "chalice slots": bestResult.chalice.baseSlots,
           "chalice description": bestResult.chalice.description,
           "relics": bestResult.relics.map(relic => ({
             name: relic['relic name'],

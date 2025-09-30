@@ -743,9 +743,23 @@ button:hover {
 /* CHALICE RESULTS */
 .chalice-result-card {
   font-size: x-large;
-  display: flex;
+  display: grid;
+  grid-template-columns: 60px 40% 1fr 40px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #242424;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0 0.5rem 1rem;
+}
+
+.chalice-result-card.deep-mode {
+  grid-template-columns: 60px 40% 1fr 1fr 40px;
+}
+
+.chalice-result-card span {
+  margin-left: 1rem;
   align-items: center;
-  gap: 1rem;
 }
 
 .chalice-result-card img {
@@ -757,13 +771,19 @@ button:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
+  display: flex;
+  align-items: center;
 }
 
-.chalice-result-card .relic-slots-container {
+.chalice-result-card .relic-slots-container,
+.chalice-result-card .base-relic-slots-container,
+.chalice-result-card .deep-relic-slots-container {
   display: flex;
-  justify-content: center;
-  gap: 4rem;
+  justify-content: right;
+  align-items: center;
+  gap: 2.5rem;
   flex-grow: 1;
+  margin-right: 2rem;
 }
 
 /* RELIC RESULTS */
@@ -776,8 +796,7 @@ button:hover {
 }
 
 
-.relic-result-card,
-.chalice-result-card {
+.relic-result-card {
   border: 1px solid #555;
   border-radius: 4px;
   background-color: #242424;
@@ -832,7 +851,9 @@ button:hover {
   background-color: #4d4d4d;
 }
 
-.relic-slots-container img {
+.relic-slots-container img,
+.base-relic-slots-container img,
+.deep-relic-slots-container img {
   scale: 2.25;
 }
 

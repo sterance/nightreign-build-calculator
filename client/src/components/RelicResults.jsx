@@ -22,7 +22,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
   const isEnabled = !!calculationResult;
   const isMultipleResults = Array.isArray(calculationResult) && calculationResult.length > 1;
   const currentResult = Array.isArray(calculationResult) ? calculationResult[currentIndex] : calculationResult;
-  
+
   if (!currentResult) {
     return (
       <div
@@ -99,14 +99,29 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
         </button>
       )}
       <div className="relic-result-container">
-        <div className="chalice-result-card">
+        <div className={`chalice-result-card${showDeepOfNight ? ' deep-mode' : ''}`}>
           <img src={getImageUrl(currentResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '60px', height: '60px' }} />
           <span id='chalice-name'>{currentResult["chalice name"]}</span>
-          <div className="relic-slots-container">
-            {currentResult["chalice slots"].map((color, index) => (
-              <RelicSlot key={index} color={color} />
-            ))}
-          </div>
+          {showDeepOfNight ? (
+            <>
+              <div className="base-relic-slots-container">
+                {currentResult["chalice slots"].map((color, index) => (
+                  <RelicSlot key={index} color={color} />
+                ))}
+              </div>
+              <div className="deep-relic-slots-container">
+                {currentResult["chalice slots"].map((color, index) => (
+                  <RelicSlot key={`deep-${index}`} color={color} />
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="relic-slots-container">
+              {currentResult["chalice slots"].map((color, index) => (
+                <RelicSlot key={index} color={color} />
+              ))}
+            </div>
+          )}
           <div className="info-button-container">
             <button className="info-button" onClick={() => setShowTooltip(prev => !prev)}>
               <InformationIcon />

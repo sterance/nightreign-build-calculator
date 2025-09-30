@@ -154,7 +154,7 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
     white: scoredRelics.filter(r => r.color === 'white'),
   };
 
-  for (const slotColor of chalice.slots) {
+  for (const slotColor of chalice.baseSlots) {
     let bestRelicForSlot = null;
     // white slots are wildcards
     if (slotColor === 'white') {
@@ -187,7 +187,7 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
   return {
     chalice: {
       name: chalice.name,
-      slots: chalice.slots,
+      baseSlots: chalice.baseSlots,
       description: chalice.description
     },
     relics: bestRelicsForChalice,
