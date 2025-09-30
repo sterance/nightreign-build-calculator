@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
-import { InformationIcon, LeftArrowIcon, RightArrowIcon } from './Icons';
+import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon } from './Icons';
 
 const RelicResults = ({ calculationResult, showDeepOfNight }) => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -92,29 +92,32 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
         >
           <RightArrowIcon />
         </button>
-      </div>
-      {showDeepOfNight && (
-        <button className="deep-flip">
-          Deep Relics
+        <button
+          className="maximize-button"
+          // onClick={() => setShowMaximize(prev => !prev)}
+        >
+          <MaximizeIcon />
         </button>
-      )}
+      </div>
       <div className="relic-result-container">
         <div className={`chalice-result-card${showDeepOfNight ? ' deep-mode' : ''}`}>
-          <img src={getImageUrl(currentResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '60px', height: '60px' }} />
+          <img src={getImageUrl(currentResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '75px', height: '75px' }} />
           <span id='chalice-name'>{currentResult["chalice name"]}</span>
           {showDeepOfNight ? (
-            <>
+            <div className='relic-slots-container'>
               <div className="base-relic-slots-container">
+                <div className="relic-slot-name">Base</div>
                 {currentResult["chalice slots"].map((color, index) => (
                   <RelicSlot key={index} color={color} />
                 ))}
               </div>
               <div className="deep-relic-slots-container">
+                <div className="relic-slot-name">Deep</div>
                 {currentResult["chalice slots"].map((color, index) => (
                   <RelicSlot key={`deep-${index}`} color={color} />
                 ))}
               </div>
-            </>
+            </div>
           ) : (
             <div className="relic-slots-container">
               {currentResult["chalice slots"].map((color, index) => (
@@ -145,7 +148,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
           if (relic) {
             return (
               <div className={`relic-result-card color-${slotColor}`} key={index}>
-                <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '60px', height: '60px' }} />
+                <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100x', height: '100px' }} />
                 <span>{relic.name}</span>
                 <table className="relic-stats-table">
                   <tbody>

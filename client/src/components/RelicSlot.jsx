@@ -5,7 +5,7 @@ const RelicSlot = ({ color }) => {
     <img
       src={`/relic-slots/${color}.png`}
       alt={`${color} relic slot`}
-      style={{ width: '30px', height: '30px' }}
+      style={{ width: '65px', height: '65px' }}
     />
   );
 };

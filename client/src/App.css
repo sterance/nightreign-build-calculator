@@ -203,6 +203,7 @@ button:hover {
   line-height: 0;
   padding: 0.25rem 0.25rem;
 }
+
 .corner-button-left {
   position: absolute;
   top: 1rem;
@@ -372,6 +373,14 @@ button:hover {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.maximize-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
   padding: 0.5rem;
   z-index: 10;
 }
@@ -744,30 +753,75 @@ button:hover {
 .chalice-result-card {
   font-size: x-large;
   display: grid;
-  grid-template-columns: 60px 35% 1fr 40px;
+  grid-template-columns: 100px 25% 1fr 50px;
   border: 1px solid #555;
   border-radius: 4px;
   background-color: #242424;
   width: 100%;
   box-sizing: border-box;
-  padding: 0.5rem 0 0.5rem 1rem;
+  padding: 0.25rem;
 }
 
 .chalice-result-card.deep-mode {
-  grid-template-columns: 60px 35% 1fr 1fr 40px;
+  grid-template-columns: 100px 25% 1fr 50px;
+}
+
+.chalice-result-card .relic-slots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.chalice-result-card .base-relic-slots-container,
+.chalice-result-card .deep-relic-slots-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.5rem;
+}
+
+.chalice-result-card .base-relic-slots-container .relic-slot-name,
+.chalice-result-card .deep-relic-slots-container .relic-slot-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: xx-large;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.relic-slots-container img,
+.base-relic-slots-container img {
+  filter: drop-shadow(2px 4px 8px #555555);
+}
+
+.deep-relic-slots-container img {
+  filter: drop-shadow(2px 4px 8px #4a9eff);
+}
+
+.relic-slot-name {
+  font-size: large;
 }
 
 .chalice-result-card span {
-  margin-left: 1rem;
   align-items: center;
 }
 
 .chalice-result-card img {
   flex-shrink: 0;
+  align-self: center;
+  justify-self: center;
 }
 
 #chalice-name {
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
@@ -775,20 +829,7 @@ button:hover {
   align-items: center;
 }
 
-.chalice-result-card .relic-slots-container,
-.chalice-result-card .base-relic-slots-container,
-.chalice-result-card .deep-relic-slots-container {
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  gap: 2.5rem;
-  flex-grow: 1;
-  margin-right: 2rem;
-}
 
-.base-relic-slots-container {
-  margin-right: 4rem !important;
-}
 
 /* RELIC RESULTS */
 .relic-result-container {
@@ -810,7 +851,6 @@ button:hover {
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem 0 0.5rem 1rem;
 }
 
 .relic-result-card>span {
@@ -818,7 +858,6 @@ button:hover {
   flex-shrink: 1;
   min-width: 0;
   text-align: left;
-  margin-left: 1rem;
 }
 
 .empty-relic-slot {
@@ -855,15 +894,6 @@ button:hover {
   background-color: #4d4d4d;
 }
 
-.relic-slots-container img,
-.base-relic-slots-container img,
-.deep-relic-slots-container img {
-  scale: 2.25;
-}
-
-.relic-result-card img {
-  transform: scale(1.7);
-}
 
 .relic-stats-table {
   width: 66%;
@@ -890,7 +920,6 @@ button:hover {
   cursor: pointer;
   line-height: 0;
   padding: 0.25rem 0.25rem;
-  margin-right: 1rem;
 }
 
 .centered-text-container {
@@ -965,7 +994,8 @@ button:hover {
   justify-content: center;
 }
 
-.confirm-button, .cancel-button {
+.confirm-button,
+.cancel-button {
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
@@ -1037,7 +1067,8 @@ button:hover {
   gap: 1rem;
 }
 
-.base-relic-card, .deep-relic-card {
+.base-relic-card,
+.deep-relic-card {
   border: 1px solid #555;
   border-radius: 4px;
   padding: 1rem;
@@ -1051,48 +1082,58 @@ button:hover {
   background-color: #2d3b4d;
 }
 
-.base-relic-card h4, .deep-relic-card h4 {
+.base-relic-card h4,
+.deep-relic-card h4 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-size: 1em;
 }
 
-.base-relic-card ul, .deep-relic-card ul {
+.base-relic-card ul,
+.deep-relic-card ul {
   padding-left: 1.2rem;
   margin: 0;
   font-size: 0.85em;
 }
 
-.base-relic-card li, .deep-relic-card li {
+.base-relic-card li,
+.deep-relic-card li {
   text-align: left;
 }
 
-.base-relic-card li.secondary-effect, .deep-relic-card li.secondary-effect {
+.base-relic-card li.secondary-effect,
+.deep-relic-card li.secondary-effect {
   color: #4d94ff;
   list-style-type: disc;
 }
 
-.base-relic-card li.secondary-effect::marker, .deep-relic-card li.secondary-effect::marker {
+.base-relic-card li.secondary-effect::marker,
+.deep-relic-card li.secondary-effect::marker {
   color: #4d94ff;
 }
 
-.base-relic-card.color-red, .deep-relic-card.color-red {
+.base-relic-card.color-red,
+.deep-relic-card.color-red {
   border-left: 5px solid #ff4d4d;
 }
 
-.base-relic-card.color-blue, .deep-relic-card.color-blue {
+.base-relic-card.color-blue,
+.deep-relic-card.color-blue {
   border-left: 5px solid #4d94ff;
 }
 
-.base-relic-card.color-yellow, .deep-relic-card.color-yellow {
+.base-relic-card.color-yellow,
+.deep-relic-card.color-yellow {
   border-left: 5px solid #ffff4d;
 }
 
-.base-relic-card.color-green, .deep-relic-card.color-green {
+.base-relic-card.color-green,
+.deep-relic-card.color-green {
   border-left: 5px solid #4dff4d;
 }
 
-.base-relic-card.color-white, .deep-relic-card.color-white {
+.base-relic-card.color-white,
+.deep-relic-card.color-white {
   border-left: 5px solid #ffffff;
 }
 
