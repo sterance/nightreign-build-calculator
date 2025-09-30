@@ -744,7 +744,7 @@ button:hover {
 .chalice-result-card {
   font-size: x-large;
   display: grid;
-  grid-template-columns: 60px 40% 1fr 40px;
+  grid-template-columns: 60px 35% 1fr 40px;
   border: 1px solid #555;
   border-radius: 4px;
   background-color: #242424;
@@ -754,7 +754,7 @@ button:hover {
 }
 
 .chalice-result-card.deep-mode {
-  grid-template-columns: 60px 40% 1fr 1fr 40px;
+  grid-template-columns: 60px 35% 1fr 1fr 40px;
 }
 
 .chalice-result-card span {
@@ -784,6 +784,10 @@ button:hover {
   gap: 2.5rem;
   flex-grow: 1;
   margin-right: 2rem;
+}
+
+.base-relic-slots-container {
+  margin-right: 4rem !important;
 }
 
 /* RELIC RESULTS */
