@@ -790,7 +790,7 @@ button:hover {
 
 .base-relic-slots-container:hover,
 .deep-relic-slots-container:hover {
-  background: radial-gradient(ellipse 50% 50%, #646cff 0%, rgba(0, 0, 0, 0) 100%);
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .base-relic-slots-container.active img {

@@ -50,6 +50,12 @@ export function calculateBestRelics(desiredEffects,
 
     const getEffect = (id) => effectMap.get(id) || null;
 
+    const color = relicInfo.color ? relicInfo.color.toLowerCase() : null;
+    if (!color) {
+      console.warn(`Relic ${relicInfo.name} (ID: ${relic.item_id}) has no color defined, skipping`);
+      return null;
+    }
+
     return {
       'relic id': relic.item_id,
       'relic name': relicInfo.name,
@@ -60,7 +66,7 @@ export function calculateBestRelics(desiredEffects,
       'sec_effect2': getEffect(relic.sec_effect2_id),
       'sec_effect3': getEffect(relic.sec_effect3_id),
       sorting: relic.sorting,
-      color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
+      color: color,
       type: 'base'
     };
   }).filter(Boolean);
@@ -76,6 +82,12 @@ export function calculateBestRelics(desiredEffects,
 
       const getEffect = (id) => effectMap.get(id) || null;
 
+      const color = relicInfo.color ? relicInfo.color.toLowerCase() : null;
+      if (!color) {
+        console.warn(`Deep relic ${relicInfo.name} (ID: ${relic.item_id}) has no color defined, skipping`);
+        return null;
+      }
+
       return {
         'relic id': relic.item_id,
         'relic name': relicInfo.name,
@@ -86,7 +98,7 @@ export function calculateBestRelics(desiredEffects,
         'sec_effect2': getEffect(relic.sec_effect2_id),
         'sec_effect3': getEffect(relic.sec_effect3_id),
         sorting: relic.sorting,
-        color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
+        color: color,
         type: 'deep'
       };
     }).filter(Boolean);
@@ -239,7 +251,6 @@ function findBestRelicsForSlots(slots, scoredRelics) {
     blue: scoredRelics.filter(r => r.color === 'blue'),
     yellow: scoredRelics.filter(r => r.color === 'yellow'),
     green: scoredRelics.filter(r => r.color === 'green'),
-    white: scoredRelics.filter(r => r.color === 'white'),
   };
 
   for (const slotColor of slots) {
