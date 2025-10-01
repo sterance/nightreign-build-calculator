@@ -248,7 +248,8 @@ function App() {
         characterSaveData,
         selectedChalices,
         selectedCharacter,
-        effectMap
+        effectMap,
+        showDeepOfNight
       );
 
       if (result && result.length > 0) {
@@ -256,6 +257,7 @@ function App() {
         const formattedResults = result.map(bestResult => ({
           "chalice name": bestResult.chalice.name,
           "chalice slots": bestResult.chalice.baseSlots,
+          "chalice deep slots": bestResult.chalice.deepSlots || [],
           "chalice description": bestResult.chalice.description,
           "relics": bestResult.relics.map(relic => ({
             name: relic['relic name'],
@@ -264,6 +266,27 @@ function App() {
               "effect 1": relic['effect 1'] || "",
               "effect 2": relic['effect 2'] || "",
               "effect 3": relic['effect 3'] || "",
+            }
+          })),
+          "baseRelics": bestResult.baseRelics.map(relic => ({
+            name: relic['relic name'],
+            color: relic.color,
+            effects: {
+              "effect 1": relic['effect 1'] || "",
+              "effect 2": relic['effect 2'] || "",
+              "effect 3": relic['effect 3'] || "",
+            }
+          })),
+          "deepRelics": bestResult.deepRelics.map(relic => ({
+            name: relic['relic name'],
+            color: relic.color,
+            effects: {
+              "effect 1": relic['effect 1'] || "",
+              "sec_effect1": relic['sec_effect1'] || "",
+              "effect 2": relic['effect 2'] || "",
+              "sec_effect2": relic['sec_effect2'] || "",
+              "effect 3": relic['effect 3'] || "",
+              "sec_effect3": relic['sec_effect3'] || "",
             }
           }))
         }));

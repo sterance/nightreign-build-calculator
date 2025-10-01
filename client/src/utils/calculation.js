@@ -10,13 +10,16 @@ import baseRelicEffects from '../data/relicEffects.json';
  * @param {Object} characterRelicData - The relic data for the selected character from the user's save file.
  * @param {Array} selectedChalices - An array of names of the selected chalices.
  * @param {string} selectedNightfarer - The name of the selected Nightfarer (e.g., 'wylder').
+ * @param {Map} effectMap - Map of effect IDs to effect names.
+ * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
  * @returns {Array|null} - Array of best relic combinations with max score, or null if none could be determined.
  */
 export function calculateBestRelics(desiredEffects,
   characterRelicData,
   selectedChalices,
   selectedNightfarer,
-  effectMap) {
+  effectMap,
+  showDeepOfNight = false) {
     
   console.log("--- Starting Relic Calculation ---");
   // input validation
@@ -38,7 +41,8 @@ export function calculateBestRelics(desiredEffects,
     return null;
   }
 
-  const processedRelics = characterRelicData.relics.map(relic => {
+  // Process base relics (always needed)
+  const processedBaseRelics = characterRelicData.relics.map(relic => {
     const relicInfo = items[relic.item_id?.toString()];
     if (!relicInfo || relicInfo.name?.startsWith('Deep')) {
       return null;
@@ -56,18 +60,45 @@ export function calculateBestRelics(desiredEffects,
       'sec_effect2': getEffect(relic.sec_effect2_id),
       'sec_effect3': getEffect(relic.sec_effect3_id),
       sorting: relic.sorting,
-      color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white'
+      color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
+      type: 'base'
     };
   }).filter(Boolean);
 
+  // Process deep relics (only when showDeepOfNight is true)
+  let processedDeepRelics = [];
+  if (showDeepOfNight) {
+    processedDeepRelics = characterRelicData.relics.map(relic => {
+      const relicInfo = items[relic.item_id?.toString()];
+      if (!relicInfo || !relicInfo.name?.startsWith('Deep')) {
+        return null;
+      }
 
-  if (processedRelics.length === 0) {
-    console.warn('No valid relics found for character after filtering');
+      const getEffect = (id) => effectMap.get(id) || null;
+
+      return {
+        'relic id': relic.item_id,
+        'relic name': relicInfo.name,
+        'effect 1': getEffect(relic.effect1_id),
+        'effect 2': getEffect(relic.effect2_id),
+        'effect 3': getEffect(relic.effect3_id),
+        'sec_effect1': getEffect(relic.sec_effect1_id),
+        'sec_effect2': getEffect(relic.sec_effect2_id),
+        'sec_effect3': getEffect(relic.sec_effect3_id),
+        sorting: relic.sorting,
+        color: relicInfo.color ? relicInfo.color.toLowerCase() : 'white',
+        type: 'deep'
+      };
+    }).filter(Boolean);
+  }
+
+  if (processedBaseRelics.length === 0) {
+    console.warn('No valid base relics found for character after filtering');
     return null;
   }
 
-  // score each relic based on desired effects and filter out forbidden/zero-score relics.
-  const scoredRelics = processedRelics.map(relic => {
+  // Score base relics
+  const scoredBaseRelics = processedBaseRelics.map(relic => {
     const relicEffects = getRelicEffects(relic, effectMap);
     const score = calculateRelicScore(relicEffects, desiredEffects);
     const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
@@ -77,6 +108,21 @@ export function calculateBestRelics(desiredEffects,
     return { ...relic, score, isForbidden };
   }).filter(relic => !relic.isForbidden && relic.score > 0)
     .sort((a, b) => b.score - a.score);
+
+  // Score deep relics (if showDeepOfNight is true)
+  let scoredDeepRelics = [];
+  if (showDeepOfNight && processedDeepRelics.length > 0) {
+    scoredDeepRelics = processedDeepRelics.map(relic => {
+      const relicEffects = getRelicEffects(relic, effectMap);
+      const score = calculateRelicScore(relicEffects, desiredEffects);
+      const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
+        de.ids.includes(effectId)
+      ));
+
+      return { ...relic, score, isForbidden };
+    }).filter(relic => !relic.isForbidden && relic.score > 0)
+      .sort((a, b) => b.score - a.score);
+  }
 
   // for each chalice, find the best combination of relics.
   const allCombinations = [];
@@ -95,7 +141,7 @@ export function calculateBestRelics(desiredEffects,
       continue;
     }
 
-    const combination = findBestCombinationForChalice(chalice, scoredRelics);
+    const combination = findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics, showDeepOfNight);
     if (combination) {
       console.log(`Best combination found for ${chalice.name}:`, JSON.parse(JSON.stringify(combination)));
       allCombinations.push(combination);
@@ -138,11 +184,53 @@ function calculateRelicScore(relicEffects, desiredEffects) {
 /**
  * Finds the best relic combination for a single chalice by picking the highest-scored relic for each slot.
  * @param {Object} chalice - The chalice object, including its name and slots.
- * @param {Array} scoredRelics - The list of all scored and filtered relics.
+ * @param {Array} scoredBaseRelics - The list of all scored and filtered base relics.
+ * @param {Array} scoredDeepRelics - The list of all scored and filtered deep relics.
+ * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
  * @returns {Object|null} - The best combination for the chalice, or null if slots cannot be filled.
  */
-function findBestCombinationForChalice(chalice, scoredRelics) {
-  const bestRelicsForChalice = [];
+function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false) {
+  // Find best base relics
+  const bestBaseRelics = findBestRelicsForSlots(chalice.baseSlots, scoredBaseRelics);
+  if (!bestBaseRelics) {
+    return null;
+  }
+
+  let bestDeepRelics = null;
+  let deepScore = 0;
+
+  // Find best deep relics if showDeepOfNight is true and chalice has deep slots
+  if (showDeepOfNight && chalice.deepSlots && scoredDeepRelics.length > 0) {
+    bestDeepRelics = findBestRelicsForSlots(chalice.deepSlots, scoredDeepRelics);
+    if (bestDeepRelics) {
+      deepScore = bestDeepRelics.score;
+    }
+  }
+
+  const result = {
+    chalice: {
+      name: chalice.name,
+      baseSlots: chalice.baseSlots,
+      deepSlots: chalice.deepSlots || [],
+      description: chalice.description
+    },
+    baseRelics: bestBaseRelics.relics,
+    deepRelics: bestDeepRelics ? bestDeepRelics.relics : [],
+    relics: bestBaseRelics.relics, // Keep for backward compatibility
+    score: bestBaseRelics.score + deepScore,
+  };
+
+  return result;
+}
+
+/**
+ * Helper function to find the best relics for a set of slots
+ * @param {Array} slots - Array of slot colors
+ * @param {Array} scoredRelics - Array of scored relics
+ * @returns {Object|null} - Object with relics array and total score, or null if slots cannot be filled
+ */
+function findBestRelicsForSlots(slots, scoredRelics) {
+  const bestRelicsForSlots = [];
   let totalScore = 0;
   const usedRelicIds = new Set();
 
@@ -154,7 +242,7 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
     white: scoredRelics.filter(r => r.color === 'white'),
   };
 
-  for (const slotColor of chalice.baseSlots) {
+  for (const slotColor of slots) {
     let bestRelicForSlot = null;
     // white slots are wildcards
     if (slotColor === 'white') {
@@ -175,23 +263,18 @@ function findBestCombinationForChalice(chalice, scoredRelics) {
     }
 
     if (bestRelicForSlot) {
-      bestRelicsForChalice.push(bestRelicForSlot);
+      bestRelicsForSlots.push(bestRelicForSlot);
       totalScore += bestRelicForSlot.score;
       usedRelicIds.add(bestRelicForSlot.sorting);
     } else {
-      console.warn(`Could not find a unique relic for a ${slotColor} slot in ${chalice.name}.`);
-      return null; // not enough unique relics to fill this chalice
+      console.warn(`Could not find a unique relic for a ${slotColor} slot.`);
+      return null; // not enough unique relics to fill these slots
     }
   }
 
   return {
-    chalice: {
-      name: chalice.name,
-      baseSlots: chalice.baseSlots,
-      description: chalice.description
-    },
-    relics: bestRelicsForChalice,
-    score: totalScore,
+    relics: bestRelicsForSlots,
+    score: totalScore
   };
 }
 

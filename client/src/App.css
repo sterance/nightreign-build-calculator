@@ -774,18 +774,48 @@ button:hover {
   flex-grow: 1;
 }
 
-.chalice-result-card .base-relic-slots-container,
-.chalice-result-card .deep-relic-slots-container {
+  .base-relic-slots-container,
+  .deep-relic-slots-container {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.chalice-result-card .base-relic-slots-container .relic-slot-name,
-.chalice-result-card .deep-relic-slots-container .relic-slot-name {
+.base-relic-slots-container:hover,
+.deep-relic-slots-container:hover {
+  background: radial-gradient(ellipse 50% 50%, #646cff 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.base-relic-slots-container.active img {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.deep-relic-slots-container.active img {
+  filter: drop-shadow(2px 4px 8px #4a9eff);
+}
+
+.base-relic-slots-container.active .relic-slot-name,
+.deep-relic-slots-container.active .relic-slot-name {
+  opacity: 0;
+}
+
+.relic-slots-container img {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.base-relic-slots-container img,
+.deep-relic-slots-container img {
+  filter: none;
+}
+
+.relic-slot-name {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -796,18 +826,6 @@ button:hover {
   z-index: 2;
   pointer-events: none;
   opacity: 0;
-}
-
-.relic-slots-container img,
-.base-relic-slots-container img {
-  filter: drop-shadow(2px 4px 8px #555555);
-}
-
-.deep-relic-slots-container img {
-  filter: drop-shadow(2px 4px 8px #4a9eff);
-}
-
-.relic-slot-name {
   font-size: large;
 }
 
@@ -828,8 +846,6 @@ button:hover {
   display: flex;
   align-items: center;
 }
-
-
 
 /* RELIC RESULTS */
 .relic-result-container {
@@ -896,7 +912,7 @@ button:hover {
 
 
 .relic-stats-table {
-  width: 66%;
+  width: 60%;
   border-collapse: collapse;
   flex-shrink: 0;
   margin-left: 0;
@@ -904,10 +920,14 @@ button:hover {
 
 .relic-stats-table td {
   border: 1px solid transparent;
-  padding: 0.2rem 0.5rem;
+  /* padding: 0.2rem 0.5rem; */
   text-align: left;
   font-size: 0.8em;
   flex-shrink: 0;
+}
+
+.relic-stats-table .sec-effect {
+  color: #4d94ff;
 }
 
 .info-button {
