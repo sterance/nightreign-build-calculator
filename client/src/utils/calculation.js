@@ -153,7 +153,7 @@ export function calculateBestRelics(desiredEffects,
       continue;
     }
 
-    const combination = findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics, showDeepOfNight);
+    const combination = findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics, showDeepOfNight, desiredEffects, effectMap);
     if (combination) {
       console.log(`Best combination found for ${chalice.name}:`, JSON.parse(JSON.stringify(combination)));
       allCombinations.push(combination);
@@ -194,16 +194,18 @@ function calculateRelicScore(relicEffects, desiredEffects) {
 }
 
 /**
- * Finds the best relic combination for a single chalice by picking the highest-scored relic for each slot.
+ * Finds the best relic combination for a single chalice using exhaustive search with stacking-aware scoring.
  * @param {Object} chalice - The chalice object, including its name and slots.
  * @param {Array} scoredBaseRelics - The list of all scored and filtered base relics.
  * @param {Array} scoredDeepRelics - The list of all scored and filtered deep relics.
  * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
+ * @param {Array} desiredEffects - Array of desired effects for true score calculation.
+ * @param {Map} effectMap - Map of effect IDs to effect names.
  * @returns {Object|null} - The best combination for the chalice, or null if slots cannot be filled.
  */
-function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false) {
+function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false, desiredEffects, effectMap) {
   // Find best base relics
-  const bestBaseRelics = findBestRelicsForSlots(chalice.baseSlots, scoredBaseRelics);
+  const bestBaseRelics = findBestRelicsForSlots(chalice.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
   if (!bestBaseRelics) {
     return null;
   }
@@ -213,7 +215,7 @@ function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepReli
 
   // Find best deep relics if showDeepOfNight is true and chalice has deep slots
   if (showDeepOfNight && chalice.deepSlots && scoredDeepRelics.length > 0) {
-    bestDeepRelics = findBestRelicsForSlots(chalice.deepSlots, scoredDeepRelics);
+    bestDeepRelics = findBestRelicsForSlots(chalice.deepSlots, scoredDeepRelics, desiredEffects, effectMap);
     if (bestDeepRelics) {
       deepScore = bestDeepRelics.score;
     }
@@ -236,16 +238,19 @@ function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepReli
 }
 
 /**
- * Helper function to find the best relics for a set of slots
+ * Helper function to find the best relics for a set of slots using exhaustive search with stacking-aware scoring
  * @param {Array} slots - Array of slot colors
  * @param {Array} scoredRelics - Array of scored relics
+ * @param {Array} desiredEffects - Array of desired effects for true score calculation
+ * @param {Map} effectMap - Map of effect IDs to effect names
  * @returns {Object|null} - Object with relics array and total score, or null if slots cannot be filled
  */
-function findBestRelicsForSlots(slots, scoredRelics) {
-  const bestRelicsForSlots = [];
-  let totalScore = 0;
-  const usedRelicIds = new Set();
+function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) {
+  if (slots.length === 0) {
+    return { relics: [], score: 0 };
+  }
 
+  // Group relics by color for efficient lookup
   const relicsByColor = {
     red: scoredRelics.filter(r => r.color === 'red'),
     blue: scoredRelics.filter(r => r.color === 'blue'),
@@ -253,40 +258,130 @@ function findBestRelicsForSlots(slots, scoredRelics) {
     green: scoredRelics.filter(r => r.color === 'green'),
   };
 
-  for (const slotColor of slots) {
-    let bestRelicForSlot = null;
-    // white slots are wildcards
+  // Get valid relics for each slot
+  const validRelicsPerSlot = slots.map(slotColor => {
     if (slotColor === 'white') {
-      let bestOverallRelic = null;
-      // find the best relic from any color that hasn't been used yet
-      for (const color of Object.keys(relicsByColor)) {
-        const availableRelics = relicsByColor[color].filter(r => !usedRelicIds.has(r.sorting));
+      // White slots can use any color
+      return [...relicsByColor.red, ...relicsByColor.blue, ...relicsByColor.yellow, ...relicsByColor.green];
+    } else {
+      return relicsByColor[slotColor] || [];
+    }
+  });
+
+  // Check if any slot has no valid relics
+  if (validRelicsPerSlot.some(relics => relics.length === 0)) {
+    console.warn(`No valid relics found for one or more slots`);
+    return null;
+  }
+
+  let bestCombination = null;
+  let bestScore = -1;
+
+  // Generate all valid combinations using recursive approach with pruning
+  function generateCombinations(slotIndex, currentCombination, usedRelicIds, currentIndividualScore) {
+    // Upper bound pruning: check if this branch can possibly beat current best
+    if (bestScore >= 0) {
+      const remainingSlots = slots.length - slotIndex;
+      let maxPossibleFromRemaining = 0;
+      
+      // Calculate maximum possible score from remaining slots
+      for (let i = slotIndex; i < slots.length; i++) {
+        const availableRelics = validRelicsPerSlot[i].filter(r => !usedRelicIds.has(r.sorting));
         if (availableRelics.length > 0) {
-          if (!bestOverallRelic || availableRelics[0].score > bestOverallRelic.score) {
-            bestOverallRelic = availableRelics[0];
-          }
+          maxPossibleFromRemaining += Math.max(...availableRelics.map(r => r.score));
         }
       }
-      bestRelicForSlot = bestOverallRelic;
-    } else {
-      // find the best relic for the specific color that hasn't been used yet
-      bestRelicForSlot = relicsByColor[slotColor].find(r => !usedRelicIds.has(r.sorting)) || null;
+      
+      // If even the most optimistic scenario can't beat current best, prune
+      if (currentIndividualScore + maxPossibleFromRemaining <= bestScore) {
+        return;
+      }
     }
 
-    if (bestRelicForSlot) {
-      bestRelicsForSlots.push(bestRelicForSlot);
-      totalScore += bestRelicForSlot.score;
-      usedRelicIds.add(bestRelicForSlot.sorting);
-    } else {
-      console.warn(`Could not find a unique relic for a ${slotColor} slot.`);
-      return null; // not enough unique relics to fill these slots
+    // Base case: all slots filled
+    if (slotIndex === slots.length) {
+      const trueScore = calculateTrueCombinationScore(currentCombination, desiredEffects, effectMap);
+      if (trueScore > bestScore) {
+        bestScore = trueScore;
+        bestCombination = [...currentCombination];
+      }
+      return;
+    }
+
+    // Try each valid relic for current slot
+    const availableRelics = validRelicsPerSlot[slotIndex].filter(r => !usedRelicIds.has(r.sorting));
+    
+    for (const relic of availableRelics) {
+      currentCombination[slotIndex] = relic;
+      usedRelicIds.add(relic.sorting);
+      
+      generateCombinations(
+        slotIndex + 1, 
+        currentCombination, 
+        usedRelicIds, 
+        currentIndividualScore + relic.score
+      );
+      
+      // Backtrack
+      usedRelicIds.delete(relic.sorting);
     }
   }
 
-  return {
-    relics: bestRelicsForSlots,
-    score: totalScore
-  };
+  // Start the recursive generation
+  generateCombinations(0, new Array(slots.length), new Set(), 0);
+
+  if (bestCombination) {
+    return {
+      relics: bestCombination,
+      score: bestScore
+    };
+  }
+
+  return null;
+}
+
+/**
+ * Calculates the true score of a relic combination, accounting for non-stacking effects
+ * @param {Array} relics - Array of relics in the combination
+ * @param {Array} desiredEffects - Array of desired effects
+ * @param {Map} effectMap - Map of effect IDs to effect names
+ * @returns {number} - The true combination score
+ */
+function calculateTrueCombinationScore(relics, desiredEffects, effectMap) {
+  // Collect all effects from all relics in the combination
+  const allEffectIds = [];
+  for (const relic of relics) {
+    const relicEffects = getRelicEffects(relic, effectMap);
+    allEffectIds.push(...relicEffects);
+  }
+
+  let totalScore = 0;
+
+  // For each desired effect, calculate its contribution to the score
+  for (const desiredEffect of desiredEffects) {
+    // Count how many times this desired effect appears in the combination
+    const matchingEffectCount = allEffectIds.filter(effectId => 
+      desiredEffect.ids.includes(effectId)
+    ).length;
+
+    if (matchingEffectCount > 0) {
+      // Check if any of the effect IDs in this desired effect group are non-stacking
+      const isNonStacking = desiredEffect.ids.some(effectId => {
+        const effectData = baseRelicEffects.find(effect => effect.ids.includes(effectId));
+        return effectData && effectData.stacks === false;
+      });
+
+      if (isNonStacking) {
+        // Non-stacking effect: only count once regardless of how many times it appears
+        totalScore += desiredEffect.weight || 1;
+      } else {
+        // Stacking effect: count each occurrence
+        totalScore += (desiredEffect.weight || 1) * matchingEffectCount;
+      }
+    }
+  }
+
+  return totalScore;
 }
 
 // HELPER FUNCTIONS
