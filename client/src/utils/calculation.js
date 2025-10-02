@@ -274,13 +274,13 @@ function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) 
     return null;
   }
 
-  let bestCombination = null;
-  let bestScore = -1;
+  let allValidCombinations = [];
+  let bestScoreSoFar = -1;
 
   // Generate all valid combinations using recursive approach with pruning
   function generateCombinations(slotIndex, currentCombination, usedRelicIds, currentIndividualScore) {
     // Upper bound pruning: check if this branch can possibly beat current best
-    if (bestScore >= 0) {
+    if (bestScoreSoFar >= 0) {
       const remainingSlots = slots.length - slotIndex;
       let maxPossibleFromRemaining = 0;
       
@@ -293,7 +293,7 @@ function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) 
       }
       
       // If even the most optimistic scenario can't beat current best, prune
-      if (currentIndividualScore + maxPossibleFromRemaining <= bestScore) {
+      if (currentIndividualScore + maxPossibleFromRemaining <= bestScoreSoFar) {
         return;
       }
     }
@@ -301,9 +301,16 @@ function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) 
     // Base case: all slots filled
     if (slotIndex === slots.length) {
       const trueScore = calculateTrueCombinationScore(currentCombination, desiredEffects, effectMap);
-      if (trueScore > bestScore) {
-        bestScore = trueScore;
-        bestCombination = [...currentCombination];
+      
+      // Store this combination
+      allValidCombinations.push({
+        relics: [...currentCombination],
+        score: trueScore
+      });
+      
+      // Update best score for pruning
+      if (trueScore > bestScoreSoFar) {
+        bestScoreSoFar = trueScore;
       }
       return;
     }
@@ -330,11 +337,18 @@ function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) 
   // Start the recursive generation
   generateCombinations(0, new Array(slots.length), new Set(), 0);
 
-  if (bestCombination) {
-    return {
-      relics: bestCombination,
-      score: bestScore
-    };
+  if (allValidCombinations.length === 0) {
+    return null;
+  }
+
+  // Sort by score (highest first)
+  allValidCombinations.sort((a, b) => b.score - a.score);
+
+  // Find first combination that satisfies required effects
+  for (const combination of allValidCombinations) {
+    if (validateRequiredEffects(combination.relics, desiredEffects, effectMap)) {
+      return combination;
+    }
   }
 
   return null;
@@ -382,6 +396,37 @@ function calculateTrueCombinationScore(relics, desiredEffects, effectMap) {
   }
 
   return totalScore;
+}
+
+/**
+ * Validates that a relic combination contains all required effects
+ * @param {Array} relics - Array of relics in the combination
+ * @param {Array} desiredEffects - Array of desired effects
+ * @param {Map} effectMap - Map of effect IDs to effect names
+ * @returns {boolean} - True if all required effects are present
+ */
+function validateRequiredEffects(relics, desiredEffects, effectMap) {
+  // Get all effects from the combination
+  const allEffectIds = [];
+  for (const relic of relics) {
+    const relicEffects = getRelicEffects(relic, effectMap);
+    allEffectIds.push(...relicEffects);
+  }
+
+  // Check that all required effects are present
+  for (const desiredEffect of desiredEffects) {
+    if (desiredEffect.isRequired) {
+      const hasRequiredEffect = desiredEffect.ids.some(effectId => 
+        allEffectIds.includes(effectId)
+      );
+      
+      if (!hasRequiredEffect) {
+        return false; // Missing a required effect
+      }
+    }
+  }
+
+  return true; // All required effects are present
 }
 
 // HELPER FUNCTIONS
