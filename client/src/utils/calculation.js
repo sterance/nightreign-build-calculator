@@ -204,37 +204,287 @@ function calculateRelicScore(relicEffects, desiredEffects) {
  * @returns {Object|null} - The best combination for the chalice, or null if slots cannot be filled.
  */
 function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false, desiredEffects, effectMap) {
-  // Find best base relics
-  const bestBaseRelics = findBestRelicsForSlots(chalice.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
-  if (!bestBaseRelics) {
+  if (showDeepOfNight && chalice.deepSlots && scoredDeepRelics.length > 0) {
+    // When showDeepOfNight is true, we need to validate the combined build
+    return findBestCombinedRelicsWithFallback(chalice, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap);
+  } else {
+    // Original logic for base relics only
+    const bestBaseRelics = findBestRelicsForSlots(chalice.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
+    if (!bestBaseRelics) {
+      return null;
+    }
+
+    const result = {
+      chalice: {
+        name: chalice.name,
+        baseSlots: chalice.baseSlots,
+        deepSlots: chalice.deepSlots || [],
+        description: chalice.description
+      },
+      baseRelics: bestBaseRelics.relics,
+      deepRelics: [],
+      relics: bestBaseRelics.relics, // Keep for backward compatibility
+      score: bestBaseRelics.score,
+    };
+
+    return result;
+  }
+}
+
+/**
+ * Finds the best combined base + deep relics with proper fallback behavior
+ * Tries base combinations in order of score, and for each base combination,
+ * tries to find deep relics that work with it
+ */
+function findBestCombinedRelicsWithFallback(chalice, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap) {
+  // Get all base combinations (with fallback behavior)
+  const allBaseCombinations = generateAllBaseCombinations(chalice.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
+  if (!allBaseCombinations || allBaseCombinations.length === 0) {
     return null;
   }
 
-  let bestDeepRelics = null;
-  let deepScore = 0;
-
-  // Find best deep relics if showDeepOfNight is true and chalice has deep slots
-  if (showDeepOfNight && chalice.deepSlots && scoredDeepRelics.length > 0) {
-    bestDeepRelics = findBestRelicsForSlots(chalice.deepSlots, scoredDeepRelics, desiredEffects, effectMap);
-    if (bestDeepRelics) {
-      deepScore = bestDeepRelics.score;
+  // Try each base combination in order of score
+  for (const baseCombo of allBaseCombinations) {
+    // Try to find deep relics that work with this base combination
+    const deepCombo = findBestDeepRelicsForBase(chalice.deepSlots, scoredDeepRelics, baseCombo.relics, desiredEffects, effectMap);
+    
+    if (deepCombo) {
+      // Found a valid combination!
+      const result = {
+        chalice: {
+          name: chalice.name,
+          baseSlots: chalice.baseSlots,
+          deepSlots: chalice.deepSlots || [],
+          description: chalice.description
+        },
+        baseRelics: baseCombo.relics,
+        deepRelics: deepCombo.relics,
+        relics: baseCombo.relics, // Keep for backward compatibility
+        score: baseCombo.score + deepCombo.score,
+      };
+      return result;
     }
   }
 
-  const result = {
-    chalice: {
-      name: chalice.name,
-      baseSlots: chalice.baseSlots,
-      deepSlots: chalice.deepSlots || [],
-      description: chalice.description
-    },
-    baseRelics: bestBaseRelics.relics,
-    deepRelics: bestDeepRelics ? bestDeepRelics.relics : [],
-    relics: bestBaseRelics.relics, // Keep for backward compatibility
-    score: bestBaseRelics.score + deepScore,
+  // No valid combination found
+  return null;
+}
+
+/**
+ * Generates all base combinations with proper fallback behavior
+ */
+function generateAllBaseCombinations(slots, scoredRelics, desiredEffects, effectMap) {
+  if (slots.length === 0) {
+    return [{ relics: [], score: 0 }];
+  }
+
+  // Group relics by color for efficient lookup
+  const relicsByColor = {
+    red: scoredRelics.filter(r => r.color === 'red'),
+    blue: scoredRelics.filter(r => r.color === 'blue'),
+    yellow: scoredRelics.filter(r => r.color === 'yellow'),
+    green: scoredRelics.filter(r => r.color === 'green'),
   };
 
-  return result;
+  // Get valid relics for each slot
+  const validRelicsPerSlot = slots.map(slotColor => {
+    if (slotColor === 'white') {
+      // White slots can use any color
+      return [...relicsByColor.red, ...relicsByColor.blue, ...relicsByColor.yellow, ...relicsByColor.green];
+    } else {
+      return relicsByColor[slotColor] || [];
+    }
+  });
+
+  // Check if any slot has no valid relics
+  if (validRelicsPerSlot.some(relics => relics.length === 0)) {
+    return [];
+  }
+
+  let allValidCombinations = [];
+  let bestScoreSoFar = -1;
+
+  // Generate all valid combinations using recursive approach with pruning
+  function generateCombinations(slotIndex, currentCombination, usedRelicIds, currentIndividualScore) {
+    // Upper bound pruning: check if this branch can possibly beat current best
+    if (bestScoreSoFar >= 0) {
+      const remainingSlots = slots.length - slotIndex;
+      let maxPossibleFromRemaining = 0;
+      
+      // Calculate maximum possible score from remaining slots
+      for (let i = slotIndex; i < slots.length; i++) {
+        const availableRelics = validRelicsPerSlot[i].filter(r => !usedRelicIds.has(r.sorting));
+        if (availableRelics.length > 0) {
+          maxPossibleFromRemaining += Math.max(...availableRelics.map(r => r.score));
+        }
+      }
+      
+      // If even the most optimistic scenario can't beat current best, prune
+      if (currentIndividualScore + maxPossibleFromRemaining <= bestScoreSoFar) {
+        return;
+      }
+    }
+
+    // Base case: all slots filled
+    if (slotIndex === slots.length) {
+      const trueScore = calculateTrueCombinationScore(currentCombination, desiredEffects, effectMap);
+      
+      // Store this combination
+      allValidCombinations.push({
+        relics: [...currentCombination],
+        score: trueScore
+      });
+      
+      // Update best score for pruning
+      if (trueScore > bestScoreSoFar) {
+        bestScoreSoFar = trueScore;
+      }
+      return;
+    }
+
+    // Try each valid relic for current slot
+    const availableRelics = validRelicsPerSlot[slotIndex].filter(r => !usedRelicIds.has(r.sorting));
+    
+    for (const relic of availableRelics) {
+      currentCombination[slotIndex] = relic;
+      usedRelicIds.add(relic.sorting);
+      
+      generateCombinations(
+        slotIndex + 1, 
+        currentCombination, 
+        usedRelicIds, 
+        currentIndividualScore + relic.score
+      );
+      
+      // Backtrack
+      usedRelicIds.delete(relic.sorting);
+    }
+  }
+
+  // Start the recursive generation
+  generateCombinations(0, new Array(slots.length), new Set(), 0);
+
+  if (allValidCombinations.length === 0) {
+    return [];
+  }
+
+  // Sort by score (highest first) - this gives us the fallback behavior
+  allValidCombinations.sort((a, b) => b.score - a.score);
+
+  return allValidCombinations;
+}
+
+/**
+ * Finds the best deep relics that work with a given base combination
+ */
+function findBestDeepRelicsForBase(slots, scoredRelics, baseRelics, desiredEffects, effectMap) {
+  if (slots.length === 0) {
+    return { relics: [], score: 0 };
+  }
+
+  // Group relics by color for efficient lookup
+  const relicsByColor = {
+    red: scoredRelics.filter(r => r.color === 'red'),
+    blue: scoredRelics.filter(r => r.color === 'blue'),
+    yellow: scoredRelics.filter(r => r.color === 'yellow'),
+    green: scoredRelics.filter(r => r.color === 'green'),
+  };
+
+  // Get valid relics for each slot
+  const validRelicsPerSlot = slots.map(slotColor => {
+    if (slotColor === 'white') {
+      // White slots can use any color
+      return [...relicsByColor.red, ...relicsByColor.blue, ...relicsByColor.yellow, ...relicsByColor.green];
+    } else {
+      return relicsByColor[slotColor] || [];
+    }
+  });
+
+  // Check if any slot has no valid relics
+  if (validRelicsPerSlot.some(relics => relics.length === 0)) {
+    return null;
+  }
+
+  let allValidCombinations = [];
+  let bestScoreSoFar = -1;
+
+  // Generate all valid combinations using recursive approach with pruning
+  function generateCombinations(slotIndex, currentCombination, usedRelicIds, currentIndividualScore) {
+    // Upper bound pruning: check if this branch can possibly beat current best
+    if (bestScoreSoFar >= 0) {
+      const remainingSlots = slots.length - slotIndex;
+      let maxPossibleFromRemaining = 0;
+      
+      // Calculate maximum possible score from remaining slots
+      for (let i = slotIndex; i < slots.length; i++) {
+        const availableRelics = validRelicsPerSlot[i].filter(r => !usedRelicIds.has(r.sorting));
+        if (availableRelics.length > 0) {
+          maxPossibleFromRemaining += Math.max(...availableRelics.map(r => r.score));
+        }
+      }
+      
+      // If even the most optimistic scenario can't beat current best, prune
+      if (currentIndividualScore + maxPossibleFromRemaining <= bestScoreSoFar) {
+        return;
+      }
+    }
+
+    // Base case: all slots filled
+    if (slotIndex === slots.length) {
+      const trueScore = calculateTrueCombinationScore(currentCombination, desiredEffects, effectMap);
+      
+      // Store this combination
+      allValidCombinations.push({
+        relics: [...currentCombination],
+        score: trueScore
+      });
+      
+      // Update best score for pruning
+      if (trueScore > bestScoreSoFar) {
+        bestScoreSoFar = trueScore;
+      }
+      return;
+    }
+
+    // Try each valid relic for current slot
+    const availableRelics = validRelicsPerSlot[slotIndex].filter(r => !usedRelicIds.has(r.sorting));
+    
+    for (const relic of availableRelics) {
+      currentCombination[slotIndex] = relic;
+      usedRelicIds.add(relic.sorting);
+      
+      generateCombinations(
+        slotIndex + 1, 
+        currentCombination, 
+        usedRelicIds, 
+        currentIndividualScore + relic.score
+      );
+      
+      // Backtrack
+      usedRelicIds.delete(relic.sorting);
+    }
+  }
+
+  // Start the recursive generation
+  generateCombinations(0, new Array(slots.length), new Set(), 0);
+
+  if (allValidCombinations.length === 0) {
+    return null;
+  }
+
+  // Sort by score (highest first)
+  allValidCombinations.sort((a, b) => b.score - a.score);
+
+  // Find first combination that works with the base relics
+  for (const combination of allValidCombinations) {
+    // Check if the combined build satisfies required effects
+    const combinedRelics = [...baseRelics, ...combination.relics];
+    if (validateRequiredEffects(combinedRelics, desiredEffects, effectMap)) {
+      return combination;
+    }
+  }
+
+  return null;
 }
 
 /**
