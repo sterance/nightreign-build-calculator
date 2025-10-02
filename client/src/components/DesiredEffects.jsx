@@ -81,8 +81,8 @@ const DesiredEffects = ({
         acc[effect.category].groups = {};
       }
 
-      if (effect.display_group && effect.stack_group) {
-        // both display_group and stack_group exist - create nested structure
+      if (effect.display_group && effect.level_group) {
+        // both display_group and level_group exist - create nested structure
         if (!acc[effect.category].groups[effect.display_group]) {
           acc[effect.category].groups[effect.display_group] = {
             type: 'nested',
@@ -102,10 +102,10 @@ const DesiredEffects = ({
         if (!acc[effect.category].groups[effect.display_group].subgroups) {
           acc[effect.category].groups[effect.display_group].subgroups = {};
         }
-        if (!acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group]) {
-          acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group] = [];
+        if (!acc[effect.category].groups[effect.display_group].subgroups[effect.level_group]) {
+          acc[effect.category].groups[effect.display_group].subgroups[effect.level_group] = [];
         }
-        acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group].push(effect);
+        acc[effect.category].groups[effect.display_group].subgroups[effect.level_group].push(effect);
       } else if (effect.display_group) {
         // only display_group exists
         if (!acc[effect.category].groups[effect.display_group]) {
@@ -126,26 +126,26 @@ const DesiredEffects = ({
           acc[effect.category].groups[effect.display_group].effects = [];
         }
         acc[effect.category].groups[effect.display_group].effects.push(effect);
-      } else if (effect.stack_group) {
-        // only stack_group exists (fallback for old data)
-        if (!acc[effect.category].groups[effect.stack_group]) {
-          acc[effect.category].groups[effect.stack_group] = {
+      } else if (effect.level_group) {
+        // only level_group exists (fallback for old data)
+        if (!acc[effect.category].groups[effect.level_group]) {
+          acc[effect.category].groups[effect.level_group] = {
             type: 'simple',
             effects: []
           };
-        } else if (acc[effect.category].groups[effect.stack_group].type === 'nested') {
+        } else if (acc[effect.category].groups[effect.level_group].type === 'nested') {
           // add to singles if it's already a nested group
-          if (!acc[effect.category].groups[effect.stack_group].singles) {
-            acc[effect.category].groups[effect.stack_group].singles = [];
+          if (!acc[effect.category].groups[effect.level_group].singles) {
+            acc[effect.category].groups[effect.level_group].singles = [];
           }
-          acc[effect.category].groups[effect.stack_group].singles.push(effect);
+          acc[effect.category].groups[effect.level_group].singles.push(effect);
           return acc;
         }
         // ensure effects array exists
-        if (!acc[effect.category].groups[effect.stack_group].effects) {
-          acc[effect.category].groups[effect.stack_group].effects = [];
+        if (!acc[effect.category].groups[effect.level_group].effects) {
+          acc[effect.category].groups[effect.level_group].effects = [];
         }
-        acc[effect.category].groups[effect.stack_group].effects.push(effect);
+        acc[effect.category].groups[effect.level_group].effects.push(effect);
       } else {
         acc[effect.category].singles.push(effect);
       }
