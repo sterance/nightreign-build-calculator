@@ -383,6 +383,7 @@ function App() {
             handleCalculate={handleCalculate}
             setHasSavedBuilds={setHasSavedBuilds}
             showDeepOfNight={showDeepOfNight}
+            addToast={addToast}
           />
 
           <RelicResults

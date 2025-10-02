@@ -11,7 +11,8 @@ const DesiredEffects = ({
   selectedCharacter,
   handleCalculate,
   setHasSavedBuilds,
-  showDeepOfNight }) => {
+  showDeepOfNight,
+  addToast }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
   const [isListVisible, setListVisible] = useState(false);
@@ -276,6 +277,16 @@ const DesiredEffects = ({
     return effect.name;
   };
   const handleSelectEffect = (effect) => {
+    // check if effect already exists in selected effects, dont add duplicate
+    const effectExists = selectedEffects.some(selectedEffect => selectedEffect.name === effect.name);
+    if (effectExists) {
+      // show toast notification and hide search menu
+      addToast(`${effect.name} already in desired effects`, 'error');
+      setSearchTerm('');
+      setListVisible(false);
+      return;
+    }
+
     const newEffect = {
       id: Date.now(),
       name: effect.name,
@@ -292,7 +303,28 @@ const DesiredEffects = ({
   };
 
   const handleSelectAllFromGroup = (groupEffects) => {
-    const newEffects = groupEffects.map(effect => ({
+    // filter out effects that already exist in selected effects
+    const effectsToAdd = groupEffects.filter(effect => 
+      !selectedEffects.some(selectedEffect => selectedEffect.name === effect.name)
+    );
+    
+    const duplicateCount = groupEffects.length - effectsToAdd.length;
+    if (duplicateCount > 0) {
+      if (effectsToAdd.length === 0) {
+        addToast(`All effects already in desired effects`, 'error');
+        setListVisible(false);
+        setHoveredGroup(null);
+        return;
+      } else {
+        addToast(`${duplicateCount} effect${duplicateCount > 1 ? 's' : ''} already in desired effects, added ${effectsToAdd.length} new effect${effectsToAdd.length > 1 ? 's' : ''}`, 'error');
+      }
+    }
+    
+    if (effectsToAdd.length === 0) {
+      return;
+    }
+
+    const newEffects = effectsToAdd.map(effect => ({
       id: Date.now() + Math.random(),
       name: effect.name,
       ids: effect.ids,
