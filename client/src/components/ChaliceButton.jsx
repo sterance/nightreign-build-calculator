@@ -1,11 +1,9 @@
 import React from 'react';
-import { chaliceData, placeholderChalices } from '../data/chaliceData';
+import { chaliceData } from '../data/chaliceData';
 
 const ChaliceButton = ({ selectedCharacter, selectedChalices, onClick }) => {
   const isEnabled = !!selectedCharacter;
-  const chalices = isEnabled
-    ? chaliceData[selectedCharacter]
-    : placeholderChalices;
+  const chalices = isEnabled ? chaliceData[selectedCharacter] : [];
 
   return (
     <div
@@ -21,7 +19,7 @@ const ChaliceButton = ({ selectedCharacter, selectedChalices, onClick }) => {
 
       <div className="chalice-preview">
         <div className="chalice-preview-grid">
-          {chalices.map((chalice, index) => (
+          {(isEnabled ? chalices : Array(8).fill(null)).map((chalice, index) => (
             <div
               key={index}
               className="chalice-preview-dot"

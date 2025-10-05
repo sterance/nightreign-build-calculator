@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import items from '../data/items.json';
 import effects from '../data/relicEffects.json';
-import { CloseIcon } from './Icons';
+import { CloseIcon, InformationIcon } from './Icons';
 import RelicFilters from './RelicFilters';
+
+
 
 const createEffectMap = (showDeepOfNight) => {
   const effectMap = new Map();
@@ -18,7 +20,10 @@ const createEffectMap = (showDeepOfNight) => {
   return effectMap;
 };
 
-const RelicCard = ({ relic, items, effectMap }) => {
+const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
+  const [showRelicId, setShowRelicId] = useState(false)
+  const EMPTY_SLOT_ID = 4294967295; // 2^32 - 1 (unsigned 32-bit integer)
+
   const relicInfo = items[relic.item_id.toString()];
 
   if (!relicInfo) {
@@ -26,11 +31,11 @@ const RelicCard = ({ relic, items, effectMap }) => {
   }
 
   const getEffectName = (id) => {
-    const EMPTY_SLOT_ID = 4294967295; // 2^32 - 1 (unsigned 32-bit integer)
     if (id === 0 || id === EMPTY_SLOT_ID) return null;
 
     return effectMap.get(id) || `Unknown Effect (ID: ${id})`;
   };
+
 
   const allEffects = [
     { id: relic.effect1_id, isSecondary: false },
@@ -65,6 +70,27 @@ const RelicCard = ({ relic, items, effectMap }) => {
           </li>
         ))}
       </ul>
+      {showRelicIdToggle && (
+        <div className="corner-info-icon-container">
+          {showRelicId && (
+            <div className="relic-id-tooltip">
+              Relic ID: {relic.item_id}
+              {relic.effect1_id !== EMPTY_SLOT_ID && `\nEffect 1 ID: ${relic.effect1_id}`}
+              {relic.sec_effect1_id !== EMPTY_SLOT_ID && `\nDebuff 1 ID: ${relic.sec_effect1_id}`}
+              {relic.effect2_id !== EMPTY_SLOT_ID && `\nEffect 2 ID: ${relic.effect2_id}`}
+              {relic.sec_effect2_id !== EMPTY_SLOT_ID && `\nDebuff 2 ID: ${relic.sec_effect2_id}`}
+              {relic.effect3_id !== EMPTY_SLOT_ID && `\nEffect 3 ID: ${relic.effect3_id}`}
+              {relic.sec_effect3_id !== EMPTY_SLOT_ID && `\nDebuff 3 ID: ${relic.sec_effect3_id}`}
+            </div>
+          )}
+          <div
+            className="corner-info-icon"
+            onClick={() => setShowRelicId(prev => !prev)}
+          >
+            <InformationIcon />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -76,6 +102,7 @@ const CharacterRelics = ({ characterData,
   showRadio,
   showDeepOfNight,
   showUnknownRelics,
+  showRelicIdToggle,
   baseRelicColorFilters,
   deepRelicColorFilters,
   effectMap }) => {
@@ -122,7 +149,7 @@ const CharacterRelics = ({ characterData,
       </label>
       <div className="relics-grid">
         {filteredRelics.sort((a, b) => a.sorting - b.sorting).map((relic, index) => (
-          <RelicCard key={index} relic={relic} items={items} effectMap={effectMap} />
+          <RelicCard key={index} relic={relic} items={items} effectMap={effectMap} showRelicIdToggle={showRelicIdToggle} />
         ))}
       </div>
     </div>
@@ -134,6 +161,7 @@ const RelicsPage = ({ onBack,
   onSaveNameSelect,
   showDeepOfNight,
   showUnknownRelics,
+  showRelicIdToggle,
   baseRelicColorFilters,
   deepRelicColorFilters,
   onBaseRelicColorFilterChange,
@@ -257,6 +285,7 @@ const RelicsPage = ({ onBack,
           showRadio={charactersWithRelics.length > 1}
           showDeepOfNight={showDeepOfNight}
           showUnknownRelics={showUnknownRelics}
+          showRelicIdToggle={showRelicIdToggle}
           baseRelicColorFilters={baseRelicColorFilters}
           deepRelicColorFilters={deepRelicColorFilters}
           effectMap={effectMap}

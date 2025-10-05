@@ -1,6 +1,6 @@
 import React from 'react';
 import Chalice from './Chalice';
-import { chaliceData, placeholderChalices } from '../data/chaliceData';
+import { chaliceData } from '../data/chaliceData';
 import { ClearSelectionIcon, SelectAllIcon, CloseIcon } from './Icons';
 
 const ChalicePage = ({
@@ -12,9 +12,7 @@ const ChalicePage = ({
   onClearAll,
 }) => {
   const isEnabled = !!selectedCharacter;
-  const chalices = isEnabled
-    ? chaliceData[selectedCharacter]
-    : placeholderChalices;
+  const chalices = isEnabled ? chaliceData[selectedCharacter] : [];
 
   return (
     <div className="chalice-page-backdrop">

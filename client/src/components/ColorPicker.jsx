@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-function ColorPicker() {
+function ColorPicker({ color, setColor }) {
   const defaultColor = '#646cff';
-  const [color, setColor] = useState(localStorage.getItem('primaryColor') || '#646cff');
-  useEffect(() => {
-    document.documentElement.style.setProperty('--primary-color', color);
-    localStorage.setItem('primaryColor', color);
-  }, [color]);
 
   const handleColorChange = (e) => {
     setColor(e.target.value);

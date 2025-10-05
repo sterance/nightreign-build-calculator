@@ -1,7 +1,7 @@
 import ColorPicker from "./ColorPicker";
 import { CloseIcon } from "./Icons";
 
-const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics }) => {
+const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRelicIdToggle, setShowRelicIdToggle, primaryColor, setPrimaryColor }) => {
   return (
     <div className="settings-page-backdrop">
       <div className="settings-page card">
@@ -11,10 +11,10 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics }) => {
         <h2>Settings</h2>
         <div className="settings-body">
           <div className="settings-column left-column">
-            <ColorPicker />
+            <ColorPicker color={primaryColor} setColor={setPrimaryColor} />
           </div>
           <div className="settings-column right-column">
-            <div className="settings-option">
+          <div className="settings-option">
               <label>
                 <input
                   type="checkbox"
@@ -22,6 +22,16 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics }) => {
                   onChange={() => setShowUnknownRelics(prev => !prev)}
                 />
                 Display Unknown Relics
+              </label>
+            </div>
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showRelicIdToggle}
+                  onChange={() => setShowRelicIdToggle(prev => !prev)}
+                />
+                Display Relic ID Toggle
               </label>
             </div>
             <div className="settings-option">

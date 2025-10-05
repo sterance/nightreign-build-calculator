@@ -207,9 +207,3 @@ export const chaliceData = characters.reduce((acc, character) => {
   acc[character] = [...uniqueChalices[character], ...genericChalices];
   return acc;
 }, {});
-
-export const placeholderChalices = Array(8).fill({
-  name: 'Placeholder',
-  baseSlots: ['white', 'white', 'white'],
-  deepSlots: ['white', 'white', 'white'],
-});

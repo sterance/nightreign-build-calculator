@@ -28,6 +28,40 @@ const createEffectMap = (showDeepOfNight) => {
   return effectMap;
 };
 
+function usePersistentBoolean(key, defaultValue) {
+  const [value, setValue] = useState(() => {
+    const saved = localStorage.getItem(key);
+    return saved !== null ? JSON.parse(saved) : defaultValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+function usePersistentState(key, defaultValue) {
+  const [value, setValue] = useState(() => {
+    const saved = localStorage.getItem(key);
+    if (saved === null) return defaultValue;
+    if (typeof defaultValue === 'boolean') {
+      try { return JSON.parse(saved); } catch { return saved === 'true'; }
+    }
+    return saved;
+  });
+
+  useEffect(() => {
+    if (typeof value === 'string') {
+      localStorage.setItem(key, value);
+    } else {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedSaveName, setSelectedSaveName] = useState(null);
@@ -41,11 +75,9 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
-  const [showDeepOfNight, setShowDeepOfNight] = useState(() => {
-    const saved = localStorage.getItem('showDeepOfNight');
-    return saved !== null ? JSON.parse(saved) : false;
-  });
-  const [showUnknownRelics, setShowUnknownRelics] = useState(false);
+  const [showDeepOfNight, setShowDeepOfNight] = usePersistentBoolean('showDeepOfNight', false);
+  const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
+  const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
@@ -55,14 +87,10 @@ function App() {
   const [pendingDeepOfNight, setPendingDeepOfNight] = useState(false);
   const fileInputRef = useRef(null);
 
+  const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
   useEffect(() => {
-    const primaryColor = localStorage.getItem('primaryColor') || '#646cff';
     document.documentElement.style.setProperty('--primary-color', primaryColor);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('showDeepOfNight', JSON.stringify(showDeepOfNight));
-  }, [showDeepOfNight]);
+  }, [primaryColor]);
 
   useEffect(() => {
     const newEffectMap = createEffectMap(showDeepOfNight);
@@ -409,6 +437,7 @@ function App() {
         onSaveNameSelect={setSelectedSaveName}
         showDeepOfNight={showDeepOfNight}
         showUnknownRelics={showUnknownRelics}
+        showRelicIdToggle={showRelicIdToggle}
         baseRelicColorFilters={baseRelicColorFilters}
         deepRelicColorFilters={deepRelicColorFilters}
         onBaseRelicColorFilterChange={handleBaseRelicColorFilterChange}
@@ -419,6 +448,10 @@ function App() {
         onBack={() => setShowSettings(false)}
         showUnknownRelics={showUnknownRelics}
         setShowUnknownRelics={setShowUnknownRelics}
+        showRelicIdToggle={showRelicIdToggle}
+        setShowRelicIdToggle={setShowRelicIdToggle}
+        primaryColor={primaryColor}
+        setPrimaryColor={setPrimaryColor}
       />}
 
       {showSavedBuilds && <SavedBuildsPage
