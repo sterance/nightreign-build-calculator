@@ -1,5 +1,5 @@
 import React from 'react';
-import { chaliceData } from '../data/vessels';
+import { chaliceData } from '../utils/vesselData';
 
 const ChaliceButton = ({ selectedCharacter, selectedChalices, onClick }) => {
   const isEnabled = !!selectedCharacter;

@@ -1,4 +1,4 @@
-import { chaliceData } from '../data/vessels.js';
+import { chaliceData } from './vesselData.js';
 import items from '../data/relics.json';
 import baseRelicEffects from '../data/effects.json';
 

@@ -6,7 +6,7 @@ import ChalicePage from './components/ChalicePage';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
-import { chaliceData } from './data/vessels';
+import { chaliceData } from './utils/vesselData';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
 import { calculateWithGuaranteeableRelics } from './utils/guaranteeableCalculation';

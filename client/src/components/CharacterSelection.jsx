@@ -1,5 +1,5 @@
 import React from 'react';
-import { characters } from '../data/vessels';
+import { characters } from '../utils/vesselData';
 import { ClearSelectionIcon } from './Icons';
 
 const CharacterSelection = ({
