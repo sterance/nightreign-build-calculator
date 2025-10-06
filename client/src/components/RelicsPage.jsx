@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import items from '../data/items.json';
-import effects from '../data/relicEffects.json';
+import items from '../data/relics.json';
+import effects from '../data/effects.json';
 import { CloseIcon, InformationIcon } from './Icons';
 import RelicFilters from './RelicFilters';
 

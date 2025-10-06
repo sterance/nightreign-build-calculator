@@ -1,7 +1,7 @@
-import items from '../data/items.json';
+import items from '../data/relics.json';
 
 /**
- * extract all guaranteeable relics from items.json
+ * extract all guaranteeable relics from relics.json
  * guaranteeable relics are identified by having a 'fixedEffects' field
  * @param {boolean} showDeepOfNight - whether to include deep relics
  * @returns {Array} array of { itemId, name, color, fixedEffects }

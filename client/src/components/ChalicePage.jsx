@@ -1,6 +1,6 @@
 import React from 'react';
 import Chalice from './Chalice';
-import { chaliceData } from '../data/chaliceData';
+import { chaliceData } from '../data/vessels';
 import { ClearSelectionIcon, SelectAllIcon, CloseIcon } from './Icons';
 
 const ChalicePage = ({

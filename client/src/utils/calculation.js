@@ -1,6 +1,6 @@
-import { chaliceData } from '../data/chaliceData.js';
-import items from '../data/items.json';
-import baseRelicEffects from '../data/relicEffects.json';
+import { chaliceData } from '../data/vessels.js';
+import items from '../data/relics.json';
+import baseRelicEffects from '../data/effects.json';
 
 /**
  * Calculates the best relic combination for a given set of desired effects, available relics, and selected chalices.

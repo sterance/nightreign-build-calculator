@@ -1,5 +1,5 @@
 import React from 'react';
-import { characters } from '../data/chaliceData';
+import { characters } from '../data/vessels';
 import { ClearSelectionIcon } from './Icons';
 
 const CharacterSelection = ({
