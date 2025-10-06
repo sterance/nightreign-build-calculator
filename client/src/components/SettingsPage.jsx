@@ -1,7 +1,17 @@
 import ColorPicker from "./ColorPicker";
 import { CloseIcon } from "./Icons";
 
-const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRelicIdToggle, setShowRelicIdToggle, showScoreInfoToggle, setShowScoreInfoToggle, primaryColor, setPrimaryColor }) => {
+const SettingsPage = ({ onBack,
+  showUnknownRelics,
+  setShowUnknownRelics,
+  showRelicIdToggle,
+  setShowRelicIdToggle,
+  showScoreInfoToggle,
+  setShowScoreInfoToggle,
+  calculateGuaranteeableRelics,
+  setCalculateGuaranteeableRelics,
+  primaryColor,
+  setPrimaryColor }) => {
   return (
     <div className="settings-page-backdrop">
       <div className="settings-page card">
@@ -14,7 +24,7 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRel
             <ColorPicker color={primaryColor} setColor={setPrimaryColor} />
           </div>
           <div className="settings-column right-column">
-          <div className="settings-option">
+            <div className="settings-option">
               <label>
                 <input
                   type="checkbox"
@@ -34,6 +44,17 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRel
                 Display "Relic ID" Toggle Icon
               </label>
             </div>
+
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={calculateGuaranteeableRelics}
+                  onChange={() => setCalculateGuaranteeableRelics(prev => !prev)}
+                />
+                Calculate "Guaranteeable" Relics
+              </label>
+            </div>
             
             <div className="settings-option">
               <label>
@@ -45,6 +66,7 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRel
                 Display Unknown Relics
               </label>
             </div>
+
           </div>
         </div>
       </div>

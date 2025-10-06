@@ -9,6 +9,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
   const [showScoreInfo, setShowScoreInfo] = useState(false);
 
   const getImageUrl = (name, type) => {
+    if (!name) return ''; // handle undefined/null names (empty slots)
     const cleanedName = name
       .toLowerCase()
       .replace(/[<>:'"/\\|?*']/g, '') // remove special characters
@@ -24,8 +25,24 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
   }, [calculationResult]);
 
   const isEnabled = !!calculationResult;
-  const isMultipleResults = Array.isArray(calculationResult) && calculationResult.length > 1;
-  const currentResult = Array.isArray(calculationResult) ? calculationResult[currentIndex] : calculationResult;
+  
+  // check if calculationResult is the new format (object with owned/potential) or classic array
+  const hasNewFormat = calculationResult && typeof calculationResult === 'object' && 
+                       'owned' in calculationResult && 'potential' in calculationResult;
+  
+  // flatten results and track source (owned vs potential)
+  let flattenedResults = [];
+  if (hasNewFormat) {
+    flattenedResults = [
+      ...calculationResult.owned.map(r => ({ ...r, _source: 'owned' })),
+      ...calculationResult.potential.map(r => ({ ...r, _source: 'potential' }))
+    ];
+  } else if (Array.isArray(calculationResult)) {
+    flattenedResults = calculationResult.map(r => ({ ...r, _source: 'owned' }));
+  }
+  
+  const isMultipleResults = flattenedResults.length > 1;
+  const currentResult = flattenedResults[currentIndex];
 
   if (!currentResult) {
     return (
@@ -47,12 +64,17 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
   };
 
   const handleNext = () => {
-    const maxIndex = Array.isArray(calculationResult) ? calculationResult.length - 1 : 0;
+    const maxIndex = flattenedResults.length - 1;
     setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
   };
+  
+  // determine heading based on source
+  const resultHeading = currentResult && currentResult._source === 'potential' 
+    ? 'Obtainable Relics' 
+    : 'Recommended Relics';
 
   const showLeftArrow = isMultipleResults && currentIndex > 0;
-  const showRightArrow = isMultipleResults && currentIndex < calculationResult.length - 1;
+  const showRightArrow = isMultipleResults && currentIndex < flattenedResults.length - 1;
 
   if (!isEnabled) {
     return (
@@ -77,7 +99,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
     >
       {isMultipleResults && (
         <div className="position-indicator">
-          {currentIndex + 1}/{calculationResult.length}
+          {currentIndex + 1}/{flattenedResults.length}
         </div>
       )}
       <div className="relic-result-header">
@@ -88,7 +110,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
         >
           <LeftArrowIcon />
         </button>
-        <h2>Recommended Relics</h2>
+        <h2>{resultHeading}</h2>
         {showScoreInfoToggle && (
           <div className="score-info-container">
             {showScoreInfo && (

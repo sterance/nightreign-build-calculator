@@ -9,6 +9,7 @@ import RelicsPage from './components/RelicsPage';
 import { chaliceData } from './data/chaliceData';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
+import { calculateWithGuaranteeableRelics } from './utils/guaranteeableCalculation';
 import effects from './data/relicEffects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
@@ -79,6 +80,7 @@ function App() {
   const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
   const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
   const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
+  const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
@@ -245,7 +247,7 @@ function App() {
     try {
       const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-      if (!saveData) {
+      if (!saveData && !calculateGuaranteeableRelics) {
         addToast('Calculation failed.\nMissing save data.', 'error');
         return;
       }
@@ -262,27 +264,96 @@ function App() {
         return;
       }
 
-      // find the character data for the selected save name
-      const characterSaveData = saveData.find(
-        (character) => character.character_name === selectedSaveName
-      );
-
-      if (!characterSaveData) {
-        addToast('No relics found for the selected save name.', 'error');
-        return;
+      // find the character data for the selected save name, or create empty data if no save file
+      let characterSaveData = null;
+      if (saveData && saveData.length > 0) {
+        characterSaveData = saveData.find(
+          (character) => character.character_name === selectedSaveName
+        );
       }
 
-      const result = calculateBestRelics(
-        desiredEffects,
-        characterSaveData,
-        selectedChalices,
-        selectedCharacter,
-        effectMap,
-        showDeepOfNight
-      );
+      if (!characterSaveData) {
+        if (calculateGuaranteeableRelics) {
+          // create empty character data for guaranteeable relics calculation
+          characterSaveData = {
+            character_name: 'No Save Data',
+            relics: []
+          };
+        } else {
+          addToast('No relics found for the selected save name.', 'error');
+          return;
+        }
+      }
 
-      if (result && result.length > 0) {
-        // format all results for display
+      let result;
+      if (calculateGuaranteeableRelics) {
+        result = calculateWithGuaranteeableRelics(
+          desiredEffects,
+          characterSaveData,
+          selectedChalices,
+          selectedCharacter,
+          effectMap,
+          showDeepOfNight
+        );
+      } else {
+        result = calculateBestRelics(
+          desiredEffects,
+          characterSaveData,
+          selectedChalices,
+          selectedCharacter,
+          effectMap,
+          showDeepOfNight
+        );
+      }
+
+      // check if result has the new structure (object with owned/potential)
+      const hasNewStructure = result && typeof result === 'object' && 
+                              'owned' in result && 'potential' in result;
+
+      if (hasNewStructure && (result.owned.length > 0 || result.potential.length > 0)) {
+        const formatResults = (results) => results.map(bestResult => ({
+          "chalice name": bestResult.chalice.name,
+          "chalice slots": bestResult.chalice.baseSlots,
+          "chalice deep slots": bestResult.chalice.deepSlots || [],
+          "chalice description": bestResult.chalice.description,
+          "score": bestResult.score,
+          "relics": bestResult.relics.map(relic => ({
+            name: relic['relic name'],
+            color: relic.color,
+            score: relic.score,
+            effects: relic.effectScores
+          })),
+          "baseRelics": bestResult.baseRelics.map(relic => ({
+            name: relic['relic name'],
+            color: relic.color,
+            score: relic.score,
+            effects: relic.effectScores
+          })),
+          "deepRelics": bestResult.deepRelics.map(relic => ({
+            name: relic['relic name'],
+            color: relic.color,
+            score: relic.score,
+            effects: relic.effectScores
+          }))
+        }));
+
+        const formattedOwned = formatResults(result.owned);
+        const formattedPotential = formatResults(result.potential);
+
+        setCalculationResult({
+          owned: formattedOwned,
+          potential: formattedPotential
+        });
+        
+        console.log('Calculation result:', { owned: formattedOwned, potential: formattedPotential });
+
+        addToast(
+          `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'}. ` +
+          `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
+          'success'
+        );
+      } else if (result && result.length > 0) {
+        // old structure (array) - use existing logic
         const formattedResults = result.map(bestResult => ({
           "chalice name": bestResult.chalice.name,
           "chalice slots": bestResult.chalice.baseSlots,
@@ -443,6 +514,8 @@ function App() {
         setShowRelicIdToggle={setShowRelicIdToggle}
         showScoreInfoToggle={showScoreInfoToggle}
         setShowScoreInfoToggle={setShowScoreInfoToggle}
+        calculateGuaranteeableRelics={calculateGuaranteeableRelics}
+        setCalculateGuaranteeableRelics={setCalculateGuaranteeableRelics}
         primaryColor={primaryColor}
         setPrimaryColor={setPrimaryColor}
       />}

@@ -34,11 +34,6 @@ export function calculateBestRelics(desiredEffects,
     throw new Error('Invalid character relic data');
   }
 
-  if (characterRelicData.relics.length === 0) {
-    console.warn('No relics found for character');
-    return null;
-  }
-
   // process base relics
   const processedBaseRelics = characterRelicData.relics.map(relic => {
     const relicInfo = items[relic.item_id?.toString()];
@@ -65,7 +60,8 @@ export function calculateBestRelics(desiredEffects,
       'sec_effect3': getEffect(relic.sec_effect3_id),
       sorting: relic.sorting,
       color: color,
-      type: 'base'
+      type: 'base',
+      ...(relic.source && { source: relic.source })
     };
   }).filter(Boolean);
 
@@ -97,14 +93,10 @@ export function calculateBestRelics(desiredEffects,
         'sec_effect3': getEffect(relic.sec_effect3_id),
         sorting: relic.sorting,
         color: color,
-        type: 'deep'
+        type: 'deep',
+        ...(relic.source && { source: relic.source })
       };
     }).filter(Boolean);
-  }
-
-  if (processedBaseRelics.length === 0) {
-    console.warn('No valid base relics found for character after filtering');
-    return null;
   }
 
   // score base relics
@@ -117,8 +109,10 @@ export function calculateBestRelics(desiredEffects,
     const effectScores = calculateEffectScores(relic, effectMap, desiredEffects);
 
     return { ...relic, score, isForbidden, effectScores };
-  }).filter(relic => !relic.isForbidden && relic.score > 0)
+  }).filter(relic => !relic.isForbidden)
     .sort((a, b) => b.score - a.score);
+
+  console.log(`Scored ${scoredBaseRelics.length} base relics (${scoredBaseRelics.filter(r => r.score > 0).length} with score > 0)`);
 
   // score deep relics (if showDeepOfNight is true)
   let scoredDeepRelics = [];
@@ -132,7 +126,7 @@ export function calculateBestRelics(desiredEffects,
       const effectScores = calculateEffectScores(relic, effectMap, desiredEffects);
 
       return { ...relic, score, isForbidden, effectScores };
-    }).filter(relic => !relic.isForbidden && relic.score > 0)
+    }).filter(relic => !relic.isForbidden)
       .sort((a, b) => b.score - a.score);
   }
 
@@ -455,6 +449,9 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     green: scoredRelics.filter(r => r.color === 'green'),
   };
 
+  console.log(`Relics by color - Red: ${relicsByColor.red.length}, Blue: ${relicsByColor.blue.length}, Yellow: ${relicsByColor.yellow.length}, Green: ${relicsByColor.green.length}`);
+  console.log(`Slots needed: ${JSON.stringify(slots)}`);
+
   // get valid relics for each slot
   const validRelicsPerSlot = slots.map(slotColor => {
     if (slotColor === 'white') {
@@ -465,15 +462,43 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     }
   });
 
-  // check if any slot has no valid relics
-  if (validRelicsPerSlot.some(relics => relics.length === 0)) {
+  // check if all slots have no valid relics
+  if (validRelicsPerSlot.every(relics => relics.length === 0)) {
     if (returnAll) {
       return [];
     } else {
-      console.warn(`No valid relics found for one or more slots`);
+      console.warn(`No valid relics found for any slots`);
       return null;
     }
   }
+  
+  // for slots with no valid relics, create a placeholder to allow partial combinations
+  const emptySlotPlaceholder = {
+    'relic id': null,
+    'relic name': 'Empty Slot',
+    'effect 1': null,
+    'effect 2': null,
+    'effect 3': null,
+    'sec_effect1': null,
+    'sec_effect2': null,
+    'sec_effect3': null,
+    sorting: -1,
+    color: 'empty',
+    type: 'empty',
+    score: 0,
+    effectScores: []
+  };
+  
+  // add placeholder to empty slots with unique sorting values
+  validRelicsPerSlot.forEach((relics, index) => {
+    if (relics.length === 0) {
+      const uniquePlaceholder = {
+        ...emptySlotPlaceholder,
+        sorting: -1 - index
+      };
+      validRelicsPerSlot[index] = [uniquePlaceholder];
+    }
+  });
 
   let allValidCombinations = [];
   let bestScoreSoFar = -1;
@@ -539,8 +564,11 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
   generateCombinations(0, new Array(slots.length), new Set(), 0);
 
   if (allValidCombinations.length === 0) {
+    console.log(`No combinations could be generated for slots: ${JSON.stringify(slots)}`);
     return returnAll ? [] : null;
   }
+
+  console.log(`Generated ${allValidCombinations.length} combinations, top score: ${Math.max(...allValidCombinations.map(c => c.score))}`);
 
   // sort by score (highest first)
   allValidCombinations.sort((a, b) => b.score - a.score);
@@ -555,12 +583,21 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
       if (baseRelics.length > 0) {
         // for deep relics: check if combined with base relics satisfies required effects
         const combinedRelics = [...baseRelics, ...combination.relics];
-        if (validateRequiredEffects(combinedRelics, desiredEffects, effectMap)) {
+        const isValid = validateRequiredEffects(combinedRelics, desiredEffects, effectMap);
+        if (!isValid) {
+          console.log(`Combination failed required effects validation (with base relics)`);
+        }
+        if (isValid) {
           return combination;
         }
       } else {
         // for base relics: check if combination satisfies required effects
-        if (validateRequiredEffects(combination.relics, desiredEffects, effectMap)) {
+        const isValid = validateRequiredEffects(combination.relics, desiredEffects, effectMap);
+        if (!isValid && allValidCombinations.indexOf(combination) === 0) {
+          console.log(`Top combination score ${combination.score} failed required effects validation`);
+          console.log(`Required effects:`, desiredEffects.filter(e => e.isRequired).map(e => e.name));
+        }
+        if (isValid) {
           return combination;
         }
       }
@@ -570,6 +607,7 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     }
   }
 
+  console.warn(`All ${allValidCombinations.length} combinations failed validation`);
   return null;
 }
 
