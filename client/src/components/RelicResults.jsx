@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon } from './Icons';
 
-const RelicResults = ({ calculationResult, showDeepOfNight }) => {
+const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showingDeepRelics, setShowingDeepRelics] = useState(false);
+  const [showScoreInfo, setShowScoreInfo] = useState(false);
 
   const getImageUrl = (name, type) => {
     const cleanedName = name
@@ -15,10 +16,11 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
     return `/${type}/${cleanedName}.png`;
   };
 
-  // reset index and deep relic display when calculationResult changes (must be before any early returns)
+  // reset index and deep relic display when calculationResult changes
   React.useEffect(() => {
     setCurrentIndex(0);
     setShowingDeepRelics(false);
+    setShowScoreInfo(false);
   }, [calculationResult]);
 
   const isEnabled = !!calculationResult;
@@ -87,6 +89,44 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
           <LeftArrowIcon />
         </button>
         <h2>Recommended Relics</h2>
+        {showScoreInfoToggle && (
+          <div className="score-info-container">
+            {showScoreInfo && (
+              <div className="score-info-tooltip">
+                Chalice Score: {currentResult.score}
+                {(() => {
+                  let allRelics = [];
+                  if (showDeepOfNight && currentResult.deepRelics && currentResult.deepRelics.length > 0) {
+                    const baseRelics = currentResult.baseRelics || [];
+                    const deepRelics = currentResult.deepRelics || [];
+                    allRelics = [...baseRelics, ...deepRelics];
+                  } else {
+                    allRelics = currentResult.baseRelics || currentResult.relics || [];
+                  }
+
+                  const allScores = [
+                    currentResult.score,
+                    ...allRelics.map(relic => relic ? relic.score : null)
+                  ].filter(score => score != null);
+                  const maxScore = allScores.length > 0 ? Math.max(...allScores) : 0;
+                  const maxLength = String(maxScore).length;
+                  const formatScore = (score) => String(score).padStart(maxLength, '\u00A0');
+
+                  return allRelics.map((relic, index) => (
+                    relic && <div key={index}>Relic {index + 1} Score: {formatScore(relic.score)}</div>
+                  ));
+                })()}
+              </div>
+            )}
+            <div
+              className="score-info-icon"
+              onClick={() => setShowScoreInfo(prev => !prev)}
+            >
+              <InformationIcon />
+            </div>
+          </div>
+        )}
+
         <button
           className="arrow-button"
           onClick={handleNext}
@@ -94,9 +134,10 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
         >
           <RightArrowIcon />
         </button>
+
         <button
           className="maximize-button"
-          // onClick={() => setShowMaximize(prev => !prev)}
+        // onClick={() => setShowMaximize(prev => !prev)} TODO: Add maximize functionality
         >
           <MaximizeIcon />
         </button>
@@ -107,7 +148,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
           <span id='chalice-name'>{currentResult["chalice name"]}</span>
           {showDeepOfNight ? (
             <div className='relic-slots-container'>
-              <div 
+              <div
                 className={`base-relic-slots-container ${!showingDeepRelics ? 'active' : ''}`}
                 onClick={() => setShowingDeepRelics(false)}
               >
@@ -116,7 +157,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
                   <RelicSlot key={index} color={color} />
                 ))}
               </div>
-              <div 
+              <div
                 className={`deep-relic-slots-container ${showingDeepRelics ? 'active' : ''}`}
                 onClick={() => setShowingDeepRelics(true)}
               >
@@ -152,9 +193,9 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
           </div>
         </div>
         {(() => {
-          // Determine which relics to display and which slots to use
+          // determine which relics to display and which slots to use
           let relicsToDisplay, slotsToUse;
-          
+
           if (showDeepOfNight && showingDeepRelics) {
             relicsToDisplay = currentResult.deepRelics || [];
             slotsToUse = currentResult["chalice deep slots"] || [];
@@ -172,12 +213,12 @@ const RelicResults = ({ calculationResult, showDeepOfNight }) => {
                   <span>{relic.name}</span>
                   <table className="relic-stats-table">
                     <tbody>
-                      {relic.effects['effect 1'] && <tr><td>• {relic.effects['effect 1']}</td></tr>}
-                      {relic.effects['sec_effect1'] && <tr><td className="sec-effect">• {relic.effects['sec_effect1']}</td></tr>}
-                      {relic.effects['effect 2'] && <tr><td>• {relic.effects['effect 2']}</td></tr>}
-                      {relic.effects['sec_effect2'] && <tr><td className="sec-effect">• {relic.effects['sec_effect2']}</td></tr>}
-                      {relic.effects['effect 3'] && <tr><td>• {relic.effects['effect 3']}</td></tr>}
-                      {relic.effects['sec_effect3'] && <tr><td className="sec-effect">• {relic.effects['sec_effect3']}</td></tr>}
+                      {relic.effects?.effect1 && <tr><td>• {relic.effects.effect1.name}{showScoreInfo && <span className='effect-score'>{relic.effects.effect1.score}</span>}</td></tr>}
+                      {relic.effects?.sec_effect1 && <tr><td className="sec-effect">• {relic.effects.sec_effect1.name}{showScoreInfo && <span className='effect-score'>{relic.effects.sec_effect1.score}</span>}</td></tr>}
+                      {relic.effects?.effect2 && <tr><td>• {relic.effects.effect2.name}{showScoreInfo && <span className='effect-score'>{relic.effects.effect2.score}</span>}</td></tr>}
+                      {relic.effects?.sec_effect2 && <tr><td className="sec-effect">• {relic.effects.sec_effect2.name}{showScoreInfo && <span className='effect-score'>{relic.effects.sec_effect2.score}</span>}</td></tr>}
+                      {relic.effects?.effect3 && <tr><td>• {relic.effects.effect3.name}{showScoreInfo && <span className='effect-score'>{relic.effects.effect3.score}</span>}</td></tr>}
+                      {relic.effects?.sec_effect3 && <tr><td className="sec-effect">• {relic.effects.sec_effect3.name}{showScoreInfo && <span className='effect-score'>{relic.effects.sec_effect3.score}</span>}</td></tr>}
                     </tbody>
                   </table>
                 </div>

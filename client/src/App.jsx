@@ -78,6 +78,7 @@ function App() {
   const [showDeepOfNight, setShowDeepOfNight] = usePersistentBoolean('showDeepOfNight', false);
   const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
   const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
+  const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
@@ -287,35 +288,24 @@ function App() {
           "chalice slots": bestResult.chalice.baseSlots,
           "chalice deep slots": bestResult.chalice.deepSlots || [],
           "chalice description": bestResult.chalice.description,
+          "score": bestResult.score,
           "relics": bestResult.relics.map(relic => ({
             name: relic['relic name'],
             color: relic.color,
-            effects: {
-              "effect 1": relic['effect 1'] || "",
-              "effect 2": relic['effect 2'] || "",
-              "effect 3": relic['effect 3'] || "",
-            }
+            score: relic.score,
+            effects: relic.effectScores
           })),
           "baseRelics": bestResult.baseRelics.map(relic => ({
             name: relic['relic name'],
             color: relic.color,
-            effects: {
-              "effect 1": relic['effect 1'] || "",
-              "effect 2": relic['effect 2'] || "",
-              "effect 3": relic['effect 3'] || "",
-            }
+            score: relic.score,
+            effects: relic.effectScores
           })),
           "deepRelics": bestResult.deepRelics.map(relic => ({
             name: relic['relic name'],
             color: relic.color,
-            effects: {
-              "effect 1": relic['effect 1'] || "",
-              "sec_effect1": relic['sec_effect1'] || "",
-              "effect 2": relic['effect 2'] || "",
-              "sec_effect2": relic['sec_effect2'] || "",
-              "effect 3": relic['effect 3'] || "",
-              "sec_effect3": relic['sec_effect3'] || "",
-            }
+            score: relic.score,
+            effects: relic.effectScores
           }))
         }));
         setCalculationResult(formattedResults);
@@ -418,6 +408,7 @@ function App() {
             selectedChalices={selectedChalices}
             calculationResult={calculationResult}
             showDeepOfNight={showDeepOfNight}
+            showScoreInfoToggle={showScoreInfoToggle}
           />
         </div>
       </div>
@@ -450,6 +441,8 @@ function App() {
         setShowUnknownRelics={setShowUnknownRelics}
         showRelicIdToggle={showRelicIdToggle}
         setShowRelicIdToggle={setShowRelicIdToggle}
+        showScoreInfoToggle={showScoreInfoToggle}
+        setShowScoreInfoToggle={setShowScoreInfoToggle}
         primaryColor={primaryColor}
         setPrimaryColor={setPrimaryColor}
       />}

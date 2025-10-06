@@ -114,8 +114,9 @@ export function calculateBestRelics(desiredEffects,
     const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
       de.ids.includes(effectId)
     ));
+    const effectScores = calculateEffectScores(relic, effectMap, desiredEffects);
 
-    return { ...relic, score, isForbidden };
+    return { ...relic, score, isForbidden, effectScores };
   }).filter(relic => !relic.isForbidden && relic.score > 0)
     .sort((a, b) => b.score - a.score);
 
@@ -128,8 +129,9 @@ export function calculateBestRelics(desiredEffects,
       const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
         de.ids.includes(effectId)
       ));
+      const effectScores = calculateEffectScores(relic, effectMap, desiredEffects);
 
-      return { ...relic, score, isForbidden };
+      return { ...relic, score, isForbidden, effectScores };
     }).filter(relic => !relic.isForbidden && relic.score > 0)
       .sort((a, b) => b.score - a.score);
   }
@@ -189,6 +191,54 @@ function calculateRelicScore(relicEffects, desiredEffects) {
     }
   }
   return score;
+}
+
+/**
+ * Calculates individual effect scores for each effect on a relic
+ * @param {Object} relic - The relic object
+ * @param {Map} effectMap - Map of effect IDs to effect names
+ * @param {Array} desiredEffects - Array of desired effects for scoring
+ * @returns {Object} - Object with effect details including id, name, and score
+ */
+function calculateEffectScores(relic, effectMap, desiredEffects) {
+  const effectFields = ['effect 1', 'sec_effect1', 'effect 2', 'sec_effect2', 'effect 3', 'sec_effect3'];
+  const effectKeys = ['effect1', 'sec_effect1', 'effect2', 'sec_effect2', 'effect3', 'sec_effect3'];
+  const effectScores = {};
+
+  effectFields.forEach((field, index) => {
+    const effectName = relic[field];
+    if (!effectName) {
+      return;
+    }
+
+    // find the effect ID from the effectMap
+    let effectId = null;
+    for (const [id, name] of effectMap.entries()) {
+      if (name === effectName) {
+        effectId = parseInt(id);
+        break;
+      }
+    }
+
+    // calculate the score for this specific effect
+    let score = 0;
+    if (effectId !== null) {
+      for (const desiredEffect of desiredEffects) {
+        if (desiredEffect.ids.includes(effectId)) {
+          score = desiredEffect.weight || 1;
+          break;
+        }
+      }
+    }
+
+    effectScores[effectKeys[index]] = {
+      id: effectId,
+      name: effectName,
+      score: score
+    };
+  });
+
+  return effectScores;
 }
 
 /**

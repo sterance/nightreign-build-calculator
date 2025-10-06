@@ -920,7 +920,6 @@ button:hover {
 
 .relic-stats-table td {
   border: 1px solid transparent;
-  /* padding: 0.2rem 0.5rem; */
   text-align: left;
   font-size: 0.8em;
   flex-shrink: 0;
@@ -970,6 +969,65 @@ button:hover {
 .arrow-button:disabled {
   opacity: 0;
   cursor: default;
+}
+
+.score-info-icon {
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0.5rem;
+}
+
+.score-info-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.score-info-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3a3a3a;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: max-content;
+  z-index: 1002;
+  text-align: right;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-line;
+}
+
+.score-info-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 11.5px;
+  border-style: solid;
+  border-color: transparent transparent var(--primary-color) transparent;
+}
+
+.score-info-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #3a3a3a transparent;
+}
+
+.effect-score {
+  float: right;
+  background-color: #2d333b;
+  border-radius: 8px;
 }
 
 /* CONFIRMATION DIALOG */

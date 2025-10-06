@@ -1,7 +1,7 @@
 import ColorPicker from "./ColorPicker";
 import { CloseIcon } from "./Icons";
 
-const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRelicIdToggle, setShowRelicIdToggle, primaryColor, setPrimaryColor }) => {
+const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRelicIdToggle, setShowRelicIdToggle, showScoreInfoToggle, setShowScoreInfoToggle, primaryColor, setPrimaryColor }) => {
   return (
     <div className="settings-page-backdrop">
       <div className="settings-page card">
@@ -18,10 +18,10 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRel
               <label>
                 <input
                   type="checkbox"
-                  checked={showUnknownRelics}
-                  onChange={() => setShowUnknownRelics(prev => !prev)}
+                  checked={showScoreInfoToggle}
+                  onChange={() => setShowScoreInfoToggle(prev => !prev)}
                 />
-                Display Unknown Relics
+                Display "Score Info" Toggle Icon
               </label>
             </div>
             <div className="settings-option">
@@ -31,15 +31,18 @@ const SettingsPage = ({ onBack, showUnknownRelics, setShowUnknownRelics, showRel
                   checked={showRelicIdToggle}
                   onChange={() => setShowRelicIdToggle(prev => !prev)}
                 />
-                Display Relic ID Toggle
+                Display "Relic ID" Toggle Icon
               </label>
             </div>
+            
             <div className="settings-option">
               <label>
                 <input
                   type="checkbox"
+                  checked={showUnknownRelics}
+                  onChange={() => setShowUnknownRelics(prev => !prev)}
                 />
-                Display Score Info
+                Display Unknown Relics
               </label>
             </div>
           </div>
