@@ -19,6 +19,7 @@ import {
  * @param {string} selectedNightfarer - name of the selected character
  * @param {Map} effectMap - map of effect IDs to effect names
  * @param {boolean} showDeepOfNight - whether to include deep relics
+ * @param {Object} chaliceData - map of character names to their available chalices
  * @returns {Array|Object|null} - either array (old format), { owned, potential } (new format), or null
  */
 export function calculateWithGuaranteeableRelics(
@@ -27,7 +28,8 @@ export function calculateWithGuaranteeableRelics(
   selectedChalices,
   selectedNightfarer,
   effectMap,
-  showDeepOfNight = false
+  showDeepOfNight = false,
+  chaliceData
 ) {
   // pass 1: calculate with save file relics only
   const ownedResults = calculateBestRelics(
@@ -36,7 +38,8 @@ export function calculateWithGuaranteeableRelics(
     selectedChalices,
     selectedNightfarer,
     effectMap,
-    showDeepOfNight
+    showDeepOfNight,
+    chaliceData
   );
 
   // check for missing guaranteeable relics
@@ -84,7 +87,8 @@ export function calculateWithGuaranteeableRelics(
     selectedChalices,
     selectedNightfarer,
     effectMap,
-    showDeepOfNight
+    showDeepOfNight,
+    chaliceData
   );
 
   // if pass 2 returned nothing, return pass 1 results in original format

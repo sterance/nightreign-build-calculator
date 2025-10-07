@@ -6,7 +6,8 @@ import ChalicePage from './components/ChalicePage';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
-import { chaliceData } from './utils/vesselData';
+import nightfarers from './data/nightfarers.json';
+import vesselsRaw from './data/vessels.json';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
 import { calculateBestRelics } from './utils/calculation';
 import { calculateWithGuaranteeableRelics } from './utils/guaranteeableCalculation';
@@ -14,6 +15,12 @@ import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
+
+const vesselData = nightfarers.reduce((acc, character) => {
+  const chalicesKey = `${character}Chalices`;
+  acc[character] = [...vesselsRaw[chalicesKey], ...vesselsRaw.genericChalices];
+  return acc;
+}, {});
 
 const createEffectMap = (showDeepOfNight) => {
   const effectMap = new Map();
@@ -156,7 +163,7 @@ function App() {
 
   const selectAllChalicesForCharacter = (character) => {
     if (!character) return;
-    const allChaliceNames = chaliceData[character].map((c) => c.name);
+    const allChaliceNames = vesselData[character].map((c) => c.name);
     setSelectedChalices(allChaliceNames);
   }
   const handleCharacterSelect = (character) => {
@@ -293,7 +300,8 @@ function App() {
           selectedChalices,
           selectedCharacter,
           effectMap,
-          showDeepOfNight
+          showDeepOfNight,
+          vesselData
         );
       } else {
         result = calculateBestRelics(
@@ -302,7 +310,8 @@ function App() {
           selectedChalices,
           selectedCharacter,
           effectMap,
-          showDeepOfNight
+          showDeepOfNight,
+          vesselData
         );
       }
 
@@ -463,6 +472,7 @@ function App() {
             selectedCharacter={selectedCharacter}
             selectedChalices={selectedChalices}
             onClick={() => setShowChalices(true)}
+            chaliceData={vesselData}
           />
 
           <DesiredEffects
@@ -491,6 +501,7 @@ function App() {
         onChaliceToggle={handleChaliceToggle}
         onSelectAll={handleSelectAllChalices}
         onClearAll={handleClearAllChalices}
+        chaliceData={vesselData}
       />}
 
       {showRelics && <RelicsPage

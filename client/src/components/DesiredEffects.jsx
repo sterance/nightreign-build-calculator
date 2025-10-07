@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import relicEffects from '../data/effects.json';
-import { characters } from '../utils/vesselData';
+import nightfarers from '../data/nightfarers.json';
 import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon, TrashIcon } from './Icons';
@@ -238,8 +238,8 @@ const DesiredEffects = ({
           if (b.toLowerCase() === selectedCharacter) return 1;
         }
         // Always maintain the defined character order
-        const aIndex = characters.indexOf(a.toLowerCase());
-        const bIndex = characters.indexOf(b.toLowerCase());
+        const aIndex = nightfarers.indexOf(a.toLowerCase());
+        const bIndex = nightfarers.indexOf(b.toLowerCase());
         if (aIndex !== -1 && bIndex !== -1) {
           return aIndex - bIndex;
         }
@@ -268,7 +268,7 @@ const DesiredEffects = ({
 
 
   const formatEffectName = (effect) => {
-    const characterName = characters.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
+    const characterName = nightfarers.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
     if (characterName) {
       const restOfEffect = effect.name.slice(characterName.length + 3).trim();
       const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);

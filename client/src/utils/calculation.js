@@ -1,4 +1,3 @@
-import { chaliceData } from './vesselData.js';
 import items from '../data/relics.json';
 import baseRelicEffects from '../data/effects.json';
 
@@ -10,6 +9,7 @@ import baseRelicEffects from '../data/effects.json';
  * @param {string} selectedNightfarer - The name of the selected Nightfarer (e.g., 'wylder').
  * @param {Map} effectMap - Map of effect IDs to effect names.
  * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
+ * @param {Object} chaliceData - Map of character names to their available chalices.
  * @returns {Array|null} - Array of best relic combinations with max score, or null if none could be determined.
  */
 export function calculateBestRelics(desiredEffects,
@@ -17,7 +17,8 @@ export function calculateBestRelics(desiredEffects,
   selectedChalices,
   selectedNightfarer,
   effectMap,
-  showDeepOfNight = false) {
+  showDeepOfNight = false,
+  chaliceData) {
     
   console.log("--- Starting Relic Calculation ---");
   // input validation

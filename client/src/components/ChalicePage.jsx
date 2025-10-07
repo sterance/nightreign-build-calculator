@@ -1,6 +1,5 @@
 import React from 'react';
 import Chalice from './Chalice';
-import { chaliceData } from '../utils/vesselData';
 import { ClearSelectionIcon, SelectAllIcon, CloseIcon } from './Icons';
 
 const ChalicePage = ({
@@ -10,6 +9,7 @@ const ChalicePage = ({
   onChaliceToggle,
   onSelectAll,
   onClearAll,
+  chaliceData,
 }) => {
   const isEnabled = !!selectedCharacter;
   const chalices = isEnabled ? chaliceData[selectedCharacter] : [];
