@@ -104,7 +104,7 @@ function App() {
 
   useEffect(() => {
     const newEffectMap = createEffectMap(showDeepOfNight);
-    console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
+    // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
     setDesiredEffects([]);
@@ -251,23 +251,28 @@ function App() {
   };
 
   const handleCalculate = () => {
+    const startTime = performance.now();
     try {
       const saveData = JSON.parse(localStorage.getItem('saveData'));
 
       if (!saveData && !calculateGuaranteeableRelics) {
         addToast('Calculation failed.\nMissing save data.', 'error');
+        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - Missing save data`);
         return;
       }
       if (!selectedCharacter) {
         addToast('Calculation failed.\nMissing character selection.', 'error');
+        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - Missing character selection`);
         return;
       }
       if (selectedVessels.length === 0) {
         addToast('Calculation failed.\nMissing vessel selection.', 'error');
+        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - Missing vessel selection`);
         return;
       }
       if (desiredEffects.length === 0) {
         addToast('Calculation failed.\nNo desired effects.', 'error');
+        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - No desired effects`);
         return;
       }
 
@@ -288,6 +293,7 @@ function App() {
           };
         } else {
           addToast('No relics found for the selected save name.', 'error');
+          console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - No relics found`);
           return;
         }
       }
@@ -355,6 +361,7 @@ function App() {
         });
         
         console.log('Calculation result:', { owned: formattedOwned, potential: formattedPotential });
+        console.log(`Calculation successful - took ${(performance.now() - startTime).toFixed(2)}ms`);
 
         addToast(
           `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'}. ` +
@@ -389,13 +396,16 @@ function App() {
           }))
         }));
         setCalculationResult(formattedResults);
+        console.log(`Calculation successful - took ${(performance.now() - startTime).toFixed(2)}ms`);
         addToast(`Calculation successful!\n${result.length} relic combo${result.length === 1 ? '' : 's'} found (${result.length === 1 ? 'with' : 'tied for'} max score)`, 'success');
       } else {
         setCalculationResult(null);
+        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - No valid combinations`);
         addToast('No valid relic combination found for the selected criteria.', 'error');
       }
     } catch (error) {
       console.error('Calculation error:', error);
+      console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - ${error.message}`);
       addToast(`Calculation failed:\n${error.message}`, 'error');
       setCalculationResult(null);
     }

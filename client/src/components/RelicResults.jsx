@@ -228,7 +228,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
 
           return relicsToDisplay.map((relic, index) => {
             const slotColor = slotsToUse[index];
-            if (relic) {
+            if (relic && relic.score !== 0) {
               return (
                 <div className={`relic-result-card color-${slotColor}`} key={index}>
                   <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100x', height: '100px' }} />
@@ -248,7 +248,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
             } else {
               return (
                 <div className={`relic-result-card empty-relic-slot color-${slotColor}`} key={index}>
-                  <span>No relic found for {slotColor} slot</span>
+                  <span className='empty-relic-slot-text'>No relic found for {slotColor} slot<br />(Add more desired effects)</span>
                 </div>
               );
             }

@@ -1030,6 +1030,10 @@ button:hover {
   border-radius: 8px;
 }
 
+.empty-relic-slot-text {
+  text-align: center !important;
+}
+
 /* CONFIRMATION DIALOG */
 .confirmation-backdrop {
   position: fixed;

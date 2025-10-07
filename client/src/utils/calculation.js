@@ -140,6 +140,15 @@ export function calculateBestRelics(desiredEffects,
     return null;
   }
 
+  // log relics by color once before processing vessels
+  const relicsByColor = {
+    red: scoredBaseRelics.filter(r => r.color === 'red'),
+    blue: scoredBaseRelics.filter(r => r.color === 'blue'),
+    yellow: scoredBaseRelics.filter(r => r.color === 'yellow'),
+    green: scoredBaseRelics.filter(r => r.color === 'green'),
+  };
+  console.log(`Relics by color - Red: ${relicsByColor.red.length}, Blue: ${relicsByColor.blue.length}, Yellow: ${relicsByColor.yellow.length}, Green: ${relicsByColor.green.length}`);
+
   // first pass: collect all valid combinations
   for (const vesselName of selectedVessels) {
     const vessel = vesselDataForCharacter.find(c => c.name === vesselName);
@@ -148,6 +157,7 @@ export function calculateBestRelics(desiredEffects,
       continue;
     }
 
+    console.log(`--- Calculating Best Combination for ${vessel.name} ---`);
     const combination = findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics, showDeepOfNight, desiredEffects, effectMap);
     if (combination) {
       console.log(`Best combination found for ${vessel.name}:`, JSON.parse(JSON.stringify(combination)));
@@ -157,13 +167,18 @@ export function calculateBestRelics(desiredEffects,
     }
   }
 
+  console.log(`--- Calculating Overall Best Combinations ---`);
+  console.log(`Found ${allCombinations.length} total combinations across all vessels`);
+
   if (allCombinations.length === 0) {
     return null;
   }
 
   // second pass: find maximum score and return all combinations with that score
   const maxScore = Math.max(...allCombinations.map(combo => combo.score));
+  console.log(`Maximum score: ${maxScore}`);
   const bestCombinations = allCombinations.filter(combo => combo.score === maxScore);
+  console.log(`Returning ${bestCombinations.length} combination(s) with max score`);
 
   return bestCombinations;
 }
@@ -450,8 +465,7 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     green: scoredRelics.filter(r => r.color === 'green'),
   };
 
-  console.log(`Relics by color - Red: ${relicsByColor.red.length}, Blue: ${relicsByColor.blue.length}, Yellow: ${relicsByColor.yellow.length}, Green: ${relicsByColor.green.length}`);
-  console.log(`Slots needed: ${JSON.stringify(slots)}`);
+  console.log(`${baseRelics.length > 0 ? 'Deep slots' : 'Slots'} needed: ${JSON.stringify(slots)}`);
 
   // get valid relics for each slot
   const validRelicsPerSlot = slots.map(slotColor => {
@@ -501,27 +515,41 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     }
   });
 
+  // sort relics by score descending to find better combinations early
+  validRelicsPerSlot.forEach(relics => {
+    relics.sort((a, b) => b.score - a.score);
+  });
+
   let allValidCombinations = [];
   let bestScoreSoFar = -1;
 
   // generate all valid combinations using recursive approach with pruning
   function generateCombinations(slotIndex, currentCombination, usedRelicIds, currentIndividualScore) {
     // upper bound pruning: check if this branch can possibly beat current best
-    if (bestScoreSoFar >= 0) {
-      const remainingSlots = slots.length - slotIndex;
-      let maxPossibleFromRemaining = 0;
+    if (bestScoreSoFar >= 0 && slotIndex > 0) {
+      // build optimistic completion by adding best available relics for remaining slots
+      const optimisticCombination = [...currentCombination];
+      let canComplete = true;
       
-      // calculate maximum possible score from remaining slots
       for (let i = slotIndex; i < slots.length; i++) {
         const availableRelics = validRelicsPerSlot[i].filter(r => !usedRelicIds.has(r.sorting));
         if (availableRelics.length > 0) {
-          maxPossibleFromRemaining += Math.max(...availableRelics.map(r => r.score));
+          // take the first (highest scoring) available relic
+          optimisticCombination[i] = availableRelics[0];
+        } else {
+          canComplete = false;
+          break;
         }
       }
       
-      // if even the most optimistic scenario can't beat current best, prune
-      if (currentIndividualScore + maxPossibleFromRemaining <= bestScoreSoFar) {
-        return;
+      if (canComplete) {
+        // calculate true score of this optimistic completion
+        const upperBound = calculateTrueCombinationScore(optimisticCombination, desiredEffects, effectMap);
+        
+        // if even the best possible completion can't beat current best, prune
+        if (upperBound <= bestScoreSoFar) {
+          return;
+        }
       }
     }
 
@@ -542,7 +570,7 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
       return;
     }
 
-    // try each valid relic for current slot
+    // try each valid relic for current slot (already sorted by score descending)
     const availableRelics = validRelicsPerSlot[slotIndex].filter(r => !usedRelicIds.has(r.sorting));
     
     for (const relic of availableRelics) {
@@ -569,7 +597,7 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     return returnAll ? [] : null;
   }
 
-  console.log(`Generated ${allValidCombinations.length} combinations, top score: ${Math.max(...allValidCombinations.map(c => c.score))}`);
+  console.log(`Generated ${allValidCombinations.length} combination(s), top score: ${Math.max(...allValidCombinations.map(c => c.score))}`);
 
   // sort by score (highest first)
   allValidCombinations.sort((a, b) => b.score - a.score);

@@ -20,6 +20,10 @@ const createEffectMap = (showDeepOfNight) => {
   return effectMap;
 };
 
+const isEffectIdKnown = (id) => {
+  return effects.some(effect => effect.ids.includes(id));
+};
+
 const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
   const [showRelicId, setShowRelicId] = useState(false)
   const EMPTY_SLOT_ID = 4294967295; // 2^32 - 1 (unsigned 32-bit integer)
@@ -182,29 +186,52 @@ const RelicsPage = ({ onBack,
           const parsedData = JSON.parse(storedRelicData);
           setRelicData(parsedData);
 
-          const unknownEffectIds = new Set();
+          const relicsWithUnknownEffects = [];
           const EMPTY_SLOT_ID = 4294967295;
 
           parsedData.forEach(character => {
             character.relics.forEach(relic => {
-              const effectIds = [
-                relic.effect1_id,
-                relic.effect2_id,
-                relic.effect3_id,
-                relic.sec_effect1_id,
-                relic.sec_effect2_id,
-                relic.sec_effect3_id,
-              ];
-              effectIds.forEach(id => {
-                if (id && id !== 0 && id !== EMPTY_SLOT_ID && !effectMap.has(id)) {
-                  unknownEffectIds.add(id);
+              const relicEntry = {
+                item_id: relic.item_id,
+                character_name: character.character_name,
+                effect1_id: {
+                  id: relic.effect1_id,
+                  known: relic.effect1_id === 0 || relic.effect1_id === EMPTY_SLOT_ID || isEffectIdKnown(relic.effect1_id)
+                },
+                effect2_id: {
+                  id: relic.effect2_id,
+                  known: relic.effect2_id === 0 || relic.effect2_id === EMPTY_SLOT_ID || isEffectIdKnown(relic.effect2_id)
+                },
+                effect3_id: {
+                  id: relic.effect3_id,
+                  known: relic.effect3_id === 0 || relic.effect3_id === EMPTY_SLOT_ID || isEffectIdKnown(relic.effect3_id)
+                },
+                sec_effect1_id: {
+                  id: relic.sec_effect1_id,
+                  known: relic.sec_effect1_id === 0 || relic.sec_effect1_id === EMPTY_SLOT_ID || isEffectIdKnown(relic.sec_effect1_id)
+                },
+                sec_effect2_id: {
+                  id: relic.sec_effect2_id,
+                  known: relic.sec_effect2_id === 0 || relic.sec_effect2_id === EMPTY_SLOT_ID || isEffectIdKnown(relic.sec_effect2_id)
+                },
+                sec_effect3_id: {
+                  id: relic.sec_effect3_id,
+                  known: relic.sec_effect3_id === 0 || relic.sec_effect3_id === EMPTY_SLOT_ID || isEffectIdKnown(relic.sec_effect3_id)
                 }
-              });
+              };
+
+              const hasUnknownEffects = Object.keys(relicEntry)
+                .filter(key => key.includes('effect'))
+                .some(key => !relicEntry[key].known);
+
+              if (hasUnknownEffects) {
+                relicsWithUnknownEffects.push(relicEntry);
+              }
             });
           });
 
-          if (unknownEffectIds.size > 0) {
-            console.log("Unknown Effect IDs found:", Array.from(unknownEffectIds));
+          if (relicsWithUnknownEffects.length > 0) {
+            console.log("Relics with unknown effects:", relicsWithUnknownEffects);
           }
         }
       } catch (error) {
