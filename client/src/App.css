@@ -42,7 +42,7 @@ h1 {
   grid-template-columns: 1.25fr auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    'character chalice effects'
+    'character vessel effects'
     'relics relics effects';
 }
 
@@ -247,21 +247,21 @@ button:hover {
   margin: 0 1rem;
 }
 
-/* CHALICE BUTTON */
-#chalice-card {
-  grid-area: chalice;
+/* VESSEL BUTTON */
+#vessel-card {
+  grid-area: vessel;
   width: fit-content;
   align-self: stretch;
 }
 
-.chalice-preview {
+.vessel-preview {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
 }
 
-.chalice-preview-grid {
+.vessel-preview-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -269,19 +269,19 @@ button:hover {
   padding: 1rem;
 }
 
-.chalice-preview-dot {
+.vessel-preview-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   transition: background-color 0.3s ease;
 }
 
-#chalice-card:not(.disabled):hover {
+#vessel-card:not(.disabled):hover {
   border-color: var(--primary-color);
 }
 
-/* CHALICE PAGE */
-.chalice-page-backdrop {
+/* VESSEL PAGE */
+.vessel-page-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -294,25 +294,25 @@ button:hover {
   z-index: 1000;
 }
 
-.chalice-page {
+.vessel-page {
   width: 80%;
   max-width: 1000px;
   max-height: 80vh;
   overflow-y: auto;
 }
 
-.chalice-page .card-header {
+.vessel-page .card-header {
   position: sticky;
   top: 0;
   background-color: #1a1a1a;
   z-index: 1;
 }
 
-#chalice-card {
-  grid-area: chalice;
+#vessel-card {
+  grid-area: vessel;
 }
 
-.chalice-card-header {
+.vessel-card-header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -321,7 +321,7 @@ button:hover {
   margin-bottom: 0.5rem;
 }
 
-.chalice-button-group {
+.vessel-button-group {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -329,12 +329,12 @@ button:hover {
   margin-bottom: 0.5rem;
 }
 
-#chalice-card.disabled {
+#vessel-card.disabled {
   background-color: #333;
   color: #777;
 }
 
-.chalice-grid {
+.vessel-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -342,18 +342,18 @@ button:hover {
   margin-bottom: auto;
 }
 
-.chalice-grid p {
+.vessel-grid p {
   margin: 0;
 }
 
-.chalice {
+.vessel {
   border: 1px solid #555;
   border-radius: 4px;
   padding: 0.2rem;
   cursor: pointer;
 }
 
-.chalice.selected {
+.vessel.selected {
   border-color: var(--primary-color);
 }
 
@@ -749,8 +749,8 @@ button:hover {
   left: 2rem;
 }
 
-/* CHALICE RESULTS */
-.chalice-result-card {
+/* VESSEL RESULTS */
+.vessel-result-card {
   font-size: x-large;
   display: grid;
   grid-template-columns: 100px 25% 1fr 50px;
@@ -762,11 +762,11 @@ button:hover {
   padding: 0.25rem;
 }
 
-.chalice-result-card.deep-mode {
+.vessel-result-card.deep-mode {
   grid-template-columns: 100px 25% 1fr 50px;
 }
 
-.chalice-result-card .relic-slots-container {
+.vessel-result-card .relic-slots-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -829,17 +829,17 @@ button:hover {
   font-size: large;
 }
 
-.chalice-result-card span {
+.vessel-result-card span {
   align-items: center;
 }
 
-.chalice-result-card img {
+.vessel-result-card img {
   flex-shrink: 0;
   align-self: center;
   justify-self: center;
 }
 
-#chalice-name {
+#vessel-name {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;

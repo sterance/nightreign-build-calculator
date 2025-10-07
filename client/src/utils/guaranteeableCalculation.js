@@ -15,31 +15,31 @@ import {
  * 
  * @param {Array} desiredEffects - array of desired effect objects
  * @param {Object} characterRelicData - relic data from save file
- * @param {Array} selectedChalices - array of selected chalice names
+ * @param {Array} selectedVessels - array of selected vessel names
  * @param {string} selectedNightfarer - name of the selected character
  * @param {Map} effectMap - map of effect IDs to effect names
  * @param {boolean} showDeepOfNight - whether to include deep relics
- * @param {Object} chaliceData - map of character names to their available chalices
+ * @param {Object} vesselData - map of character names to their available vessels
  * @returns {Array|Object|null} - either array (old format), { owned, potential } (new format), or null
  */
 export function calculateWithGuaranteeableRelics(
   desiredEffects,
   characterRelicData,
-  selectedChalices,
+  selectedVessels,
   selectedNightfarer,
   effectMap,
   showDeepOfNight = false,
-  chaliceData
+  vesselData
 ) {
   // pass 1: calculate with save file relics only
   const ownedResults = calculateBestRelics(
     desiredEffects,
     characterRelicData,
-    selectedChalices,
+    selectedVessels,
     selectedNightfarer,
     effectMap,
     showDeepOfNight,
-    chaliceData
+    vesselData
   );
 
   // check for missing guaranteeable relics
@@ -84,11 +84,11 @@ export function calculateWithGuaranteeableRelics(
   const potentialResults = calculateBestRelics(
     desiredEffects,
     augmentedRelicData,
-    selectedChalices,
+    selectedVessels,
     selectedNightfarer,
     effectMap,
     showDeepOfNight,
-    chaliceData
+    vesselData
   );
 
   // if pass 2 returned nothing, return pass 1 results in original format

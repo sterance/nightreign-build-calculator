@@ -115,7 +115,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
           <div className="score-info-container">
             {showScoreInfo && (
               <div className="score-info-tooltip">
-                Chalice Score: {currentResult.score}
+                Vessel Score: {currentResult.score}
                 {(() => {
                   let allRelics = [];
                   if (showDeepOfNight && currentResult.deepRelics && currentResult.deepRelics.length > 0) {
@@ -165,9 +165,9 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
         </button>
       </div>
       <div className="relic-result-container">
-        <div className={`chalice-result-card${showDeepOfNight ? ' deep-mode' : ''}`}>
-          <img src={getImageUrl(currentResult["chalice name"], 'chalices')} alt="Chalice" style={{ width: '75px', height: '75px' }} />
-          <span id='chalice-name'>{currentResult["chalice name"]}</span>
+        <div className={`vessel-result-card${showDeepOfNight ? ' deep-mode' : ''}`}>
+          <img src={getImageUrl(currentResult["vessel name"], 'vessels')} alt="Vessel" style={{ width: '75px', height: '75px' }} />
+          <span id='vessel-name'>{currentResult["vessel name"]}</span>
           {showDeepOfNight ? (
             <div className='relic-slots-container'>
               <div
@@ -175,7 +175,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
                 onClick={() => setShowingDeepRelics(false)}
               >
                 <div className="relic-slot-name">Base</div>
-                {currentResult["chalice slots"].map((color, index) => (
+                {currentResult["vessel slots"].map((color, index) => (
                   <RelicSlot key={index} color={color} />
                 ))}
               </div>
@@ -184,14 +184,14 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
                 onClick={() => setShowingDeepRelics(true)}
               >
                 <div className="relic-slot-name">Deep</div>
-                {(currentResult["chalice deep slots"] || []).map((color, index) => (
+                {(currentResult["vessel deep slots"] || []).map((color, index) => (
                   <RelicSlot key={`deep-${index}`} color={color} />
                 ))}
               </div>
             </div>
           ) : (
             <div className="relic-slots-container">
-              {currentResult["chalice slots"].map((color, index) => (
+              {currentResult["vessel slots"].map((color, index) => (
                 <RelicSlot key={index} color={color} />
               ))}
             </div>
@@ -203,7 +203,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
             {showTooltip && (
               <div className="info-tooltip">
                 <p>
-                  {currentResult["chalice description"].split('\n').map((line, i) => (
+                  {currentResult["vessel description"].split('\n').map((line, i) => (
                     <React.Fragment key={i}>
                       {line}
                       <br />
@@ -220,10 +220,10 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
 
           if (showDeepOfNight && showingDeepRelics) {
             relicsToDisplay = currentResult.deepRelics || [];
-            slotsToUse = currentResult["chalice deep slots"] || [];
+            slotsToUse = currentResult["vessel deep slots"] || [];
           } else {
             relicsToDisplay = currentResult.baseRelics || currentResult.relics || [];
-            slotsToUse = currentResult["chalice slots"] || [];
+            slotsToUse = currentResult["vessel slots"] || [];
           }
 
           return relicsToDisplay.map((relic, index) => {

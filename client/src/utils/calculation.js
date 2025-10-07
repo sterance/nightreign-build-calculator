@@ -2,28 +2,28 @@ import items from '../data/relics.json';
 import baseRelicEffects from '../data/effects.json';
 
 /**
- * Calculates the best relic combination for a given set of desired effects, available relics, and selected chalices.
+ * Calculates the best relic combination for a given set of desired effects, available relics, and selected vessels.
  * @param {Array} desiredEffects - An array of desired effect objects, including name, weight, isRequired, and isForbidden properties.
  * @param {Object} characterRelicData - The relic data for the selected character from the user's save file.
- * @param {Array} selectedChalices - An array of names of the selected chalices.
+ * @param {Array} selectedVessels - An array of names of the selected vessels.
  * @param {string} selectedNightfarer - The name of the selected Nightfarer (e.g., 'wylder').
  * @param {Map} effectMap - Map of effect IDs to effect names.
  * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
- * @param {Object} chaliceData - Map of character names to their available chalices.
+ * @param {Object} vesselData - Map of character names to their available vessels.
  * @returns {Array|null} - Array of best relic combinations with max score, or null if none could be determined.
  */
 export function calculateBestRelics(desiredEffects,
   characterRelicData,
-  selectedChalices,
+  selectedVessels,
   selectedNightfarer,
   effectMap,
   showDeepOfNight = false,
-  chaliceData) {
+  vesselData) {
     
   console.log("--- Starting Relic Calculation ---");
   // input validation
-  if (!desiredEffects || !characterRelicData || !selectedChalices || !selectedNightfarer || !effectMap) {
-    console.error('Missing required parameters for calculation:', { desiredEffects, characterRelicData, selectedChalices, selectedNightfarer, effectMap });
+  if (!desiredEffects || !characterRelicData || !selectedVessels || !selectedNightfarer || !effectMap) {
+    console.error('Missing required parameters for calculation:', { desiredEffects, characterRelicData, selectedVessels, selectedNightfarer, effectMap });
     throw new Error('Missing required parameters for calculation');
   }
 
@@ -131,29 +131,29 @@ export function calculateBestRelics(desiredEffects,
       .sort((a, b) => b.score - a.score);
   }
 
-  // for each chalice, find the best combination of relics.
+  // for each vessel, find the best combination of relics.
   const allCombinations = [];
 
-  const chaliceDataForCharacter = chaliceData[selectedNightfarer];
-  if (!chaliceDataForCharacter) {
-    console.error(`No chalice data found for character: ${selectedNightfarer}`);
+  const vesselDataForCharacter = vesselData[selectedNightfarer];
+  if (!vesselDataForCharacter) {
+    console.error(`No vessel data found for character: ${selectedNightfarer}`);
     return null;
   }
 
   // first pass: collect all valid combinations
-  for (const chaliceName of selectedChalices) {
-    const chalice = chaliceDataForCharacter.find(c => c.name === chaliceName);
-    if (!chalice) {
-      console.warn(`Could not find data for chalice: ${chaliceName}`);
+  for (const vesselName of selectedVessels) {
+    const vessel = vesselDataForCharacter.find(c => c.name === vesselName);
+    if (!vessel) {
+      console.warn(`Could not find data for vessel: ${vesselName}`);
       continue;
     }
 
-    const combination = findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics, showDeepOfNight, desiredEffects, effectMap);
+    const combination = findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics, showDeepOfNight, desiredEffects, effectMap);
     if (combination) {
-      console.log(`Best combination found for ${chalice.name}:`, JSON.parse(JSON.stringify(combination)));
+      console.log(`Best combination found for ${vessel.name}:`, JSON.parse(JSON.stringify(combination)));
       allCombinations.push(combination);
     } else {
-      console.log(`No valid combination found for ${chalice.name}.`);
+      console.log(`No valid combination found for ${vessel.name}.`);
     }
   }
 
@@ -237,32 +237,32 @@ function calculateEffectScores(relic, effectMap, desiredEffects) {
 }
 
 /**
- * Finds the best relic combination for a single chalice using exhaustive search with stacking-aware scoring.
- * @param {Object} chalice - The chalice object, including its name and slots.
+ * Finds the best relic combination for a single vessel using exhaustive search with stacking-aware scoring.
+ * @param {Object} vessel - The vessel object, including its name and slots.
  * @param {Array} scoredBaseRelics - The list of all scored and filtered base relics.
  * @param {Array} scoredDeepRelics - The list of all scored and filtered deep relics.
  * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
  * @param {Array} desiredEffects - Array of desired effects for true score calculation.
  * @param {Map} effectMap - Map of effect IDs to effect names.
- * @returns {Object|null} - The best combination for the chalice, or null if slots cannot be filled.
+ * @returns {Object|null} - The best combination for the vessel, or null if slots cannot be filled.
  */
-function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false, desiredEffects, effectMap) {
-  if (showDeepOfNight && chalice.deepSlots && scoredDeepRelics.length > 0) {
+function findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false, desiredEffects, effectMap) {
+  if (showDeepOfNight && vessel.deepSlots && scoredDeepRelics.length > 0) {
     // when showDeepOfNight is true, validate the combined build
-    return findBestCombinedRelicsWithFallback(chalice, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap);
+    return findBestCombinedRelicsWithFallback(vessel, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap);
   } else {
     // base relics only
-    const bestBaseRelics = findBestRelicsForSlots(chalice.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
+    const bestBaseRelics = findBestRelicsForSlots(vessel.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
     if (!bestBaseRelics) {
       return null;
     }
 
     const result = {
-      chalice: {
-        name: chalice.name,
-        baseSlots: chalice.baseSlots,
-        deepSlots: chalice.deepSlots || [],
-        description: chalice.description
+      vessel: {
+        name: vessel.name,
+        baseSlots: vessel.baseSlots,
+        deepSlots: vessel.deepSlots || [],
+        description: vessel.description
       },
       baseRelics: bestBaseRelics.relics,
       deepRelics: [],
@@ -279,9 +279,9 @@ function findBestCombinationForChalice(chalice, scoredBaseRelics, scoredDeepReli
  * Tries base combinations in order of score, and for each base combination,
  * tries to find deep relics that work with it
  */
-function findBestCombinedRelicsWithFallback(chalice, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap) {
+function findBestCombinedRelicsWithFallback(vessel, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap) {
   // get all base combinations (with fallback behavior)
-  const allBaseCombinations = generateAllBaseCombinations(chalice.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
+  const allBaseCombinations = generateAllBaseCombinations(vessel.baseSlots, scoredBaseRelics, desiredEffects, effectMap);
   if (!allBaseCombinations || allBaseCombinations.length === 0) {
     return null;
   }
@@ -289,16 +289,16 @@ function findBestCombinedRelicsWithFallback(chalice, scoredBaseRelics, scoredDee
   // try each base combination in order of score
   for (const baseCombo of allBaseCombinations) {
     // try to find deep relics that work with this base combination
-    const deepCombo = findBestDeepRelicsForBase(chalice.deepSlots, scoredDeepRelics, baseCombo.relics, desiredEffects, effectMap);
+    const deepCombo = findBestDeepRelicsForBase(vessel.deepSlots, scoredDeepRelics, baseCombo.relics, desiredEffects, effectMap);
     
     if (deepCombo) {
       // found a valid combination
       const result = {
-        chalice: {
-          name: chalice.name,
-          baseSlots: chalice.baseSlots,
-          deepSlots: chalice.deepSlots || [],
-          description: chalice.description
+        vessel: {
+          name: vessel.name,
+          baseSlots: vessel.baseSlots,
+          deepSlots: vessel.deepSlots || [],
+          description: vessel.description
         },
         baseRelics: baseCombo.relics,
         deepRelics: deepCombo.relics,

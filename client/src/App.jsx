@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
-import ChaliceButton from './components/ChaliceButton';
-import ChalicePage from './components/ChalicePage';
+import VesselButton from './components/VesselButton';
+import VesselPage from './components/VesselPage';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
@@ -17,8 +17,8 @@ import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
 
 const vesselData = nightfarers.reduce((acc, character) => {
-  const chalicesKey = `${character}Chalices`;
-  acc[character] = [...vesselsRaw[chalicesKey], ...vesselsRaw.genericChalices];
+  const vesselsKey = `${character}Chalices`;
+  acc[character] = [...vesselsRaw[vesselsKey], ...vesselsRaw.genericChalices];
   return acc;
 }, {});
 
@@ -73,10 +73,10 @@ function usePersistentState(key, defaultValue) {
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedSaveName, setSelectedSaveName] = useState(null);
-  const [selectedChalices, setSelectedChalices] = useState([]);
+  const [selectedVessels, setSelectedVessels] = useState([]);
   const [desiredEffects, setDesiredEffects] = useState([]);
   const [calculationResult, setCalculationResult] = useState(null);
-  const [showChalices, setShowChalices] = useState(false);
+  const [showVessels, setShowVessels] = useState(false);
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
@@ -161,36 +161,36 @@ function App() {
     setShowUploadTooltip(false);
   };
 
-  const selectAllChalicesForCharacter = (character) => {
+  const selectAllVesselsForCharacter = (character) => {
     if (!character) return;
-    const allChaliceNames = vesselData[character].map((c) => c.name);
-    setSelectedChalices(allChaliceNames);
+    const allVesselNames = vesselData[character].map((c) => c.name);
+    setSelectedVessels(allVesselNames);
   }
   const handleCharacterSelect = (character) => {
     setSelectedCharacter(character);
     // select all by default
-    selectAllChalicesForCharacter(character);
+    selectAllVesselsForCharacter(character);
   };
 
   const handleClearCharacter = () => {
     setSelectedCharacter(null);
-    setSelectedChalices([]);
+    setSelectedVessels([]);
   };
 
-  const handleChaliceToggle = (chaliceName) => {
-    setSelectedChalices((prevSelected) =>
-      prevSelected.includes(chaliceName)
-        ? prevSelected.filter((name) => name !== chaliceName)
-        : [...prevSelected, chaliceName]
+  const handleVesselToggle = (vesselName) => {
+    setSelectedVessels((prevSelected) =>
+      prevSelected.includes(vesselName)
+        ? prevSelected.filter((name) => name !== vesselName)
+        : [...prevSelected, vesselName]
     );
   };
 
-  const handleSelectAllChalices = () => {
-    selectAllChalicesForCharacter(selectedCharacter);
+  const handleSelectAllVessels = () => {
+    selectAllVesselsForCharacter(selectedCharacter);
   };
 
-  const handleClearAllChalices = () => {
-    setSelectedChalices([]);
+  const handleClearAllVessels = () => {
+    setSelectedVessels([]);
   };
 
   const handleUploadClick = () => {
@@ -262,8 +262,8 @@ function App() {
         addToast('Calculation failed.\nMissing character selection.', 'error');
         return;
       }
-      if (selectedChalices.length === 0) {
-        addToast('Calculation failed.\nMissing chalice selection.', 'error');
+      if (selectedVessels.length === 0) {
+        addToast('Calculation failed.\nMissing vessel selection.', 'error');
         return;
       }
       if (desiredEffects.length === 0) {
@@ -297,7 +297,7 @@ function App() {
         result = calculateWithGuaranteeableRelics(
           desiredEffects,
           characterSaveData,
-          selectedChalices,
+          selectedVessels,
           selectedCharacter,
           effectMap,
           showDeepOfNight,
@@ -307,7 +307,7 @@ function App() {
         result = calculateBestRelics(
           desiredEffects,
           characterSaveData,
-          selectedChalices,
+          selectedVessels,
           selectedCharacter,
           effectMap,
           showDeepOfNight,
@@ -321,10 +321,10 @@ function App() {
 
       if (hasNewStructure && (result.owned.length > 0 || result.potential.length > 0)) {
         const formatResults = (results) => results.map(bestResult => ({
-          "chalice name": bestResult.chalice.name,
-          "chalice slots": bestResult.chalice.baseSlots,
-          "chalice deep slots": bestResult.chalice.deepSlots || [],
-          "chalice description": bestResult.chalice.description,
+          "vessel name": bestResult.vessel.name,
+          "vessel slots": bestResult.vessel.baseSlots,
+          "vessel deep slots": bestResult.vessel.deepSlots || [],
+          "vessel description": bestResult.vessel.description,
           "score": bestResult.score,
           "relics": bestResult.relics.map(relic => ({
             name: relic['relic name'],
@@ -364,10 +364,10 @@ function App() {
       } else if (result && result.length > 0) {
         // old structure (array) - use existing logic
         const formattedResults = result.map(bestResult => ({
-          "chalice name": bestResult.chalice.name,
-          "chalice slots": bestResult.chalice.baseSlots,
-          "chalice deep slots": bestResult.chalice.deepSlots || [],
-          "chalice description": bestResult.chalice.description,
+          "vessel name": bestResult.vessel.name,
+          "vessel slots": bestResult.vessel.baseSlots,
+          "vessel deep slots": bestResult.vessel.deepSlots || [],
+          "vessel description": bestResult.vessel.description,
           "score": bestResult.score,
           "relics": bestResult.relics.map(relic => ({
             name: relic['relic name'],
@@ -468,11 +468,11 @@ function App() {
             onClear={handleClearCharacter}
           />
 
-          <ChaliceButton
+          <VesselButton
             selectedCharacter={selectedCharacter}
-            selectedChalices={selectedChalices}
-            onClick={() => setShowChalices(true)}
-            chaliceData={vesselData}
+            selectedVessels={selectedVessels}
+            onClick={() => setShowVessels(true)}
+            vesselData={vesselData}
           />
 
           <DesiredEffects
@@ -486,7 +486,7 @@ function App() {
           />
 
           <RelicResults
-            selectedChalices={selectedChalices}
+            selectedVessels={selectedVessels}
             calculationResult={calculationResult}
             showDeepOfNight={showDeepOfNight}
             showScoreInfoToggle={showScoreInfoToggle}
@@ -494,14 +494,14 @@ function App() {
         </div>
       </div>
 
-      {showChalices && <ChalicePage
-        onBack={() => setShowChalices(false)}
+      {showVessels && <VesselPage
+        onBack={() => setShowVessels(false)}
         selectedCharacter={selectedCharacter}
-        selectedChalices={selectedChalices}
-        onChaliceToggle={handleChaliceToggle}
-        onSelectAll={handleSelectAllChalices}
-        onClearAll={handleClearAllChalices}
-        chaliceData={vesselData}
+        selectedVessels={selectedVessels}
+        onVesselToggle={handleVesselToggle}
+        onSelectAll={handleSelectAllVessels}
+        onClearAll={handleClearAllVessels}
+        vesselData={vesselData}
       />}
 
       {showRelics && <RelicsPage
