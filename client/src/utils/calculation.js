@@ -129,6 +129,8 @@ export function calculateBestRelics(desiredEffects,
       return { ...relic, score, isForbidden, effectScores };
     }).filter(relic => !relic.isForbidden)
       .sort((a, b) => b.score - a.score);
+    
+    console.log(`Scored ${scoredDeepRelics.length} deep relics (${scoredDeepRelics.filter(r => r.score > 0).length} with score > 0)`);
   }
 
   // for each vessel, find the best combination of relics.
@@ -142,12 +144,22 @@ export function calculateBestRelics(desiredEffects,
 
   // log relics by color once before processing vessels
   const relicsByColor = {
-    red: scoredBaseRelics.filter(r => r.color === 'red'),
-    blue: scoredBaseRelics.filter(r => r.color === 'blue'),
-    yellow: scoredBaseRelics.filter(r => r.color === 'yellow'),
-    green: scoredBaseRelics.filter(r => r.color === 'green'),
+    red: scoredBaseRelics.filter(r => r.color === 'red' && r.score > 0),
+    blue: scoredBaseRelics.filter(r => r.color === 'blue' && r.score > 0),
+    yellow: scoredBaseRelics.filter(r => r.color === 'yellow' && r.score > 0),
+    green: scoredBaseRelics.filter(r => r.color === 'green' && r.score > 0),
   };
-  console.log(`Relics by color - Red: ${relicsByColor.red.length}, Blue: ${relicsByColor.blue.length}, Yellow: ${relicsByColor.yellow.length}, Green: ${relicsByColor.green.length}`);
+  console.log(`Base relics by color - Red: ${relicsByColor.red.length}, Blue: ${relicsByColor.blue.length}, Yellow: ${relicsByColor.yellow.length}, Green: ${relicsByColor.green.length}`);
+
+  if (showDeepOfNight && scoredDeepRelics.length > 0) {
+    const deepRelicsByColor = {
+      red: scoredDeepRelics.filter(r => r.color === 'red' && r.score > 0),
+      blue: scoredDeepRelics.filter(r => r.color === 'blue' && r.score > 0),
+      yellow: scoredDeepRelics.filter(r => r.color === 'yellow' && r.score > 0),
+      green: scoredDeepRelics.filter(r => r.color === 'green' && r.score > 0),
+    };
+    console.log(`Deep relics by color - Red: ${deepRelicsByColor.red.length}, Blue: ${deepRelicsByColor.blue.length}, Yellow: ${deepRelicsByColor.yellow.length}, Green: ${deepRelicsByColor.green.length}`);
+  }
 
   // first pass: collect all valid combinations
   for (const vesselName of selectedVessels) {
@@ -158,10 +170,10 @@ export function calculateBestRelics(desiredEffects,
     }
 
     console.log(`--- Calculating Best Combination for ${vessel.name} ---`);
-    const combination = findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics, showDeepOfNight, desiredEffects, effectMap);
-    if (combination) {
-      console.log(`Best combination found for ${vessel.name}:`, JSON.parse(JSON.stringify(combination)));
-      allCombinations.push(combination);
+    const combinations = findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics, showDeepOfNight, desiredEffects, effectMap);
+    if (combinations && combinations.length > 0) {
+      console.log(`Best combination/s found for ${vessel.name} (${combinations.length} with max score):`, JSON.parse(JSON.stringify(combinations)));
+      allCombinations.push(...combinations);
     } else {
       console.log(`No valid combination found for ${vessel.name}.`);
     }
@@ -252,14 +264,14 @@ function calculateEffectScores(relic, effectMap, desiredEffects) {
 }
 
 /**
- * Finds the best relic combination for a single vessel using exhaustive search with stacking-aware scoring.
+ * Finds the best relic combinations for a single vessel using exhaustive search with stacking-aware scoring.
  * @param {Object} vessel - The vessel object, including its name and slots.
  * @param {Array} scoredBaseRelics - The list of all scored and filtered base relics.
  * @param {Array} scoredDeepRelics - The list of all scored and filtered deep relics.
  * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
  * @param {Array} desiredEffects - Array of desired effects for true score calculation.
  * @param {Map} effectMap - Map of effect IDs to effect names.
- * @returns {Object|null} - The best combination for the vessel, or null if slots cannot be filled.
+ * @returns {Array|null} - Array of best combinations for the vessel, or null if slots cannot be filled.
  */
 function findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics = [], showDeepOfNight = false, desiredEffects, effectMap) {
   if (showDeepOfNight && vessel.deepSlots && scoredDeepRelics.length > 0) {
@@ -272,27 +284,28 @@ function findBestCombinationForVessel(vessel, scoredBaseRelics, scoredDeepRelics
       return null;
     }
 
-    const result = {
+    // bestBaseRelics is now an array of all max-scoring combinations
+    const results = bestBaseRelics.map(combo => ({
       vessel: {
         name: vessel.name,
         baseSlots: vessel.baseSlots,
         deepSlots: vessel.deepSlots || [],
         description: vessel.description
       },
-      baseRelics: bestBaseRelics.relics,
+      baseRelics: combo.relics,
       deepRelics: [],
-      relics: bestBaseRelics.relics,
-      score: bestBaseRelics.score,
-    };
+      relics: combo.relics,
+      score: combo.score,
+    }));
 
-    return result;
+    return results;
   }
 }
 
 /**
  * Finds the best combined base + deep relics with comprehensive fallback behavior
  * Tries base combinations in order of score, and for each base combination,
- * tries to find deep relics that work with it
+ * tries to find deep relics that work with it. Returns all combinations with max score.
  */
 function findBestCombinedRelicsWithFallback(vessel, scoredBaseRelics, scoredDeepRelics, desiredEffects, effectMap) {
   // get all base combinations (with fallback behavior)
@@ -301,31 +314,40 @@ function findBestCombinedRelicsWithFallback(vessel, scoredBaseRelics, scoredDeep
     return null;
   }
 
+  const allValidResults = [];
+
   // try each base combination in order of score
   for (const baseCombo of allBaseCombinations) {
     // try to find deep relics that work with this base combination
-    const deepCombo = findBestDeepRelicsForBase(vessel.deepSlots, scoredDeepRelics, baseCombo.relics, desiredEffects, effectMap);
+    const deepCombos = findBestDeepRelicsForBase(vessel.deepSlots, scoredDeepRelics, baseCombo.relics, desiredEffects, effectMap);
     
-    if (deepCombo) {
-      // found a valid combination
-      const result = {
-        vessel: {
-          name: vessel.name,
-          baseSlots: vessel.baseSlots,
-          deepSlots: vessel.deepSlots || [],
-          description: vessel.description
-        },
-        baseRelics: baseCombo.relics,
-        deepRelics: deepCombo.relics,
-        relics: baseCombo.relics,
-        score: baseCombo.score + deepCombo.score,
-      };
-      return result;
+    if (deepCombos && deepCombos.length > 0) {
+      // found valid combinations - create result for each deep combo
+      for (const deepCombo of deepCombos) {
+        const result = {
+          vessel: {
+            name: vessel.name,
+            baseSlots: vessel.baseSlots,
+            deepSlots: vessel.deepSlots || [],
+            description: vessel.description
+          },
+          baseRelics: baseCombo.relics,
+          deepRelics: deepCombo.relics,
+          relics: baseCombo.relics,
+          score: baseCombo.score + deepCombo.score,
+        };
+        allValidResults.push(result);
+      }
     }
   }
 
-  // no valid combination found
-  return null;
+  if (allValidResults.length === 0) {
+    return null;
+  }
+
+  // filter to only return combinations with maximum score
+  const maxScore = Math.max(...allValidResults.map(r => r.score));
+  return allValidResults.filter(r => r.score === maxScore);
 }
 
 
@@ -340,11 +362,19 @@ function generateAllBaseCombinations(slots, scoredRelics, desiredEffects, effect
 
 // finds the best deep relics that work with a given base combination
 function findBestDeepRelicsForBase(slots, scoredRelics, baseRelics, desiredEffects, effectMap) {
-  return generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMap, {
+  const allCombinations = generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMap, {
     baseRelics: baseRelics,
-    returnAll: false,
+    returnAll: true,
     validateRequired: true
   });
+  
+  if (!allCombinations || allCombinations.length === 0) {
+    return null;
+  }
+  
+  // filter to only return combinations with maximum score
+  const maxScore = Math.max(...allCombinations.map(c => c.score));
+  return allCombinations.filter(c => c.score === maxScore);
 }
 
 /**
@@ -353,13 +383,21 @@ function findBestDeepRelicsForBase(slots, scoredRelics, baseRelics, desiredEffec
  * @param {Array} scoredRelics - Array of scored relics
  * @param {Array} desiredEffects - Array of desired effects for true score calculation
  * @param {Map} effectMap - Map of effect IDs to effect names
- * @returns {Object|null} - Object with relics array and total score, or null if slots cannot be filled
+ * @returns {Array|null} - Array of combination objects with relics array and total score, or null if slots cannot be filled
  */
 function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) {
-  return generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMap, {
-    returnAll: false,
+  const allCombinations = generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMap, {
+    returnAll: true,
     validateRequired: true
   });
+  
+  if (!allCombinations || allCombinations.length === 0) {
+    return null;
+  }
+  
+  // filter to only return combinations with maximum score
+  const maxScore = Math.max(...allCombinations.map(c => c.score));
+  return allCombinations.filter(c => c.score === maxScore);
 }
 
 /**
@@ -602,42 +640,37 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
   // sort by score (highest first)
   allValidCombinations.sort((a, b) => b.score - a.score);
 
-  if (returnAll) {
-    return allValidCombinations;
-  }
-
-  // find first combination that satisfies validation requirements
-  for (const combination of allValidCombinations) {
-    if (validateRequired) {
+  // filter combinations based on required effects validation if needed
+  let validCombinations = allValidCombinations;
+  if (validateRequired) {
+    validCombinations = allValidCombinations.filter(combination => {
       if (baseRelics.length > 0) {
         // for deep relics: check if combined with base relics satisfies required effects
         const combinedRelics = [...baseRelics, ...combination.relics];
-        const isValid = validateRequiredEffects(combinedRelics, desiredEffects, effectMap);
-        if (!isValid) {
-          console.log(`Combination failed required effects validation (with base relics)`);
-        }
-        if (isValid) {
-          return combination;
-        }
+        return validateRequiredEffects(combinedRelics, desiredEffects, effectMap);
       } else {
         // for base relics: check if combination satisfies required effects
-        const isValid = validateRequiredEffects(combination.relics, desiredEffects, effectMap);
-        if (!isValid && allValidCombinations.indexOf(combination) === 0) {
-          console.log(`Top combination score ${combination.score} failed required effects validation`);
-          console.log(`Required effects:`, desiredEffects.filter(e => e.isRequired).map(e => e.name));
-        }
-        if (isValid) {
-          return combination;
-        }
+        return validateRequiredEffects(combination.relics, desiredEffects, effectMap);
       }
-    } else {
-      // no validation required, return first (highest scoring) combination
-      return combination;
+    });
+
+    if (validCombinations.length === 0) {
+      console.warn(`All ${allValidCombinations.length} combinations failed required effects validation`);
+      console.log(`Required effects:`, desiredEffects.filter(e => e.isRequired).map(e => e.name));
+      return returnAll ? [] : null;
+    }
+
+    if (validCombinations.length < allValidCombinations.length) {
+      console.log(`Filtered ${allValidCombinations.length - validCombinations.length} combinations that didn't meet required effects`);
     }
   }
 
-  console.warn(`All ${allValidCombinations.length} combinations failed validation`);
-  return null;
+  if (returnAll) {
+    return validCombinations;
+  }
+
+  // return first (highest scoring) valid combination
+  return validCombinations[0];
 }
 
 // HELPER FUNCTIONS
