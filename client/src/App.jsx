@@ -9,8 +9,6 @@ import RelicsPage from './components/RelicsPage';
 import nightfarers from './data/nightfarers.json';
 import vesselsRaw from './data/vessels.json';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
-import { calculateBestRelics } from './utils/calculation';
-import { calculateWithGuaranteeableRelics } from './utils/guaranteeableCalculation';
 import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
@@ -95,12 +93,119 @@ function App() {
   const [effectMap, setEffectMap] = useState(new Map());
   const [showDeepConfirmation, setShowDeepConfirmation] = useState(false);
   const [pendingDeepOfNight, setPendingDeepOfNight] = useState(false);
+  const [isCalculating, setIsCalculating] = useState(false);
   const fileInputRef = useRef(null);
+  const workerRef = useRef(null);
 
   const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-color', primaryColor);
   }, [primaryColor]);
+
+  useEffect(() => {
+    workerRef.current = new Worker(new URL('./workers/calculator.worker.js', import.meta.url), {
+      type: 'module',
+    });
+
+    workerRef.current.onmessage = (event) => {
+      const { success, result, error } = event.data;
+
+      if (success) {
+        const hasNewStructure = result && typeof result === 'object' &&
+                                'owned' in result && 'potential' in result;
+
+        if (hasNewStructure && (result.owned.length > 0 || result.potential.length > 0)) {
+          const formatResults = (results) => results.map(bestResult => ({
+            "vessel name": bestResult.vessel.name,
+            "vessel slots": bestResult.vessel.baseSlots,
+            "vessel deep slots": bestResult.vessel.deepSlots || [],
+            "vessel description": bestResult.vessel.description,
+            "score": bestResult.score,
+            "relics": bestResult.relics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.effectScores
+            })),
+            "baseRelics": bestResult.baseRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.effectScores
+            })),
+            "deepRelics": bestResult.deepRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.effectScores
+            }))
+          }));
+
+          const formattedOwned = formatResults(result.owned);
+          const formattedPotential = formatResults(result.potential);
+
+          setCalculationResult({
+            owned: formattedOwned,
+            potential: formattedPotential
+          });
+          
+          addToast(
+            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'}. ` +
+            `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
+            'success'
+          );
+        } else if (result && result.length > 0) {
+          const formattedResults = result.map(bestResult => ({
+            "vessel name": bestResult.vessel.name,
+            "vessel slots": bestResult.vessel.baseSlots,
+            "vessel deep slots": bestResult.vessel.deepSlots || [],
+            "vessel description": bestResult.vessel.description,
+            "score": bestResult.score,
+            "relics": bestResult.relics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.effectScores
+            })),
+            "baseRelics": bestResult.baseRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.effectScores
+            })),
+            "deepRelics": bestResult.deepRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.effectScores
+            }))
+          }));
+          setCalculationResult(formattedResults);
+          addToast(`Calculation successful!\n${result.length} relic combo${result.length === 1 ? '' : 's'} found (${result.length === 1 ? 'with' : 'tied for'} max score)`, 'success');
+        } else {
+          setCalculationResult(null);
+          addToast('No valid relic combination found for the selected criteria.', 'error');
+        }
+      } else {
+        console.error('Calculation error from worker:', error);
+        addToast(`Calculation failed:\n${error}`, 'error');
+        setCalculationResult(null);
+      }
+      
+      setIsCalculating(false);
+      console.log('Worker calculation and state update finished.');
+    };
+
+    workerRef.current.onerror = (err) => {
+      console.error("Worker instantiation error:", err);
+      addToast('Failed to start calculation worker.', 'error');
+      setIsCalculating(false);
+    };
+
+    return () => {
+      workerRef.current.terminate();
+    };
+  }, []);
 
   useEffect(() => {
     const newEffectMap = createEffectMap(showDeepOfNight);
@@ -251,164 +356,58 @@ function App() {
   };
 
   const handleCalculate = () => {
-    const startTime = performance.now();
-    try {
-      const saveData = JSON.parse(localStorage.getItem('saveData'));
+    const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-      if (!saveData && !calculateGuaranteeableRelics) {
-        addToast('Calculation failed.\nMissing save data.', 'error');
-        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - Missing save data`);
-        return;
-      }
-      if (!selectedCharacter) {
-        addToast('Calculation failed.\nMissing character selection.', 'error');
-        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - Missing character selection`);
-        return;
-      }
-      if (selectedVessels.length === 0) {
-        addToast('Calculation failed.\nMissing vessel selection.', 'error');
-        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - Missing vessel selection`);
-        return;
-      }
-      if (desiredEffects.length === 0) {
-        addToast('Calculation failed.\nNo desired effects.', 'error');
-        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - No desired effects`);
-        return;
-      }
-
-      // find the character data for the selected save name, or create empty data if no save file
-      let characterSaveData = null;
-      if (saveData && saveData.length > 0) {
-        characterSaveData = saveData.find(
-          (character) => character.character_name === selectedSaveName
-        );
-      }
-
-      if (!characterSaveData) {
-        if (calculateGuaranteeableRelics) {
-          // create empty character data for guaranteeable relics calculation
-          characterSaveData = {
-            character_name: 'No Save Data',
-            relics: []
-          };
-        } else {
-          addToast('No relics found for the selected save name.', 'error');
-          console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - No relics found`);
-          return;
-        }
-      }
-
-      let result;
-      if (calculateGuaranteeableRelics) {
-        result = calculateWithGuaranteeableRelics(
-          desiredEffects,
-          characterSaveData,
-          selectedVessels,
-          selectedCharacter,
-          effectMap,
-          showDeepOfNight,
-          vesselData
-        );
-      } else {
-        result = calculateBestRelics(
-          desiredEffects,
-          characterSaveData,
-          selectedVessels,
-          selectedCharacter,
-          effectMap,
-          showDeepOfNight,
-          vesselData
-        );
-      }
-
-      // check if result has the new structure (object with owned/potential)
-      const hasNewStructure = result && typeof result === 'object' && 
-                              'owned' in result && 'potential' in result;
-
-      if (hasNewStructure && (result.owned.length > 0 || result.potential.length > 0)) {
-        const formatResults = (results) => results.map(bestResult => ({
-          "vessel name": bestResult.vessel.name,
-          "vessel slots": bestResult.vessel.baseSlots,
-          "vessel deep slots": bestResult.vessel.deepSlots || [],
-          "vessel description": bestResult.vessel.description,
-          "score": bestResult.score,
-          "relics": bestResult.relics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            score: relic.score,
-            effects: relic.effectScores
-          })),
-          "baseRelics": bestResult.baseRelics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            score: relic.score,
-            effects: relic.effectScores
-          })),
-          "deepRelics": bestResult.deepRelics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            score: relic.score,
-            effects: relic.effectScores
-          }))
-        }));
-
-        const formattedOwned = formatResults(result.owned);
-        const formattedPotential = formatResults(result.potential);
-
-        setCalculationResult({
-          owned: formattedOwned,
-          potential: formattedPotential
-        });
-        
-        console.log('Calculation result:', { owned: formattedOwned, potential: formattedPotential });
-        console.log(`Calculation successful - took ${(performance.now() - startTime).toFixed(2)}ms`);
-
-        addToast(
-          `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'}. ` +
-          `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
-          'success'
-        );
-      } else if (result && result.length > 0) {
-        // old structure (array) - use existing logic
-        const formattedResults = result.map(bestResult => ({
-          "vessel name": bestResult.vessel.name,
-          "vessel slots": bestResult.vessel.baseSlots,
-          "vessel deep slots": bestResult.vessel.deepSlots || [],
-          "vessel description": bestResult.vessel.description,
-          "score": bestResult.score,
-          "relics": bestResult.relics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            score: relic.score,
-            effects: relic.effectScores
-          })),
-          "baseRelics": bestResult.baseRelics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            score: relic.score,
-            effects: relic.effectScores
-          })),
-          "deepRelics": bestResult.deepRelics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            score: relic.score,
-            effects: relic.effectScores
-          }))
-        }));
-        setCalculationResult(formattedResults);
-        console.log(`Calculation successful - took ${(performance.now() - startTime).toFixed(2)}ms`);
-        addToast(`Calculation successful!\n${result.length} relic combo${result.length === 1 ? '' : 's'} found (${result.length === 1 ? 'with' : 'tied for'} max score)`, 'success');
-      } else {
-        setCalculationResult(null);
-        console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - No valid combinations`);
-        addToast('No valid relic combination found for the selected criteria.', 'error');
-      }
-    } catch (error) {
-      console.error('Calculation error:', error);
-      console.log(`Calculation unsuccessful - took ${(performance.now() - startTime).toFixed(2)}ms - ${error.message}`);
-      addToast(`Calculation failed:\n${error.message}`, 'error');
-      setCalculationResult(null);
+    if (!saveData && !calculateGuaranteeableRelics) {
+      addToast('Calculation failed.\nMissing save data.', 'error');
+      return;
     }
+    if (!selectedCharacter) {
+      addToast('Calculation failed.\nMissing character selection.', 'error');
+      return;
+    }
+    if (selectedVessels.length === 0) {
+      addToast('Calculation failed.\nMissing vessel selection.', 'error');
+      return;
+    }
+    if (desiredEffects.length === 0) {
+      addToast('Calculation failed.\nNo desired effects.', 'error');
+      return;
+    }
+
+    let characterSaveData = null;
+    if (saveData && saveData.length > 0) {
+      characterSaveData = saveData.find(
+        (character) => character.character_name === selectedSaveName
+      );
+    }
+
+    if (!characterSaveData) {
+      if (calculateGuaranteeableRelics) {
+        characterSaveData = {
+          character_name: 'No Save Data',
+          relics: []
+        };
+      } else {
+        addToast('No relics found for the selected save name.', 'error');
+        return;
+      }
+    }
+
+    setIsCalculating(true);
+    
+    const effectMapArray = Array.from(effectMap.entries());
+
+    workerRef.current.postMessage({
+      desiredEffects,
+      characterRelicData: characterSaveData,
+      selectedVessels,
+      selectedNightfarer: selectedCharacter,
+      effectMap: effectMapArray,
+      showDeepOfNight,
+      vesselData,
+      calculateGuaranteeable: calculateGuaranteeableRelics,
+    });
   };
 
   const handleBaseRelicColorFilterChange = (color) => {
@@ -493,6 +492,7 @@ function App() {
             setHasSavedBuilds={setHasSavedBuilds}
             showDeepOfNight={showDeepOfNight}
             addToast={addToast}
+            isCalculating={isCalculating}
           />
 
           <RelicResults

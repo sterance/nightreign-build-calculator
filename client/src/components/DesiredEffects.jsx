@@ -12,7 +12,8 @@ const DesiredEffects = ({
   handleCalculate,
   setHasSavedBuilds,
   showDeepOfNight,
-  addToast }) => {
+  addToast,
+  isCalculating }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
   const [isListVisible, setListVisible] = useState(false);
@@ -535,10 +536,19 @@ const DesiredEffects = ({
           className='calculate-button'
           title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
           onClick={handleCalculate}
-          disabled={desiredEffects.length === 0}
+          disabled={desiredEffects.length === 0 || isCalculating}
         >
-          <CalculatorIcon />
-          <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+          {isCalculating ? (
+            <>
+              <div className="loader"></div>
+              <span style={{ marginLeft: '0.5rem' }}>Calculating...</span>
+            </>
+          ) : (
+            <>
+              <CalculatorIcon />
+              <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+            </>
+          )}
         </button>
       </div>
     </div>

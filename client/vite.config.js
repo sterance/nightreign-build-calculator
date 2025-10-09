@@ -8,4 +8,7 @@ export default defineConfig({
     environment: 'node',
     globals: true,
   },
+  worker: {
+    format: 'es',
+  },
 })
