@@ -22,9 +22,33 @@ const SettingsPage = ({ onBack,
         </div>
         <h2>Settings</h2>
         <div className="settings-body">
+
           <div className="settings-column left-column">
             <ColorPicker color={primaryColor} setColor={setPrimaryColor} />
+            
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={openPopoutInNewTab}
+                  onChange={() => setOpenPopoutInNewTab(prev => !prev)}
+                />
+                Open Popout in New Tab
+              </label>
+            </div>
+            
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showUnknownRelics}
+                  onChange={() => setShowUnknownRelics(prev => !prev)}
+                />
+                Display Unknown Relics
+              </label>
+            </div>
           </div>
+
           <div className="settings-column right-column">
             <div className="settings-option">
               <label>
@@ -36,6 +60,7 @@ const SettingsPage = ({ onBack,
                 Display "Score Info" Toggle Icon
               </label>
             </div>
+            
             <div className="settings-option">
               <label>
                 <input
@@ -57,29 +82,6 @@ const SettingsPage = ({ onBack,
                 Calculate "Guaranteeable" Relics
               </label>
             </div>
-            
-            <div className="settings-option">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={showUnknownRelics}
-                  onChange={() => setShowUnknownRelics(prev => !prev)}
-                />
-                Display Unknown Relics
-              </label>
-            </div>
-
-            <div className="settings-option">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={openPopoutInNewTab}
-                  onChange={() => setOpenPopoutInNewTab(prev => !prev)}
-                />
-                Open Popout in New Tab
-              </label>
-            </div>
-
           </div>
         </div>
       </div>

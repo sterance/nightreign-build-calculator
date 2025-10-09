@@ -85,7 +85,7 @@ function App() {
   const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
   const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
   const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
-  const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', false);
+  const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', true);
   const [openPopoutInNewTab, setOpenPopoutInNewTab] = usePersistentBoolean('openPopoutInNewTab', false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
@@ -151,7 +151,7 @@ function App() {
           });
           // toast when showing potential upgrades
           addToast(
-            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'} from save file. ` +
+            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'} from save file.\n` +
             `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
             'success'
           );

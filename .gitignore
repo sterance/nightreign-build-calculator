@@ -18,6 +18,7 @@ node_modules/
 
 # client specific ignores
 /client/dist
+/client/dev-dist
 /client/dist-ssr
 /client/.vite/
 .vite-inspect/
