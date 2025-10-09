@@ -148,9 +148,9 @@ function App() {
             owned: formattedOwned,
             potential: formattedPotential
           });
-          
+          // toast when showing potential upgrades
           addToast(
-            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'}. ` +
+            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'} from save file. ` +
             `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
             'success'
           );
@@ -181,6 +181,7 @@ function App() {
             }))
           }));
           setCalculationResult(formattedResults);
+          // toast when showing owned relics only
           addToast(`Calculation successful!\n${result.length} relic combo${result.length === 1 ? '' : 's'} found (${result.length === 1 ? 'with' : 'tied for'} max score)`, 'success');
         } else {
           setCalculationResult(null);

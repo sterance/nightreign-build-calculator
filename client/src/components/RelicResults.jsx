@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
+import RelicResultsPage from './RelicResultsPage';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon } from './Icons';
 import { numberFormatter } from '../utils/formatters';
 
@@ -8,6 +9,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showingDeepRelics, setShowingDeepRelics] = useState(false);
   const [showScoreInfo, setShowScoreInfo] = useState(false);
+  const [showMaximized, setShowMaximized] = useState(false);
 
 
   const getImageUrl = (name, type) => {
@@ -24,13 +26,13 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
     setCurrentIndex(0);
     setShowingDeepRelics(false);
     setShowScoreInfo(false);
+    setShowMaximized(false);
   }, [calculationResult]);
 
   const isEnabled = !!calculationResult;
   
   // check if calculationResult is the new format (object with owned/potential) or classic array
-  const hasNewFormat = calculationResult && typeof calculationResult === 'object' && 
-                       'owned' in calculationResult && 'potential' in calculationResult;
+  const hasNewFormat = calculationResult && typeof calculationResult === 'object' && 'owned' in calculationResult && 'potential' in calculationResult;
   
   // flatten results and track source (owned vs potential)
   let flattenedResults = [];
@@ -45,6 +47,15 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
   
   const isMultipleResults = flattenedResults.length > 1;
   const currentResult = flattenedResults[currentIndex];
+
+  const handlePrevious = () => {
+    setCurrentIndex(prev => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    const maxIndex = flattenedResults.length - 1;
+    setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
+  };
 
   if (!currentResult) {
     return (
@@ -62,14 +73,22 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
     );
   }
 
-  const handlePrevious = () => {
-    setCurrentIndex(prev => Math.max(0, prev - 1));
-  };
-
-  const handleNext = () => {
-    const maxIndex = flattenedResults.length - 1;
-    setCurrentIndex(prev => Math.min(maxIndex, prev + 1));
-  };
+  if (showMaximized) {
+    return (
+      <RelicResultsPage
+        onBack={() => setShowMaximized(false)}
+        currentResult={currentResult}
+        showDeepOfNight={showDeepOfNight}
+        showScoreInfo={showScoreInfo}
+        setShowScoreInfo={setShowScoreInfo}
+        showScoreInfoToggle={showScoreInfoToggle}
+        currentIndex={currentIndex}
+        totalResults={flattenedResults.length}
+        onNext={handleNext}
+        onPrevious={handlePrevious}
+      />
+    );
+  }
   
   // determine heading based on source
   const resultHeading = currentResult && currentResult._source === 'potential' 
@@ -172,7 +191,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
 
         <button
           className="maximize-button"
-        // onClick={() => setShowMaximize(prev => !prev)} TODO: Add maximize functionality
+          onClick={() => setShowMaximized(true)}
         >
           <MaximizeIcon />
         </button>
