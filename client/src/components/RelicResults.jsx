@@ -307,7 +307,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
       </div>
     </div>
     {showPopout && (
-      <RelicResultsPopout onClose={() => setShowPopout(false)}>
+      <RelicResultsPopout onClose={() => setShowPopout(false)} openPopoutInNewTab={openPopoutInNewTab}>
         <RelicResultsPage
           onBack={() => setShowPopout(false)}
           currentResult={currentResult}

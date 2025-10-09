@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-const RelicResultsPopout = ({ children, onClose }) => {
+const RelicResultsPopout = ({ children, onClose, openPopoutInNewTab }) => {
   const [container, setContainer] = useState(null);
   const newWindow = useRef(null);
   const onCloseRef = useRef(onClose);
@@ -14,7 +14,7 @@ const RelicResultsPopout = ({ children, onClose }) => {
     const popoutWindow = window.open(
       '',
       '',
-      'width=1500,height=700,left=100,top=100,resizable=yes,scrollbars=yes'
+      openPopoutInNewTab ? '' : 'width=1500,height=700,left=100,top=100,resizable=yes,scrollbars=yes'
     );
 
     if (!popoutWindow) {
