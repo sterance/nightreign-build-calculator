@@ -1152,7 +1152,7 @@ button:hover {
 
 .relic-results-page {
   width: 90%;
-  height: 70%;
+  height: 75%;
   /* max-height: 80vh; */
   overflow-y: auto;
   padding: 1.5rem;
@@ -1782,6 +1782,11 @@ button:hover {
 .toast-error {
   background-color: #f44336;
   /* Red */
+}
+
+.toast-warning {
+  background-color: #ff9800;
+  /* Orange */
 }
 
 @keyframes slideIn {

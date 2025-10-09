@@ -489,6 +489,7 @@ function App() {
             desiredEffects={desiredEffects}
             onChange={setDesiredEffects}
             selectedCharacter={selectedCharacter}
+            selectedVessels={selectedVessels}
             handleCalculate={handleCalculate}
             setHasSavedBuilds={setHasSavedBuilds}
             showDeepOfNight={showDeepOfNight}

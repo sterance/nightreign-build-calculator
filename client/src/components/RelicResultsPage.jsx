@@ -181,7 +181,7 @@ const RelicResultsPage = ({
             </div>
           </div>
 
-          <div className="relic-results-maximized-grid">
+          <div className={`relic-results-maximized-grid${showDeepOfNight ? '' : ' single-column'}`}>
             {showDeepOfNight ? (
               <>
                 <div className="relic-column-base">

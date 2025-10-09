@@ -9,6 +9,7 @@ const DesiredEffects = ({
   desiredEffects,
   onChange,
   selectedCharacter,
+  selectedVessels,
   handleCalculate,
   setHasSavedBuilds,
   showDeepOfNight,
@@ -317,7 +318,7 @@ const DesiredEffects = ({
         setHoveredGroup(null);
         return;
       } else {
-        addToast(`${duplicateCount} effect${duplicateCount > 1 ? 's' : ''} already in desired effects, added ${effectsToAdd.length} new effect${effectsToAdd.length > 1 ? 's' : ''}`, 'error');
+        addToast(`${duplicateCount} effect${duplicateCount > 1 ? 's' : ''} already in desired effects, added ${effectsToAdd.length} new effect${effectsToAdd.length > 1 ? 's' : ''}`, 'warning');
       }
     }
     
@@ -534,9 +535,19 @@ const DesiredEffects = ({
       <div className="bottom-bar-effects">
         <button
           className='calculate-button'
-          title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
+          title={(() => {
+            const missing = [];
+            if (desiredEffects.length === 0) missing.push('desired effects');
+            if (!selectedCharacter) missing.push('character');
+            if (!selectedVessels || selectedVessels.length === 0) missing.push('vessels');
+            
+            if (missing.length === 0) return 'Calculate optimal relics';
+            if (missing.length === 1) return `Select ${missing[0]} to enable calculation`;
+            if (missing.length === 2) return `Select ${missing[0]} and ${missing[1]} to enable calculation`;
+            return `Select ${missing[0]}, ${missing[1]} and ${missing[2]} to enable calculation`;
+          })()}
           onClick={handleCalculate}
-          disabled={desiredEffects.length === 0 || isCalculating}
+          disabled={desiredEffects.length === 0 || !selectedCharacter || !selectedVessels || selectedVessels.length === 0 || isCalculating}
         >
           {isCalculating ? (
             <>
