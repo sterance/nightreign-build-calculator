@@ -1,5 +1,5 @@
 import React from 'react';
-import { characters } from '../data/chaliceData';
+import nightfarers from '../data/nightfarers.json';
 import { ClearSelectionIcon } from './Icons';
 
 const CharacterSelection = ({
@@ -30,7 +30,7 @@ const CharacterSelection = ({
         )}
       </div>
       <div className="image-grid">
-        {characters.map((character) => (
+        {nightfarers.map((character) => (
           <div
             key={character}
             className={`character-image-wrapper ${selectedCharacter === character ? 'selected' : ''

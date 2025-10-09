@@ -42,7 +42,7 @@ h1 {
   grid-template-columns: 1.25fr auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
-    'character chalice effects'
+    'character vessel effects'
     'relics relics effects';
 }
 
@@ -203,6 +203,7 @@ button:hover {
   line-height: 0;
   padding: 0.25rem 0.25rem;
 }
+
 .corner-button-left {
   position: absolute;
   top: 1rem;
@@ -246,21 +247,21 @@ button:hover {
   margin: 0 1rem;
 }
 
-/* CHALICE BUTTON */
-#chalice-card {
-  grid-area: chalice;
+/* VESSEL BUTTON */
+#vessel-card {
+  grid-area: vessel;
   width: fit-content;
   align-self: stretch;
 }
 
-.chalice-preview {
+.vessel-preview {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
 }
 
-.chalice-preview-grid {
+.vessel-preview-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -268,19 +269,19 @@ button:hover {
   padding: 1rem;
 }
 
-.chalice-preview-dot {
+.vessel-preview-dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
   transition: background-color 0.3s ease;
 }
 
-#chalice-card:not(.disabled):hover {
+#vessel-card:not(.disabled):hover {
   border-color: var(--primary-color);
 }
 
-/* CHALICE PAGE */
-.chalice-page-backdrop {
+/* VESSEL PAGE */
+.vessel-page-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -293,25 +294,25 @@ button:hover {
   z-index: 1000;
 }
 
-.chalice-page {
+.vessel-page {
   width: 80%;
   max-width: 1000px;
   max-height: 80vh;
   overflow-y: auto;
 }
 
-.chalice-page .card-header {
+.vessel-page .card-header {
   position: sticky;
   top: 0;
   background-color: #1a1a1a;
   z-index: 1;
 }
 
-#chalice-card {
-  grid-area: chalice;
+#vessel-card {
+  grid-area: vessel;
 }
 
-.chalice-card-header {
+.vessel-card-header {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -320,7 +321,7 @@ button:hover {
   margin-bottom: 0.5rem;
 }
 
-.chalice-button-group {
+.vessel-button-group {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
@@ -328,12 +329,12 @@ button:hover {
   margin-bottom: 0.5rem;
 }
 
-#chalice-card.disabled {
+#vessel-card.disabled {
   background-color: #333;
   color: #777;
 }
 
-.chalice-grid {
+.vessel-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
@@ -341,18 +342,18 @@ button:hover {
   margin-bottom: auto;
 }
 
-.chalice-grid p {
+.vessel-grid p {
   margin: 0;
 }
 
-.chalice {
+.vessel {
   border: 1px solid #555;
   border-radius: 4px;
   padding: 0.2rem;
   cursor: pointer;
 }
 
-.chalice.selected {
+.vessel.selected {
   border-color: var(--primary-color);
 }
 
@@ -365,6 +366,37 @@ button:hover {
 /* RELICS CARD */
 #relics-card {
   grid-area: relics;
+  position: relative;
+}
+
+.position-indicator {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.popout-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 3.25rem;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.maximize-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
+.deep-flip {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 #relics-card.disabled {
@@ -725,30 +757,106 @@ button:hover {
   left: 2rem;
 }
 
-/* CHALICE RESULTS */
-.chalice-result-card {
+/* VESSEL RESULTS */
+.vessel-result-card {
   font-size: x-large;
+  display: grid;
+  grid-template-columns: 100px 25% 1fr 50px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #242424;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25rem;
+}
+
+.vessel-result-card.deep-mode {
+  grid-template-columns: 100px 25% 1fr 50px;
+}
+
+.vessel-result-card .relic-slots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+  .base-relic-slots-container,
+  .deep-relic-slots-container {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
+  padding: 0.5rem;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
-.chalice-result-card img {
+.vessel-result-card .base-relic-slots-container,
+.vessel-result-card .deep-relic-slots-container {
+  cursor: pointer;
+}
+
+.vessel-result-card .base-relic-slots-container:hover,
+.vessel-result-card .deep-relic-slots-container:hover {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.base-relic-slots-container.active img {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.deep-relic-slots-container.active img {
+  filter: drop-shadow(2px 4px 8px #4a9eff);
+}
+
+.base-relic-slots-container.active .relic-slot-name,
+.deep-relic-slots-container.active .relic-slot-name {
+  opacity: 0;
+}
+
+.relic-slots-container img {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.base-relic-slots-container img,
+.deep-relic-slots-container img {
+  filter: none;
+}
+
+.relic-slot-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: xx-large;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  font-size: large;
+}
+
+.vessel-result-card span {
+  align-items: center;
+}
+
+.vessel-result-card img {
   flex-shrink: 0;
+  align-self: center;
+  justify-self: center;
 }
 
-#chalice-name {
-  white-space: nowrap;
+#vessel-name {
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-}
-
-.chalice-result-card .relic-slots-container {
   display: flex;
-  justify-content: center;
-  gap: 4rem;
-  flex-grow: 1;
+  align-items: center;
 }
 
 /* RELIC RESULTS */
@@ -761,8 +869,7 @@ button:hover {
 }
 
 
-.relic-result-card,
-.chalice-result-card {
+.relic-result-card {
   border: 1px solid #555;
   border-radius: 4px;
   background-color: #242424;
@@ -772,7 +879,6 @@ button:hover {
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem 0 0.5rem 1rem;
 }
 
 .relic-result-card>span {
@@ -780,7 +886,6 @@ button:hover {
   flex-shrink: 1;
   min-width: 0;
   text-align: left;
-  margin-left: 1rem;
 }
 
 .empty-relic-slot {
@@ -817,16 +922,9 @@ button:hover {
   background-color: #4d4d4d;
 }
 
-.relic-slots-container img {
-  scale: 2.25;
-}
-
-.relic-result-card img {
-  transform: scale(1.7);
-}
 
 .relic-stats-table {
-  width: 66%;
+  width: 60%;
   border-collapse: collapse;
   flex-shrink: 0;
   margin-left: 0;
@@ -834,10 +932,13 @@ button:hover {
 
 .relic-stats-table td {
   border: 1px solid transparent;
-  padding: 0.2rem 0.5rem;
   text-align: left;
   font-size: 0.8em;
   flex-shrink: 0;
+}
+
+.relic-stats-table .sec-effect {
+  color: #4d94ff;
 }
 
 .info-button {
@@ -850,7 +951,6 @@ button:hover {
   cursor: pointer;
   line-height: 0;
   padding: 0.25rem 0.25rem;
-  margin-right: 1rem;
 }
 
 .centered-text-container {
@@ -864,6 +964,156 @@ button:hover {
 .centered-text-container p {
   font-size: xx-large;
   margin: 0.5rem 0;
+}
+
+.relic-result-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.arrow-button {
+  cursor: pointer;
+  padding: 0.25rem;
+  margin: 0 0.5rem;
+}
+
+.arrow-button:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+.score-info-icon {
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 0.5rem;
+}
+
+.score-info-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.score-info-tooltip {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3a3a3a;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: max-content;
+  z-index: 1002;
+  text-align: right;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-line;
+}
+
+.score-info-tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 11.5px;
+  border-style: solid;
+  border-color: transparent transparent var(--primary-color) transparent;
+}
+
+.score-info-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #3a3a3a transparent;
+}
+
+.effect-score {
+  float: right;
+  background-color: #2d333b;
+  border-radius: 8px;
+}
+
+.empty-relic-slot-text {
+  text-align: center !important;
+}
+
+/* CONFIRMATION DIALOG */
+.confirmation-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.confirmation-dialog {
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 400px;
+  text-align: center;
+}
+
+.confirmation-dialog h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.confirmation-dialog p {
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.confirmation-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.confirm-button,
+.cancel-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.confirm-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.confirm-button:hover {
+  background-color: color-mix(in srgb, var(--primary-color) 80%, black);
+}
+
+.cancel-button {
+  background-color: #555;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #666;
 }
 
 /* RELICS PAGE */
@@ -894,6 +1144,124 @@ button:hover {
   z-index: 1;
 }
 
+/* RELIC RESULTS PAGE (MAXIMIZED) */
+.relic-results-page-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.relic-results-page {
+  width: 90%;
+  height: 75%;
+  /* max-height: 80vh; */
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.relic-results-page-backdrop.popout-mode {
+  position: static;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow: hidden;
+}
+
+.relic-results-page.popout-mode {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.relic-results-maximized-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.vessel-result-card-maximized {
+  font-size: x-large;
+  display: grid;
+  grid-template-columns: 100px 30% 1fr 50px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background-color: #242424;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.25rem;
+}
+
+.vessel-result-card-maximized img {
+  width: 100px;
+  height: 100px;
+}
+
+.vessel-result-card-maximized #vessel-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.vessel-result-card-maximized .base-relic-slots-container {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.vessel-result-card-maximized .deep-relic-slots-container {
+  filter: drop-shadow(2px 4px 8px #4a9eff);
+}
+
+.relic-results-maximized-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+  gap: 2rem;
+}
+
+.relic-results-maximized-grid.single-column {
+  grid-template-columns: 1fr;
+}
+
+.relic-column-base,
+.relic-column-deep {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 0;
+}
+
+.relic-column-base h3,
+.relic-column-deep h3 {
+  margin: 0 0 0.5rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #555;
+  text-align: center;
+}
+
+.relic-column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+
+.relic-column-content .relic-result-card {
+  flex: 1;
+}
+
+.relic-slots-container-maximized {
+  display: flex;
+}
+
 .character-relics {
   margin-bottom: 1.5rem;
 }
@@ -911,10 +1279,12 @@ button:hover {
   gap: 1rem;
 }
 
-.base-relic-card, .deep-relic-card {
+.base-relic-card,
+.deep-relic-card {
   border: 1px solid #555;
   border-radius: 4px;
   padding: 1rem;
+  position: relative;
 }
 
 .base-relic-card {
@@ -925,49 +1295,111 @@ button:hover {
   background-color: #2d3b4d;
 }
 
-.base-relic-card h4, .deep-relic-card h4 {
+.base-relic-card h4,
+.deep-relic-card h4 {
   margin-top: 0;
   margin-bottom: 0.5rem;
   font-size: 1em;
 }
 
-.base-relic-card ul, .deep-relic-card ul {
+.base-relic-card ul,
+.deep-relic-card ul {
   padding-left: 1.2rem;
   margin: 0;
   font-size: 0.85em;
 }
 
-.base-relic-card li, .deep-relic-card li {
+.base-relic-card li,
+.deep-relic-card li {
   text-align: left;
 }
 
-.base-relic-card li.secondary-effect, .deep-relic-card li.secondary-effect {
+.base-relic-card li.secondary-effect,
+.deep-relic-card li.secondary-effect {
   color: #4d94ff;
   list-style-type: disc;
 }
 
-.base-relic-card li.secondary-effect::marker, .deep-relic-card li.secondary-effect::marker {
+.base-relic-card li.secondary-effect::marker,
+.deep-relic-card li.secondary-effect::marker {
   color: #4d94ff;
 }
 
-.base-relic-card.color-red, .deep-relic-card.color-red {
+.base-relic-card.color-red,
+.deep-relic-card.color-red {
   border-left: 5px solid #ff4d4d;
 }
 
-.base-relic-card.color-blue, .deep-relic-card.color-blue {
+.base-relic-card.color-blue,
+.deep-relic-card.color-blue {
   border-left: 5px solid #4d94ff;
 }
 
-.base-relic-card.color-yellow, .deep-relic-card.color-yellow {
+.base-relic-card.color-yellow,
+.deep-relic-card.color-yellow {
   border-left: 5px solid #ffff4d;
 }
 
-.base-relic-card.color-green, .deep-relic-card.color-green {
+.base-relic-card.color-green,
+.deep-relic-card.color-green {
   border-left: 5px solid #4dff4d;
 }
 
-.base-relic-card.color-white, .deep-relic-card.color-white {
+.base-relic-card.color-white,
+.deep-relic-card.color-white {
   border-left: 5px solid #ffffff;
+}
+
+.corner-info-icon-container {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  
+}
+
+.corner-info-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+.relic-id-tooltip {
+  position: absolute;
+  right: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #3a3a3a;
+  color: white;
+  padding: 0.25rem;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  width: max-content;
+  z-index: 1002;
+  text-align: right;
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-line;
+}
+
+.relic-id-tooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 11.5px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--primary-color);
+}
+
+.relic-id-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent #3a3a3a;
 }
 
 .relic-color-filters {
@@ -1354,6 +1786,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  white-space: pre-line;
 }
 
 .toast {
@@ -1373,6 +1806,11 @@ button:hover {
 .toast-error {
   background-color: #f44336;
   /* Red */
+}
+
+.toast-warning {
+  background-color: #ff9800;
+  /* Orange */
 }
 
 @keyframes slideIn {

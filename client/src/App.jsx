@@ -1,18 +1,24 @@
 import { useState, useRef, useEffect } from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
-import ChaliceButton from './components/ChaliceButton';
-import ChalicePage from './components/ChalicePage';
+import VesselButton from './components/VesselButton';
+import VesselPage from './components/VesselPage';
 import RelicResults from './components/RelicResults';
 import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
-import { chaliceData } from './data/chaliceData';
+import nightfarers from './data/nightfarers.json';
+import vesselsRaw from './data/vessels.json';
 import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
-import { calculateBestRelics } from './utils/calculation';
-import effects from './data/relicEffects.json';
+import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
+
+const vesselData = nightfarers.reduce((acc, character) => {
+  const vesselsKey = `${character}Chalices`;
+  acc[character] = [...vesselsRaw[vesselsKey], ...vesselsRaw.genericChalices];
+  return acc;
+}, {});
 
 const createEffectMap = (showDeepOfNight) => {
   const effectMap = new Map();
@@ -28,44 +34,187 @@ const createEffectMap = (showDeepOfNight) => {
   return effectMap;
 };
 
+function usePersistentBoolean(key, defaultValue) {
+  const [value, setValue] = useState(() => {
+    const saved = localStorage.getItem(key);
+    return saved !== null ? JSON.parse(saved) : defaultValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+function usePersistentState(key, defaultValue) {
+  const [value, setValue] = useState(() => {
+    const saved = localStorage.getItem(key);
+    if (saved === null) return defaultValue;
+    if (typeof defaultValue === 'boolean') {
+      try { return JSON.parse(saved); } catch { return saved === 'true'; }
+    }
+    return saved;
+  });
+
+  useEffect(() => {
+    if (typeof value === 'string') {
+      localStorage.setItem(key, value);
+    } else {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
   const [selectedSaveName, setSelectedSaveName] = useState(null);
-  const [selectedChalices, setSelectedChalices] = useState([]);
+  const [selectedVessels, setSelectedVessels] = useState([]);
   const [desiredEffects, setDesiredEffects] = useState([]);
   const [calculationResult, setCalculationResult] = useState(null);
-  const [showChalices, setShowChalices] = useState(false);
+  const [showVessels, setShowVessels] = useState(false);
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
-  const [showDeepOfNight, setShowDeepOfNight] = useState(() => {
-    const saved = localStorage.getItem('showDeepOfNight');
-    return saved !== null ? JSON.parse(saved) : false;
-  });
-  const [showUnknownRelics, setShowUnknownRelics] = useState(false);
+  const [showDeepOfNight, setShowDeepOfNight] = usePersistentBoolean('showDeepOfNight', false);
+  const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
+  const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
+  const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
+  const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', true);
+  const [openPopoutInNewTab, setOpenPopoutInNewTab] = usePersistentBoolean('openPopoutInNewTab', false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
   const [toasts, setToasts] = useState([]);
   const [effectMap, setEffectMap] = useState(new Map());
+  const [showDeepConfirmation, setShowDeepConfirmation] = useState(false);
+  const [pendingDeepOfNight, setPendingDeepOfNight] = useState(false);
+  const [isCalculating, setIsCalculating] = useState(false);
   const fileInputRef = useRef(null);
+  const workerRef = useRef(null);
+
+  const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
+  useEffect(() => {
+    document.documentElement.style.setProperty('--primary-color', primaryColor);
+  }, [primaryColor]);
 
   useEffect(() => {
-    const primaryColor = localStorage.getItem('primaryColor') || '#646cff';
-    document.documentElement.style.setProperty('--primary-color', primaryColor);
+    workerRef.current = new Worker(new URL('./workers/calculator.worker.js', import.meta.url), {
+      type: 'module',
+    });
+
+    workerRef.current.onmessage = (event) => {
+      const { success, result, error } = event.data;
+
+      if (success) {
+        const hasNewStructure = result && typeof result === 'object' &&
+                                'owned' in result && 'potential' in result;
+
+        if (hasNewStructure && (result.owned.length > 0 || result.potential.length > 0)) {
+          const formatResults = (results) => results.map(bestResult => ({
+            "vessel name": bestResult.vessel.name,
+            "vessel slots": bestResult.vessel.baseSlots,
+            "vessel deep slots": bestResult.vessel.deepSlots || [],
+            "vessel description": bestResult.vessel.description,
+            "score": bestResult.score,
+            "relics": bestResult.relics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.vesselEffectScores || relic.effectScores
+            })),
+            "baseRelics": bestResult.baseRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.vesselEffectScores || relic.effectScores
+            })),
+            "deepRelics": bestResult.deepRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.vesselEffectScores || relic.effectScores
+            }))
+          }));
+
+          const formattedOwned = formatResults(result.owned);
+          const formattedPotential = formatResults(result.potential);
+
+          setCalculationResult({
+            owned: formattedOwned,
+            potential: formattedPotential
+          });
+          // toast when showing potential upgrades
+          addToast(
+            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'} from save file.\n` +
+            `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
+            'success'
+          );
+        } else if (result && result.length > 0) {
+          const formattedResults = result.map(bestResult => ({
+            "vessel name": bestResult.vessel.name,
+            "vessel slots": bestResult.vessel.baseSlots,
+            "vessel deep slots": bestResult.vessel.deepSlots || [],
+            "vessel description": bestResult.vessel.description,
+            "score": bestResult.score,
+            "relics": bestResult.relics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.vesselEffectScores || relic.effectScores
+            })),
+            "baseRelics": bestResult.baseRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.vesselEffectScores || relic.effectScores
+            })),
+            "deepRelics": bestResult.deepRelics.map(relic => ({
+              name: relic['relic name'],
+              color: relic.color,
+              score: relic.score,
+              effects: relic.vesselEffectScores || relic.effectScores
+            }))
+          }));
+          setCalculationResult(formattedResults);
+          // toast when showing owned relics only
+          addToast(`Calculation successful!\n${result.length} relic combo${result.length === 1 ? '' : 's'} found (${result.length === 1 ? 'with' : 'tied for'} max score)`, 'success');
+        } else {
+          setCalculationResult(null);
+          addToast('No valid relic combination found for the selected criteria.', 'error');
+        }
+      } else {
+        console.error('Calculation error from worker:', error);
+        addToast(`Calculation failed:\n${error}`, 'error');
+        setCalculationResult(null);
+      }
+      
+      setIsCalculating(false);
+      console.log('Worker calculation and state update finished.');
+    };
+
+    workerRef.current.onerror = (err) => {
+      console.error("Worker instantiation error:", err);
+      addToast('Failed to start calculation worker.', 'error');
+      setIsCalculating(false);
+    };
+
+    return () => {
+      workerRef.current.terminate();
+    };
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('showDeepOfNight', JSON.stringify(showDeepOfNight));
-  }, [showDeepOfNight]);
-
-  useEffect(() => {
     const newEffectMap = createEffectMap(showDeepOfNight);
-    console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
+    // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
+    setCalculationResult(null);
+    setDesiredEffects([]);
   }, [showDeepOfNight]);
 
   useEffect(() => {
@@ -119,36 +268,36 @@ function App() {
     setShowUploadTooltip(false);
   };
 
-  const selectAllChalicesForCharacter = (character) => {
+  const selectAllVesselsForCharacter = (character) => {
     if (!character) return;
-    const allChaliceNames = chaliceData[character].map((c) => c.name);
-    setSelectedChalices(allChaliceNames);
+    const allVesselNames = vesselData[character].map((c) => c.name);
+    setSelectedVessels(allVesselNames);
   }
   const handleCharacterSelect = (character) => {
     setSelectedCharacter(character);
     // select all by default
-    selectAllChalicesForCharacter(character);
+    selectAllVesselsForCharacter(character);
   };
 
   const handleClearCharacter = () => {
     setSelectedCharacter(null);
-    setSelectedChalices([]);
+    setSelectedVessels([]);
   };
 
-  const handleChaliceToggle = (chaliceName) => {
-    setSelectedChalices((prevSelected) =>
-      prevSelected.includes(chaliceName)
-        ? prevSelected.filter((name) => name !== chaliceName)
-        : [...prevSelected, chaliceName]
+  const handleVesselToggle = (vesselName) => {
+    setSelectedVessels((prevSelected) =>
+      prevSelected.includes(vesselName)
+        ? prevSelected.filter((name) => name !== vesselName)
+        : [...prevSelected, vesselName]
     );
   };
 
-  const handleSelectAllChalices = () => {
-    selectAllChalicesForCharacter(selectedCharacter);
+  const handleSelectAllVessels = () => {
+    selectAllVesselsForCharacter(selectedCharacter);
   };
 
-  const handleClearAllChalices = () => {
-    setSelectedChalices([]);
+  const handleClearAllVessels = () => {
+    setSelectedVessels([]);
   };
 
   const handleUploadClick = () => {
@@ -165,13 +314,18 @@ function App() {
 
     const formData = new FormData();
     formData.append('savefile', file);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
 
     try {
       const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
       const response = await fetch(`${apiUrl}/upload`, {
         method: 'POST',
         body: formData,
+        signal: controller.signal,
       });
+
+      clearTimeout(timeoutId);
 
       if (response.ok) {
         const data = await response.json();
@@ -192,78 +346,70 @@ function App() {
         throw new Error(errorText || 'Failed to process file');
       }
     } catch (error) {
-      console.error('Upload failed:', error);
-      addToast('Save file failed to upload.', 'error');
+      if (error.name === 'AbortError') {
+        addToast('Save file upload to failed.\nServer is busy', 'error');
+      } else {
+        console.error('Upload failed:', error);
+        addToast('Save file failed to upload.\nUnknown error', 'error');
+      }
     } finally {
       setIsUploading(false);
     }
   };
 
   const handleCalculate = () => {
-    try {
-      const saveData = JSON.parse(localStorage.getItem('saveData'));
+    const saveData = JSON.parse(localStorage.getItem('saveData'));
 
-      if (!saveData) {
-        addToast('Calculation failed: Missing relic data.', 'error');
-        return;
-      }
-      if (!selectedCharacter) {
-        addToast('Calculation failed: Missing character selection.', 'error');
-        return;
-      }
-      if (selectedChalices.length === 0) {
-        addToast('Calculation failed: Missing chalice selection.', 'error');
-        return;
-      }
-      if (desiredEffects.length === 0) {
-        addToast('Calculation failed: No desired effects.', 'error');
-        return;
-      }
+    if (!saveData && !calculateGuaranteeableRelics) {
+      addToast('Calculation failed.\nMissing save data.', 'error');
+      return;
+    }
+    if (!selectedCharacter) {
+      addToast('Calculation failed.\nMissing character selection.', 'error');
+      return;
+    }
+    if (selectedVessels.length === 0) {
+      addToast('Calculation failed.\nMissing vessel selection.', 'error');
+      return;
+    }
+    if (desiredEffects.length === 0) {
+      addToast('Calculation failed.\nNo desired effects.', 'error');
+      return;
+    }
 
-      // find the character data for the selected save name
-      const characterSaveData = saveData.find(
+    let characterSaveData = null;
+    if (saveData && saveData.length > 0) {
+      characterSaveData = saveData.find(
         (character) => character.character_name === selectedSaveName
       );
+    }
 
-      if (!characterSaveData) {
-        addToast('No relic data found for the selected character.', 'error');
+    if (!characterSaveData) {
+      if (calculateGuaranteeableRelics) {
+        characterSaveData = {
+          character_name: 'No Save Data',
+          relics: []
+        };
+      } else {
+        addToast('No relics found for the selected save name.', 'error');
         return;
       }
-
-      const result = calculateBestRelics(
-        desiredEffects,
-        characterSaveData,
-        selectedChalices,
-        selectedCharacter,
-        effectMap
-      );
-
-      if (result) {
-        const formattedResult = {
-          "chalice name": result.chalice.name,
-          "chalice slots": result.chalice.slots,
-          "chalice description": result.chalice.description,
-          "relics": result.relics.map(relic => ({
-            name: relic['relic name'],
-            color: relic.color,
-            effects: {
-              "effect 1": relic['effect 1'] || "",
-              "effect 2": relic['effect 2'] || "",
-              "effect 3": relic['effect 3'] || "",
-            }
-          }))
-        };
-        setCalculationResult(formattedResult);
-        addToast('Calculation successful!', 'success');
-      } else {
-        setCalculationResult(null);
-        addToast('No valid relic combination found for the selected criteria.', 'error');
-      }
-    } catch (error) {
-      console.error('Calculation error:', error);
-      addToast(`Calculation failed: ${error.message}`, 'error');
-      setCalculationResult(null);
     }
+
+    setIsCalculating(true);
+    
+    const effectMapArray = Array.from(effectMap.entries());
+
+    workerRef.current.postMessage({
+      desiredEffects,
+      characterRelicData: characterSaveData,
+      selectedVessels,
+      selectedNightfarer: selectedCharacter,
+      effectMap: effectMapArray,
+      showDeepOfNight,
+      vesselData,
+      calculateGuaranteeable: calculateGuaranteeableRelics,
+    });
   };
 
   const handleBaseRelicColorFilterChange = (color) => {
@@ -284,12 +430,34 @@ function App() {
     setDesiredEffects(buildEffects);
   };
 
+  const handleDeepOfNightToggle = () => {
+    const newValue = !showDeepOfNight;
+    const hasData = calculationResult || desiredEffects.length > 0;
+    
+    if (hasData) {
+      setPendingDeepOfNight(newValue);
+      setShowDeepConfirmation(true);
+    } else {
+      setShowDeepOfNight(newValue);
+    }
+  };
+
+  const confirmDeepOfNightToggle = () => {
+    setShowDeepOfNight(pendingDeepOfNight);
+    setShowDeepConfirmation(false);
+  };
+
+  const cancelDeepOfNightToggle = () => {
+    setShowDeepConfirmation(false);
+    setPendingDeepOfNight(false);
+  };
+
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
       <div
         className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
-        onClick={() => setShowDeepOfNight(prev => !prev)}
+        onClick={handleDeepOfNightToggle}
       >
         Deep of Night
       </div>
@@ -311,35 +479,43 @@ function App() {
             onClear={handleClearCharacter}
           />
 
-          <ChaliceButton
+          <VesselButton
             selectedCharacter={selectedCharacter}
-            selectedChalices={selectedChalices}
-            onClick={() => setShowChalices(true)}
+            selectedVessels={selectedVessels}
+            onClick={() => setShowVessels(true)}
+            vesselData={vesselData}
           />
 
           <DesiredEffects
             desiredEffects={desiredEffects}
             onChange={setDesiredEffects}
             selectedCharacter={selectedCharacter}
+            selectedVessels={selectedVessels}
             handleCalculate={handleCalculate}
             setHasSavedBuilds={setHasSavedBuilds}
             showDeepOfNight={showDeepOfNight}
+            addToast={addToast}
+            isCalculating={isCalculating}
           />
 
           <RelicResults
-            selectedChalices={selectedChalices}
+            selectedVessels={selectedVessels}
             calculationResult={calculationResult}
+            showDeepOfNight={showDeepOfNight}
+            showScoreInfoToggle={showScoreInfoToggle}
+            openPopoutInNewTab={openPopoutInNewTab}
           />
         </div>
       </div>
 
-      {showChalices && <ChalicePage
-        onBack={() => setShowChalices(false)}
+      {showVessels && <VesselPage
+        onBack={() => setShowVessels(false)}
         selectedCharacter={selectedCharacter}
-        selectedChalices={selectedChalices}
-        onChaliceToggle={handleChaliceToggle}
-        onSelectAll={handleSelectAllChalices}
-        onClearAll={handleClearAllChalices}
+        selectedVessels={selectedVessels}
+        onVesselToggle={handleVesselToggle}
+        onSelectAll={handleSelectAllVessels}
+        onClearAll={handleClearAllVessels}
+        vesselData={vesselData}
       />}
 
       {showRelics && <RelicsPage
@@ -348,6 +524,7 @@ function App() {
         onSaveNameSelect={setSelectedSaveName}
         showDeepOfNight={showDeepOfNight}
         showUnknownRelics={showUnknownRelics}
+        showRelicIdToggle={showRelicIdToggle}
         baseRelicColorFilters={baseRelicColorFilters}
         deepRelicColorFilters={deepRelicColorFilters}
         onBaseRelicColorFilterChange={handleBaseRelicColorFilterChange}
@@ -358,6 +535,16 @@ function App() {
         onBack={() => setShowSettings(false)}
         showUnknownRelics={showUnknownRelics}
         setShowUnknownRelics={setShowUnknownRelics}
+        showRelicIdToggle={showRelicIdToggle}
+        setShowRelicIdToggle={setShowRelicIdToggle}
+        showScoreInfoToggle={showScoreInfoToggle}
+        setShowScoreInfoToggle={setShowScoreInfoToggle}
+        calculateGuaranteeableRelics={calculateGuaranteeableRelics}
+        setCalculateGuaranteeableRelics={setCalculateGuaranteeableRelics}
+        openPopoutInNewTab={openPopoutInNewTab}
+        setOpenPopoutInNewTab={setOpenPopoutInNewTab}
+        primaryColor={primaryColor}
+        setPrimaryColor={setPrimaryColor}
       />}
 
       {showSavedBuilds && <SavedBuildsPage
@@ -419,6 +606,24 @@ function App() {
           onChange={handleFileChange}
         />
       </div>
+
+      {showDeepConfirmation && (
+        <div className="confirmation-backdrop">
+          <div className="confirmation-dialog">
+            <p>
+              Changing the Deep of Night setting will clear your current desired effects and calculation results.
+            </p>
+            <div className="confirmation-buttons">
+              <button className="confirm-button" onClick={confirmDeepOfNightToggle}>
+                Continue
+              </button>
+              <button className="cancel-button" onClick={cancelDeepOfNightToggle}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

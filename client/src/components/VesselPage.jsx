@@ -1,27 +1,25 @@
 import React from 'react';
-import Chalice from './Chalice';
-import { chaliceData, placeholderChalices } from '../data/chaliceData';
+import Vessel from './Vessel';
 import { ClearSelectionIcon, SelectAllIcon, CloseIcon } from './Icons';
 
-const ChalicePage = ({
+const VesselPage = ({
   onBack,
   selectedCharacter,
-  selectedChalices,
-  onChaliceToggle,
+  selectedVessels,
+  onVesselToggle,
   onSelectAll,
   onClearAll,
+  vesselData,
 }) => {
   const isEnabled = !!selectedCharacter;
-  const chalices = isEnabled
-    ? chaliceData[selectedCharacter]
-    : placeholderChalices;
+  const vessels = isEnabled ? vesselData[selectedCharacter] : [];
 
   return (
-    <div className="chalice-page-backdrop">
-      <div className="chalice-page card">
-        <div className="chalice-card-header">
+    <div className="vessel-page-backdrop">
+      <div className="vessel-page card">
+        <div className="vessel-card-header">
           <h2>Vessel Selection</h2>
-          <div className="chalice-button-group">
+          <div className="vessel-button-group">
             {isEnabled && (
               <>
                 <button
@@ -48,15 +46,15 @@ const ChalicePage = ({
           </div>
         </div>
 
-        <div className="chalice-grid">
-          {chalices.map((chalice, index) => (
-            <Chalice
+        <div className="vessel-grid">
+          {vessels.map((vessel, index) => (
+            <Vessel
               key={index}
-              chalice={chalice}
+              vessel={vessel}
               isSelected={
-                isEnabled && selectedChalices.includes(chalice.name)
+                isEnabled && selectedVessels.includes(vessel.name)
               }
-              onToggle={isEnabled ? onChaliceToggle : () => { }}
+              onToggle={isEnabled ? onVesselToggle : () => { }}
             />
           ))}
         </div>
@@ -65,4 +63,5 @@ const ChalicePage = ({
   );
 };
 
-export default ChalicePage;
+export default VesselPage;
+

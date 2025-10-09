@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import relicEffects from '../data/relicEffects.json';
-import { characters } from '../data/chaliceData';
+import relicEffects from '../data/effects.json';
+import nightfarers from '../data/nightfarers.json';
 import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon, TrashIcon } from './Icons';
 
-const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCalculate, setHasSavedBuilds, showDeepOfNight }) => {
+const DesiredEffects = ({
+  desiredEffects,
+  onChange,
+  selectedCharacter,
+  selectedVessels,
+  handleCalculate,
+  setHasSavedBuilds,
+  showDeepOfNight,
+  addToast,
+  isCalculating }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedEffects, setSelectedEffects] = useState(desiredEffects);
   const [isListVisible, setListVisible] = useState(false);
@@ -75,8 +84,8 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
         acc[effect.category].groups = {};
       }
 
-      if (effect.display_group && effect.stack_group) {
-        // both display_group and stack_group exist - create nested structure
+      if (effect.display_group && effect.level_group) {
+        // both display_group and level_group exist - create nested structure
         if (!acc[effect.category].groups[effect.display_group]) {
           acc[effect.category].groups[effect.display_group] = {
             type: 'nested',
@@ -96,10 +105,10 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
         if (!acc[effect.category].groups[effect.display_group].subgroups) {
           acc[effect.category].groups[effect.display_group].subgroups = {};
         }
-        if (!acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group]) {
-          acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group] = [];
+        if (!acc[effect.category].groups[effect.display_group].subgroups[effect.level_group]) {
+          acc[effect.category].groups[effect.display_group].subgroups[effect.level_group] = [];
         }
-        acc[effect.category].groups[effect.display_group].subgroups[effect.stack_group].push(effect);
+        acc[effect.category].groups[effect.display_group].subgroups[effect.level_group].push(effect);
       } else if (effect.display_group) {
         // only display_group exists
         if (!acc[effect.category].groups[effect.display_group]) {
@@ -120,26 +129,26 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
           acc[effect.category].groups[effect.display_group].effects = [];
         }
         acc[effect.category].groups[effect.display_group].effects.push(effect);
-      } else if (effect.stack_group) {
-        // only stack_group exists (fallback for old data)
-        if (!acc[effect.category].groups[effect.stack_group]) {
-          acc[effect.category].groups[effect.stack_group] = {
+      } else if (effect.level_group) {
+        // only level_group exists (fallback for old data)
+        if (!acc[effect.category].groups[effect.level_group]) {
+          acc[effect.category].groups[effect.level_group] = {
             type: 'simple',
             effects: []
           };
-        } else if (acc[effect.category].groups[effect.stack_group].type === 'nested') {
+        } else if (acc[effect.category].groups[effect.level_group].type === 'nested') {
           // add to singles if it's already a nested group
-          if (!acc[effect.category].groups[effect.stack_group].singles) {
-            acc[effect.category].groups[effect.stack_group].singles = [];
+          if (!acc[effect.category].groups[effect.level_group].singles) {
+            acc[effect.category].groups[effect.level_group].singles = [];
           }
-          acc[effect.category].groups[effect.stack_group].singles.push(effect);
+          acc[effect.category].groups[effect.level_group].singles.push(effect);
           return acc;
         }
         // ensure effects array exists
-        if (!acc[effect.category].groups[effect.stack_group].effects) {
-          acc[effect.category].groups[effect.stack_group].effects = [];
+        if (!acc[effect.category].groups[effect.level_group].effects) {
+          acc[effect.category].groups[effect.level_group].effects = [];
         }
-        acc[effect.category].groups[effect.stack_group].effects.push(effect);
+        acc[effect.category].groups[effect.level_group].effects.push(effect);
       } else {
         acc[effect.category].singles.push(effect);
       }
@@ -231,8 +240,8 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
           if (b.toLowerCase() === selectedCharacter) return 1;
         }
         // Always maintain the defined character order
-        const aIndex = characters.indexOf(a.toLowerCase());
-        const bIndex = characters.indexOf(b.toLowerCase());
+        const aIndex = nightfarers.indexOf(a.toLowerCase());
+        const bIndex = nightfarers.indexOf(b.toLowerCase());
         if (aIndex !== -1 && bIndex !== -1) {
           return aIndex - bIndex;
         }
@@ -261,7 +270,7 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
 
 
   const formatEffectName = (effect) => {
-    const characterName = characters.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
+    const characterName = nightfarers.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
     if (characterName) {
       const restOfEffect = effect.name.slice(characterName.length + 3).trim();
       const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
@@ -270,6 +279,16 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
     return effect.name;
   };
   const handleSelectEffect = (effect) => {
+    // check if effect already exists in selected effects, dont add duplicate
+    const effectExists = selectedEffects.some(selectedEffect => selectedEffect.name === effect.name);
+    if (effectExists) {
+      // show toast notification and hide search menu
+      addToast(`${effect.name} already in desired effects`, 'error');
+      setSearchTerm('');
+      setListVisible(false);
+      return;
+    }
+
     const newEffect = {
       id: Date.now(),
       name: effect.name,
@@ -286,7 +305,28 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
   };
 
   const handleSelectAllFromGroup = (groupEffects) => {
-    const newEffects = groupEffects.map(effect => ({
+    // filter out effects that already exist in selected effects
+    const effectsToAdd = groupEffects.filter(effect => 
+      !selectedEffects.some(selectedEffect => selectedEffect.name === effect.name)
+    );
+    
+    const duplicateCount = groupEffects.length - effectsToAdd.length;
+    if (duplicateCount > 0) {
+      if (effectsToAdd.length === 0) {
+        addToast(`All effects already in desired effects`, 'error');
+        setListVisible(false);
+        setHoveredGroup(null);
+        return;
+      } else {
+        addToast(`${duplicateCount} effect${duplicateCount > 1 ? 's' : ''} already in desired effects, added ${effectsToAdd.length} new effect${effectsToAdd.length > 1 ? 's' : ''}`, 'warning');
+      }
+    }
+    
+    if (effectsToAdd.length === 0) {
+      return;
+    }
+
+    const newEffects = effectsToAdd.map(effect => ({
       id: Date.now() + Math.random(),
       name: effect.name,
       ids: effect.ids,
@@ -495,12 +535,31 @@ const DesiredEffects = ({ desiredEffects, onChange, selectedCharacter, handleCal
       <div className="bottom-bar-effects">
         <button
           className='calculate-button'
-          title={desiredEffects.length === 0 ? 'Select effects to calculate' : 'Calculate optimal relics'}
+          title={(() => {
+            const missing = [];
+            if (desiredEffects.length === 0) missing.push('desired effects');
+            if (!selectedCharacter) missing.push('character');
+            if (!selectedVessels || selectedVessels.length === 0) missing.push('vessels');
+            
+            if (missing.length === 0) return 'Calculate optimal relics';
+            if (missing.length === 1) return `Select ${missing[0]} to enable calculation`;
+            if (missing.length === 2) return `Select ${missing[0]} and ${missing[1]} to enable calculation`;
+            return `Select ${missing[0]}, ${missing[1]} and ${missing[2]} to enable calculation`;
+          })()}
           onClick={handleCalculate}
-          disabled={desiredEffects.length === 0}
+          disabled={desiredEffects.length === 0 || !selectedCharacter || !selectedVessels || selectedVessels.length === 0 || isCalculating}
         >
-          <CalculatorIcon />
-          <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+          {isCalculating ? (
+            <>
+              <div className="loader"></div>
+              <span style={{ marginLeft: '0.5rem' }}>Calculating...</span>
+            </>
+          ) : (
+            <>
+              <CalculatorIcon />
+              <span style={{ marginLeft: '0.5rem' }}>Calculate</span>
+            </>
+          )}
         </button>
       </div>
     </div>
