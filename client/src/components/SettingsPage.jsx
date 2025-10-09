@@ -10,6 +10,8 @@ const SettingsPage = ({ onBack,
   setShowScoreInfoToggle,
   calculateGuaranteeableRelics,
   setCalculateGuaranteeableRelics,
+  openPopoutInNewTab,
+  setOpenPopoutInNewTab,
   primaryColor,
   setPrimaryColor }) => {
   return (
@@ -64,6 +66,17 @@ const SettingsPage = ({ onBack,
                   onChange={() => setShowUnknownRelics(prev => !prev)}
                 />
                 Display Unknown Relics
+              </label>
+            </div>
+
+            <div className="settings-option">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={openPopoutInNewTab}
+                  onChange={() => setOpenPopoutInNewTab(prev => !prev)}
+                />
+                Open Popout in New Tab
               </label>
             </div>
 

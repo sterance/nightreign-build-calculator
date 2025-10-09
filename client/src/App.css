@@ -377,6 +377,14 @@ button:hover {
   z-index: 10;
 }
 
+.popout-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 3.25rem;
+  padding: 0.5rem;
+  z-index: 10;
+}
+
 .maximize-button {
   position: absolute;
   top: 0.5rem;

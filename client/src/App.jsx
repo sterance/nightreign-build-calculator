@@ -86,6 +86,7 @@ function App() {
   const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
   const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
   const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', false);
+  const [openPopoutInNewTab, setOpenPopoutInNewTab] = usePersistentBoolean('openPopoutInNewTab', false);
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
@@ -502,6 +503,7 @@ function App() {
             calculationResult={calculationResult}
             showDeepOfNight={showDeepOfNight}
             showScoreInfoToggle={showScoreInfoToggle}
+            openPopoutInNewTab={openPopoutInNewTab}
           />
         </div>
       </div>
@@ -539,6 +541,8 @@ function App() {
         setShowScoreInfoToggle={setShowScoreInfoToggle}
         calculateGuaranteeableRelics={calculateGuaranteeableRelics}
         setCalculateGuaranteeableRelics={setCalculateGuaranteeableRelics}
+        openPopoutInNewTab={openPopoutInNewTab}
+        setOpenPopoutInNewTab={setOpenPopoutInNewTab}
         primaryColor={primaryColor}
         setPrimaryColor={setPrimaryColor}
       />}

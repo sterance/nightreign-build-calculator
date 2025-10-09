@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import RelicResultsPage from './RelicResultsPage';
-import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon } from './Icons';
+import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon, ExternalLinkIcon } from './Icons';
 import { numberFormatter } from '../utils/formatters';
 
-const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle }) => {
+const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle, openPopoutInNewTab }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showingDeepRelics, setShowingDeepRelics] = useState(false);
   const [showScoreInfo, setShowScoreInfo] = useState(false);
   const [showMaximized, setShowMaximized] = useState(false);
+  const [showPopout, setShowPopout] = useState(false);
 
 
   const getImageUrl = (name, type) => {
@@ -27,6 +28,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
     setShowingDeepRelics(false);
     setShowScoreInfo(false);
     setShowMaximized(false);
+    setShowPopout(false);
   }, [calculationResult]);
 
   const isEnabled = !!calculationResult;
@@ -187,6 +189,13 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
           disabled={!showRightArrow}
         >
           <RightArrowIcon />
+        </button>
+
+        <button
+          className="popout-button"
+          // onClick={() => { const features = openPopoutInNewTab ? '' : 'width=1400,height=900,left=100,top=100,resizable=yes,scrollbars=yes'; window.open(window.location.href, '', features);}}
+        >
+          <ExternalLinkIcon />
         </button>
 
         <button
