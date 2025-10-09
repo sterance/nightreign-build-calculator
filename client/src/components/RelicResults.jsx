@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon } from './Icons';
+import { numberFormatter } from '../utils/formatters';
 
 const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showingDeepRelics, setShowingDeepRelics] = useState(false);
   const [showScoreInfo, setShowScoreInfo] = useState(false);
+
 
   const getImageUrl = (name, type) => {
     if (!name) return ''; // handle undefined/null names (empty slots)
@@ -53,7 +55,8 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
       >
         <h2>Recommended Relics</h2>
         <div className="centered-text-container">
-          <p>No calculation result available.</p>
+          <p>Select Nightfarer, Vessels, and desired effects.</p>
+          <p>Then click "Calculate" to see results.</p>
         </div>
       </div>
     );
@@ -115,7 +118,6 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
           <div className="score-info-container">
             {showScoreInfo && (
               <div className="score-info-tooltip">
-                Vessel Score: {currentResult.score}
                 {(() => {
                   let allRelics = [];
                   if (showDeepOfNight && currentResult.deepRelics && currentResult.deepRelics.length > 0) {
@@ -128,15 +130,26 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
 
                   const allScores = [
                     currentResult.score,
-                    ...allRelics.map(relic => relic ? relic.score : null)
+                    ...allRelics.map(relic => relic ? Object.values(relic.effects || {}).reduce((sum, effect) => sum + (effect?.score || 0), 0) : null)
                   ].filter(score => score != null);
-                  const maxScore = allScores.length > 0 ? Math.max(...allScores) : 0;
-                  const maxLength = String(maxScore).length;
-                  const formatScore = (score) => String(score).padStart(maxLength, '\u00A0');
+                  
+                  // format all scores first to find the longest formatted string
+                  const formattedScores = allScores.map(score => numberFormatter.format(score));
+                  const maxLength = Math.max(...formattedScores.map(s => s.length));
 
-                  return allRelics.map((relic, index) => (
-                    relic && <div key={index}>Relic {index + 1} Score: {formatScore(relic.score)}</div>
-                  ));
+                  const formattedVesselScore = numberFormatter.format(currentResult.score).padStart(maxLength, '\u00A0');
+
+                  return (
+                    <>
+                      <div>Vessel Score: {formattedVesselScore}</div>
+                      {allRelics.map((relic, index) => {
+                        // calculate vessel-level adjusted score by summing effect scores
+                        const adjustedScore = Object.values(relic.effects || {}).reduce((sum, effect) => sum + (effect?.score || 0), 0);
+                        const formattedScore = numberFormatter.format(adjustedScore).padStart(maxLength, '\u00A0');
+                        return relic && <div key={index}>Relic {index + 1} Score: {formattedScore}</div>;
+                      })}
+                    </>
+                  );
                 })()}
               </div>
             )}
@@ -235,12 +248,19 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle 
                   <span>{relic.name}</span>
                   <table className="relic-stats-table">
                     <tbody>
-                      {relic.effects?.effect1 && <tr><td>• {relic.effects.effect1.name}{showScoreInfo && <span className='effect-score'>{relic.effects.effect1.score}</span>}</td></tr>}
-                      {relic.effects?.sec_effect1 && <tr><td className="sec-effect">• {relic.effects.sec_effect1.name}{showScoreInfo && <span className='effect-score'>{relic.effects.sec_effect1.score}</span>}</td></tr>}
-                      {relic.effects?.effect2 && <tr><td>• {relic.effects.effect2.name}{showScoreInfo && <span className='effect-score'>{relic.effects.effect2.score}</span>}</td></tr>}
-                      {relic.effects?.sec_effect2 && <tr><td className="sec-effect">• {relic.effects.sec_effect2.name}{showScoreInfo && <span className='effect-score'>{relic.effects.sec_effect2.score}</span>}</td></tr>}
-                      {relic.effects?.effect3 && <tr><td>• {relic.effects.effect3.name}{showScoreInfo && <span className='effect-score'>{relic.effects.effect3.score}</span>}</td></tr>}
-                      {relic.effects?.sec_effect3 && <tr><td className="sec-effect">• {relic.effects.sec_effect3.name}{showScoreInfo && <span className='effect-score'>{relic.effects.sec_effect3.score}</span>}</td></tr>}
+                      {['effect1', 'sec_effect1', 'effect2', 'sec_effect2', 'effect3', 'sec_effect3'].map((effectKey) => {
+                        const effect = relic.effects?.[effectKey];
+                        if (!effect) return null;
+                        const isSecondary = effectKey.startsWith('sec_');
+                        return (
+                          <tr key={effectKey}>
+                            <td className={isSecondary ? 'sec-effect' : ''}>
+                              • {effect.name}
+                              {showScoreInfo && <span className='effect-score'>{numberFormatter.format(effect.score)}</span>}
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>

@@ -125,19 +125,19 @@ function App() {
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
-              effects: relic.effectScores
+              effects: relic.vesselEffectScores || relic.effectScores
             })),
             "baseRelics": bestResult.baseRelics.map(relic => ({
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
-              effects: relic.effectScores
+              effects: relic.vesselEffectScores || relic.effectScores
             })),
             "deepRelics": bestResult.deepRelics.map(relic => ({
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
-              effects: relic.effectScores
+              effects: relic.vesselEffectScores || relic.effectScores
             }))
           }));
 
@@ -165,19 +165,19 @@ function App() {
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
-              effects: relic.effectScores
+              effects: relic.vesselEffectScores || relic.effectScores
             })),
             "baseRelics": bestResult.baseRelics.map(relic => ({
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
-              effects: relic.effectScores
+              effects: relic.vesselEffectScores || relic.effectScores
             })),
             "deepRelics": bestResult.deepRelics.map(relic => ({
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
-              effects: relic.effectScores
+              effects: relic.vesselEffectScores || relic.effectScores
             }))
           }));
           setCalculationResult(formattedResults);

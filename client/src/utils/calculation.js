@@ -103,13 +103,12 @@ export function calculateBestRelics(desiredEffects,
   // score base relics
   const scoredBaseRelics = processedBaseRelics.map(relic => {
     const relicEffects = getRelicEffects(relic, effectMap);
-    const score = calculateRelicScore(relicEffects, desiredEffects);
+    const { score, effectContributions } = calculateRelicScore(relic, effectMap, desiredEffects);
     const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
       de.ids.includes(effectId)
     ));
-    const effectScores = calculateEffectScores(relic, effectMap, desiredEffects);
 
-    return { ...relic, score, isForbidden, effectScores };
+    return { ...relic, score, isForbidden, effectScores: effectContributions };
   }).filter(relic => !relic.isForbidden)
     .sort((a, b) => b.score - a.score);
 
@@ -120,13 +119,12 @@ export function calculateBestRelics(desiredEffects,
   if (showDeepOfNight && processedDeepRelics.length > 0) {
     scoredDeepRelics = processedDeepRelics.map(relic => {
       const relicEffects = getRelicEffects(relic, effectMap);
-      const score = calculateRelicScore(relicEffects, desiredEffects);
+      const { score, effectContributions } = calculateRelicScore(relic, effectMap, desiredEffects);
       const isForbidden = desiredEffects.some(de => de.isForbidden && relicEffects.some(effectId =>
         de.ids.includes(effectId)
       ));
-      const effectScores = calculateEffectScores(relic, effectMap, desiredEffects);
 
-      return { ...relic, score, isForbidden, effectScores };
+      return { ...relic, score, isForbidden, effectScores: effectContributions };
     }).filter(relic => !relic.isForbidden)
       .sort((a, b) => b.score - a.score);
     
@@ -196,72 +194,81 @@ export function calculateBestRelics(desiredEffects,
 }
 
 /**
- * Calculates the score of a single relic based on its effects and the user's desired effects.
- * @param {Array} relicEffects - An array of effect objects for the relic.
+ * Calculates the score of a single relic and individual effect contributions.
+ * Splits weight equally when multiple effects on the same relic match the same desired effect group.
+ * @param {Object} relic - The relic object with effect fields.
+ * @param {Map} effectMap - Map of effect IDs to effect names.
  * @param {Array} desiredEffects - An array of desired effect objects from the user.
- * @returns {number} - The calculated score for the relic.
+ * @returns {Object} - { score: number, effectContributions: object } where effectContributions maps effect slots to their scores.
  */
-function calculateRelicScore(relicEffects, desiredEffects) {
-  let score = 0;
-  for (const desiredEffect of desiredEffects) {
-    // check if any of the relic's effect IDs match any of the desired effect's IDs
-    const hasMatch = relicEffects.some(effectId =>
-      desiredEffect.ids.includes(effectId)
-    );
-    if (hasMatch) {
-      score += desiredEffect.weight || 1;
-    }
-  }
-  return score;
-}
-
-/**
- * Calculates individual effect scores for each effect on a relic
- * @param {Object} relic - The relic object
- * @param {Map} effectMap - Map of effect IDs to effect names
- * @param {Array} desiredEffects - Array of desired effects for scoring
- * @returns {Object} - Object with effect details including id, name, and score
- */
-function calculateEffectScores(relic, effectMap, desiredEffects) {
+function calculateRelicScore(relic, effectMap, desiredEffects) {
   const effectFields = ['effect 1', 'sec_effect1', 'effect 2', 'sec_effect2', 'effect 3', 'sec_effect3'];
   const effectKeys = ['effect1', 'sec_effect1', 'effect2', 'sec_effect2', 'effect3', 'sec_effect3'];
-  const effectScores = {};
-
+  
+  // map each effect slot to its effect ID
+  const slotToEffectId = {};
   effectFields.forEach((field, index) => {
     const effectName = relic[field];
     if (!effectName) {
       return;
     }
-
+    
     // find the effect ID from the effectMap
-    let effectId = null;
     for (const [id, name] of effectMap.entries()) {
       if (name === effectName) {
-        effectId = parseInt(id);
+        slotToEffectId[effectKeys[index]] = {
+          id: parseInt(id),
+          name: effectName
+        };
         break;
       }
     }
-
-    // calculate the score for this specific effect
-    let score = 0;
-    if (effectId !== null) {
-      for (const desiredEffect of desiredEffects) {
-        if (desiredEffect.ids.includes(effectId)) {
-          score = desiredEffect.weight || 1;
-          break;
+  });
+  
+  // initialize all slots with effect data and 0 score
+  const effectContributions = {};
+  effectKeys.forEach(key => {
+    if (slotToEffectId[key]) {
+      effectContributions[key] = {
+        id: slotToEffectId[key].id,
+        name: slotToEffectId[key].name,
+        score: 0
+      };
+    }
+  });
+  
+  // group effect slots by which desired effect group they match
+  const desiredEffectToSlots = new Map();
+  
+  Object.entries(slotToEffectId).forEach(([slot, effectData]) => {
+    for (const desiredEffect of desiredEffects) {
+      if (desiredEffect.ids.includes(effectData.id)) {
+        if (!desiredEffectToSlots.has(desiredEffect)) {
+          desiredEffectToSlots.set(desiredEffect, []);
         }
+        desiredEffectToSlots.get(desiredEffect).push(slot);
+        break;
       }
     }
-
-    effectScores[effectKeys[index]] = {
-      id: effectId,
-      name: effectName,
-      score: score
-    };
   });
-
-  return effectScores;
+  
+  // calculate total score and distribute weight among matching slots
+  let totalScore = 0;
+  
+  desiredEffectToSlots.forEach((slots, desiredEffect) => {
+    const weight = desiredEffect.weight || 1;
+    const contribution = weight / slots.length;
+    
+    slots.forEach(slot => {
+      effectContributions[slot].score = contribution;
+    });
+    
+    totalScore += weight;
+  });
+  
+  return { score: totalScore, effectContributions };
 }
+
 
 /**
  * Finds the best relic combinations for a single vessel using exhaustive search with stacking-aware scoring.
@@ -401,47 +408,89 @@ function findBestRelicsForSlots(slots, scoredRelics, desiredEffects, effectMap) 
 }
 
 /**
- * Calculates the true score of a relic combination, accounting for non-stacking effects
+ * Calculates the true score of a relic combination, accounting for non-stacking effects.
+ * Also adjusts individual effect contributions for vessel-level display.
  * @param {Array} relics - Array of relics in the combination
  * @param {Array} desiredEffects - Array of desired effects
  * @param {Map} effectMap - Map of effect IDs to effect names
- * @returns {number} - The true combination score
+ * @returns {Object} - { score: number, relicEffectScores: Array } with vessel-level adjusted effect scores
  */
 function calculateTrueCombinationScore(relics, desiredEffects, effectMap) {
-  // collect all effects from all relics in the combination
-  const allEffectIds = [];
-  for (const relic of relics) {
-    const relicEffects = getRelicEffects(relic, effectMap);
-    allEffectIds.push(...relicEffects);
-  }
+  // initialize adjusted scores with all effects from all relics (including 0-score effects)
+  const adjustedScores = relics.map(relic => {
+    if (!relic || !relic.effectScores) return {};
+    
+    // copy all effects with their original data, will update scores for matching effects
+    const relicScores = {};
+    Object.entries(relic.effectScores).forEach(([slot, effectData]) => {
+      if (effectData && effectData.id) {
+        relicScores[slot] = {
+          id: effectData.id,
+          name: effectData.name,
+          score: 0  // initialize to 0, will be updated for matching effects
+        };
+      }
+    });
+    return relicScores;
+  });
+  
+  // collect all effect instances with their positions (relic index + slot)
+  const effectInstances = [];
+  
+  relics.forEach((relic, relicIndex) => {
+    if (!relic || !relic.effectScores) return;
+    
+    Object.entries(relic.effectScores).forEach(([slot, effectData]) => {
+      if (effectData && effectData.id) {
+        effectInstances.push({
+          relicIndex,
+          slot,
+          effectId: effectData.id,
+          effectName: effectData.name,
+          originalScore: effectData.score
+        });
+      }
+    });
+  });
 
   let totalScore = 0;
 
-  // for each desired effect, calculate its contribution to the score
+  // for each desired effect, calculate its contribution and adjust scores
   for (const desiredEffect of desiredEffects) {
-    // count how many times this desired effect appears in the combination
-    const matchingEffectCount = allEffectIds.filter(effectId => 
-      desiredEffect.ids.includes(effectId)
-    ).length;
+    // find all instances of this desired effect in the combination
+    const matchingInstances = effectInstances.filter(instance =>
+      desiredEffect.ids.includes(instance.effectId)
+    );
 
-    if (matchingEffectCount > 0) {
-      // check if any of the effect IDs in this desired effect group are non-stacking
-      const isNonStacking = desiredEffect.ids.some(effectId => {
-        const effectData = baseRelicEffects.find(effect => effect.ids.includes(effectId));
-        return effectData && effectData.stacks === false;
+    if (matchingInstances.length === 0) continue;
+
+    // check if non-stacking
+    const isNonStacking = desiredEffect.ids.some(effectId => {
+      const effectData = baseRelicEffects.find(effect => effect.ids.includes(effectId));
+      return effectData && effectData.stacks === false;
+    });
+
+    const weight = desiredEffect.weight || 1;
+
+    if (isNonStacking) {
+      // non-stacking: contribute weight once, split equally among all instances
+      totalScore += weight;
+      const perInstanceScore = weight / matchingInstances.length;
+      
+      matchingInstances.forEach(instance => {
+        adjustedScores[instance.relicIndex][instance.slot].score = perInstanceScore;
       });
-
-      if (isNonStacking) {
-        // non-stacking effect: only count once regardless of how many times it appears
-        totalScore += desiredEffect.weight || 1;
-      } else {
-        // stacking effect: count each occurrence
-        totalScore += (desiredEffect.weight || 1) * matchingEffectCount;
-      }
+    } else {
+      // stacking: each instance contributes its original score
+      totalScore += weight * matchingInstances.length;
+      
+      matchingInstances.forEach(instance => {
+        adjustedScores[instance.relicIndex][instance.slot].score = instance.originalScore;
+      });
     }
   }
 
-  return totalScore;
+  return { score: totalScore, relicEffectScores: adjustedScores };
 }
 
 /**
@@ -539,7 +588,7 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
     color: 'empty',
     type: 'empty',
     score: 0,
-    effectScores: []
+    effectScores: {}
   };
   
   // add placeholder to empty slots with unique sorting values
@@ -582,7 +631,7 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
       
       if (canComplete) {
         // calculate true score of this optimistic completion
-        const upperBound = calculateTrueCombinationScore(optimisticCombination, desiredEffects, effectMap);
+        const { score: upperBound } = calculateTrueCombinationScore(optimisticCombination, desiredEffects, effectMap);
         
         // if even the best possible completion can't beat current best, prune
         if (upperBound <= bestScoreSoFar) {
@@ -593,11 +642,17 @@ function generateRelicCombinations(slots, scoredRelics, desiredEffects, effectMa
 
     // base case: all slots filled
     if (slotIndex === slots.length) {
-      const trueScore = calculateTrueCombinationScore(currentCombination, desiredEffects, effectMap);
+      const { score: trueScore, relicEffectScores } = calculateTrueCombinationScore(currentCombination, desiredEffects, effectMap);
+      
+      // create relics with vessel-level adjusted effect scores
+      const relicsWithAdjustedScores = currentCombination.map((relic, index) => ({
+        ...relic,
+        vesselEffectScores: relicEffectScores[index]
+      }));
       
       // store this combination
       allValidCombinations.push({
-        relics: [...currentCombination],
+        relics: relicsWithAdjustedScores,
         score: trueScore
       });
       
