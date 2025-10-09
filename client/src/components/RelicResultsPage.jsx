@@ -13,7 +13,8 @@ const RelicResultsPage = ({
   currentIndex, 
   totalResults, 
   onNext, 
-  onPrevious 
+  onPrevious,
+  isPopout
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -72,8 +73,8 @@ const RelicResultsPage = ({
   };
 
   return (
-    <div className="relic-results-page-backdrop">
-      <div className="relic-results-page card">
+    <div className={`relic-results-page-backdrop${isPopout ? ' popout-mode' : ''}`}>
+      <div className={`relic-results-page card${isPopout ? ' popout-mode' : ''}`}>
         {isMultipleResults && (
           <div className="position-indicator">
             {currentIndex + 1}/{totalResults}

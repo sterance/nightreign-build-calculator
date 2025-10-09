@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import RelicResultsPage from './RelicResultsPage';
+import RelicResultsPopout from './RelicResultsPopout';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon, ExternalLinkIcon } from './Icons';
 import { numberFormatter } from '../utils/formatters';
 
@@ -117,10 +118,11 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
   }
 
   return (
-    <div
-      id="relics-card"
-      className="card"
-    >
+    <>
+      <div
+        id="relics-card"
+        className="card"
+      >
       {isMultipleResults && (
         <div className="position-indicator">
           {currentIndex + 1}/{flattenedResults.length}
@@ -193,7 +195,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
 
         <button
           className="popout-button"
-          // onClick={() => { const features = openPopoutInNewTab ? '' : 'width=1400,height=900,left=100,top=100,resizable=yes,scrollbars=yes'; window.open(window.location.href, '', features);}}
+          onClick={() => setShowPopout(true)}
         >
           <ExternalLinkIcon />
         </button>
@@ -304,6 +306,24 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
         })()}
       </div>
     </div>
+    {showPopout && (
+      <RelicResultsPopout onClose={() => setShowPopout(false)}>
+        <RelicResultsPage
+          onBack={() => setShowPopout(false)}
+          currentResult={currentResult}
+          showDeepOfNight={showDeepOfNight}
+          showScoreInfo={showScoreInfo}
+          setShowScoreInfo={setShowScoreInfo}
+          showScoreInfoToggle={showScoreInfoToggle}
+          currentIndex={currentIndex}
+          totalResults={flattenedResults.length}
+          onNext={handleNext}
+          onPrevious={handlePrevious}
+          isPopout={true}
+        />
+      </RelicResultsPopout>
+    )}
+    </>
   );
 };
 

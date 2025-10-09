@@ -1166,6 +1166,22 @@ button:hover {
   padding: 1.5rem;
 }
 
+.relic-results-page-backdrop.popout-mode {
+  position: static;
+  background-color: transparent;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  overflow: hidden;
+}
+
+.relic-results-page.popout-mode {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
 .relic-results-maximized-container {
   display: flex;
   flex-direction: column;
