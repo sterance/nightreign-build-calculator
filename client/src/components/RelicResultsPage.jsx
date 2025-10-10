@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, CloseIcon } from './Icons';
-import { numberFormatter } from '../utils/formatters';
+import { numberFormatter } from '../utils/utils';
 
-const RelicResultsPage = ({ 
-  onBack, 
-  currentResult, 
-  showDeepOfNight, 
+const RelicResultsPage = ({
+  onBack,
+  currentResult,
+  showDeepOfNight,
   showScoreInfo,
   setShowScoreInfo,
-  showScoreInfoToggle, 
-  currentIndex, 
-  totalResults, 
-  onNext, 
+  showScoreInfoToggle,
+  currentIndex,
+  totalResults,
+  onNext,
   onPrevious,
   isPopout
 }) => {
@@ -31,8 +31,8 @@ const RelicResultsPage = ({
   const showLeftArrow = isMultipleResults && currentIndex > 0;
   const showRightArrow = isMultipleResults && currentIndex < totalResults - 1;
 
-  const resultHeading = currentResult && currentResult._source === 'potential' 
-    ? 'Obtainable Relics' 
+  const resultHeading = currentResult && currentResult._source === 'potential'
+    ? 'Obtainable Relics'
     : 'Recommended Relics';
 
   const baseRelics = currentResult.baseRelics || currentResult.relics || [];
@@ -99,7 +99,7 @@ const RelicResultsPage = ({
                       currentResult.score,
                       ...allRelics.map(relic => relic ? Object.values(relic.effects || {}).reduce((sum, effect) => sum + (effect?.score || 0), 0) : null)
                     ].filter(score => score != null);
-                    
+
                     const formattedScores = allScores.map(score => numberFormatter.format(score));
                     const maxLength = Math.max(...formattedScores.map(s => s.length));
                     const formattedVesselScore = numberFormatter.format(currentResult.score).padStart(maxLength, '\u00A0');
@@ -132,9 +132,11 @@ const RelicResultsPage = ({
           >
             <RightArrowIcon />
           </button>
-          <button className="corner-button" onClick={onBack}>
-            <CloseIcon />
-          </button>
+          {!isPopout && (
+            <button className="corner-button" onClick={onBack}>
+              <CloseIcon />
+            </button>
+          )}
         </div>
 
         <div className="relic-results-maximized-container">

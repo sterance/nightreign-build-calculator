@@ -13,6 +13,7 @@ import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
+import { shouldUseDarkText } from './utils/utils';
 
 const vesselData = nightfarers.reduce((acc, character) => {
   const vesselsKey = `${character}Chalices`;
@@ -101,6 +102,8 @@ function App() {
   const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-color', primaryColor);
+    const textColor = shouldUseDarkText(primaryColor) ? '#000000' : 'rgba(255, 255, 255, 0.87)';
+    document.documentElement.style.setProperty('--primary-text-color', textColor);
   }, [primaryColor]);
 
   useEffect(() => {

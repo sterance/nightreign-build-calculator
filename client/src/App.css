@@ -1,6 +1,7 @@
 /* GLOBAL */
 :root {
   --primary-color: #646cff;
+  --primary-text-color: rgba(255, 255, 255, 0.87);
 }
 
 #root {
@@ -474,6 +475,7 @@ button:hover {
 
 .effects-category li:hover {
   background-color: var(--primary-color);
+  /* color: var(--primary-text-color); */
 }
 
 .effects-category li:last-child {
@@ -532,6 +534,7 @@ button:hover {
 
 .subgroup-item.hovered {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .subgroup-header {
@@ -570,6 +573,7 @@ button:hover {
 
 .sub-sub-list li:hover {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .sub-sub-list li:last-child {
@@ -643,6 +647,7 @@ button:hover {
 
 .group-item.hovered {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .arrow {
@@ -665,8 +670,13 @@ button:hover {
   font-size: 0.9em;
 }
 
+.effects-category .sub-list li:hover {
+  color: var(--primary-text-color) !important;
+}
+
 .effects-category>ul>li:not(.group-item, .subgroup-item):hover {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .effects-category>ul>li.group-item:hover:not(.hovered),
