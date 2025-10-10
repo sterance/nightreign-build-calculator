@@ -525,6 +525,7 @@ function App() {
         onSelectAll={handleSelectAllVessels}
         onClearAll={handleClearAllVessels}
         vesselData={vesselData}
+        showDeepOfNight={showDeepOfNight}
       />}
 
       {showRelics && <RelicsPage

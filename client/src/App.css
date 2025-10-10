@@ -234,8 +234,12 @@ button:hover {
   display: inline-flex;
 }
 
-.character-image-wrapper.selected {
-  border-color: var(--primary-color);
+.character-image-wrapper.selected img {
+  filter: drop-shadow(2px 4px 8px #c9c9c9);
+}
+
+.character-image-wrapper:hover:not(.selected) {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 120%);
 }
 
 .image-grid {
@@ -340,19 +344,45 @@ button:hover {
   margin-bottom: auto;
 }
 
+.vessel-grid.deep-mode {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .vessel-grid p {
   margin: 0;
 }
 
 .vessel {
-  border: 1px solid #555;
+  border: 1px solid transparent;
   border-radius: 4px;
   padding: 0.2rem;
   cursor: pointer;
 }
 
-.vessel.selected {
-  border-color: var(--primary-color);
+.vessel.selected .relic-slots img {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.vessel.selected .vessel-slots-container .relic-slots:last-child img {
+  filter: drop-shadow(rgb(74, 158, 255) 2px 4px 8px);
+}
+
+.vessel:hover .relic-slots {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.vessel:hover .vessel-slots-container {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 90%);
+}
+
+.vessel:hover .vessel-slots-container .relic-slots {
+  background: none;
+}
+
+.vessel-slots-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .relic-slots {

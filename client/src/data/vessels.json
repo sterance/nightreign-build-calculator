@@ -3,16 +3,19 @@
     {
       "name": "Giant's Cradle Grail",
       "baseSlots": ["blue", "blue", "blue"],
+      "deepSlots": ["blue", "blue", "blue"],
       "description": "Obtainable after defeating 7 Nightlords, excluding Heolstor the Nightlord.\nPurchased from the Small Jar Bazaar shop at the Roundtable Hold for 3000 Murk."
     },
     {
       "name": "Sacred Erdtree Grail",
       "baseSlots": ["yellow", "yellow", "yellow"],
+      "deepSlots": ["yellow", "yellow", "yellow"],
       "description": "Obtainable after defeating Heolstor the Nightlord.\nPurchased from the Small Jar Bazaar shop at the Roundtable Hold for 3000 Murk."
     },
     {
       "name": "Spirit Shelter Grail",
       "baseSlots": ["green", "green", "green"],
+      "deepSlots": ["green", "green", "green"],
       "description": "Obtainable after defeating 4 different Nightlords.\nPurchased from the Small Jar Bazaar shop at the Roundtable Hold for 3000 Murk."
     }
   ],

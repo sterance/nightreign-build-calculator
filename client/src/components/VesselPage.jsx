@@ -10,6 +10,7 @@ const VesselPage = ({
   onSelectAll,
   onClearAll,
   vesselData,
+  showDeepOfNight,
 }) => {
   const isEnabled = !!selectedCharacter;
   const vessels = isEnabled ? vesselData[selectedCharacter] : [];
@@ -46,7 +47,7 @@ const VesselPage = ({
           </div>
         </div>
 
-        <div className="vessel-grid">
+        <div className={`vessel-grid ${showDeepOfNight ? 'deep-mode' : ''}`}>
           {vessels.map((vessel, index) => (
             <Vessel
               key={index}
@@ -55,6 +56,7 @@ const VesselPage = ({
                 isEnabled && selectedVessels.includes(vessel.name)
               }
               onToggle={isEnabled ? onVesselToggle : () => { }}
+              showDeepOfNight={showDeepOfNight}
             />
           ))}
         </div>
