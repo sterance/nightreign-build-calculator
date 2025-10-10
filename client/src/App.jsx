@@ -126,18 +126,21 @@ function App() {
             "vessel description": bestResult.vessel.description,
             "score": bestResult.score,
             "relics": bestResult.relics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "baseRelics": bestResult.baseRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "deepRelics": bestResult.deepRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
@@ -166,18 +169,21 @@ function App() {
             "vessel description": bestResult.vessel.description,
             "score": bestResult.score,
             "relics": bestResult.relics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "baseRelics": bestResult.baseRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "deepRelics": bestResult.deepRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
@@ -585,7 +591,7 @@ function App() {
               </button>
               <div className="tooltip-content">
                 <p className="tooltip-main-text"><span className="underlined-text">Upload your save file here to get started!</span></p>
-                <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign</span> on Windows</p>
+                <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign\[user-id]</span> on Windows</p>
               </div>
             </div>
           )}

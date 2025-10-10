@@ -109,7 +109,15 @@ const CharacterRelics = ({ characterData,
   showRelicIdToggle,
   baseRelicColorFilters,
   deepRelicColorFilters,
-  effectMap }) => {
+  effectMap,
+  searchTerm }) => {
+  const EMPTY_SLOT_ID = 4294967295;
+
+  const getEffectName = (id) => {
+    if (id === 0 || id === EMPTY_SLOT_ID) return null;
+    return effectMap.get(id) || `Unknown Effect (ID: ${id})`;
+  };
+
   const filteredRelics = characterData.relics.filter(relic => {
     const relicInfo = items[relic.item_id.toString()];
     // toggle unknown relics based on checkbox
@@ -127,6 +135,30 @@ const CharacterRelics = ({ characterData,
       const colorFilters = isDeepRelic ? deepRelicColorFilters : baseRelicColorFilters;
 
       if (!colorFilters[color]) {
+        return false;
+      }
+    }
+    // filter by search term
+    if (searchTerm) {
+      const searchLower = searchTerm.toLowerCase();
+      const relicName = relicInfo?.name?.toLowerCase() || '';
+      const relicNameMatches = relicName.includes(searchLower);
+
+      const allEffects = [
+        relic.effect1_id,
+        relic.sec_effect1_id,
+        relic.effect2_id,
+        relic.sec_effect2_id,
+        relic.effect3_id,
+        relic.sec_effect3_id,
+      ];
+
+      const effectMatches = allEffects.some(effectId => {
+        const effectName = getEffectName(effectId);
+        return effectName && effectName.toLowerCase().includes(searchLower);
+      });
+
+      if (!relicNameMatches && !effectMatches) {
         return false;
       }
     }
@@ -173,6 +205,7 @@ const RelicsPage = ({ onBack,
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [effectMap, setEffectMap] = useState(new Map());
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     setEffectMap(createEffectMap(showDeepOfNight));
@@ -243,24 +276,94 @@ const RelicsPage = ({ onBack,
     loadData();
   }, [effectMap]);
 
-  const renderContent = (children) => (
-    <div className="relic-page-backdrop">
-      <div className="relic-page card">
-        <div className='card-header'>
-          <button className="corner-button" onClick={onBack}><CloseIcon /></button>
+  const renderContent = (children) => {
+    // calculate counts for each color after filtering
+    const colorCounts = {
+      base: { red: 0, blue: 0, yellow: 0, green: 0, purple: 0 },
+      deep: { red: 0, blue: 0, yellow: 0, green: 0, purple: 0 }
+    };
+
+    const EMPTY_SLOT_ID = 4294967295;
+    const getEffectName = (id) => {
+      if (id === 0 || id === EMPTY_SLOT_ID) return null;
+      return effectMap.get(id) || `Unknown Effect (ID: ${id})`;
+    };
+
+    if (relicData && items) {
+      relicData.forEach(character => {
+        character.relics.forEach(relic => {
+          const relicInfo = items[relic.item_id.toString()];
+          
+          // apply same filters as CharacterRelics
+          if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return;
+          if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return;
+          
+          // check search filter
+          if (searchTerm) {
+            const searchLower = searchTerm.toLowerCase();
+            const relicName = relicInfo?.name?.toLowerCase() || '';
+            const relicNameMatches = relicName.includes(searchLower);
+
+            const allEffects = [
+              relic.effect1_id,
+              relic.sec_effect1_id,
+              relic.effect2_id,
+              relic.sec_effect2_id,
+              relic.effect3_id,
+              relic.sec_effect3_id,
+            ];
+
+            const effectMatches = allEffects.some(effectId => {
+              const effectName = getEffectName(effectId);
+              return effectName && effectName.toLowerCase().includes(searchLower);
+            });
+
+            if (!relicNameMatches && !effectMatches) return;
+          }
+
+          // count relics by color
+          if (relicInfo && relicInfo.color) {
+            const color = relicInfo.color.toLowerCase();
+            const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
+            
+            if (isDeepRelic && colorCounts.deep[color] !== undefined) {
+              colorCounts.deep[color]++;
+            } else if (!isDeepRelic && colorCounts.base[color] !== undefined) {
+              colorCounts.base[color]++;
+            }
+          }
+        });
+      });
+    }
+
+    return (
+      <div className="relic-page-backdrop">
+        <div className="relic-page card">
+          <div className='card-header'>
+            <button className="corner-button" onClick={onBack}><CloseIcon /></button>
+          </div>
+          <h2>Your Relics</h2>
+          <RelicFilters
+            baseRelicColorFilters={baseRelicColorFilters}
+            deepRelicColorFilters={deepRelicColorFilters}
+            onBaseRelicColorFilterChange={onBaseRelicColorFilterChange}
+            onDeepRelicColorFilterChange={onDeepRelicColorFilterChange}
+            showDeepOfNight={showDeepOfNight}
+            colorCounts={colorCounts}
+          />
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Search for relics or effects..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          {children}
         </div>
-        <h2>Your Relics</h2>
-        <RelicFilters
-          baseRelicColorFilters={baseRelicColorFilters}
-          deepRelicColorFilters={deepRelicColorFilters}
-          onBaseRelicColorFilterChange={onBaseRelicColorFilterChange}
-          onDeepRelicColorFilterChange={onDeepRelicColorFilterChange}
-          showDeepOfNight={showDeepOfNight}
-        />
-        {children}
       </div>
-    </div>
-  );
+    );
+  };
 
   if (isLoading) {
     return <div className="relic-page-backdrop"><div className="relic-page card"><p>Loading relic data...</p></div></div>;
@@ -276,6 +379,29 @@ const RelicsPage = ({ onBack,
         const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
         const colorFilters = isDeepRelic ? deepRelicColorFilters : baseRelicColorFilters;
         if (!colorFilters[color]) return false;
+      }
+      if (searchTerm) {
+        const EMPTY_SLOT_ID = 4294967295;
+        const getEffectName = (id) => {
+          if (id === 0 || id === EMPTY_SLOT_ID) return null;
+          return effectMap.get(id) || `Unknown Effect (ID: ${id})`;
+        };
+        const searchLower = searchTerm.toLowerCase();
+        const relicName = relicInfo?.name?.toLowerCase() || '';
+        const relicNameMatches = relicName.includes(searchLower);
+        const allEffects = [
+          relic.effect1_id,
+          relic.sec_effect1_id,
+          relic.effect2_id,
+          relic.sec_effect2_id,
+          relic.effect3_id,
+          relic.sec_effect3_id,
+        ];
+        const effectMatches = allEffects.some(effectId => {
+          const effectName = getEffectName(effectId);
+          return effectName && effectName.toLowerCase().includes(searchLower);
+        });
+        if (!relicNameMatches && !effectMatches) return false;
       }
       return true;
     })
@@ -295,6 +421,29 @@ const RelicsPage = ({ onBack,
         const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
         const colorFilters = isDeepRelic ? deepRelicColorFilters : baseRelicColorFilters;
         if (!colorFilters[color]) return false;
+      }
+      if (searchTerm) {
+        const EMPTY_SLOT_ID = 4294967295;
+        const getEffectName = (id) => {
+          if (id === 0 || id === EMPTY_SLOT_ID) return null;
+          return effectMap.get(id) || `Unknown Effect (ID: ${id})`;
+        };
+        const searchLower = searchTerm.toLowerCase();
+        const relicName = relicInfo?.name?.toLowerCase() || '';
+        const relicNameMatches = relicName.includes(searchLower);
+        const allEffects = [
+          relic.effect1_id,
+          relic.sec_effect1_id,
+          relic.effect2_id,
+          relic.sec_effect2_id,
+          relic.effect3_id,
+          relic.sec_effect3_id,
+        ];
+        const effectMatches = allEffects.some(effectId => {
+          const effectName = getEffectName(effectId);
+          return effectName && effectName.toLowerCase().includes(searchLower);
+        });
+        if (!relicNameMatches && !effectMatches) return false;
       }
       return true;
     })
@@ -316,6 +465,7 @@ const RelicsPage = ({ onBack,
           baseRelicColorFilters={baseRelicColorFilters}
           deepRelicColorFilters={deepRelicColorFilters}
           effectMap={effectMap}
+          searchTerm={searchTerm}
         />
       ))}
     </div>

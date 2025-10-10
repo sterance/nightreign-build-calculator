@@ -4,6 +4,7 @@ import RelicResultsPage from './RelicResultsPage';
 import RelicResultsPopout from './RelicResultsPopout';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon, ExternalLinkIcon } from './Icons';
 import { numberFormatter } from '../utils/utils';
+import relicsData from '../data/relics.json';
 
 const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle, openPopoutInNewTab }) => {
   const [showTooltip, setShowTooltip] = useState(false);
@@ -12,6 +13,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
   const [showScoreInfo, setShowScoreInfo] = useState(false);
   const [showMaximized, setShowMaximized] = useState(false);
   const [showPopout, setShowPopout] = useState(false);
+  const [showRelicTooltip, setShowRelicTooltip] = useState(null);
 
 
   const getImageUrl = (name, type) => {
@@ -23,6 +25,12 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
     return `/${type}/${cleanedName}.png`;
   };
 
+  const getRelicDescription = (relicId) => {
+    if (!relicId) return null;
+    const relicEntry = relicsData[relicId.toString()];
+    return relicEntry?.description || null;
+  };
+
   // reset index and deep relic display when calculationResult changes
   React.useEffect(() => {
     setCurrentIndex(0);
@@ -30,6 +38,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
     setShowScoreInfo(false);
     setShowMaximized(false);
     setShowPopout(false);
+    setShowRelicTooltip(null);
   }, [calculationResult]);
 
   const isEnabled = !!calculationResult;
@@ -176,12 +185,12 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
                   })()}
                 </div>
               )}
-              <div
+              <button
                 className="score-info-icon"
                 onClick={() => setShowScoreInfo(prev => !prev)}
               >
                 <InformationIcon />
-              </div>
+              </button>
             </div>
           )}
 
@@ -272,6 +281,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
             return relicsToDisplay.map((relic, index) => {
               const slotColor = slotsToUse[index];
               if (relic && relic.score !== 0) {
+                const isPotentialUpgrade = currentResult._source === 'potential';
                 return (
                   <div className={`relic-result-card color-${slotColor}`} key={index}>
                     <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100x', height: '100px' }} />
@@ -293,6 +303,32 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
                         })}
                       </tbody>
                     </table>
+                    {isPotentialUpgrade && (
+                      <div className="info-button-container">
+                        <button className="info-button" onClick={() => setShowRelicTooltip(prev => prev === index ? null : index)}>
+                          <InformationIcon />
+                        </button>
+                        {showRelicTooltip === index && (
+                          <div className="info-tooltip">
+                            <p>
+                              {(() => {
+                                const description = getRelicDescription(relic.id);
+                                return description ? (
+                                  description.split('\n').map((line, i) => (
+                                    <React.Fragment key={i}>
+                                      {line}
+                                      <br />
+                                    </React.Fragment>
+                                  ))
+                                ) : (
+                                  'Description not yet available.'
+                                );
+                              })()}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               } else {

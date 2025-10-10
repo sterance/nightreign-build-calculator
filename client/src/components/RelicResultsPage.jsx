@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, CloseIcon } from './Icons';
 import { numberFormatter } from '../utils/utils';
+import relicsData from '../data/relics.json';
 
 const RelicResultsPage = ({
   onBack,
@@ -17,6 +18,7 @@ const RelicResultsPage = ({
   isPopout
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showRelicTooltip, setShowRelicTooltip] = useState(null);
 
   const getImageUrl = (name, type) => {
     if (!name) return '';
@@ -25,6 +27,12 @@ const RelicResultsPage = ({
       .replace(/[<>:'"/\\|?*']/g, '')
       .replace(/ /g, '-');
     return `/${type}/${cleanedName}.png`;
+  };
+
+  const getRelicDescription = (relicId) => {
+    if (!relicId) return null;
+    const relicEntry = relicsData[relicId.toString()];
+    return relicEntry?.description || null;
   };
 
   const isMultipleResults = totalResults > 1;
@@ -39,9 +47,11 @@ const RelicResultsPage = ({
   const deepRelics = currentResult.deepRelics || [];
 
   const renderRelicCard = (relic, index, slotColor, isDeep = false) => {
+    const tooltipKey = `${isDeep ? 'deep-' : ''}${index}`;
     if (relic && relic.score !== 0) {
+      const isPotentialUpgrade = currentResult._source === 'potential';
       return (
-        <div className={`relic-result-card color-${slotColor}`} key={`${isDeep ? 'deep-' : ''}${index}`}>
+        <div className={`relic-result-card color-${slotColor}`} key={tooltipKey}>
           <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100px', height: '100px' }} />
           <span>{relic.name}</span>
           <table className="relic-stats-table">
@@ -61,11 +71,37 @@ const RelicResultsPage = ({
               })}
             </tbody>
           </table>
+          {isPotentialUpgrade && (
+            <div className="info-button-container">
+              <button className="info-button" onClick={() => setShowRelicTooltip(prev => prev === tooltipKey ? null : tooltipKey)}>
+                <InformationIcon />
+              </button>
+              {showRelicTooltip === tooltipKey && (
+                <div className="info-tooltip">
+                  <p>
+                    {(() => {
+                      const description = getRelicDescription(relic.id);
+                      return description ? (
+                        description.split('\n').map((line, i) => (
+                          <React.Fragment key={i}>
+                            {line}
+                            <br />
+                          </React.Fragment>
+                        ))
+                      ) : (
+                        'Description not available.'
+                      );
+                    })()}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       );
     } else {
       return (
-        <div className={`relic-result-card empty-relic-slot color-${slotColor}`} key={`${isDeep ? 'deep-' : ''}${index}`}>
+        <div className={`relic-result-card empty-relic-slot color-${slotColor}`} key={tooltipKey}>
           <span className='empty-relic-slot-text'>No relic found for {slotColor} slot<br />(Add more desired effects)</span>
         </div>
       );
@@ -117,12 +153,12 @@ const RelicResultsPage = ({
                   })()}
                 </div>
               )}
-              <div
+              <button
                 className="score-info-icon"
                 onClick={() => setShowScoreInfo(prev => !prev)}
               >
                 <InformationIcon />
-              </div>
+              </button>
             </div>
           )}
           <button
