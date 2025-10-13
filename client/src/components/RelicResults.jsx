@@ -3,7 +3,7 @@ import RelicSlot from './RelicSlot';
 import RelicResultsPage from './RelicResultsPage';
 import RelicResultsPopout from './RelicResultsPopout';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon, ExternalLinkIcon } from './Icons';
-import { numberFormatter } from '../utils/utils';
+import { numberFormatter, getImageUrl, getRelicDescription, getEffectIcon } from '../utils/utils';
 import relicsData from '../data/relics.json';
 
 const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle, openPopoutInNewTab }) => {
@@ -16,20 +16,6 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
   const [showRelicTooltip, setShowRelicTooltip] = useState(null);
 
 
-  const getImageUrl = (name, type) => {
-    if (!name) return ''; // handle undefined/null names (empty slots)
-    const cleanedName = name
-      .toLowerCase()
-      .replace(/[<>:'"/\\|?*']/g, '') // remove special characters
-      .replace(/ /g, '-'); // replace spaces with hyphens
-    return `/${type}/${cleanedName}.png`;
-  };
-
-  const getRelicDescription = (relicId) => {
-    if (!relicId) return null;
-    const relicEntry = relicsData[relicId.toString()];
-    return relicEntry?.description || null;
-  };
 
   // reset index and deep relic display when calculationResult changes
   React.useEffect(() => {
@@ -284,7 +270,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
                 const isPotentialUpgrade = currentResult._source === 'potential';
                 return (
                   <div className={`relic-result-card color-${slotColor}`} key={index}>
-                    <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100x', height: '100px' }} />
+                    <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100px', height: '100px' }} />
                     <span>{relic.name}</span>
                     <table className="relic-stats-table">
                       <tbody>
@@ -295,7 +281,13 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
                           return (
                             <tr key={effectKey}>
                               <td className={isSecondary ? 'sec-effect' : ''}>
-                                • {effect.name}
+                                {isSecondary ? (
+                                  <span style={{ marginLeft: '20px' }}>&nbsp;{effect.name}</span>
+                                ) : (
+                                  <>
+                                    <img src={getEffectIcon(effect.name)}></img> {effect.name}
+                                  </>
+                                )}
                                 {showScoreInfo && <span className='effect-score'>{numberFormatter.format(effect.score)}</span>}
                               </td>
                             </tr>
@@ -312,7 +304,7 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
                           <div className="info-tooltip">
                             <p>
                               {(() => {
-                                const description = getRelicDescription(relic.id);
+                                const description = getRelicDescription(relic.id, relicsData);
                                 return description ? (
                                   description.split('\n').map((line, i) => (
                                     <React.Fragment key={i}>

@@ -1,16 +1,13 @@
 import React from 'react';
 import nightfarers from '../data/nightfarers.json';
 import { ClearSelectionIcon } from './Icons';
+import { capitalize } from '../utils/utils';
 
 const CharacterSelection = ({
   selectedCharacter,
   onCharacterSelect,
   onClear,
 }) => {
-  const capitalize = (s) => {
-    if (typeof s !== 'string' || !s) return '';
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  };
 
   return (
     <div id="character-card" className="card">

@@ -13,7 +13,8 @@ import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
-import { shouldUseDarkText } from './utils/utils';
+import { shouldUseDarkText, createEffectMap } from './utils/utils';
+import { usePersistentBoolean, usePersistentState } from './utils/hooks';
 
 const vesselData = nightfarers.reduce((acc, character) => {
   const vesselsKey = `${character}Chalices`;
@@ -21,53 +22,6 @@ const vesselData = nightfarers.reduce((acc, character) => {
   return acc;
 }, {});
 
-const createEffectMap = (showDeepOfNight) => {
-  const effectMap = new Map();
-  effects.forEach(effect => {
-    // filter out deep effects if showDeepOfNight is false
-    if (effect.deep === true && !showDeepOfNight) {
-      return;
-    }
-    effect.ids.forEach(id => {
-      effectMap.set(id, effect.name);
-    });
-  });
-  return effectMap;
-};
-
-function usePersistentBoolean(key, defaultValue) {
-  const [value, setValue] = useState(() => {
-    const saved = localStorage.getItem(key);
-    return saved !== null ? JSON.parse(saved) : defaultValue;
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-
-  return [value, setValue];
-}
-
-function usePersistentState(key, defaultValue) {
-  const [value, setValue] = useState(() => {
-    const saved = localStorage.getItem(key);
-    if (saved === null) return defaultValue;
-    if (typeof defaultValue === 'boolean') {
-      try { return JSON.parse(saved); } catch { return saved === 'true'; }
-    }
-    return saved;
-  });
-
-  useEffect(() => {
-    if (typeof value === 'string') {
-      localStorage.setItem(key, value);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-  }, [key, value]);
-
-  return [value, setValue];
-}
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -219,7 +173,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const newEffectMap = createEffectMap(showDeepOfNight);
+    const newEffectMap = createEffectMap(showDeepOfNight, effects);
     // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
@@ -479,6 +433,7 @@ function App() {
         <SettingsIcon />
       </button>
 
+
       <div className="content-wrapper">
         <h1>Nightreign Build Calculator</h1>
         <div className="card-container">
@@ -561,6 +516,7 @@ function App() {
         onBack={() => setShowSavedBuilds(false)}
         onLoadBuild={handleLoadBuild}
       />}
+
 
       <div className="bottom-bar">
 
