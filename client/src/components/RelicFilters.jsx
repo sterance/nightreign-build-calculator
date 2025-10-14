@@ -2,7 +2,8 @@ import React from 'react';
 
 const ColorFilter = ({ relicColorFilters,
   onRelicColorFilterChange,
-  type }) => {
+  type,
+  colorCounts }) => {
   const handleColorClick = (e, color) => {
     e.stopPropagation(); // Prevent group toggle when individual color is clicked
     onRelicColorFilterChange(color);
@@ -22,7 +23,7 @@ const ColorFilter = ({ relicColorFilters,
             onChange={(e) => handleColorClick(e, color)}
             style={{ display: 'none' }}
           />
-          <span>{color.charAt(0).toUpperCase() + color.slice(1)}</span>
+          <span>{colorCounts && colorCounts[color] !== undefined ? colorCounts[color] : 0}</span>
         </div>
       ))}
     </div>
@@ -34,7 +35,8 @@ const RelicFilters = ({
   deepRelicColorFilters,
   onBaseRelicColorFilterChange,
   onDeepRelicColorFilterChange,
-  showDeepOfNight }) => {
+  showDeepOfNight,
+  colorCounts }) => {
 
   const toggleAllBaseFilters = () => {
     const allEnabled = Object.values(baseRelicColorFilters).every(enabled => enabled);
@@ -59,6 +61,9 @@ const RelicFilters = ({
   const isBaseGroupEnabled = Object.values(baseRelicColorFilters).some(enabled => enabled);
   const isDeepGroupEnabled = Object.values(deepRelicColorFilters).some(enabled => enabled);
 
+  const baseTotalCount = colorCounts ? Object.values(colorCounts.base).reduce((sum, count) => sum + count, 0) : 0;
+  const deepTotalCount = colorCounts ? Object.values(colorCounts.deep).reduce((sum, count) => sum + count, 0) : 0;
+
   return (
     <div className="relic-color-filters">
       {showDeepOfNight ? (
@@ -67,22 +72,24 @@ const RelicFilters = ({
             className={`base-color-filter-group ${isBaseGroupEnabled ? 'enabled' : 'disabled'}`}
             onClick={toggleAllBaseFilters}
           >
-            <h3 className="color-filter-label">Base Relics</h3>
+            <h3 className="color-filter-label">Base Relics ({baseTotalCount})</h3>
             <ColorFilter
               relicColorFilters={baseRelicColorFilters}
               onRelicColorFilterChange={onBaseRelicColorFilterChange}
               type="base"
+              colorCounts={colorCounts?.base}
             />
           </div>
           <div
             className={`deep-color-filter-group ${isDeepGroupEnabled ? 'enabled' : 'disabled'}`}
             onClick={toggleAllDeepFilters}
           >
-            <h3 className="color-filter-label">Deep Relics</h3>
+            <h3 className="color-filter-label">Deep Relics ({deepTotalCount})</h3>
             <ColorFilter
               relicColorFilters={deepRelicColorFilters}
               onRelicColorFilterChange={onDeepRelicColorFilterChange}
               type="deep"
+              colorCounts={colorCounts?.deep}
             />
           </div>
         </>
@@ -91,6 +98,7 @@ const RelicFilters = ({
           relicColorFilters={baseRelicColorFilters}
           onRelicColorFilterChange={onBaseRelicColorFilterChange}
           type="base"
+          colorCounts={colorCounts?.base}
         />
       )}
     </div>

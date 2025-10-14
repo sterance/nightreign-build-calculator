@@ -1,7 +1,7 @@
 import React from 'react';
 import RelicSlot from './RelicSlot';
 
-const Vessel = ({ vessel, isSelected, onToggle }) => {
+const Vessel = ({ vessel, isSelected, onToggle, showDeepOfNight }) => {
   return (
     <div
       className={`vessel ${isSelected ? 'selected' : ''}`}
@@ -9,11 +9,26 @@ const Vessel = ({ vessel, isSelected, onToggle }) => {
       title={vessel.name}
     >
       <p>{vessel.name}</p>
-      <div className="relic-slots">
-        {vessel.baseSlots.map((color, index) => (
-          <RelicSlot key={index} color={color} />
-        ))}
-      </div>
+      {showDeepOfNight ? (
+        <div className="vessel-slots-container">
+          <div className="relic-slots">
+            {vessel.baseSlots.map((color, index) => (
+              <RelicSlot key={index} color={color} />
+            ))}
+          </div>
+          <div className="relic-slots">
+            {vessel.deepSlots?.map((color, index) => (
+              <RelicSlot key={index} color={color} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="relic-slots">
+          {vessel.baseSlots.map((color, index) => (
+            <RelicSlot key={index} color={color} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

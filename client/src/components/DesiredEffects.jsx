@@ -4,6 +4,7 @@ import nightfarers from '../data/nightfarers.json';
 import DesiredEffectCard from './DesiredEffectCard';
 import NameSaveCard from './NameSaveCard';
 import { SelectAllIcon, CalculatorIcon, SaveIcon, TrashIcon } from './Icons';
+import { formatEffectName } from '../utils/utils';
 
 const DesiredEffects = ({
   desiredEffects,
@@ -269,15 +270,6 @@ const DesiredEffects = ({
   );
 
 
-  const formatEffectName = (effect) => {
-    const characterName = nightfarers.find(char => effect.name.toLowerCase().startsWith(`[${char}]`));
-    if (characterName) {
-      const restOfEffect = effect.name.slice(characterName.length + 3).trim();
-      const capitalizedChar = characterName.charAt(0).toUpperCase() + characterName.slice(1);
-      return `[${capitalizedChar}] ${restOfEffect}`;
-    }
-    return effect.name;
-  };
   const handleSelectEffect = (effect) => {
     // check if effect already exists in selected effects, dont add duplicate
     const effectExists = selectedEffects.some(selectedEffect => selectedEffect.name === effect.name);
@@ -342,6 +334,11 @@ const DesiredEffects = ({
   }
 
   const handleUpdateEffect = (id, updatedEffect) => {
+    if (updatedEffect.isRequired && updatedEffect.isForbidden) {
+      addToast('Effects cannot be both forbidden and required', 'error');
+      return;
+    }
+    
     setSelectedEffects((prev) =>
       prev.map((effect) => (effect.id === id ? updatedEffect : effect))
     );
@@ -419,7 +416,7 @@ const DesiredEffects = ({
                     <ul>
                       {data.singles.map((effect) => (
                         <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                          {formatEffectName(effect)}
+                          {formatEffectName(effect, nightfarers)}
                         </li>
                       ))}
                       {Object.entries(data.groups).map(([groupName, groupData]) => (
@@ -467,7 +464,7 @@ const DesiredEffects = ({
                                   {groupData.singles && groupData.singles.length > 0 && (
                                     groupData.singles.map(effect => (
                                       <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                        {formatEffectName(effect)}
+                                        {formatEffectName(effect, nightfarers)}
                                       </li>
                                     ))
                                   )}
@@ -498,7 +495,7 @@ const DesiredEffects = ({
                                         <ul className="sub-sub-list">
                                           {subGroupEffects.map(effect => (
                                             <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                              {formatEffectName(effect)}
+                                              {formatEffectName(effect, nightfarers)}
                                             </li>
                                           ))}
                                         </ul>
@@ -510,7 +507,7 @@ const DesiredEffects = ({
                                 // render simple groups
                                 groupData.effects.map(effect => (
                                   <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                    {formatEffectName(effect)}
+                                    {formatEffectName(effect, nightfarers)}
                                   </li>
                                 ))
                               )}

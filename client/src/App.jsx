@@ -13,6 +13,8 @@ import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
+import { shouldUseDarkText, createEffectMap } from './utils/utils';
+import { usePersistentBoolean, usePersistentState } from './utils/hooks';
 
 const vesselData = nightfarers.reduce((acc, character) => {
   const vesselsKey = `${character}Chalices`;
@@ -20,53 +22,6 @@ const vesselData = nightfarers.reduce((acc, character) => {
   return acc;
 }, {});
 
-const createEffectMap = (showDeepOfNight) => {
-  const effectMap = new Map();
-  effects.forEach(effect => {
-    // filter out deep effects if showDeepOfNight is false
-    if (effect.deep === true && !showDeepOfNight) {
-      return;
-    }
-    effect.ids.forEach(id => {
-      effectMap.set(id, effect.name);
-    });
-  });
-  return effectMap;
-};
-
-function usePersistentBoolean(key, defaultValue) {
-  const [value, setValue] = useState(() => {
-    const saved = localStorage.getItem(key);
-    return saved !== null ? JSON.parse(saved) : defaultValue;
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
-
-  return [value, setValue];
-}
-
-function usePersistentState(key, defaultValue) {
-  const [value, setValue] = useState(() => {
-    const saved = localStorage.getItem(key);
-    if (saved === null) return defaultValue;
-    if (typeof defaultValue === 'boolean') {
-      try { return JSON.parse(saved); } catch { return saved === 'true'; }
-    }
-    return saved;
-  });
-
-  useEffect(() => {
-    if (typeof value === 'string') {
-      localStorage.setItem(key, value);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-  }, [key, value]);
-
-  return [value, setValue];
-}
 
 function App() {
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -101,6 +56,8 @@ function App() {
   const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-color', primaryColor);
+    const textColor = shouldUseDarkText(primaryColor) ? '#000000' : 'rgba(255, 255, 255, 0.87)';
+    document.documentElement.style.setProperty('--primary-text-color', textColor);
   }, [primaryColor]);
 
   useEffect(() => {
@@ -123,18 +80,21 @@ function App() {
             "vessel description": bestResult.vessel.description,
             "score": bestResult.score,
             "relics": bestResult.relics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "baseRelics": bestResult.baseRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "deepRelics": bestResult.deepRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
@@ -163,18 +123,21 @@ function App() {
             "vessel description": bestResult.vessel.description,
             "score": bestResult.score,
             "relics": bestResult.relics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "baseRelics": bestResult.baseRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
               effects: relic.vesselEffectScores || relic.effectScores
             })),
             "deepRelics": bestResult.deepRelics.map(relic => ({
+              id: relic['relic id'],
               name: relic['relic name'],
               color: relic.color,
               score: relic.score,
@@ -210,7 +173,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const newEffectMap = createEffectMap(showDeepOfNight);
+    const newEffectMap = createEffectMap(showDeepOfNight, effects);
     // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
@@ -470,6 +433,7 @@ function App() {
         <SettingsIcon />
       </button>
 
+
       <div className="content-wrapper">
         <h1>Nightreign Build Calculator</h1>
         <div className="card-container">
@@ -479,12 +443,13 @@ function App() {
             onClear={handleClearCharacter}
           />
 
-          <VesselButton
-            selectedCharacter={selectedCharacter}
-            selectedVessels={selectedVessels}
-            onClick={() => setShowVessels(true)}
-            vesselData={vesselData}
-          />
+        <VesselButton
+          selectedCharacter={selectedCharacter}
+          selectedVessels={selectedVessels}
+          onClick={() => setShowVessels(true)}
+          vesselData={vesselData}
+          showDeepOfNight={showDeepOfNight}
+        />
 
           <DesiredEffects
             desiredEffects={desiredEffects}
@@ -516,6 +481,7 @@ function App() {
         onSelectAll={handleSelectAllVessels}
         onClearAll={handleClearAllVessels}
         vesselData={vesselData}
+        showDeepOfNight={showDeepOfNight}
       />}
 
       {showRelics && <RelicsPage
@@ -552,6 +518,7 @@ function App() {
         onLoadBuild={handleLoadBuild}
       />}
 
+
       <div className="bottom-bar">
 
         <button
@@ -582,7 +549,7 @@ function App() {
               </button>
               <div className="tooltip-content">
                 <p className="tooltip-main-text"><span className="underlined-text">Upload your save file here to get started!</span></p>
-                <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign</span> on Windows</p>
+                <p className="tooltip-sub-text"><span className='code-inline'>.sl2</span> file, found at <span className='code-inline'>C:\Users\[username]\AppData\Roaming\Nightreign\[user-id]</span> on Windows</p>
               </div>
             </div>
           )}

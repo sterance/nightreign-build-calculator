@@ -1,47 +1,43 @@
 import React, { useState } from 'react';
 import RelicSlot from './RelicSlot';
 import { InformationIcon, LeftArrowIcon, RightArrowIcon, CloseIcon } from './Icons';
-import { numberFormatter } from '../utils/formatters';
+import { numberFormatter, getImageUrl, getRelicDescription, getEffectIcon } from '../utils/utils';
+import relicsData from '../data/relics.json';
 
-const RelicResultsPage = ({ 
-  onBack, 
-  currentResult, 
-  showDeepOfNight, 
+const RelicResultsPage = ({
+  onBack,
+  currentResult,
+  showDeepOfNight,
   showScoreInfo,
   setShowScoreInfo,
-  showScoreInfoToggle, 
-  currentIndex, 
-  totalResults, 
-  onNext, 
+  showScoreInfoToggle,
+  currentIndex,
+  totalResults,
+  onNext,
   onPrevious,
   isPopout
 }) => {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showRelicTooltip, setShowRelicTooltip] = useState(null);
 
-  const getImageUrl = (name, type) => {
-    if (!name) return '';
-    const cleanedName = name
-      .toLowerCase()
-      .replace(/[<>:'"/\\|?*']/g, '')
-      .replace(/ /g, '-');
-    return `/${type}/${cleanedName}.png`;
-  };
 
   const isMultipleResults = totalResults > 1;
   const showLeftArrow = isMultipleResults && currentIndex > 0;
   const showRightArrow = isMultipleResults && currentIndex < totalResults - 1;
 
-  const resultHeading = currentResult && currentResult._source === 'potential' 
-    ? 'Obtainable Relics' 
+  const resultHeading = currentResult && currentResult._source === 'potential'
+    ? 'Obtainable Relics'
     : 'Recommended Relics';
 
   const baseRelics = currentResult.baseRelics || currentResult.relics || [];
   const deepRelics = currentResult.deepRelics || [];
 
   const renderRelicCard = (relic, index, slotColor, isDeep = false) => {
+    const tooltipKey = `${isDeep ? 'deep-' : ''}${index}`;
     if (relic && relic.score !== 0) {
+      const isPotentialUpgrade = currentResult._source === 'potential';
       return (
-        <div className={`relic-result-card color-${slotColor}`} key={`${isDeep ? 'deep-' : ''}${index}`}>
+        <div className={`relic-result-card color-${slotColor}`} key={tooltipKey}>
           <img src={getImageUrl(relic.name, 'relics')} alt={`Relic ${index + 1}`} style={{ width: '100px', height: '100px' }} />
           <span>{relic.name}</span>
           <table className="relic-stats-table">
@@ -53,7 +49,13 @@ const RelicResultsPage = ({
                 return (
                   <tr key={effectKey}>
                     <td className={isSecondary ? 'sec-effect' : ''}>
-                      • {effect.name}
+                      {isSecondary ? (
+                        <span style={{ marginLeft: '20px' }}>&nbsp;{effect.name}</span>
+                      ) : (
+                        <>
+                          <img src={getEffectIcon(effect.name)}></img> {effect.name}
+                        </>
+                      )}
                       {showScoreInfo && <span className='effect-score'>{numberFormatter.format(effect.score)}</span>}
                     </td>
                   </tr>
@@ -61,11 +63,37 @@ const RelicResultsPage = ({
               })}
             </tbody>
           </table>
+          {isPotentialUpgrade && (
+            <div className="info-button-container">
+              <button className="info-button" onClick={() => setShowRelicTooltip(prev => prev === tooltipKey ? null : tooltipKey)}>
+                <InformationIcon />
+              </button>
+              {showRelicTooltip === tooltipKey && (
+                <div className="info-tooltip">
+                  <p>
+                    {(() => {
+                      const description = getRelicDescription(relic.id, relicsData);
+                      return description ? (
+                        description.split('\n').map((line, i) => (
+                          <React.Fragment key={i}>
+                            {line}
+                            <br />
+                          </React.Fragment>
+                        ))
+                      ) : (
+                        'Description not available.'
+                      );
+                    })()}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       );
     } else {
       return (
-        <div className={`relic-result-card empty-relic-slot color-${slotColor}`} key={`${isDeep ? 'deep-' : ''}${index}`}>
+        <div className={`relic-result-card empty-relic-slot color-${slotColor}`} key={tooltipKey}>
           <span className='empty-relic-slot-text'>No relic found for {slotColor} slot<br />(Add more desired effects)</span>
         </div>
       );
@@ -99,7 +127,7 @@ const RelicResultsPage = ({
                       currentResult.score,
                       ...allRelics.map(relic => relic ? Object.values(relic.effects || {}).reduce((sum, effect) => sum + (effect?.score || 0), 0) : null)
                     ].filter(score => score != null);
-                    
+
                     const formattedScores = allScores.map(score => numberFormatter.format(score));
                     const maxLength = Math.max(...formattedScores.map(s => s.length));
                     const formattedVesselScore = numberFormatter.format(currentResult.score).padStart(maxLength, '\u00A0');
@@ -117,12 +145,12 @@ const RelicResultsPage = ({
                   })()}
                 </div>
               )}
-              <div
+              <button
                 className="score-info-icon"
                 onClick={() => setShowScoreInfo(prev => !prev)}
               >
                 <InformationIcon />
-              </div>
+              </button>
             </div>
           )}
           <button
@@ -132,9 +160,11 @@ const RelicResultsPage = ({
           >
             <RightArrowIcon />
           </button>
-          <button className="corner-button" onClick={onBack}>
-            <CloseIcon />
-          </button>
+          {!isPopout && (
+            <button className="corner-button" onClick={onBack}>
+              <CloseIcon />
+            </button>
+          )}
         </div>
 
         <div className="relic-results-maximized-container">

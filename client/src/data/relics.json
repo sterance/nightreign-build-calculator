@@ -158,312 +158,376 @@
   "1000": {
     "name": "Delicate Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7121100 ]
+    "fixedEffects": [ 7121100 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 500 Murk."
   },
   "1010": {
     "name": "Delicate Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7120000 ]
+    "fixedEffects": [ 7120000 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 500 Murk."
   },
   "1020": {
     "name": "Delicate Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7122400 ]
+    "fixedEffects": [ 7122400 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 500 Murk."
   },
   "1030": {
     "name": "Delicate Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7123300 ]
+    "fixedEffects": [ 7123300 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 500 Murk."
   },
   "1040": {
     "name": "Polished Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7040300, 7040400 ]
+    "fixedEffects": [ 7040300, 7040400 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 500 Murk."
   },
   "1050": {
     "name": "Delicate Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7040200 ]
+    "fixedEffects": [ 7040200 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 500 Murk."
   },
   "1060": {
     "name": "Polished Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7030900, 7000202 ]
+    "fixedEffects": [ 7030900, 7000202 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1070": {
     "name": "Polished Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7030700, 7000002 ]
+    "fixedEffects": [ 7030700, 7000002 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1080": {
     "name": "Polished Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7002600, 7000901 ]
+    "fixedEffects": [ 7002600, 7000901 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1090": {
     "name": "Polished Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7002700, 7000801 ]
+    "fixedEffects": [ 7002700, 7000801 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1100": {
     "name": "Polished Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7002800, 7000801 ]
+    "fixedEffects": [ 7002800, 7000801 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1110": {
     "name": "Polished Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7002900, 7000901 ]
+    "fixedEffects": [ 7002900, 7000901 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1120": {
     "name": "Polished Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7121000, 7040500 ]
+    "fixedEffects": [ 7121000, 7040500 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1130": {
     "name": "Polished Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7010200, 7090100 ]
+    "fixedEffects": [ 7010200, 7090100 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1140": {
     "name": "Polished Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7003000, 7003400 ]
+    "fixedEffects": [ 7003000, 7003400 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1150": {
     "name": "Polished Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7003100, 7003500 ]
+    "fixedEffects": [ 7003100, 7003500 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1160": {
     "name": "Polished Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7003200, 7003600 ]
+    "fixedEffects": [ 7003200, 7003600 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1170": {
     "name": "Polished Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7003300, 7000102 ]
+    "fixedEffects": [ 7003300, 7000102 ],
+    "description": "Can be purchased from the Small Jar Bazaar for 700 Murk."
   },
   "1180": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7010500, 7000301, 7000401 ]
+    "fixedEffects": [ 7010500, 7000301, 7000401 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
+
   },
   "1190": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7033400, 7000001, 7000201 ]
+    "fixedEffects": [ 7033400, 7000001, 7000201 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1200": {
     "name": "Grand Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7290000, 7000401, 7000501 ]
+    "fixedEffects": [ 7290000, 7000401, 7000501 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1210": {
     "name": "Grand Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7032900, 7000101, 7000501 ]
+    "fixedEffects": [ 7032900, 7000101, 7000501 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1220": {
     "name": "Grand Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7280000, 7000201, 7000401 ]
+    "fixedEffects": [ 7280000, 7000201, 7000401 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1230": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7030000, 7000001, 7000301 ]
+    "fixedEffects": [ 7030000, 7000001, 7000301 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1240": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7011200, 7000601, 7000701 ]
+    "fixedEffects": [ 7011200, 7000601, 7000701 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1250": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7011700, 7000401, 7000701 ]
+    "fixedEffects": [ 7011700, 7000401, 7000701 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1260": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7110000, 7120900, 7230000 ]
+    "fixedEffects": [ 7110000, 7120900, 7230000 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1270": {
     "name": "Grand Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7005600, 7000001, 7001001 ]
+    "fixedEffects": [ 7005600, 7000001, 7001001 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
   "1400": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7010500, 7122900, 7001602 ]
+    "fixedEffects": [ 7010500, 7122900, 7001602 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1410": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7033400, 7030600, 7000202 ]
+    "fixedEffects": [ 7033400, 7030600, 7000202 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1420": {
     "name": "Grand Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7031800, 7040200, 7000801 ]
+    "fixedEffects": [ 7031800, 7040200, 7000801 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1430": {
     "name": "Grand Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7082500, 7060100, 7001500 ]
+    "fixedEffects": [ 7082500, 7060100, 7001500 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1440": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7034600, 7260000, 7000902 ]
+    "fixedEffects": [ 7034600, 7260000, 7000902 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1450": {
     "name": "Grand Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7310000, 7332300, 7000202 ]
+    "fixedEffects": [ 7310000, 7332300, 7000202 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1460": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7031200, 7050100, 7126000 ]
+    "fixedEffects": [ 7031200, 7050100, 7126000 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1470": {
     "name": "Grand Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7034400, 7036100, 7030600 ]
+    "fixedEffects": [ 7034400, 7036100, 7030600 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1480": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7012200, 7012300, 7000002 ]
+    "fixedEffects": [ 7012200, 7012300, 7000002 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1490": {
     "name": "Grand Tranquil Scene",
     "color": "Green",
-    "fixedEffects": [ 7006001, 7040000, 7001002 ]
+    "fixedEffects": [ 7006001, 7040000, 7001002 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1500": {
     "name": "Grand Burning Scene",
     "color": "Red",
-    "fixedEffects": [ 7006101, 7100100, 7000202 ]
+    "fixedEffects": [ 7006101, 7100100, 7000202 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1510": {
     "name": "Grand Luminous Scene",
     "color": "Yellow",
-    "fixedEffects": [ 7060000, 7120900, 7070000 ]
+    "fixedEffects": [ 7060000, 7120900, 7070000 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1520": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
-    "fixedEffects": [ 7126000, 7126001, 7126002 ]
+    "fixedEffects": [ 7126000, 7126001, 7126002 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "2000": {
     "name": "Night of the Beast",
     "color": "Green",
-    "fixedEffects": [ 7100110, 7120100 ]
+    "fixedEffects": [ 7100110, 7120100 ],
+    "description": "Acquired as a reward for defeating the Tricephalos Night Lord for the first time."
   },
   "2001": {
     "name": "Dark Night of the Beast",
     "color": "Yellow",
-    "fixedEffects": [ 7100110, 10001, 7001602 ]
+    "fixedEffects": [ 7100110, 10001, 7001602 ],
+    "description": "Defeat Everdark Sovereign Gladius Beast of Night for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
+
   },
   "2010": {
     "name": "Night of the Baron",
     "color": "Blue",
-    "fixedEffects": [ 7040201, 7030800, 7035100 ]
+    "fixedEffects": [ 7040201, 7030800, 7035100 ],
+    "description": "Acquired as a reward for defeating the Gaping Jaw Night Lord for the first time."
   },
   "2011": {
     "name": "Dark Night of the Baron",
     "color": "Red",
-    "fixedEffects": [ 7040201, 7040200, 7031900 ]
+    "fixedEffects": [ 7040201, 7040200, 7031900 ],
+    "description": "Defeat Everdark Sovereign Gaping Jaw for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2020": {
     "name": "Night of the Wise",
     "color": "Yellow",
-    "fixedEffects": [ 7000190, 7120500, 7260800 ]
+    "fixedEffects": [ 7000190, 7120500, 7260800 ],
+    "description": "Acquired as a reward for defeating the Sentient Pest Night Lord for the first time."
   },
   "2021": {
     "name": "Dark Night of the Wise",
     "color": "Green",
-    "fixedEffects": [ 7000190, 7036000, 7060100 ]
+    "fixedEffects": [ 7000190, 7036000, 7060100 ],
+    "description": "Defeat Everdark Sovereign Gnoster Wisdom for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2030": {
     "name": "Night of the Fathom",
     "color": "Red",
-    "fixedEffects": [ 7610400, 7010200, 7050100 ]
+    "fixedEffects": [ 7610400, 7010200, 7050100 ],
+    "description": "Acquired as a reward for defeating the Augur Night Lord for the first time."
   },
   "2031": {
     "name": "Dark Night of the Fathom",
     "color": "Blue",
-    "fixedEffects": [ 7610400, 7001100, 7012200 ]
+    "fixedEffects": [ 7610400, 7001100, 7012200 ],
+    "description": "Defeat Everdark Sovereign Augur for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2040": {
     "name": "Night of the Demon",
     "color": "Red",
-    "fixedEffects": [ 7230001, 7035400, 7035500 ]
+    "fixedEffects": [ 7230001, 7035400, 7035500 ],
+    "description": "Acquired as a reward for defeating the Equilibrious Beast Night Lord for the first time."
   },
   "2041": {
     "name": "Dark Night of the Demon",
     "color": "Blue",
-    "fixedEffects": [ 7032201, 7035400, 7035500 ]
+    "fixedEffects": [ 7032201, 7035400, 7035500 ],
+    "description": "Defeat Everdark Sovereign Libra Creature of Night for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2050": {
     "name": "Night of the Champion",
     "color": "Green",
-    "fixedEffects": [ 7610600, 7150000, 7160000 ]
+    "fixedEffects": [ 7610600, 7150000, 7160000 ],
+    "description": "Acquired as a reward for defeating the Darkdrift Knight Night Lord for the first time."
   },
   "2051": {
     "name": "Dark Night of the Champion",
     "color": "Yellow",
-    "fixedEffects": [ 7610600, 7035800, 7090000 ]
+    "fixedEffects": [ 7610600, 7035800, 7090000 ],
+    "description": "Defeat Everdark Sovereign Darkdrift Knight for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2060": {
     "name": "Night of the Miasma",
     "color": "Yellow",
-    "fixedEffects": [ 7260700, 7123900, 7260400 ]
+    "fixedEffects": [ 7260700, 7123900, 7260400 ],
+    "description": "Acquired as a reward for defeating the Fissure in the Fog Night Lord for the first time."
   },
   "2061": {
     "name": "Dark Night of the Miasma",
     "color": "Green",
-    "fixedEffects": [ 7260700, 7120400, 7006200 ]
+    "fixedEffects": [ 7260700, 7120400, 7006200 ],
+    "description": "Defeat Everdark Sovereign Caligo Night Lord for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2100": {
     "name": "Night of the Lord",
     "color": "Blue",
-    "fixedEffects": [ 7035700, 7035800, 7035900 ]
+    "fixedEffects": [ 7035700, 7035800, 7035900 ],
+    "description": "Acquired as a reward for defeating the Night Aspect Night Lord for the first time."
   },
   "10000": {
     "name": "Old Pocketwatch",
     "color": "Green",
-    "fixedEffects": [ 7036000, 7000402 ]
+    "fixedEffects": [ 7036000, 7000402 ],
+    "description": "Complete an expedition where you first fight the Night Lord, Tricephalos, to acquire the key item.\nOnce you have it, show it to the Priestess back at the Roundtable Hold. (You will not lose access to this relic by choosing to give it to her.)"
   },
   "10001": {
     "name": "Besmirched Frame",
     "color": "Blue",
-    "fixedEffects": [ 10001, 7000602 ]
+    "fixedEffects": [ 10001, 7000602 ],
+    "description": "This item will only be added to the Small Jar Bazaar's shop after unlocking Duchess.\nCan be purchased from the Small Jar Bazaar at the Roundtable Hold for 1500 Murk."
   },
   "10002": {
     "name": "Fell Omen Fetish",
     "color": "Blue",
-    "fixedEffects": [ 7035900, 7040400, 7000000 ]
+    "fixedEffects": [ 7035900, 7040400, 7000000 ],
+    "description": "Acquired as a reward for defeating the Fell Omen boss encountered in the tutorial section of the game."
   },
   "11000": {
     "name": "Slate Whetstone",
     "color": "Red",
-    "fixedEffects": [ 7020000, 7001400 ]
+    "fixedEffects": [ 7020000, 7001400 ],
+    "description": "Acquired as a reward for completing Part 1 of the Wylder's Remembrance Quest."
   },
   "11001": {
     "name": "The Wylder's Earring",
     "color": "Red",
-    "fixedEffects": [ 7010500, 7033200, 7100100 ]
+    "fixedEffects": [ 7010500, 7033200, 7100100 ],
+    "description": "Acquired as a reward for completing the Wylder's Remembrance quests and\nkilling Heolstor the Nightlord while you have the Silver Tear relic equipped."
   },
   "11002": {
     "name": "Silver Tear",
     "color": "Red",
-    "fixedEffects": [ 7032400, 7000902, 7000702 ]
+    "fixedEffects": [ 7032400, 7000902, 7000702 ],
+    "description": "Acquired as a reward for completing Part 3 of the Wylder's Remembrance Quest."
   },
   "11003": {
     "name": "Delicate Burning Scene",
@@ -478,22 +542,26 @@
   "12000": {
     "name": "Third Volume",
     "color": "Red",
-    "fixedEffects": [ 7011600, 7341800 ]
+    "fixedEffects": [ 7011600, 7341800 ],
+    "description": "Acquired as a reward for completing Part 3 of the Guardian's Remembrance Quest."
   },
   "12001": {
     "name": "Stone Stake",
     "color": "Red",
-    "fixedEffects": [ 7011000, 7000802 ]
+    "fixedEffects": [ 7011000, 7000802 ],
+    "description": "Acquired as a reward for completing Part 1 of the Guardian's Remembrance Quest."
   },
   "12002": {
     "name": "Witch's Brooch",
     "color": "Blue",
-    "fixedEffects": [ 7012000, 7033400, 7000002 ]
+    "fixedEffects": [ 7012000, 7033400, 7000002 ],
+    "description": "Acquired as a reward for completing Part 4 of the Guardian's Remembrance Quest.\n(Same effects as the Cracked Witch's Brooch)"
   },
   "12003": {
     "name": "Cracked Witch's Brooch",
     "color": "Blue",
-    "fixedEffects": [ 7012000, 7033400, 7000002 ]
+    "fixedEffects": [ 7012000, 7033400, 7000002 ],
+    "description": "Acquired as a reward for completing Part 4 of the Guardian's Remembrance Quest.\n(Same effects as the Witch's Brooch)"
   },
   "12004": {
     "name": "Delicate Luminous Scene",
@@ -522,37 +590,44 @@
   "13001": {
     "name": "Cracked Sealing Wax",
     "color": "Yellow",
-    "fixedEffects": [ 7280000, 7031900 ]
+    "fixedEffects": [ 7280000, 7031900 ],
+    "description": "Acquired as a reward for completing Part 1 of the Ironeye's Remembrance Quest."
   },
   "13002": {
     "name": "Edge of Order",
     "color": "Yellow",
-    "fixedEffects": [ 7034700, 7120300, 7332400 ]
+    "fixedEffects": [ 7034700, 7120300, 7332400 ],
+    "description": "Acquired as a reward for completing Part 2 of the Ironeye's Remembrance Quest."
   },
   "14000": {
     "name": "Golden Dew",
     "color": "Yellow",
-    "fixedEffects": [ 7290000, 7035800 ]
+    "fixedEffects": [ 7290000, 7035800 ],
+    "description": "Acquired as a reward for completing Part 1 of the Duchess' Remembrance Quest."
   },
   "14001": {
     "name": "Crown Medal",
     "color": "Green",
-    "fixedEffects": [ 7010700, 7330000 ]
+    "fixedEffects": [ 7010700, 7330000 ],
+    "description": "Acquired as a reward for completing Part 3 of the Duchess' Remembrance Quest."
   },
   "14002": {
     "name": "Blessed Iron Coin",
     "color": "Green",
-    "fixedEffects": [ 7032700, 7001100, 7000002 ]
+    "fixedEffects": [ 7032700, 7001100, 7000002 ],
+    "description": "Acquired as a reward for completing Part 4 of the Duchess' Remembrance Quest."
   },
   "15000": {
     "name": "Torn Braided Cord",
     "color": "Blue",
-    "fixedEffects": [ 7031300, 7000302 ]
+    "fixedEffects": [ 7031300, 7000302 ],
+    "description": "Acquired as a reward for completing Part 1 of the Raider's Remembrance Quest."
   },
   "15002": {
     "name": "Black Claw Necklace",
     "color": "Yellow",
-    "fixedEffects": [ 7090300, 7090000, 7001002 ]
+    "fixedEffects": [ 7090300, 7090000, 7001002 ],
+    "description": "Acquired as a reward for completing Part 3 of the Raider's Remembrance Quest."
   },
   "16000": {
     "name": "Blade of Night Fragment",
@@ -561,12 +636,14 @@
   "16001": {
     "name": "Small Makeup Brush",
     "color": "Blue",
-    "fixedEffects": [ 7220000, 7110000 ]
+    "fixedEffects": [ 7220000, 7110000 ],
+    "description": "Acquired as a reward for completing Part 1 of the Revenant's Remembrance Quest."
   },
   "16002": {
     "name": "Old Portrait",
     "color": "Blue",
-    "fixedEffects": [ 7011200, 7010900, 7090000 ]
+    "fixedEffects": [ 7011200, 7010900, 7090000 ],
+    "description": "Acquired as a reward for completing Part 3 of the Revenant's Remembrance Quest."
   },
   "16961": {
     "name": "Polished Burning Scene",
@@ -595,12 +672,14 @@
   "17001": {
     "name": "Vestige of Night",
     "color": "Green",
-    "fixedEffects": [ 7032800, 7001502 ]
+    "fixedEffects": [ 7032800, 7001502 ],
+    "description": "Acquired as a reward for completing Part 2 ofthe Recluse's Remembrance Quest."
   },
   "17002": {
     "name": "Bone-Like Stone",
     "color": "Green",
-    "fixedEffects": [ 7034100, 7032900, 7000502 ]
+    "fixedEffects": [ 7034100, 7032900, 7000502 ],
+    "description": "Acquired as a reward for completing Part 3 of the Recluse's Remembrance Quest."
   },
   "17061": {
     "name": "Polished Drizzly Scene",
@@ -685,7 +764,8 @@
   "18000": {
     "name": "Blessed Flowers",
     "color": "Green",
-    "fixedEffects": [ 7034500, 7000402 ]
+    "fixedEffects": [ 7034500, 7000402 ],
+    "description": "Acquired as a reward for completing Part 1 of the Executor's Remembrance Quest."
   },
   "18001": {
     "name": "Golden Shell",
@@ -694,7 +774,8 @@
   "18002": {
     "name": "Golden Sprout",
     "color": "Red",
-    "fixedEffects": [ 7011700, 7036100, 7012200 ]
+    "fixedEffects": [ 7011700, 7036100, 7012200 ],
+    "description": "Acquired as a reward for completing Part 2 of the Executor's Remembrance Quest."
   },
   "18071": {
     "name": "Polished Drizzly Scene",

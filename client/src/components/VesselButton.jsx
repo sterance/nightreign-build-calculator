@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData }) => {
+const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData, showDeepOfNight }) => {
   const isEnabled = !!selectedCharacter;
   const vessels = isEnabled ? vesselData[selectedCharacter] : [];
 
@@ -17,7 +17,7 @@ const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData 
       </div>
 
       <div className="vessel-preview">
-        <div className="vessel-preview-grid">
+        <div className={`vessel-preview-grid ${showDeepOfNight ? 'deep-mode' : ''}`}>
           {(isEnabled ? vessels : Array(8).fill(null)).map((vessel, index) => (
             <div
               key={index}

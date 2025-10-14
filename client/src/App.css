@@ -1,6 +1,7 @@
 /* GLOBAL */
 :root {
   --primary-color: #646cff;
+  --primary-text-color: rgba(255, 255, 255, 0.87);
 }
 
 #root {
@@ -180,8 +181,7 @@ button:hover {
   top: 1rem;
   right: 1rem;
   z-index: 1001;
-  background-color: rgba(26, 26, 26, 0.8);
-  border: 1px solid #555;
+  background-color: transparent;
   border-radius: 50%;
   font-size: 1.5rem;
   color: #ccc;
@@ -194,8 +194,7 @@ button:hover {
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid #555;
+  background: transparent;
   border-radius: 50%;
   font-size: 1.5rem;
   color: #ccc;
@@ -208,8 +207,7 @@ button:hover {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid #555;
+  background: transparent;
   border-radius: 50%;
   font-size: 1.5rem;
   color: #ccc;
@@ -236,8 +234,12 @@ button:hover {
   display: inline-flex;
 }
 
-.character-image-wrapper.selected {
-  border-color: var(--primary-color);
+.character-image-wrapper.selected img {
+  filter: drop-shadow(2px 4px 8px #c9c9c9);
+}
+
+.character-image-wrapper:hover:not(.selected) {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
 .image-grid {
@@ -267,6 +269,12 @@ button:hover {
   grid-template-rows: repeat(2, 1fr);
   gap: 0.3rem;
   padding: 1rem;
+}
+
+.vessel-preview-grid.deep-mode {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  padding: 0.25rem;
 }
 
 .vessel-preview-dot {
@@ -342,19 +350,45 @@ button:hover {
   margin-bottom: auto;
 }
 
+.vessel-grid.deep-mode {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .vessel-grid p {
   margin: 0;
 }
 
 .vessel {
-  border: 1px solid #555;
+  border: 1px solid transparent;
   border-radius: 4px;
   padding: 0.2rem;
   cursor: pointer;
 }
 
-.vessel.selected {
-  border-color: var(--primary-color);
+.vessel.selected .relic-slots img {
+  filter: drop-shadow(2px 4px 8px #919191);
+}
+
+.vessel.selected .vessel-slots-container .relic-slots:last-child img {
+  filter: drop-shadow(rgb(74, 158, 255) 2px 4px 8px);
+}
+
+.vessel:hover .relic-slots {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.vessel:hover .vessel-slots-container {
+  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 90%);
+}
+
+.vessel:hover .vessel-slots-container .relic-slots {
+  background: none;
+}
+
+.vessel-slots-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .relic-slots {
@@ -375,13 +409,14 @@ button:hover {
   left: 0.5rem;
   padding: 0.5rem;
   z-index: 10;
+  font-size: large;
 }
 
 .popout-button {
   position: absolute;
   top: 0.5rem;
   right: 3.25rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
   z-index: 10;
 }
 
@@ -389,7 +424,7 @@ button:hover {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
   z-index: 10;
 }
 
@@ -412,6 +447,10 @@ button:hover {
 /* DESIRED EFFECTS CARD */
 #effects-card {
   grid-area: effects;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  align-self: stretch;
 }
 
 #effects-card .search-container {
@@ -474,6 +513,7 @@ button:hover {
 
 .effects-category li:hover {
   background-color: var(--primary-color);
+  /* color: var(--primary-text-color); */
 }
 
 .effects-category li:last-child {
@@ -481,27 +521,25 @@ button:hover {
 }
 
 .selected-effects-container {
-  margin-top: 0.75rem;
-  height: calc(99.5% - 1rem);
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem;
+  margin-bottom: 60px;
 }
 
 .selected-effects-list {
   height: 100%;
   overflow-y: auto;
   border-radius: 0 0 4px 4px;
-  gap: .25rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .selected-effects-container.reordering .effect-card {
   animation: subtle-pulse 0.3s ease-in-out;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  min-height: 0;
-  max-height: 500px;
 }
 
 .effect-card {
@@ -532,6 +570,7 @@ button:hover {
 
 .subgroup-item.hovered {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .subgroup-header {
@@ -570,6 +609,7 @@ button:hover {
 
 .sub-sub-list li:hover {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .sub-sub-list li:last-child {
@@ -643,6 +683,7 @@ button:hover {
 
 .group-item.hovered {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .arrow {
@@ -665,8 +706,13 @@ button:hover {
   font-size: 0.9em;
 }
 
+.effects-category .sub-list li:hover {
+  color: var(--primary-text-color) !important;
+}
+
 .effects-category>ul>li:not(.group-item, .subgroup-item):hover {
   background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
 }
 
 .effects-category>ul>li.group-item:hover:not(.hovered),
@@ -734,11 +780,16 @@ button:hover {
 }
 
 .bottom-bar-effects {
-  margin-top: auto;
-  padding-top: 0.5rem;
-  border-top: 1px solid #555;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
   display: flex;
   justify-content: center;
+  background-color: transparent;
+  margin: 0 1rem;
+  border-top: 1px solid #555;
 }
 
 .bottom-bar .upload-button-center {
@@ -941,10 +992,15 @@ button:hover {
   color: #4d94ff;
 }
 
+.relic-stats-table td img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
 .info-button {
   display: flex;
-  background: rgba(40, 40, 40, 0.8);
-  border: 1px solid #555;
+  background: transparent;
   border-radius: 50%;
   font-size: 1.5rem;
   color: #ccc;
@@ -984,9 +1040,14 @@ button:hover {
 }
 
 .score-info-icon {
+  display: flex;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #ccc;
   cursor: pointer;
-  margin-top: auto;
-  margin-bottom: auto;
+  line-height: 0;
+  padding: 0.25rem 0.25rem;
   margin-left: 0.5rem;
 }
 
@@ -1132,7 +1193,7 @@ button:hover {
 
 .relic-page {
   width: 80%;
-  max-width: 900px;
+  max-width: 1000px;
   max-height: 80vh;
   overflow-y: auto;
 }
@@ -1142,6 +1203,25 @@ button:hover {
   top: 0;
   background-color: none;
   z-index: 1;
+}
+
+.relic-page .search-container {
+  position: relative;
+  width: 80%;
+  margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.relic-page input {
+  width: 100%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  background-color: #242424;
+  border: 1px solid #555;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1em;
 }
 
 /* RELIC RESULTS PAGE (MAXIMIZED) */
@@ -1307,6 +1387,7 @@ button:hover {
   padding-left: 1.2rem;
   margin: 0;
   font-size: 0.85em;
+  /* list-style-type: none; */
 }
 
 .base-relic-card li,
@@ -1433,6 +1514,14 @@ button:hover {
   min-height: 100px;
   width: 350px;
   box-sizing: border-box;
+}
+
+.base-color-filter-group {
+  background-color: #2a2a2a;
+}
+
+.deep-color-filter-group {
+  background-color: #2d3b4d;
 }
 
 .base-color-filter-group:hover,
@@ -1602,7 +1691,7 @@ button:hover {
   border-radius: 8px;
   border: 1px solid var(--primary-color);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  width: 600px;
+  width: 650px;
   z-index: 1002;
   text-align: center;
 }
