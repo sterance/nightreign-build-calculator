@@ -833,8 +833,8 @@ button:hover {
   flex-grow: 1;
 }
 
-  .base-relic-slots-container,
-  .deep-relic-slots-container {
+.base-relic-slots-container,
+.deep-relic-slots-container {
   position: relative;
   display: flex;
   align-items: center;
@@ -1224,6 +1224,30 @@ button:hover {
   font-size: 1em;
 }
 
+.character-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #555;
+}
+
+.character-tab {
+  padding: 6px 10px;
+  color: #ddd;
+  cursor: pointer;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-color: transparent !important;
+}
+
+.character-tab.active {
+  color: #fff;
+  font-weight: bold;
+  background-color: #2a2a2a;
+}
+
 /* RELIC RESULTS PAGE (MAXIMIZED) */
 .relic-results-page-backdrop {
   position: fixed;
@@ -1435,7 +1459,7 @@ button:hover {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  
+
 }
 
 .corner-info-icon {
@@ -1522,11 +1546,6 @@ button:hover {
 
 .deep-color-filter-group {
   background-color: #2d3b4d;
-}
-
-.base-color-filter-group:hover,
-.deep-color-filter-group:hover {
-  border-color: var(--primary-color);
 }
 
 .base-color-filter-group.enabled,
