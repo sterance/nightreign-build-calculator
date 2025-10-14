@@ -334,6 +334,11 @@ const DesiredEffects = ({
   }
 
   const handleUpdateEffect = (id, updatedEffect) => {
+    if (updatedEffect.isRequired && updatedEffect.isForbidden) {
+      addToast('Effects cannot be both forbidden and required', 'error');
+      return;
+    }
+    
     setSelectedEffects((prev) =>
       prev.map((effect) => (effect.id === id ? updatedEffect : effect))
     );

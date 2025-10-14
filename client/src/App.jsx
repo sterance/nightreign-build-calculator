@@ -443,12 +443,13 @@ function App() {
             onClear={handleClearCharacter}
           />
 
-          <VesselButton
-            selectedCharacter={selectedCharacter}
-            selectedVessels={selectedVessels}
-            onClick={() => setShowVessels(true)}
-            vesselData={vesselData}
-          />
+        <VesselButton
+          selectedCharacter={selectedCharacter}
+          selectedVessels={selectedVessels}
+          onClick={() => setShowVessels(true)}
+          vesselData={vesselData}
+          showDeepOfNight={showDeepOfNight}
+        />
 
           <DesiredEffects
             desiredEffects={desiredEffects}

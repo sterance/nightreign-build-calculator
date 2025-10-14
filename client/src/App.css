@@ -271,6 +271,12 @@ button:hover {
   padding: 1rem;
 }
 
+.vessel-preview-grid.deep-mode {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  padding: 0.25rem;
+}
+
 .vessel-preview-dot {
   width: 12px;
   height: 12px;
@@ -1187,7 +1193,7 @@ button:hover {
 
 .relic-page {
   width: 80%;
-  max-width: 900px;
+  max-width: 1000px;
   max-height: 80vh;
   overflow-y: auto;
 }
