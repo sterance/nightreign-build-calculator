@@ -13,7 +13,7 @@ export default defineConfig({
         type: 'module'
       },
       workbox: {
-        globPatterns: ['**/*.{png,jpg,jpeg,svg,ico}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,jpg,jpeg,svg,webp,woff,woff2}'],
         runtimeCaching: [{
           urlPattern: /^https?:\/\/.*\.(png|jpg|jpeg|svg|ico)$/,
           handler: 'CacheFirst',

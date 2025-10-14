@@ -19,7 +19,7 @@ const ColorFilter = ({ relicColorFilters,
         >
           <input
             type="checkbox"
-            checked={relicColorFilters[color]}
+        checked={Boolean(relicColorFilters[color])}
             onChange={(e) => handleColorClick(e, color)}
             style={{ display: 'none' }}
           />
