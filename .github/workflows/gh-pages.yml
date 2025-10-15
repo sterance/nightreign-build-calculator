@@ -36,6 +36,9 @@ jobs:
           VITE_BASE: "/${{ github.event.repository.name }}/"
         run: npm --prefix client run build
 
+      - name: Add SPA fallback (404.html)
+        run: cp client/dist/index.html client/dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
