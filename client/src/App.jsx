@@ -105,14 +105,17 @@ function App() {
 
           const formattedOwned = formatResults(result.owned);
           const formattedPotential = formatResults(result.potential);
+          // suppress zero-score owned results
+          const filteredOwned = formattedOwned.filter(r => (typeof r.score === 'number') ? r.score > 0 : true);
 
-          setCalculationResult({
-            owned: formattedOwned,
+          const nextValue = {
+            owned: filteredOwned,
             potential: formattedPotential
-          });
+          };
+          setCalculationResult(nextValue);
           // toast when showing potential upgrades
           addToast(
-            `Found ${result.owned.length} relic combo${result.owned.length === 1 ? '' : 's'} from save file.\n` +
+            `Found ${filteredOwned.length} relic combo${filteredOwned.length === 1 ? '' : 's'} from save file.\n` +
             `${result.potential.length} potential upgrade${result.potential.length === 1 ? '' : 's'} available.`,
             'success'
           );
@@ -189,9 +192,18 @@ function App() {
         const parsedData = JSON.parse(storedData);
         if (parsedData && parsedData.length > 0) {
           setHasRelicData(true);
-          // if there's only one character, pre-select it
+          // pre-select default: single entry -> that entry; otherwise choose most-populated if none set
           if (parsedData.length === 1) {
             setSelectedSaveName(parsedData[0].character_name);
+            localStorage.setItem('selectedRelicsCharacter', parsedData[0].character_name);
+          } else if (!selectedSaveName) {
+            const mostRelics = parsedData
+              .map(c => ({ name: c.character_name, count: Array.isArray(c.relics) ? c.relics.length : 0 }))
+              .sort((a, b) => b.count - a.count)[0];
+            if (mostRelics) {
+              setSelectedSaveName(mostRelics.name);
+              localStorage.setItem('selectedRelicsCharacter', mostRelics.name);
+            }
           }
         } else {
           setShowUploadTooltip(true);
@@ -282,10 +294,13 @@ function App() {
         localStorage.setItem('saveData', JSON.stringify(data));
         setHasRelicData(true);
         addToast('Save file uploaded successfully!', 'success');
-        if (data.length === 1) {
-          setSelectedSaveName(data[0].character_name);
-        } else {
-          setSelectedSaveName(null);
+        // default to the character with the most relics upon upload
+        const mostRelicsEntry = data
+          .map(c => ({ name: c.character_name, count: Array.isArray(c.relics) ? c.relics.length : 0 }))
+          .sort((a, b) => b.count - a.count)[0];
+        setSelectedSaveName(mostRelicsEntry ? mostRelicsEntry.name : null);
+        if (mostRelicsEntry && mostRelicsEntry.name) {
+          localStorage.setItem('selectedRelicsCharacter', mostRelicsEntry.name);
         }
       } else {
         addToast('Relic information not found in save file.', 'error');
@@ -338,6 +353,7 @@ function App() {
     }
 
     setIsCalculating(true);
+    setCalculationResult(null);
     
     const effectMapArray = Array.from(effectMap.entries());
 
