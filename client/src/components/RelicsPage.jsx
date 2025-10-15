@@ -293,18 +293,21 @@ const RelicsPage = ({ onBack,
 
   useEffect(() => {
     if (!relicData) return;
-    const firstVisible = visibleSortedCharacters[0]?.character_name || null;
-    const current = selectedCharacterName || null;
+    // sync local selection from prop on initial render/open
+    if (selectedSaveName && selectedSaveName !== selectedCharacterName) {
+      setSelectedCharacterName(selectedSaveName);
+    }
+
+    const current = (selectedSaveName || selectedCharacterName) || null;
     const stillVisible = current ? visibleSortedCharacters.some(c => c.character_name === current) : false;
+    const firstVisible = visibleSortedCharacters[0]?.character_name || null;
     const nextSelection = current && stillVisible ? current : firstVisible;
-    if (nextSelection && nextSelection !== current) {
+    if (nextSelection && nextSelection !== selectedCharacterName) {
       setSelectedCharacterName(nextSelection);
     }
-    // sync app-level selected save name when defaulting or changing selection
-    const target = (selectedCharacterName || firstVisible) || null;
+    const target = (nextSelection || null);
     if (target && onSaveNameSelect) onSaveNameSelect(target);
-    // intentionally depend on lists that affect visibility
-  }, [relicData, showUnknownRelics, showDeepOfNight, characterFilters, searchTerm, selectedCharacterName]);
+  }, [relicData, showUnknownRelics, showDeepOfNight, characterFilters, searchTerm, selectedSaveName, selectedCharacterName]);
 
   const handleBaseRelicColorFilterChange = (color) => {
     if (!selectedCharacterName) return;
@@ -432,7 +435,6 @@ const RelicsPage = ({ onBack,
                   className={`character-tab${selectedCharacterName === c.character_name ? ' active' : ''}`}
                   onClick={() => {
                     setSelectedCharacterName(c.character_name);
-                    // reset this character's filters to all true (no filtering)
                     setCharacterFilters(prev => {
                       const allTrue = (template) => Object.keys(template).reduce((acc, key) => ({ ...acc, [key]: true }), {});
                       return {

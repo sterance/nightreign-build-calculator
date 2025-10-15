@@ -46,6 +46,8 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
   const isMultipleResults = flattenedResults.length > 1;
   const currentResult = flattenedResults[currentIndex];
 
+  React.useEffect(() => {}, [calculationResult]);
+
   const handlePrevious = () => {
     setCurrentIndex(prev => Math.max(0, prev - 1));
   };
