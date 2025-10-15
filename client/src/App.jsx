@@ -15,6 +15,7 @@ import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
 import { shouldUseDarkText, createEffectMap } from './utils/utils';
 import { usePersistentBoolean, usePersistentState } from './utils/hooks';
+import { extractAllRelicsFromSl2 } from './utils/relicExtractor';
 
 const vesselData = nightfarers.reduce((acc, character) => {
   const vesselsKey = `${character}Chalices`;
@@ -274,47 +275,24 @@ function App() {
 
     setIsUploading(true);
     setShowUploadTooltip(false);
-
-    const formData = new FormData();
-    formData.append('savefile', file);
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000);
-
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-      const response = await fetch(`${apiUrl}/upload`, {
-        method: 'POST',
-        body: formData,
-        signal: controller.signal,
-      });
-
-      clearTimeout(timeoutId);
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.length > 0) {
-          localStorage.setItem('saveData', JSON.stringify(data));
-          setHasRelicData(true);
-          addToast('Save file uploaded successfully!', 'success');
-          if (data.length === 1) {
-            setSelectedSaveName(data[0].character_name);
-          } else {
-            setSelectedSaveName(null); // require user to select a character
-          }
+      const arrayBuffer = await file.arrayBuffer();
+      const data = await extractAllRelicsFromSl2(arrayBuffer);
+      if (data && data.length > 0) {
+        localStorage.setItem('saveData', JSON.stringify(data));
+        setHasRelicData(true);
+        addToast('Save file uploaded successfully!', 'success');
+        if (data.length === 1) {
+          setSelectedSaveName(data[0].character_name);
         } else {
-          addToast('Relic information not found in save file.', 'error');
+          setSelectedSaveName(null);
         }
       } else {
-        const errorText = await response.text();
-        throw new Error(errorText || 'Failed to process file');
+        addToast('Relic information not found in save file.', 'error');
       }
     } catch (error) {
-      if (error.name === 'AbortError') {
-        addToast('Save file upload to failed.\nServer is busy', 'error');
-      } else {
-        console.error('Upload failed:', error);
-        addToast('Save file failed to upload.\nUnknown error', 'error');
-      }
+      console.error('local parse failed:', error);
+      addToast('save file failed to parse. unknown error', 'error');
     } finally {
       setIsUploading(false);
     }

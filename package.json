@@ -2,16 +2,11 @@
   "name": "nightreign-build-calculator",
   "version": "1.0.0",
   "description": "Full-stack application for the Nightreign Build Calculator.",
-  "main": "server/server.js",
+  "main": "client/dist/index.html",
   "scripts": {
-    "install-server": "npm install --prefix server",
-    "install-client": "npm install --prefix client",
-    "install": "npm run install-server && npm run install-client",
-    "server": "npm start --prefix server",
-    "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "install": "npm --prefix client install",
+    "dev": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "preview": "npm --prefix client run preview"
   }
 }

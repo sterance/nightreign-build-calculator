@@ -1,6 +1,5 @@
 const express = require('express');
 const multer = require('multer');
-const { spawn } = require('child_process');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
@@ -27,55 +26,30 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-app.post('/upload', upload.single('savefile'), (req, res) => {
+app.post('/upload', upload.single('savefile'), async (req, res) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
   }
 
   const filePath = req.file.path;
-  const pythonProcess = spawn('python3', ['relic_extractor.py', filePath]);
 
-  let saveData = '';
-  let errorData = '';
-
-  const timeout = setTimeout(() => {
-    pythonProcess.kill();
-    fs.unlink(filePath, (err) => {
-      if (err) console.error("Error deleting uploaded file on timeout:", err);
-    });
-    res.status(504).json({ error: 'Processing timed out.' });
-  }, 20000); // 20-second timeout
-
-  pythonProcess.stdout.on('data', (data) => {
-    saveData += data.toString();
-  });
-
-  pythonProcess.stderr.on('data', (data) => {
-    errorData += data.toString();
-  });
-
-  pythonProcess.on('close', (code) => {
-    clearTimeout(timeout);
-    // clean up the uploaded file
+  try {
+    const { extractAllRelicsFromSl2 } = await import('../client/src/utils/relicExtractor.js');
+    const fileBuffer = await fs.promises.readFile(filePath);
+    const relicData = await extractAllRelicsFromSl2(fileBuffer.buffer);
+    
     fs.unlink(filePath, (err) => {
       if (err) console.error("Error deleting uploaded file:", err);
     });
-
-    if (code !== 0) {
-      console.error(`Python script exited with code ${code}`);
-      console.error(errorData);
-      return res.status(500).json({ error: 'Failed to process save file.', details: errorData });
-    }
-
-    try {
-      const jsonData = JSON.parse(saveData);
-      res.json(jsonData);
-    } catch (e) {
-      console.error('Error parsing JSON from python script:', e);
-      console.error('Python script output:', saveData);
-      res.status(500).json({ error: 'Failed to parse relic data.', details: saveData });
-    }
-  });
+    
+    res.json(relicData);
+  } catch (error) {
+    console.error('Error processing save file:', error);
+    fs.unlink(filePath, (err) => {
+      if (err) console.error("Error deleting uploaded file:", err);
+    });
+    res.status(500).json({ error: 'Failed to process save file.', details: error.message });
+  }
 });
 
 if (process.env.NODE_ENV !== 'production') {
