@@ -50,3 +50,4 @@ node_modules/
 *:Zone.Identifier
 /client/src/references
 diary.txt
+/test-files/
