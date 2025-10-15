@@ -36,7 +36,7 @@ const CharacterSelection = ({
             title={capitalize(character)}
           >
             <img
-              src={`/characters/${character}.png`}
+              src={`characters/${character}.png`}
               alt={character}
               height={70}
               width={70}
