@@ -46,7 +46,7 @@ export const getImageUrl = (name, type) => {
     .toLowerCase()
     .replace(/[<>:'"/\\|?*']/g, '')
     .replace(/ /g, '-');
-  return `/${type}/${cleanedName}.png`;
+  return `${type}/${cleanedName}.png`;
 };
 
 export const getRelicDescription = (relicId, relicsData) => {
