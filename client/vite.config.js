@@ -24,16 +24,16 @@ export default defineConfig({
               maxEntries: 200,
               maxAgeSeconds: 60 * 60 * 24 * 30
             }
-          }
-        }]
-      }
-    })
-  ],
-  test: {
-    environment: 'node',
-    globals: true,
-  },
-  worker: {
-    format: 'es',
-  },
+          }]
+        }
+      })
+    ],
+    test: {
+      environment: 'node',
+      globals: true,
+    },
+    worker: {
+      format: 'es',
+    },
+  }
 })
