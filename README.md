@@ -2,7 +2,7 @@
 
 A web application for calculating the optimal relic loadout for your Elden Ring Nightreign characters.
 
-1) Parses `.sl2` files (found in `C:\Users\[username]\AppData\Roaming\Nightreign` on Windows), extracts the relic information, and saves it in the browser's local storage. Parsing happens entirely client-side using Web Crypto and runs offline.
+1) Parses `.sl2` files (found in `C:\Users\[username]\AppData\Roaming\Nightreign\[user-id]` on Windows), extracts the relic information, and saves it in the browser's local storage. Parsing happens entirely client-side using Web Crypto and runs offline.
 2) Users can browse them in the Relics page, or select and customize weights (and set allowed/forbidden and optional/required toggles) for desired effects, then use the Calculate button to find the best combination of available relics.
 3) Includes toggle for displaying/calculating Deep of Night relics and effects, saving lists of desired effects as "Builds", and optional calculation of "guaranteeable" relics (can be bought or earned without RNG)
 
