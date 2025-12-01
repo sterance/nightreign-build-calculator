@@ -2050,7 +2050,9 @@ button:hover {
    PORTRAIT STYLES (< 1300px)
    ======================================== */
 @media (max-width: 1299px) {
-
+  .app-container {
+    height: 100svh !important;
+  }
   /* top controls bar - full width, centered */
   .top-controls-bar {
     position: static;
