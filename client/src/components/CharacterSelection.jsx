@@ -31,7 +31,7 @@ const CharacterSelection = ({
           </div>
         )}
       </div>
-      <div className="image-grid">
+      <div className={`image-grid ${showForsakenHollows ? 'forsaken-mode' : ''}`}>
         {visibleNightfarers.map((character) => (
           <div
             key={character}
@@ -46,6 +46,7 @@ const CharacterSelection = ({
               height={70}
               width={70}
             />
+            <span className="character-name">{capitalize(character)}</span>
           </div>
         ))}
       </div>

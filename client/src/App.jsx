@@ -13,7 +13,7 @@ import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
-import { shouldUseDarkText, createEffectMap } from './utils/utils';
+import { shouldUseDarkText, createEffectMap, capitalize } from './utils/utils';
 import { usePersistentBoolean, usePersistentState } from './utils/hooks';
 import { extractAllRelicsFromSl2 } from './utils/relicExtractor';
 
@@ -55,8 +55,13 @@ function App() {
   const [showForsakenConfirmation, setShowForsakenConfirmation] = useState(false);
   const [pendingForsakenHollows, setPendingForsakenHollows] = useState(false);
   const [isCalculating, setIsCalculating] = useState(false);
+  const [expandedCard, setExpandedCard] = useState(null);
   const fileInputRef = useRef(null);
   const workerRef = useRef(null);
+
+  const toggleCard = (cardName) => {
+    setExpandedCard(prev => prev === cardName ? null : cardName);
+  };
 
   const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
   useEffect(() => {
@@ -75,7 +80,7 @@ function App() {
 
       if (success) {
         const hasNewStructure = result && typeof result === 'object' &&
-                                'owned' in result && 'potential' in result;
+          'owned' in result && 'potential' in result;
 
         if (hasNewStructure && (result.owned.length > 0 || result.potential.length > 0)) {
           const formatResults = (results) => results.map(bestResult => ({
@@ -164,7 +169,7 @@ function App() {
         addToast(`Calculation failed:\n${error}`, 'error');
         setCalculationResult(null);
       }
-      
+
       setIsCalculating(false);
       console.log('Worker calculation and state update finished.');
     };
@@ -255,7 +260,7 @@ function App() {
   }
   const handleCharacterSelect = (character) => {
     setSelectedCharacter(character);
-    // select all by default
+    // select all vessels by default
     selectAllVesselsForCharacter(character);
   };
 
@@ -358,7 +363,7 @@ function App() {
 
     setIsCalculating(true);
     setCalculationResult(null);
-    
+
     const effectMapArray = Array.from(effectMap.entries());
 
     workerRef.current.postMessage({
@@ -395,7 +400,7 @@ function App() {
   const handleDeepOfNightToggle = () => {
     const newValue = !showDeepOfNight;
     const hasData = calculationResult || desiredEffects.length > 0;
-    
+
     if (hasData) {
       setPendingDeepOfNight(newValue);
       setShowDeepConfirmation(true);
@@ -417,7 +422,7 @@ function App() {
   const handleForsakenHollowsToggle = () => {
     const newValue = !showForsakenHollows;
     const hasData = calculationResult || desiredEffects.length > 0;
-    
+
     if (hasData) {
       setPendingForsakenHollows(newValue);
       setShowForsakenConfirmation(true);
@@ -445,7 +450,7 @@ function App() {
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
-      <div className="floating-checkbox-container">
+      <div className="top-controls-bar">
         <div
           className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
           onClick={handleDeepOfNightToggle}
@@ -473,42 +478,94 @@ function App() {
       <div className="content-wrapper">
         <h1>Nightreign Build Calculator</h1>
         <div className="card-container">
-          <CharacterSelection
-            selectedCharacter={selectedCharacter}
-            onCharacterSelect={handleCharacterSelect}
-            onClear={handleClearCharacter}
-            showForsakenHollows={showForsakenHollows}
-          />
+          <div className={`collapsible-card ${expandedCard === 'nightfarer' ? 'expanded' : ''}`}>
+            <div className="collapsible-header" onClick={() => toggleCard('nightfarer')}>
+              <span>Nightfarer</span>
+              <div className="collapsible-header-right">
+                <span id='selected-nightfarer-name'>{selectedCharacter ? capitalize(selectedCharacter) : '(None)'}</span>
+                <span className="collapse-indicator">▼</span>
+              </div>
+            </div>
+            <div className="collapsible-content">
+              <CharacterSelection
+                selectedCharacter={selectedCharacter}
+                onCharacterSelect={handleCharacterSelect}
+                onClear={handleClearCharacter}
+                showForsakenHollows={showForsakenHollows}
+              />
+            </div>
+          </div>
 
-        <VesselButton
-          selectedCharacter={selectedCharacter}
-          selectedVessels={selectedVessels}
-          onClick={() => setShowVessels(true)}
-          vesselData={vesselData}
-          showDeepOfNight={showDeepOfNight}
-        />
+          <div className={`collapsible-card ${expandedCard === 'vessels' ? 'expanded' : ''}`}>
+            <div className="collapsible-header" onClick={() => toggleCard('vessels')}>
+              <span>Vessels</span>
+              <div className="collapsible-header-right">
+                <span id='selected-vessel-count'> {selectedVessels.length === 0 ? '(None)' : selectedVessels.length === 8 ? '(All)' : '(Some)'} </span>
+                <span className="collapse-indicator">▼</span>
+              </div>
+            </div>
+            <div className="collapsible-content">
+              <VesselButton
+                selectedCharacter={selectedCharacter}
+                selectedVessels={selectedVessels}
+                onClick={() => setShowVessels(true)}
+                vesselData={vesselData}
+                showDeepOfNight={showDeepOfNight}
+              />
+              <div className="portrait-vessel-selection">
+                <VesselPage
+                  onBack={() => { }}
+                  selectedCharacter={selectedCharacter}
+                  selectedVessels={selectedVessels}
+                  onVesselToggle={handleVesselToggle}
+                  onSelectAll={handleSelectAllVessels}
+                  onClearAll={handleClearAllVessels}
+                  vesselData={vesselData}
+                  showDeepOfNight={showDeepOfNight}
+                  showForsakenHollows={showForsakenHollows}
+                  isInline={true}
+                />
+              </div>
+            </div>
+          </div>
 
-          <DesiredEffects
-            desiredEffects={desiredEffects}
-            onChange={setDesiredEffects}
-            selectedCharacter={selectedCharacter}
-            selectedVessels={selectedVessels}
-            handleCalculate={handleCalculate}
-            setHasSavedBuilds={setHasSavedBuilds}
-            showDeepOfNight={showDeepOfNight}
-            showForsakenHollows={showForsakenHollows}
-            addToast={addToast}
-            isCalculating={isCalculating}
-          />
+          <div className={`collapsible-card ${expandedCard === 'desired-effects' ? 'expanded' : ''}`}>
+            <div className="collapsible-header" onClick={() => toggleCard('desired-effects')}>
+              <span>Desired Effects</span>
+              <span className="collapse-indicator">▼</span>
+            </div>
+            <div className="collapsible-content">
+              <DesiredEffects
+                desiredEffects={desiredEffects}
+                onChange={setDesiredEffects}
+                selectedCharacter={selectedCharacter}
+                selectedVessels={selectedVessels}
+                handleCalculate={handleCalculate}
+                setHasSavedBuilds={setHasSavedBuilds}
+                showDeepOfNight={showDeepOfNight}
+                showForsakenHollows={showForsakenHollows}
+                addToast={addToast}
+                isCalculating={isCalculating}
+              />
+            </div>
+          </div>
 
-          <RelicResults
-            selectedVessels={selectedVessels}
-            calculationResult={calculationResult}
-            showDeepOfNight={showDeepOfNight}
-            showForsakenHollows={showForsakenHollows}
-            showScoreInfoToggle={showScoreInfoToggle}
-            openPopoutInNewTab={openPopoutInNewTab}
-          />
+          <div className={`collapsible-card ${expandedCard === 'relics' ? 'expanded' : ''}`}>
+            <div className="collapsible-header" onClick={() => toggleCard('relics')}>
+              <span>Recommended Relics</span>
+              <span className="collapse-indicator">▼</span>
+            </div>
+            <div className="collapsible-content">
+              <RelicResults
+                selectedVessels={selectedVessels}
+                calculationResult={calculationResult}
+                showDeepOfNight={showDeepOfNight}
+                showForsakenHollows={showForsakenHollows}
+                showScoreInfoToggle={showScoreInfoToggle}
+                openPopoutInNewTab={openPopoutInNewTab}
+              />
+            </div>
+          </div>
         </div>
       </div>
 
