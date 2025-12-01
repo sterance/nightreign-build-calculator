@@ -361,6 +361,7 @@ function App() {
       }
     }
 
+    setExpandedCard('relics');
     setIsCalculating(true);
     setCalculationResult(null);
 
@@ -447,6 +448,9 @@ function App() {
     setPendingForsakenHollows(false);
   };
 
+  const isVesselsEnabled = !!selectedCharacter;
+  const hasRelicResults = !!calculationResult;
+
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
@@ -496,8 +500,8 @@ function App() {
             </div>
           </div>
 
-          <div className={`collapsible-card ${expandedCard === 'vessels' ? 'expanded' : ''}`}>
-            <div className="collapsible-header" onClick={() => toggleCard('vessels')}>
+          <div className={`collapsible-card ${expandedCard === 'vessels' ? 'expanded' : ''} ${!isVesselsEnabled ? 'disabled' : ''}`}>
+            <div className="collapsible-header" onClick={() => isVesselsEnabled && toggleCard('vessels')}>
               <span>Vessels</span>
               <div className="collapsible-header-right">
                 <span id='selected-vessel-count'> {selectedVessels.length === 0 ? '(None)' : selectedVessels.length === 8 ? '(All)' : '(Some)'} </span>
@@ -550,8 +554,8 @@ function App() {
             </div>
           </div>
 
-          <div className={`collapsible-card ${expandedCard === 'relics' ? 'expanded' : ''}`}>
-            <div className="collapsible-header" onClick={() => toggleCard('relics')}>
+          <div className={`collapsible-card ${expandedCard === 'relics' ? 'expanded' : ''} ${!hasRelicResults ? 'disabled' : ''}`}>
+            <div className="collapsible-header" onClick={() => hasRelicResults && toggleCard('relics')}>
               <span>Recommended Relics</span>
               <span className="collapse-indicator">▼</span>
             </div>

@@ -92,15 +92,7 @@ h1 {
 }
 
 .button-group-portrait {
-  display: flex;
-  position: static;
-  justify-content: center;
-  margin-top: 0.25rem;
-}
-
-.button-group-portrait.no-selection {
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .icon-button {
@@ -2122,6 +2114,14 @@ button:hover {
     overflow: hidden;
   }
 
+  .collapsible-card.disabled {
+    opacity: 0.5;
+  }
+
+  .collapsible-card.disabled .collapsible-header {
+    cursor: default;
+  }
+
   .collapsible-header {
     display: flex;
     justify-content: space-between;
@@ -2178,6 +2178,7 @@ button:hover {
   .portrait-vessel-selection .vessel-page.inline-mode {
     border: none;
     background: transparent;
+    box-sizing: border-box;
   }
 
   .portrait-vessel-selection .vessel-card-header {
@@ -2222,6 +2223,7 @@ button:hover {
 
   #character-card .card-header {
     justify-content: center;
+    margin: 0;
   }
 
   #character-card .card-header h2 {
@@ -2229,7 +2231,7 @@ button:hover {
   }
 
   #character-card .button-group {
-    position: static;
+    display: none;
   }
 
   /* character grid - 4 columns normal, 5 columns forsaken */
@@ -2280,6 +2282,18 @@ button:hover {
     filter: none;
   }
 
+  /* nightfarer clear selection button - use opacity to maintain layout */
+  .button-group-portrait {
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  .button-group-portrait.no-selection {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   /* desired effects card adjustments */
   #effects-card {
     border: none;
@@ -2311,6 +2325,23 @@ button:hover {
   .relic-result-container {
     overflow-y: auto;
     max-height: calc(100svh - 220px);
+  }
+
+  /* relic result cards: allow wrapping, keep natural widths */
+  .relic-result-card {
+    flex-wrap: wrap;
+  }
+
+  /* image and info button use natural width */
+  .relic-result-card img,
+  .relic-result-card .info-button-container {
+    flex: 0 0 auto;
+  }
+
+  /* name and stats table take remaining space in their rows */
+  .relic-result-card > span,
+  .relic-result-card .relic-stats-table {
+    flex: 1 1 auto;
   }
 
   /* bottom bar - condensed, icons only */

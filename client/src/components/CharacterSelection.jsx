@@ -31,6 +31,16 @@ const CharacterSelection = ({
           </div>
         )}
       </div>
+      <div className={`button-group-portrait ${!selectedCharacter ? 'no-selection' : ''}`}>
+        <button
+          className="card-button icon-button"
+          onClick={onClear}
+          title='Clear Selection'
+        >
+          <ClearSelectionIcon />
+          &nbsp;Clear Selection
+        </button>
+      </div>
       <div className={`image-grid ${showForsakenHollows ? 'forsaken-mode' : ''}`}>
         {visibleNightfarers.map((character) => (
           <div
