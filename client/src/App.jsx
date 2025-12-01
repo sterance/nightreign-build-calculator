@@ -476,6 +476,7 @@ function App() {
 
 
       <div className="content-wrapper">
+        <div className="mobile-top-spacer"></div>
         <h1>Nightreign Build Calculator</h1>
         <div className="card-container">
           <div className={`collapsible-card ${expandedCard === 'nightfarer' ? 'expanded' : ''}`}>
@@ -566,6 +567,7 @@ function App() {
               />
             </div>
           </div>
+          <div className="bottom-bar-spacer"></div>
         </div>
       </div>
 
@@ -615,8 +617,7 @@ function App() {
         onBack={() => setShowSavedBuilds(false)}
         onLoadBuild={handleLoadBuild}
       />}
-
-
+      
       <div className="bottom-bar">
 
         <button

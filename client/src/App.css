@@ -811,6 +811,10 @@ button:hover {
   left: 2rem;
 }
 
+.bottom-bar-spacer {
+  display: none;
+}
+
 /* VESSEL RESULTS */
 .vessel-result-card {
   font-size: x-large;
@@ -2015,7 +2019,7 @@ button:hover {
 
 .character-name {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-align: center;
   color: #ccc;
   white-space: nowrap;
@@ -2054,10 +2058,8 @@ button:hover {
     padding: 0.5rem 0;
     background-color: #1a1a1a;
     border-bottom: 1px solid #555;
-    margin-bottom: 0.5rem;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
+    margin: 0 0 0.5rem 0;
+    width: 100%;
   }
 
   .floating-checkbox {
@@ -2292,6 +2294,10 @@ button:hover {
   .bottom-bar {
     max-width: 100%;
     padding: 0.5rem;
+  }
+  .bottom-bar-spacer {
+    display: block;
+    height: 56px;
   }
 
   .bottom-bar button {
