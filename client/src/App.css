@@ -91,6 +91,18 @@ h1 {
   gap: 0.1rem;
 }
 
+.button-group-portrait {
+  display: flex;
+  position: static;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.button-group-portrait.no-selection {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .icon-button {
   display: flex;
   align-items: center;
@@ -2053,6 +2065,7 @@ button:hover {
   .app-container {
     height: 100svh !important;
   }
+
   /* top controls bar - full width, centered */
   .top-controls-bar {
     position: static;
@@ -2061,7 +2074,9 @@ button:hover {
     background-color: #1a1a1a;
     border-bottom: 1px solid #555;
     margin: 0 0 0.5rem 0;
-    width: 100%;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
   }
 
   .floating-checkbox {
@@ -2070,7 +2085,7 @@ button:hover {
 
   /* smaller title */
   h1 {
-    font-size: 1.5rem;
+    font-size: 2rem;
     margin: 0.25rem 0;
   }
 
@@ -2183,6 +2198,12 @@ button:hover {
     grid-template-columns: 1fr;
   }
 
+  /* vessel relic slot images - smaller in portrait */
+  .portrait-vessel-selection .relic-slots img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
   /* remove hover effects on vessels */
   .portrait-vessel-selection .vessel:hover .relic-slots img {
     filter: none;
@@ -2263,7 +2284,7 @@ button:hover {
   #effects-card {
     border: none;
     background: transparent;
-    height: calc(100vh - 120px);
+    height: calc(100svh - 120px);
     min-height: 400px;
   }
 
@@ -2283,13 +2304,13 @@ button:hover {
   #relics-card {
     border: none;
     background: transparent;
-    height: calc(100vh - 120px);
+    height: calc(100svh - 120px);
     min-height: 400px;
   }
 
   .relic-result-container {
     overflow-y: auto;
-    max-height: calc(100vh - 220px);
+    max-height: calc(100svh - 220px);
   }
 
   /* bottom bar - condensed, icons only */
@@ -2297,6 +2318,7 @@ button:hover {
     max-width: 100%;
     padding: 0.5rem;
   }
+
   .bottom-bar-spacer {
     display: block;
     height: 56px;
