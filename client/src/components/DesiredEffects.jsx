@@ -14,6 +14,7 @@ const DesiredEffects = ({
   handleCalculate,
   setHasSavedBuilds,
   showDeepOfNight,
+  showForsakenHollows,
   addToast,
   isCalculating }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -241,8 +242,8 @@ const DesiredEffects = ({
           if (b.toLowerCase() === selectedCharacter) return 1;
         }
         // Always maintain the defined character order
-        const aIndex = nightfarers.indexOf(a.toLowerCase());
-        const bIndex = nightfarers.indexOf(b.toLowerCase());
+        const aIndex = nightfarers.nightfarers.indexOf(a.toLowerCase());
+        const bIndex = nightfarers.nightfarers.indexOf(b.toLowerCase());
         if (aIndex !== -1 && bIndex !== -1) {
           return aIndex - bIndex;
         }
@@ -265,7 +266,9 @@ const DesiredEffects = ({
       const matchesSearch = effect.name.toLowerCase().includes(searchTerm.toLowerCase());
       const isDeepEffect = effect.deep === true;
       const shouldShowDeep = showDeepOfNight || !isDeepEffect;
-      return matchesSearch && shouldShowDeep;
+      const isForsakenEffect = effect.forsaken === true;
+      const shouldShowForsaken = showForsakenHollows || !isForsakenEffect;
+      return matchesSearch && shouldShowDeep && shouldShowForsaken;
     })
   );
 
@@ -416,7 +419,7 @@ const DesiredEffects = ({
                     <ul>
                       {data.singles.map((effect) => (
                         <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                          {formatEffectName(effect, nightfarers)}
+                          {formatEffectName(effect, nightfarers.nightfarers)}
                         </li>
                       ))}
                       {Object.entries(data.groups).map(([groupName, groupData]) => (
@@ -464,7 +467,7 @@ const DesiredEffects = ({
                                   {groupData.singles && groupData.singles.length > 0 && (
                                     groupData.singles.map(effect => (
                                       <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                        {formatEffectName(effect, nightfarers)}
+                                        {formatEffectName(effect, nightfarers.nightfarers)}
                                       </li>
                                     ))
                                   )}
@@ -495,7 +498,7 @@ const DesiredEffects = ({
                                         <ul className="sub-sub-list">
                                           {subGroupEffects.map(effect => (
                                             <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                              {formatEffectName(effect, nightfarers)}
+                                              {formatEffectName(effect, nightfarers.nightfarers)}
                                             </li>
                                           ))}
                                         </ul>
@@ -507,7 +510,7 @@ const DesiredEffects = ({
                                 // render simple groups
                                 groupData.effects.map(effect => (
                                   <li key={effect.name} onClick={() => handleSelectEffect(effect)}>
-                                    {formatEffectName(effect, nightfarers)}
+                                    {formatEffectName(effect, nightfarers.nightfarers)}
                                   </li>
                                 ))
                               )}

@@ -7,7 +7,12 @@ const CharacterSelection = ({
   selectedCharacter,
   onCharacterSelect,
   onClear,
+  showForsakenHollows,
 }) => {
+  const visibleNightfarers = nightfarers.nightfarers.filter(character => {
+    const isForsaken = nightfarers.forsakenNightfarers.includes(character);
+    return showForsakenHollows || !isForsaken;
+  });
 
   return (
     <div id="character-card" className="card">
@@ -27,7 +32,7 @@ const CharacterSelection = ({
         )}
       </div>
       <div className="image-grid">
-        {nightfarers.map((character) => (
+        {visibleNightfarers.map((character) => (
           <div
             key={character}
             className={`character-image-wrapper ${selectedCharacter === character ? 'selected' : ''

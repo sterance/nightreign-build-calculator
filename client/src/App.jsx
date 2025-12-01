@@ -17,9 +17,10 @@ import { shouldUseDarkText, createEffectMap } from './utils/utils';
 import { usePersistentBoolean, usePersistentState } from './utils/hooks';
 import { extractAllRelicsFromSl2 } from './utils/relicExtractor';
 
-const vesselData = nightfarers.reduce((acc, character) => {
+const vesselData = nightfarers.nightfarers.reduce((acc, character) => {
   const vesselsKey = `${character}Chalices`;
-  acc[character] = [...vesselsRaw[vesselsKey], ...vesselsRaw.genericChalices];
+  const characterVessels = vesselsRaw[vesselsKey] || [];
+  acc[character] = [...characterVessels, ...vesselsRaw.genericChalices];
   return acc;
 }, {});
 
@@ -38,6 +39,7 @@ function App() {
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = usePersistentBoolean('showDeepOfNight', false);
+  const [showForsakenHollows, setShowForsakenHollows] = usePersistentBoolean('showForsakenHollows', false);
   const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
   const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
   const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
@@ -50,6 +52,8 @@ function App() {
   const [effectMap, setEffectMap] = useState(new Map());
   const [showDeepConfirmation, setShowDeepConfirmation] = useState(false);
   const [pendingDeepOfNight, setPendingDeepOfNight] = useState(false);
+  const [showForsakenConfirmation, setShowForsakenConfirmation] = useState(false);
+  const [pendingForsakenHollows, setPendingForsakenHollows] = useState(false);
   const [isCalculating, setIsCalculating] = useState(false);
   const fileInputRef = useRef(null);
   const workerRef = useRef(null);
@@ -177,12 +181,12 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const newEffectMap = createEffectMap(showDeepOfNight, effects);
-    // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'Size:', newEffectMap.size);
+    const newEffectMap = createEffectMap(showDeepOfNight, showForsakenHollows, effects);
+    // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'showForsakenHollows:', showForsakenHollows, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
     setDesiredEffects([]);
-  }, [showDeepOfNight]);
+  }, [showDeepOfNight, showForsakenHollows]);
 
   useEffect(() => {
     // check for existing relic data on initial load
@@ -364,6 +368,7 @@ function App() {
       selectedNightfarer: selectedCharacter,
       effectMap: effectMapArray,
       showDeepOfNight,
+      showForsakenHollows,
       vesselData,
       calculateGuaranteeable: calculateGuaranteeableRelics,
     });
@@ -409,14 +414,51 @@ function App() {
     setPendingDeepOfNight(false);
   };
 
+  const handleForsakenHollowsToggle = () => {
+    const newValue = !showForsakenHollows;
+    const hasData = calculationResult || desiredEffects.length > 0;
+    
+    if (hasData) {
+      setPendingForsakenHollows(newValue);
+      setShowForsakenConfirmation(true);
+    } else {
+      setShowForsakenHollows(newValue);
+      if (!newValue && nightfarers.forsakenNightfarers.includes(selectedCharacter)) {
+        handleClearCharacter();
+      }
+    }
+  };
+
+  const confirmForsakenHollowsToggle = () => {
+    setShowForsakenHollows(pendingForsakenHollows);
+    setShowForsakenConfirmation(false);
+    if (!pendingForsakenHollows && nightfarers.forsakenNightfarers.includes(selectedCharacter)) {
+      handleClearCharacter();
+    }
+  };
+
+  const cancelForsakenHollowsToggle = () => {
+    setShowForsakenConfirmation(false);
+    setPendingForsakenHollows(false);
+  };
+
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
-      <div
-        className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
-        onClick={handleDeepOfNightToggle}
-      >
-        Deep of Night
+      <div className="floating-checkbox-container">
+        <div
+          className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
+          onClick={handleDeepOfNightToggle}
+        >
+          Deep of Night
+        </div>
+
+        <div
+          className={showForsakenHollows ? 'floating-checkbox checked' : 'floating-checkbox'}
+          onClick={handleForsakenHollowsToggle}
+        >
+          Forsaken Hollows
+        </div>
       </div>
 
       <button
@@ -435,6 +477,7 @@ function App() {
             selectedCharacter={selectedCharacter}
             onCharacterSelect={handleCharacterSelect}
             onClear={handleClearCharacter}
+            showForsakenHollows={showForsakenHollows}
           />
 
         <VesselButton
@@ -453,6 +496,7 @@ function App() {
             handleCalculate={handleCalculate}
             setHasSavedBuilds={setHasSavedBuilds}
             showDeepOfNight={showDeepOfNight}
+            showForsakenHollows={showForsakenHollows}
             addToast={addToast}
             isCalculating={isCalculating}
           />
@@ -461,6 +505,7 @@ function App() {
             selectedVessels={selectedVessels}
             calculationResult={calculationResult}
             showDeepOfNight={showDeepOfNight}
+            showForsakenHollows={showForsakenHollows}
             showScoreInfoToggle={showScoreInfoToggle}
             openPopoutInNewTab={openPopoutInNewTab}
           />
@@ -476,6 +521,7 @@ function App() {
         onClearAll={handleClearAllVessels}
         vesselData={vesselData}
         showDeepOfNight={showDeepOfNight}
+        showForsakenHollows={showForsakenHollows}
       />}
 
       {showRelics && <RelicsPage
@@ -483,6 +529,7 @@ function App() {
         selectedSaveName={selectedSaveName}
         onSaveNameSelect={setSelectedSaveName}
         showDeepOfNight={showDeepOfNight}
+        showForsakenHollows={showForsakenHollows}
         showUnknownRelics={showUnknownRelics}
         showRelicIdToggle={showRelicIdToggle}
         baseRelicColorFilters={baseRelicColorFilters}
@@ -579,6 +626,24 @@ function App() {
                 Continue
               </button>
               <button className="cancel-button" onClick={cancelDeepOfNightToggle}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showForsakenConfirmation && (
+        <div className="confirmation-backdrop">
+          <div className="confirmation-dialog">
+            <p>
+              Changing the Forsaken Hollows setting will clear your current desired effects and calculation results.
+            </p>
+            <div className="confirmation-buttons">
+              <button className="confirm-button" onClick={confirmForsakenHollowsToggle}>
+                Continue
+              </button>
+              <button className="cancel-button" onClick={cancelForsakenHollowsToggle}>
                 Cancel
               </button>
             </div>

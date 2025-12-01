@@ -1,1 +1,4 @@
-["wylder", "guardian", "ironeye", "duchess", "raider", "revenant", "recluse", "executor"]
+{
+  "nightfarers": ["wylder", "guardian", "ironeye", "duchess", "raider", "revenant", "recluse", "executor", "scholar", "undertaker"],
+  "forsakenNightfarers": ["scholar", "undertaker"]
+}

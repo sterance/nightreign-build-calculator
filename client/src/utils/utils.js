@@ -56,11 +56,15 @@ export const getRelicDescription = (relicId, relicsData) => {
 };
 
 // effect/relic data processing
-export const createEffectMap = (showDeepOfNight, effects) => {
+export const createEffectMap = (showDeepOfNight, showForsakenHollows, effects) => {
   const effectMap = new Map();
   effects.forEach(effect => {
     // filter out deep effects if showDeepOfNight is false
     if (effect.deep === true && !showDeepOfNight) {
+      return;
+    }
+    // filter out forsaken effects if showForsakenHollows is false
+    if (effect.forsaken === true && !showForsakenHollows) {
       return;
     }
     effect.ids.forEach(id => {

@@ -40,7 +40,7 @@ h1 {
   flex-grow: 1;
   gap: 1rem;
   margin-top: 1rem;
-  grid-template-columns: 1.25fr auto 1fr;
+  grid-template-columns: 1.3fr auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'character vessel effects'
@@ -154,12 +154,19 @@ button:hover {
   animation: spin 1s linear infinite;
 }
 
-.floating-checkbox {
+.floating-checkbox-container {
   position: absolute;
   top: 1rem;
   left: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+
+.floating-checkbox {
   background-color: rgba(26, 26, 26, 0.8);
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
   border-radius: 8px;
   border: 1px solid #555;
   opacity: 0.7;
@@ -239,14 +246,14 @@ button:hover {
 }
 
 .character-image-wrapper:hover:not(.selected) {
-  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
+  filter: drop-shadow(2px 4px 8px var(--primary-color));
 }
 
 .image-grid {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 1rem;
+  margin: 0;
 }
 
 /* VESSEL BUTTON */
@@ -286,6 +293,11 @@ button:hover {
 
 #vessel-card:not(.disabled):hover {
   border-color: var(--primary-color);
+}
+
+#vessel-card-header {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
 
 /* VESSEL PAGE */
@@ -366,23 +378,11 @@ button:hover {
 }
 
 .vessel.selected .relic-slots img {
-  filter: drop-shadow(2px 4px 8px #919191);
+  filter: drop-shadow(2px 4px 8px #c9c9c9);
 }
 
-.vessel.selected .vessel-slots-container .relic-slots:last-child img {
-  filter: drop-shadow(rgb(74, 158, 255) 2px 4px 8px);
-}
-
-.vessel:hover .relic-slots {
-  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
-}
-
-.vessel:hover .vessel-slots-container {
-  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 90%);
-}
-
-.vessel:hover .vessel-slots-container .relic-slots {
-  background: none;
+.vessel:hover .relic-slots img {
+  filter: drop-shadow(2px 4px 8px var(--primary-color));
 }
 
 .vessel-slots-container {
@@ -650,6 +650,7 @@ button:hover {
 
 .weight-control input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
   /* spinner suppression for firefox */
 }
 
@@ -1322,6 +1323,13 @@ button:hover {
 
 .vessel-result-card-maximized .deep-relic-slots-container {
   filter: drop-shadow(2px 4px 8px #4a9eff);
+}
+
+.vessel-result-card-maximized .relic-slots-container,
+.vessel-result-card-maximized .relic-slots-container-maximized {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .relic-results-maximized-grid {

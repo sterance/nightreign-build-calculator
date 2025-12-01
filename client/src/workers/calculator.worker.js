@@ -11,6 +11,7 @@ self.onmessage = async (event) => {
     selectedNightfarer,
     effectMap,
     showDeepOfNight,
+    showForsakenHollows,
     vesselData,
     calculateGuaranteeable,
   } = event.data;
@@ -30,6 +31,7 @@ self.onmessage = async (event) => {
         selectedNightfarer,
         effectMapInstance,
         showDeepOfNight,
+        showForsakenHollows,
         vesselData
       );
     } else {
@@ -41,6 +43,7 @@ self.onmessage = async (event) => {
         selectedNightfarer,
         effectMapInstance,
         showDeepOfNight,
+        showForsakenHollows,
         vesselData
       );
     }

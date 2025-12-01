@@ -80,6 +80,7 @@ const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
 const CharacterRelics = ({ characterData,
   items,
   showDeepOfNight,
+  showForsakenHollows,
   showUnknownRelics,
   showRelicIdToggle,
   baseRelicColorFilters,
@@ -95,6 +96,10 @@ const CharacterRelics = ({ characterData,
     }
     // toggle "Deep" relics based on checkbox
     if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) {
+      return false;
+    }
+    // toggle forsaken relics based on checkbox
+    if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) {
       return false;
     }
     // filter by relic color - use appropriate filter based on relic type
@@ -153,6 +158,7 @@ const RelicsPage = ({ onBack,
   selectedSaveName,
   onSaveNameSelect,
   showDeepOfNight,
+  showForsakenHollows,
   showUnknownRelics,
   showRelicIdToggle,
   baseRelicColorFilters,
@@ -167,8 +173,8 @@ const RelicsPage = ({ onBack,
   const [characterFilters, setCharacterFilters] = useState({});
 
   useEffect(() => {
-    setEffectMap(createEffectMap(showDeepOfNight, effects));
-  }, [showDeepOfNight]);
+    setEffectMap(createEffectMap(showDeepOfNight, showForsakenHollows, effects));
+  }, [showDeepOfNight, showForsakenHollows]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -252,6 +258,7 @@ const RelicsPage = ({ onBack,
       const relicInfo = items[relic.item_id.toString()];
       if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
       if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
+      if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) return false;
       if (relicInfo && relicInfo.color) {
         const color = relicInfo.color.toLowerCase();
         const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
@@ -365,6 +372,7 @@ const RelicsPage = ({ onBack,
           
           if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return;
           if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return;
+          if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) return;
           
           // check search filter
           if (searchTerm) {
@@ -470,6 +478,7 @@ const RelicsPage = ({ onBack,
       const relicInfo = items[relic.item_id.toString()];
       if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
       if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
+      if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) return false;
       if (relicInfo && relicInfo.color) {
         const color = relicInfo.color.toLowerCase();
         const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
@@ -513,6 +522,7 @@ const RelicsPage = ({ onBack,
           characterData={selectedCharacter}
           items={items}
           showDeepOfNight={showDeepOfNight}
+          showForsakenHollows={showForsakenHollows}
           showUnknownRelics={showUnknownRelics}
           showRelicIdToggle={showRelicIdToggle}
           baseRelicColorFilters={getCharacterFilters(selectedCharacter.character_name).base}

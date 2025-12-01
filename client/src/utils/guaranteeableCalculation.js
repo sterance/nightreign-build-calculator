@@ -5,9 +5,10 @@ import items from '../data/relics.json';
  * extract all guaranteeable relics from relics.json
  * guaranteeable relics are identified by having a 'fixedEffects' field
  * @param {boolean} showDeepOfNight - whether to include deep relics
+ * @param {boolean} showForsakenHollows - whether to include forsaken relics
  * @returns {Array} array of { itemId, name, color, fixedEffects }
  */
-export function getGuaranteeableRelicDefinitions(showDeepOfNight = false) {
+export function getGuaranteeableRelicDefinitions(showDeepOfNight = false, showForsakenHollows = false) {
   const guaranteeableRelics = [];
 
   for (const [itemId, itemData] of Object.entries(items)) {
@@ -18,6 +19,12 @@ export function getGuaranteeableRelicDefinitions(showDeepOfNight = false) {
     const isDeepRelic = itemData.name?.startsWith('Deep');
     
     if (isDeepRelic && !showDeepOfNight) {
+      continue;
+    }
+
+    const isForsakenRelic = itemData.forsaken === true;
+    
+    if (isForsakenRelic && !showForsakenHollows) {
       continue;
     }
 
@@ -52,10 +59,11 @@ export function hasRelicInSaveFile(saveFileRelics, itemId) {
  * find which guaranteeable relics are missing from save file
  * @param {Array} saveFileRelics - array of relics from characterRelicData.relics
  * @param {boolean} showDeepOfNight - whether to include deep relics
+ * @param {boolean} showForsakenHollows - whether to include forsaken relics
  * @returns {Array} array of missing guaranteeable relic definitions
  */
-export function getMissingGuaranteeableRelics(saveFileRelics, showDeepOfNight = false) {
-  const allGuaranteeable = getGuaranteeableRelicDefinitions(showDeepOfNight);
+export function getMissingGuaranteeableRelics(saveFileRelics, showDeepOfNight = false, showForsakenHollows = false) {
+  const allGuaranteeable = getGuaranteeableRelicDefinitions(showDeepOfNight, showForsakenHollows);
   const missingRelics = allGuaranteeable.filter(
     guaranteeableRelic => !hasRelicInSaveFile(saveFileRelics, guaranteeableRelic.itemId)
   );
@@ -147,6 +155,7 @@ export function calculateWithGuaranteeableRelics(
   selectedNightfarer,
   effectMap,
   showDeepOfNight = false,
+  showForsakenHollows = false,
   vesselData
 ) {
   // pass 1: calculate with save file relics only
@@ -157,13 +166,15 @@ export function calculateWithGuaranteeableRelics(
     selectedNightfarer,
     effectMap,
     showDeepOfNight,
+    showForsakenHollows,
     vesselData
   );
 
   // check for missing guaranteeable relics
   const missingGuaranteeableRelics = getMissingGuaranteeableRelics(
     characterRelicData.relics || [],
-    showDeepOfNight
+    showDeepOfNight,
+    showForsakenHollows
   );
 
   // if no missing guaranteeables, return owned results in original format
@@ -206,6 +217,7 @@ export function calculateWithGuaranteeableRelics(
     selectedNightfarer,
     effectMap,
     showDeepOfNight,
+    showForsakenHollows,
     vesselData
   );
 

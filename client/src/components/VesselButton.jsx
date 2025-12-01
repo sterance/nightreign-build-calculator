@@ -13,7 +13,7 @@ const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData,
       title={isEnabled ? 'Select vessels' : 'Select a Nightfarer to enable vessel selection'}
     >
       <div className="card-header">
-        <h2>Vessels</h2>
+        <h2 id='vessel-card-header'>Vessels</h2>
       </div>
 
       <div className="vessel-preview">

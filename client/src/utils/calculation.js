@@ -9,6 +9,7 @@ import baseRelicEffects from '../data/effects.json';
  * @param {string} selectedNightfarer - The name of the selected Nightfarer (e.g., 'wylder').
  * @param {Map} effectMap - Map of effect IDs to effect names.
  * @param {boolean} showDeepOfNight - Whether to calculate deep relics as well.
+ * @param {boolean} showForsakenHollows - Whether to calculate forsaken relics as well.
  * @param {Object} vesselData - Map of character names to their available vessels.
  * @returns {Array|null} - Array of best relic combinations with max score, or null if none could be determined.
  */
@@ -18,6 +19,7 @@ export function calculateBestRelics(desiredEffects,
   selectedNightfarer,
   effectMap,
   showDeepOfNight = false,
+  showForsakenHollows = false,
   vesselData) {
     
   console.log("--- Starting Relic Calculation ---");
@@ -39,6 +41,10 @@ export function calculateBestRelics(desiredEffects,
   const processedBaseRelics = characterRelicData.relics.map(relic => {
     const relicInfo = items[relic.item_id?.toString()];
     if (!relicInfo || relicInfo.name?.startsWith('Deep')) {
+      return null;
+    }
+    // filter out forsaken relics if showForsakenHollows is false
+    if (!showForsakenHollows && relicInfo.forsaken === true) {
       return null;
     }
 
@@ -72,6 +78,10 @@ export function calculateBestRelics(desiredEffects,
     processedDeepRelics = characterRelicData.relics.map(relic => {
       const relicInfo = items[relic.item_id?.toString()];
       if (!relicInfo || !relicInfo.name?.startsWith('Deep')) {
+        return null;
+      }
+      // filter out forsaken relics if showForsakenHollows is false
+      if (!showForsakenHollows && relicInfo.forsaken === true) {
         return null;
       }
 
