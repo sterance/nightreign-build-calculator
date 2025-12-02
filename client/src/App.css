@@ -833,7 +833,7 @@ button:hover {
 }
 
 .vessel-result-card.deep-mode {
-  grid-template-columns: 100px 25% 1fr 50px;
+  grid-template-columns: 100px 25% 1fr 29px;
 }
 
 .vessel-result-card .relic-slots-container {
@@ -862,16 +862,18 @@ button:hover {
   cursor: pointer;
 }
 
-.vessel-result-card .base-relic-slots-container:hover,
-.vessel-result-card .deep-relic-slots-container:hover {
+/* ,
+ {
   background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
-}
+} */
 
-.base-relic-slots-container.active img {
+.base-relic-slots-container.active img,
+.vessel-result-card .base-relic-slots-container:hover {
   filter: drop-shadow(2px 4px 8px #919191);
 }
 
-.deep-relic-slots-container.active img {
+.deep-relic-slots-container.active img,
+.vessel-result-card .deep-relic-slots-container:hover {
   filter: drop-shadow(2px 4px 8px #4a9eff);
 }
 
