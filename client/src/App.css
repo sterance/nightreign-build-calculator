@@ -2343,6 +2343,13 @@ button:hover {
     flex: 0 0 100%;
   }
 
+  .relic-result-card .info-button-container {
+    display: none;
+  }
+  .vessel-result-card .info-button-container {
+    display: none;
+  }
+
   /* vessel result card: 2-row flex layout, center top row */
   .vessel-result-card {
     display: flex;
