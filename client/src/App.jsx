@@ -191,6 +191,7 @@ function App() {
     const newEffectMap = createEffectMap(showDeepOfNight, showForsakenHollows, effects);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
+    setExpandedCard(prev => prev === 'relics' ? null : prev);
     if (pendingBuildEffectsRef.current) {
       setDesiredEffects(pendingBuildEffectsRef.current);
       pendingBuildEffectsRef.current = null;
