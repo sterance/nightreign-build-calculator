@@ -862,11 +862,6 @@ button:hover {
   cursor: pointer;
 }
 
-/* ,
- {
-  background: radial-gradient(ellipse 50% 50%, var(--primary-color) 0%, rgba(0, 0, 0, 0) 100%);
-} */
-
 .base-relic-slots-container.active img,
 .vessel-result-card .base-relic-slots-container:hover {
   filter: drop-shadow(2px 4px 8px #919191);

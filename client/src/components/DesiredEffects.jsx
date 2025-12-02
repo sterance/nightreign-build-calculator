@@ -369,7 +369,10 @@ const DesiredEffects = ({
 
   const handleSaveBuild = (buildName) => {
     const savedBuilds = JSON.parse(localStorage.getItem('savedBuilds') || '{}');
-    savedBuilds[buildName] = selectedEffects;
+    savedBuilds[buildName] = {
+      effects: selectedEffects,
+      isDeepOfNight: showDeepOfNight
+    };
     localStorage.setItem('savedBuilds', JSON.stringify(savedBuilds));
     setShowNameSaveCard(false);
     setHasSavedBuilds(true);

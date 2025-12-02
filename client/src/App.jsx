@@ -54,10 +54,12 @@ function App() {
   const [pendingDeepOfNight, setPendingDeepOfNight] = useState(false);
   const [showForsakenConfirmation, setShowForsakenConfirmation] = useState(false);
   const [pendingForsakenHollows, setPendingForsakenHollows] = useState(false);
+  const [pendingBuildLoad, setPendingBuildLoad] = useState(null);
   const [isCalculating, setIsCalculating] = useState(false);
   const [expandedCard, setExpandedCard] = useState(null);
   const fileInputRef = useRef(null);
   const workerRef = useRef(null);
+  const pendingBuildEffectsRef = useRef(null);
 
   const toggleCard = (cardName) => {
     setExpandedCard(prev => prev === cardName ? null : cardName);
@@ -187,10 +189,14 @@ function App() {
 
   useEffect(() => {
     const newEffectMap = createEffectMap(showDeepOfNight, showForsakenHollows, effects);
-    // console.log('Creating effectMap with showDeepOfNight:', showDeepOfNight, 'showForsakenHollows:', showForsakenHollows, 'Size:', newEffectMap.size);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
-    setDesiredEffects([]);
+    if (pendingBuildEffectsRef.current) {
+      setDesiredEffects(pendingBuildEffectsRef.current);
+      pendingBuildEffectsRef.current = null;
+    } else {
+      setDesiredEffects([]);
+    }
   }, [showDeepOfNight, showForsakenHollows]);
 
   useEffect(() => {
@@ -394,8 +400,20 @@ function App() {
     }));
   };
 
-  const handleLoadBuild = (buildEffects) => {
-    setDesiredEffects(buildEffects);
+  const handleLoadBuild = (buildData) => {
+    const needsModeSwitch = buildData.isDeepOfNight !== showDeepOfNight;
+    const hasData = calculationResult || desiredEffects.length > 0;
+
+    if (needsModeSwitch && hasData) {
+      setPendingDeepOfNight(buildData.isDeepOfNight);
+      setPendingBuildLoad(buildData);
+      setShowDeepConfirmation(true);
+    } else if (needsModeSwitch) {
+      pendingBuildEffectsRef.current = buildData.effects;
+      setShowDeepOfNight(buildData.isDeepOfNight);
+    } else {
+      setDesiredEffects(buildData.effects);
+    }
   };
 
   const handleDeepOfNightToggle = () => {
@@ -411,6 +429,10 @@ function App() {
   };
 
   const confirmDeepOfNightToggle = () => {
+    if (pendingBuildLoad) {
+      pendingBuildEffectsRef.current = pendingBuildLoad.effects;
+      setPendingBuildLoad(null);
+    }
     setShowDeepOfNight(pendingDeepOfNight);
     setShowDeepConfirmation(false);
   };
@@ -418,6 +440,7 @@ function App() {
   const cancelDeepOfNightToggle = () => {
     setShowDeepConfirmation(false);
     setPendingDeepOfNight(false);
+    setPendingBuildLoad(null);
   };
 
   const handleForsakenHollowsToggle = () => {

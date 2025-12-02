@@ -55,7 +55,7 @@ const SavedBuildsPage = ({ onBack, onLoadBuild }) => {
                                     autoFocus
                                 />
                             ) : (
-                                <span>{buildName}</span>
+                                <span>{buildName} ({savedBuilds[buildName].isDeepOfNight ? 'Deep' : 'Base'})</span>
                             )}
                             <div className="build-actions">
                                 <button onClick={() => handleLoad(buildName)}>Load</button>
