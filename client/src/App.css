@@ -2315,39 +2315,39 @@ button:hover {
   #relics-card {
     border: none;
     background: transparent;
-    height: calc(100svh - 120px);
     min-height: 400px;
   }
 
   .relic-result-container {
     overflow-y: auto;
-    max-height: calc(100svh - 220px);
   }
   .popout-button {
     display: none;
   }
 
-  /* relic result cards: allow wrapping, keep natural widths */
+  /* relic result cards: allow wrapping, center top row */
   .relic-result-card {
     flex-wrap: wrap;
+    justify-content: center;
   }
 
-  /* image and info button use natural width */
+  /* image, name, and info button use natural width */
   .relic-result-card img,
+  .relic-result-card > span,
   .relic-result-card .info-button-container {
     flex: 0 0 auto;
   }
 
-  /* name and stats table take remaining space in their rows */
-  .relic-result-card > span,
+  /* stats table takes full width on its own row */
   .relic-result-card .relic-stats-table {
-    flex: 1 1 auto;
+    flex: 0 0 100%;
   }
 
-  /* vessel result card: 2-row flex layout */
+  /* vessel result card: 2-row flex layout, center top row */
   .vessel-result-card {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     position: relative;
   }
 
@@ -2358,14 +2358,17 @@ button:hover {
   }
 
   .vessel-result-card #vessel-name {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 0 0 auto;
   }
 
   .vessel-result-card .relic-slots-container {
     flex: 0 0 100%;
     justify-content: center;
     padding: 0;
+  }
+
+  .vessel-result-card.deep-mode .relic-slots-container {
+    flex-direction: column;
   }
 
   .vessel-result-card .info-button-container {
