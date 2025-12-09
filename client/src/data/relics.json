@@ -497,7 +497,7 @@
     "name": "Old Pocketwatch",
     "color": "Green",
     "fixedEffects": [ 7036000, 7000402 ],
-    "description": "Complete an expedition where you first fight the Night Lord, Tricephalos, to acquire the key item.\nOnce you have it, show it to the Priestess back at the Roundtable Hold. (You will not lose access to this relic by choosing to give it to her.)"
+    "description": "Complete an expedition where you first fight the Night Lord, Tricephalos, to acquire the key item.\nOnce you have it, show it to the Priestess back at the Roundtable Hold."
   },
   "10001": {
     "name": "Besmirched Frame",

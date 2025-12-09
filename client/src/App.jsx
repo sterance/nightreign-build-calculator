@@ -276,6 +276,9 @@ function App() {
   const handleClearCharacter = () => {
     setSelectedCharacter(null);
     setSelectedVessels([]);
+    if (expandedCard === 'vessels') {
+      setExpandedCard(null);
+    }
   };
 
   const handleVesselToggle = (vesselName) => {
@@ -419,6 +422,15 @@ function App() {
     }
   };
 
+  // DEEP OF NIGHT TOGGLE
+  const applyDeepOfNightToggle = (newValue) => {
+    if (pendingBuildLoad) {
+      pendingBuildEffectsRef.current = pendingBuildLoad.effects;
+      setPendingBuildLoad(null);
+    }
+    setShowDeepOfNight(newValue);
+  };
+
   const handleDeepOfNightToggle = () => {
     const newValue = !showDeepOfNight;
     const hasData = calculationResult || desiredEffects.length > 0;
@@ -427,23 +439,25 @@ function App() {
       setPendingDeepOfNight(newValue);
       setShowDeepConfirmation(true);
     } else {
-      setShowDeepOfNight(newValue);
+      applyDeepOfNightToggle(newValue);
     }
   };
 
   const confirmDeepOfNightToggle = () => {
-    if (pendingBuildLoad) {
-      pendingBuildEffectsRef.current = pendingBuildLoad.effects;
-      setPendingBuildLoad(null);
-    }
-    setShowDeepOfNight(pendingDeepOfNight);
     setShowDeepConfirmation(false);
+    applyDeepOfNightToggle(pendingDeepOfNight);
   };
 
   const cancelDeepOfNightToggle = () => {
     setShowDeepConfirmation(false);
     setPendingDeepOfNight(false);
     setPendingBuildLoad(null);
+  };
+  
+  // FORSAKEN HOLLOWS TOGGLE
+  const applyForsakenHollowsToggle = (newValue) => {
+    setShowForsakenHollows(newValue);
+    handleClearCharacter();
   };
 
   const handleForsakenHollowsToggle = () => {
@@ -454,19 +468,13 @@ function App() {
       setPendingForsakenHollows(newValue);
       setShowForsakenConfirmation(true);
     } else {
-      setShowForsakenHollows(newValue);
-      if (!newValue && nightfarers.forsakenNightfarers.includes(selectedCharacter)) {
-        handleClearCharacter();
-      }
+      applyForsakenHollowsToggle(newValue);
     }
   };
 
   const confirmForsakenHollowsToggle = () => {
-    setShowForsakenHollows(pendingForsakenHollows);
     setShowForsakenConfirmation(false);
-    if (!pendingForsakenHollows && nightfarers.forsakenNightfarers.includes(selectedCharacter)) {
-      handleClearCharacter();
-    }
+    applyForsakenHollowsToggle(pendingForsakenHollows);
   };
 
   const cancelForsakenHollowsToggle = () => {
@@ -530,7 +538,7 @@ function App() {
             <div className="collapsible-header" onClick={() => isVesselsEnabled && toggleCard('vessels')}>
               <span>Vessels</span>
               <div className="collapsible-header-right">
-                <span id='selected-vessel-count'> {selectedVessels.length === 0 ? '(None)' : selectedVessels.length === 8 ? '(All)' : '(Some)'} </span>
+                <span id='selected-vessel-count'> {selectedVessels.length === 0 ? '(None)' : (selectedVessels.length === 8 && !showForsakenHollows) || (selectedVessels.length === 11 && showForsakenHollows) ? '(All)' : '(Some)'} </span>
                 <span className="collapse-indicator">▼</span>
               </div>
             </div>

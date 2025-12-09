@@ -19,7 +19,7 @@ const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData,
 
       <div className="vessel-preview">
         <div className={`vessel-preview-grid ${showDeepOfNight ? 'deep-mode' : ''} ${showForsakenHollows ? 'forsaken-mode' : ''}`}>
-          {(isEnabled ? vessels : Array(8).fill(null)).map((vessel, index) => (
+          {(isEnabled ? vessels : Array(showForsakenHollows ? 11 : 8).fill(null)).map((vessel, index) => (
             <div
               key={index}
               className="vessel-preview-dot"

@@ -204,7 +204,7 @@
     },
     {
       "name": "Forgotten Ironeye's Goblet",
-      "baseSlots": ["yelllow", "blue", "red"],
+      "baseSlots": ["yellow", "blue", "red"],
       "deepSlots": ["yellow", "green", "white"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
       "forsaken": true
