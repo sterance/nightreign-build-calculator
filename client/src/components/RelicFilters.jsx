@@ -5,7 +5,7 @@ const ColorFilter = ({ relicColorFilters,
   type,
   colorCounts }) => {
   const handleColorClick = (e, color) => {
-    e.stopPropagation(); // Prevent group toggle when individual color is clicked
+    e.stopPropagation();
     onRelicColorFilterChange(color);
   };
 
@@ -36,6 +36,9 @@ const RelicFilters = ({
   onBaseRelicColorFilterChange,
   onDeepRelicColorFilterChange,
   showDeepOfNight,
+  showUnknownRelics,
+  showWhiteRelics,
+  onWhiteRelicFilterChange,
   colorCounts }) => {
 
   const toggleAllBaseFilters = () => {
@@ -63,6 +66,22 @@ const RelicFilters = ({
 
   const baseTotalCount = colorCounts ? Object.values(colorCounts.base).reduce((sum, count) => sum + count, 0) : 0;
   const deepTotalCount = colorCounts ? Object.values(colorCounts.deep).reduce((sum, count) => sum + count, 0) : 0;
+  const whiteCount = colorCounts?.white || 0;
+
+  const unknownRelicsFilter = showUnknownRelics !== 'no' && (
+    <div
+      className={`white-color-filter-group ${showWhiteRelics ? 'enabled' : 'disabled'}`}
+      onClick={onWhiteRelicFilterChange}
+    >
+      <h3 className="color-filter-label">Unknown Relics ({whiteCount})</h3>
+      <ColorFilter
+        relicColorFilters={{ white: showWhiteRelics }}
+        onRelicColorFilterChange={onWhiteRelicFilterChange}
+        type="white"
+        colorCounts={{ white: whiteCount }}
+      />
+    </div>
+  );
 
   return (
     <div className="relic-color-filters">
@@ -80,6 +99,7 @@ const RelicFilters = ({
               colorCounts={colorCounts?.base}
             />
           </div>
+          {unknownRelicsFilter}
           <div
             className={`deep-color-filter-group ${isDeepGroupEnabled ? 'enabled' : 'disabled'}`}
             onClick={toggleAllDeepFilters}
@@ -94,12 +114,15 @@ const RelicFilters = ({
           </div>
         </>
       ) : (
-        <ColorFilter
-          relicColorFilters={baseRelicColorFilters}
-          onRelicColorFilterChange={onBaseRelicColorFilterChange}
-          type="base"
-          colorCounts={colorCounts?.base}
-        />
+        <>
+          <ColorFilter
+            relicColorFilters={baseRelicColorFilters}
+            onRelicColorFilterChange={onBaseRelicColorFilterChange}
+            type="base"
+            colorCounts={colorCounts?.base}
+          />
+          {unknownRelicsFilter}
+        </>
       )}
     </div>
   );

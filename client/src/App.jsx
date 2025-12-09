@@ -40,7 +40,7 @@ function App() {
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
   const [showDeepOfNight, setShowDeepOfNight] = usePersistentBoolean('showDeepOfNight', false);
   const [showForsakenHollows, setShowForsakenHollows] = usePersistentBoolean('showForsakenHollows', false);
-  const [showUnknownRelics, setShowUnknownRelics] = usePersistentBoolean('showUnknownRelics', false);
+  const [showUnknownRelics, setShowUnknownRelics] = usePersistentState('showUnknownRelics', 'no');
   const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
   const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
   const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', true);
@@ -188,7 +188,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const newEffectMap = createEffectMap(showDeepOfNight, showForsakenHollows, effects);
+    const newEffectMap = createEffectMap(showForsakenHollows, effects);
     setEffectMap(newEffectMap);
     setCalculationResult(null);
     setExpandedCard(prev => prev === 'relics' ? null : prev);
@@ -198,7 +198,7 @@ function App() {
     } else {
       setDesiredEffects([]);
     }
-  }, [showDeepOfNight, showForsakenHollows]);
+  }, [showForsakenHollows]);
 
   useEffect(() => {
     // check for existing relic data on initial load

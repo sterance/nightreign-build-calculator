@@ -38,14 +38,21 @@ const SettingsPage = ({ onBack,
             </div>
             
             <div className="settings-option">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={showUnknownRelics}
-                  onChange={() => setShowUnknownRelics(prev => !prev)}
-                />
-                Display Unknown Relics
-              </label>
+              <span>Display Unknown Relics</span>
+              <div className="radio-group">
+                <label>
+                  <input type="radio" checked={showUnknownRelics === 'no'} onChange={() => setShowUnknownRelics('no')} />
+                  No
+                </label>
+                <label>
+                  <input type="radio" checked={showUnknownRelics === 'yes'} onChange={() => setShowUnknownRelics('yes')} />
+                  Yes
+                </label>
+                <label>
+                  <input type="radio" checked={showUnknownRelics === 'only'} onChange={() => setShowUnknownRelics('only')} />
+                  Only
+                </label>
+              </div>
             </div>
           </div>
 
