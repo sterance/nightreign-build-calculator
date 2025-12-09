@@ -238,7 +238,7 @@ const RelicsPage = ({ onBack,
       }
     };
     loadData();
-  }, [effectMap]);
+  }, []);
 
   const getCharacterFilters = (characterName) => {
     const existing = characterFilters[characterName];
