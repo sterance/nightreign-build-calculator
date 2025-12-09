@@ -68,7 +68,7 @@ const RelicFilters = ({
   const deepTotalCount = colorCounts ? Object.values(colorCounts.deep).reduce((sum, count) => sum + count, 0) : 0;
   const whiteCount = colorCounts?.white || 0;
 
-  const unknownRelicsFilter = showUnknownRelics !== 'no' && (
+  const unknownRelicsFilterDeep = showUnknownRelics !== 'no' && (
     <div
       className={`white-color-filter-group ${showWhiteRelics ? 'enabled' : 'disabled'}`}
       onClick={onWhiteRelicFilterChange}
@@ -83,8 +83,20 @@ const RelicFilters = ({
     </div>
   );
 
+  const unknownRelicsFilterSimple = showUnknownRelics !== 'no' && (
+    <div className="white-color-filters">
+      <div
+        className={`color-filter-card color-white ${showWhiteRelics ? 'checked' : ''}`}
+        style={{ width: '200px' }}
+        onClick={onWhiteRelicFilterChange}
+      >
+        <span>Unknown Relics ({whiteCount})</span>
+      </div>
+    </div>
+  );
+
   return (
-    <div className="relic-color-filters">
+    <div className={`relic-color-filters${showDeepOfNight ? ' deep-mode' : ''}`}>
       {showDeepOfNight ? (
         <>
           <div
@@ -99,7 +111,7 @@ const RelicFilters = ({
               colorCounts={colorCounts?.base}
             />
           </div>
-          {unknownRelicsFilter}
+          {unknownRelicsFilterDeep}
           <div
             className={`deep-color-filter-group ${isDeepGroupEnabled ? 'enabled' : 'disabled'}`}
             onClick={toggleAllDeepFilters}
@@ -114,15 +126,15 @@ const RelicFilters = ({
           </div>
         </>
       ) : (
-        <>
+        <div className="base-mode-filters">
           <ColorFilter
             relicColorFilters={baseRelicColorFilters}
             onRelicColorFilterChange={onBaseRelicColorFilterChange}
             type="base"
             colorCounts={colorCounts?.base}
           />
-          {unknownRelicsFilter}
-        </>
+          {unknownRelicsFilterSimple}
+        </div>
       )}
     </div>
   );

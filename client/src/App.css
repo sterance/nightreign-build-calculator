@@ -1573,6 +1573,13 @@ button:hover {
   align-items: flex-start;
 }
 
+.base-mode-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .color-filter-label {
   margin: 0 0 0.75rem 0;
   text-align: center;
@@ -1618,6 +1625,12 @@ button:hover {
 
 .white-color-filter-group.enabled {
   border-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .relic-color-filters.deep-mode .white-color-filter-group {
+    order: 3;
+  }
 }
 
 
