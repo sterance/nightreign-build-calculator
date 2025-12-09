@@ -11,10 +11,12 @@ const VesselPage = ({
   onClearAll,
   vesselData,
   showDeepOfNight,
+  showForsakenHollows,
   isInline = false,
 }) => {
   const isEnabled = !!selectedCharacter;
-  const vessels = isEnabled ? vesselData[selectedCharacter] : [];
+  const allVessels = isEnabled ? vesselData[selectedCharacter] : [];
+  const vessels = allVessels.filter(v => showForsakenHollows || !v.forsaken);
 
   const content = (
     <div className={`vessel-page card ${isInline ? 'inline-mode' : ''}`}>
@@ -49,7 +51,7 @@ const VesselPage = ({
         </div>
       </div>
 
-      <div className={`vessel-grid ${showDeepOfNight ? 'deep-mode' : ''}`}>
+      <div className={`vessel-grid ${showDeepOfNight ? 'deep-mode' : ''} ${showForsakenHollows ? 'forsaken-mode' : ''}`}>
         {vessels.map((vessel, index) => (
           <Vessel
             key={index}

@@ -267,6 +267,10 @@ button:hover {
   grid-area: vessel;
   width: fit-content;
   align-self: stretch;
+  padding: 0.7rem 0 0;
+}
+#vessel-card .card-header {
+  margin-bottom: 0 !important;
 }
 
 .vessel-preview {
@@ -288,6 +292,25 @@ button:hover {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
   padding: 0.25rem;
+}
+
+/* forsaken mode base: 4-3-4 layout, center the middle row of 3 */
+.vessel-preview-grid.forsaken-mode .vessel-preview-dot:nth-child(5) {
+  grid-column-start: 2;
+}
+
+.vessel-preview-grid.forsaken-mode:not(.deep-mode) .vessel-preview-dot:nth-child(n+5):nth-child(-n+7) {
+  transform: translateX(-50%);
+}
+
+/* forsaken mode deep: 2-2-2-1-2-2 layout, center the 7th dot */
+.vessel-preview-grid.deep-mode.forsaken-mode .vessel-preview-dot:nth-child(5) {
+  grid-column-start: auto;
+}
+
+.vessel-preview-grid.deep-mode.forsaken-mode .vessel-preview-dot:nth-child(7) {
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
 .vessel-preview-dot {
@@ -323,7 +346,7 @@ button:hover {
 .vessel-page {
   width: 80%;
   max-width: 1000px;
-  max-height: 80vh;
+  max-height: 90vh;
   overflow-y: auto;
 }
 
@@ -370,6 +393,25 @@ button:hover {
 
 .vessel-grid.deep-mode {
   grid-template-columns: repeat(2, 1fr);
+}
+
+/* forsaken mode base: 4-3-4 layout, center the middle row of 3 */
+.vessel-grid.forsaken-mode .vessel:nth-child(5) {
+  grid-column-start: 2;
+}
+
+.vessel-grid.forsaken-mode:not(.deep-mode) .vessel:nth-child(n+5):nth-child(-n+7) {
+  transform: translateX(-50%);
+}
+
+/* forsaken mode deep: 2-2-2-1-2-2 layout, center the 7th vessel */
+.vessel-grid.deep-mode.forsaken-mode .vessel:nth-child(5) {
+  grid-column-start: auto;
+}
+
+.vessel-grid.deep-mode.forsaken-mode .vessel:nth-child(7) {
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
 .vessel-grid p {
@@ -2322,6 +2364,9 @@ button:hover {
     overflow-y: auto;
   }
   .popout-button {
+    display: none;
+  }
+  .maximize-button {
     display: none;
   }
 

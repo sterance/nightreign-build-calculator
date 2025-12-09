@@ -17,6 +17,13 @@
       "baseSlots": ["green", "green", "green"],
       "deepSlots": ["green", "green", "green"],
       "description": "Obtainable after defeating 4 different Nightlords.\nPurchased from the Small Jar Bazaar shop at the Roundtable Hold for 3000 Murk."
+    },
+    {
+      "name": "Scadutree Grail",
+      "baseSlots": ["red", "red", "red"],
+      "deepSlots": ["red", "red", "red"],
+      "description": "Obtainable after defeating Dreglord.\nPurchased from the Small Jar Bazaar shop at the Roundtable Hold for 3000 Murk.",
+      "forsaken": true
     }
   ],
   "duchessChalices": [
@@ -49,6 +56,20 @@
       "baseSlots": ["blue", "blue", "red"],
       "deepSlots": ["green", "green", "yellow"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Duchess' Goblet",
+      "baseSlots": ["blue", "green", "green"],
+      "deepSlots": ["blue", "green", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Duchess' Urn",
+      "baseSlots": ["green", "yellow", "yellow"],
+      "deepSlots": ["red", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "executorChalices": [
@@ -81,6 +102,20 @@
       "baseSlots": ["yellow", "yellow", "red"],
       "deepSlots": ["green", "green", "blue"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Executor's Goblet",
+      "baseSlots": ["red", "red", "yellow"],
+      "deepSlots": ["red", "red", "yellow"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Executor's Goblet",
+      "baseSlots": ["green", "blue", "red"],
+      "deepSlots": ["yellow", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "guardianChalices": [
@@ -113,6 +148,20 @@
       "baseSlots": ["yellow", "yellow", "red"],
       "deepSlots": ["green", "green", "blue"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Guardian's Goblet",
+      "baseSlots": ["yellow", "green", "green"],
+      "deepSlots": ["yellow", "green", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Guardian's Goblet",
+      "baseSlots": ["green", "blue", "blue"],
+      "deepSlots": ["red", "blue", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "ironeyeChalices": [
@@ -145,6 +194,20 @@
       "baseSlots": ["green", "green", "yellow"],
       "deepSlots": ["blue", "blue", "red"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Ironeye's Goblet",
+      "baseSlots": ["blue", "blue", "green"],
+      "deepSlots": ["blue", "blue", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Ironeye's Goblet",
+      "baseSlots": ["yelllow", "blue", "red"],
+      "deepSlots": ["yellow", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "raiderChalices": [
@@ -177,6 +240,20 @@
       "baseSlots": ["green", "green", "red"],
       "deepSlots": ["yellow", "blue", "blue"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Raider's Goblet",
+      "baseSlots": ["yellow", "yellow", "green"],
+      "deepSlots": ["yellow", "yellow", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Raider's Goblet",
+      "baseSlots": ["yellow", "blue", "red"],
+      "deepSlots": ["red", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "recluseChalices": [
@@ -209,6 +286,20 @@
       "baseSlots": ["green", "blue", "blue"],
       "deepSlots": ["yellow", "yellow", "red"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Recluse's Goblet",
+      "baseSlots": ["yellow", "yellow", "blue"],
+      "deepSlots": ["yellow", "yellow", "blue"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Recluse's Goblet",
+      "baseSlots": ["yellow", "blue", "red"],
+      "deepSlots": ["blue", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "revenantChalices": [
@@ -241,6 +332,20 @@
       "baseSlots": ["yellow", "blue", "blue"],
       "deepSlots": ["green", "green", "red"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name": "Decrepit Revenant's Goblet",
+      "baseSlots": ["red", "red", "yellow"],
+      "deepSlots": ["red", "red", "yellow"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Revenant's Goblet",
+      "baseSlots": ["green", "red", "red"],
+      "deepSlots": ["yellow", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ],
   "wylderChalices": [
@@ -273,6 +378,122 @@
       "baseSlots": ["blue", "red", "red"],
       "deepSlots": ["green", "yellow", "yellow"],
       "description": "Purchased from Collector Signboard for 4 Sovereign Sigil."
+    },
+    {
+      "name":"Decrepit Wylder's Goblet",
+      "baseSlots": ["blue", "green", "yellow"],
+      "deepSlots": ["blue", "green", "yellow"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Wylder's Goblet",
+      "baseSlots": ["green", "green", "yellow"],
+      "deepSlots": ["red", "green", "white"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    }
+  ],
+  "undertakerChalices": [
+    {
+      "name": "Undertaker's Urn",
+      "baseSlots": ["blue", "green", "green"],
+      "deepSlots": ["blue", "green", "green"],
+      "description": "Starting vessel.",
+      "forsaken": true
+    },
+    {
+      "name": "Undertaker's Goblet",
+      "baseSlots": ["red", "yellow", "yellow"],
+      "deepSlots": ["red", "yellow", "yellow"],
+      "description": "Purchased from the Small Jar Bazaar shop at the Roundtable Hold for 1200 Murk.",
+      "forsaken": true
+    },
+    {
+      "name": "Undertaker's Chalice",
+      "baseSlots": ["green", "yellow", "white"],
+      "deepSlots": ["blue", "green", "yellow"],
+      "description": "Obtained as a reward for completing Part 2 of the Undertaker's Remembrance Quest.",
+      "forsaken": true
+    },
+    {
+      "name": "Soot-Covered Undertaker's Urn",
+      "baseSlots": ["red", "red", "blue"],
+      "deepSlots": ["red", "red", "blue"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Sealed Undertaker's Urn",
+      "baseSlots": ["green", "green", "blue"],
+      "deepSlots": ["yellow", "red", "red"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Decrepit Undertaker's Goblet",
+      "baseSlots": ["red", "blue", "blue"],
+      "deepSlots": ["red", "blue", "blue"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Undertaker's Goblet",
+      "baseSlots": ["yellow", "yellow", "red"],
+      "deepSlots": ["blue", "yellow", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    }
+  ],
+  "scholarChalices": [
+    {
+      "name": "Scholar's Urn",
+      "baseSlots": ["red", "red", "yellow"],
+      "deepSlots": ["red", "red", "yellow"],
+      "description": "Starting vessel.",
+      "forsaken": true
+    },
+    {
+      "name": "Scholar's Goblet",
+      "baseSlots": ["blue", "green", "yellow"],
+      "deepSlots": ["blue", "green", "yellow"],
+      "description": "Purchased from the Small Jar Bazaar shop at the Roundtable Hold for 1200 Murk.",
+      "forsaken": true
+    },
+    {
+      "name": "Scholar's Chalice",
+      "baseSlots": ["red", "blue", "white"],
+      "deepSlots": ["red", "yellow", "yellow"],
+      "description": "Obtained as a reward for completing Part 1 of the Scholar's Remembrance Quest.",
+      "forsaken": true
+    },
+    {
+      "name": "Soot-Covered Scholar's Urn",
+      "baseSlots": ["blue", "green", "green"],
+      "deepSlots": ["blue", "green", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Sealed Scholar's Urn",
+      "baseSlots": ["yellow", "red", "red"],
+      "deepSlots": ["green", "blue", "blue"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Decrepit Scholar's Goblet",
+      "baseSlots": ["blue", "blue", "green"],
+      "deepSlots": ["blue", "blue", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
+    },
+    {
+      "name": "Forgotten Scholar's Goblet",
+      "baseSlots": ["yellow", "green", "blue"],
+      "deepSlots": ["yellow", "green", "green"],
+      "description": "Purchased from Collector Signboard for 4 Sovereign Sigil.",
+      "forsaken": true
     }
   ]
 }

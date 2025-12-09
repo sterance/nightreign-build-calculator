@@ -262,7 +262,9 @@ function App() {
 
   const selectAllVesselsForCharacter = (character) => {
     if (!character) return;
-    const allVesselNames = vesselData[character].map((c) => c.name);
+    const allVesselNames = vesselData[character]
+      .filter(v => showForsakenHollows || !v.forsaken)
+      .map(c => c.name);
     setSelectedVessels(allVesselNames);
   }
   const handleCharacterSelect = (character) => {
@@ -539,6 +541,7 @@ function App() {
                 onClick={() => setShowVessels(true)}
                 vesselData={vesselData}
                 showDeepOfNight={showDeepOfNight}
+                showForsakenHollows={showForsakenHollows}
               />
               <div className="portrait-vessel-selection">
                 <VesselPage

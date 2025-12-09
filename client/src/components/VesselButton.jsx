@@ -1,8 +1,9 @@
 import React from 'react';
 
-const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData, showDeepOfNight }) => {
+const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData, showDeepOfNight, showForsakenHollows }) => {
   const isEnabled = !!selectedCharacter;
-  const vessels = isEnabled ? vesselData[selectedCharacter] : [];
+  const allVessels = isEnabled ? vesselData[selectedCharacter] : [];
+  const vessels = allVessels.filter(v => showForsakenHollows || !v.forsaken);
 
   return (
     <div
@@ -17,7 +18,7 @@ const VesselButton = ({ selectedCharacter, selectedVessels, onClick, vesselData,
       </div>
 
       <div className="vessel-preview">
-        <div className={`vessel-preview-grid ${showDeepOfNight ? 'deep-mode' : ''}`}>
+        <div className={`vessel-preview-grid ${showDeepOfNight ? 'deep-mode' : ''} ${showForsakenHollows ? 'forsaken-mode' : ''}`}>
           {(isEnabled ? vessels : Array(8).fill(null)).map((vessel, index) => (
             <div
               key={index}
