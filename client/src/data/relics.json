@@ -472,7 +472,7 @@
   "2051": {
     "name": "Dark Night of the Champion",
     "color": "Yellow",
-    "fixedEffects": [ 7610600, 7035800, 7090000 ],
+    "fixedEffects": [ 7000290, 7035800, 7090000 ],
     "description": "Defeat Everdark Sovereign Darkdrift Knight for this relic to be added to the shop of the Collector Signboard.\nCan be purchased from the Collector Signboard outside the Roundtable Hold for 12 Sovereign Sigils."
   },
   "2060": {

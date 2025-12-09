@@ -14,11 +14,6 @@ const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
 
   const relicInfo = items[relic.item_id.toString()];
 
-  if (!relicInfo) {
-    return null;
-  }
-
-
   const allEffects = [
     { id: relic.effect1_id, isSecondary: false },
     { id: relic.sec_effect1_id, isSecondary: true },
@@ -35,13 +30,14 @@ const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
     }))
     .filter(effect => effect.name !== null);
 
-  const color = relicInfo.color ? relicInfo.color.toLowerCase() : 'white';
-  const isDeepRelic = relicInfo.name && relicInfo.name.startsWith('Deep');
+  const relicName = relicInfo?.name || `Unknown Relic (ID: ${relic.item_id})`;
+  const color = relicInfo?.color ? relicInfo.color.toLowerCase() : 'white';
+  const isDeepRelic = relicInfo?.name && relicInfo.name.startsWith('Deep');
   const relicType = isDeepRelic ? 'deep' : 'base';
 
   return (
     <div className={`${relicType}-relic-card color-${color}`}>
-      <h4>{relicInfo.name}</h4>
+      <h4>{relicName}</h4>
       <ul>
         {validEffects.map((effect, index) => (
           <li
@@ -93,6 +89,18 @@ const CharacterRelics = ({ characterData,
     // toggle unknown relics based on checkbox
     if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) {
       return false;
+    }
+    // hide relics with unknown effects when showUnknownRelics is false
+    if (!showUnknownRelics) {
+      const allEffectIds = [
+        relic.effect1_id, relic.sec_effect1_id,
+        relic.effect2_id, relic.sec_effect2_id,
+        relic.effect3_id, relic.sec_effect3_id
+      ];
+      const hasUnknownEffect = allEffectIds.some(id =>
+        id !== 0 && id !== EMPTY_SLOT_ID && !isEffectIdKnown(id, effects)
+      );
+      if (hasUnknownEffect) return false;
     }
     // toggle "Deep" relics based on checkbox
     if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) {
@@ -184,10 +192,16 @@ const RelicsPage = ({ onBack,
           const parsedData = JSON.parse(storedRelicData);
           setRelicData(parsedData);
 
-          const relicsWithUnknownEffects = [];
+          const unknownRelics = {
+            unknownIds: [],
+            unknownEffects: [],
+          };
 
           parsedData.forEach(character => {
             character.relics.forEach(relic => {
+              const relicInfo = items[relic.item_id.toString()];
+              const hasUnknownRelicId = !relicInfo || !relicInfo.name;
+
               const relicEntry = {
                 item_id: relic.item_id,
                 character_name: character.character_name,
@@ -221,14 +235,17 @@ const RelicsPage = ({ onBack,
                 .filter(key => key.includes('effect'))
                 .some(key => !relicEntry[key].known);
 
+              if (hasUnknownRelicId) {
+                unknownRelics.unknownIds.push(relicEntry);
+              }
               if (hasUnknownEffects) {
-                relicsWithUnknownEffects.push(relicEntry);
+                unknownRelics.unknownEffects.push(relicEntry);
               }
             });
           });
 
-          if (relicsWithUnknownEffects.length > 0) {
-            console.log("Relics with unknown effects:", relicsWithUnknownEffects);
+          if (unknownRelics.unknownIds.length > 0 || unknownRelics.unknownEffects.length > 0) {
+            console.log("Unknown relics:", unknownRelics);
           }
         }
       } catch (error) {
@@ -257,6 +274,17 @@ const RelicsPage = ({ onBack,
     return character.relics.filter(relic => {
       const relicInfo = items[relic.item_id.toString()];
       if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
+      if (!showUnknownRelics) {
+        const allEffectIds = [
+          relic.effect1_id, relic.sec_effect1_id,
+          relic.effect2_id, relic.sec_effect2_id,
+          relic.effect3_id, relic.sec_effect3_id
+        ];
+        const hasUnknownEffect = allEffectIds.some(id =>
+          id !== 0 && id !== EMPTY_SLOT_ID && !isEffectIdKnown(id, effects)
+        );
+        if (hasUnknownEffect) return false;
+      }
       if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
       if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) return false;
       if (relicInfo && relicInfo.color) {
@@ -371,6 +399,17 @@ const RelicsPage = ({ onBack,
           const relicInfo = items[relic.item_id.toString()];
           
           if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return;
+          if (!showUnknownRelics) {
+            const allEffectIds = [
+              relic.effect1_id, relic.sec_effect1_id,
+              relic.effect2_id, relic.sec_effect2_id,
+              relic.effect3_id, relic.sec_effect3_id
+            ];
+            const hasUnknownEffect = allEffectIds.some(id =>
+              id !== 0 && id !== EMPTY_SLOT_ID && !isEffectIdKnown(id, effects)
+            );
+            if (hasUnknownEffect) return;
+          }
           if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return;
           if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) return;
           
@@ -477,6 +516,17 @@ const RelicsPage = ({ onBack,
     return character.relics.some(relic => {
       const relicInfo = items[relic.item_id.toString()];
       if (!showUnknownRelics && (!relicInfo || !relicInfo.name)) return false;
+      if (!showUnknownRelics) {
+        const allEffectIds = [
+          relic.effect1_id, relic.sec_effect1_id,
+          relic.effect2_id, relic.sec_effect2_id,
+          relic.effect3_id, relic.sec_effect3_id
+        ];
+        const hasUnknownEffect = allEffectIds.some(id =>
+          id !== 0 && id !== EMPTY_SLOT_ID && !isEffectIdKnown(id, effects)
+        );
+        if (hasUnknownEffect) return false;
+      }
       if (!showDeepOfNight && relicInfo && relicInfo.name && relicInfo.name.startsWith('Deep')) return false;
       if (!showForsakenHollows && relicInfo && relicInfo.forsaken === true) return false;
       if (relicInfo && relicInfo.color) {
