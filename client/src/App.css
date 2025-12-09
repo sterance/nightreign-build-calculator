@@ -2238,6 +2238,20 @@ button:hover {
     grid-template-columns: 1fr;
   }
 
+  /* portrait forsaken mode: 2-2-2-1-2-2 layout (same as deep mode on desktop) */
+  .portrait-vessel-selection .vessel-grid.forsaken-mode .vessel:nth-child(5) {
+    grid-column-start: auto;
+  }
+
+  .portrait-vessel-selection .vessel-grid.forsaken-mode .vessel:nth-child(n+5):nth-child(-n+7) {
+    transform: none;
+  }
+
+  .portrait-vessel-selection .vessel-grid.forsaken-mode .vessel:nth-child(7) {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
   /* vessel relic slot images - smaller in portrait */
   .portrait-vessel-selection .relic-slots img {
     width: 50px !important;
