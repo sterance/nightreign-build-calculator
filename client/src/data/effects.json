@@ -754,32 +754,6 @@
   },
   {
     "ids": [
-      6643100,
-      7643100
-    ],
-    "name": "[Duchess] Improved Mind and Faith, Reduced Intelligence",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Duchess",
-    "category": "Character Specific",
-    "display_group": "Duchess"
-  },
-  {
-    "ids": [
-      6643000,
-      7643000
-    ],
-    "name": "[Duchess] Improved Vigor and Strength, Reduced Mind",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Duchess",
-    "category": "Character Specific",
-    "display_group": "Duchess"
-  },
-  {
-    "ids": [
       6500300,
       7500300
     ],
@@ -798,32 +772,6 @@
     "name": "[Executor] Character Skill Boosts Attack but Attacking Drains HP",
     "debuff": false,
     "deep": false,
-    "stacks": false,
-    "nightfarer": "Executor",
-    "category": "Character Specific",
-    "display_group": "Executor"
-  },
-  {
-    "ids": [
-      6647100,
-      7647100
-    ],
-    "name": "[Executor] Improved Dexterity and Arcane, Reduced Vigor",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Executor",
-    "category": "Character Specific",
-    "display_group": "Executor"
-  },
-  {
-    "ids": [
-      6647000,
-      7647000
-    ],
-    "name": "[Executor] Improved Vigor and Endurance, Reduced Arcane",
-    "debuff": false,
-    "deep": true,
     "stacks": false,
     "nightfarer": "Executor",
     "category": "Character Specific",
@@ -887,32 +835,6 @@
     "name": "[Guardian] Creates whirlwind when charging halberd attacks",
     "debuff": false,
     "deep": false,
-    "stacks": false,
-    "nightfarer": "Guardian",
-    "category": "Character Specific",
-    "display_group": "Guardian"
-  },
-  {
-    "ids": [
-      6641100,
-      7641100
-    ],
-    "name": "[Guardian] Improved Mind and Faith, Reduced Vigor",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Guardian",
-    "category": "Character Specific",
-    "display_group": "Guardian"
-  },
-  {
-    "ids": [
-      6641000,
-      7641000
-    ],
-    "name": "[Guardian] Improved Strength and Dexterity, Reduced Vigor",
-    "debuff": false,
-    "deep": true,
     "stacks": false,
     "nightfarer": "Guardian",
     "category": "Character Specific",
@@ -1033,32 +955,6 @@
   },
   {
     "ids": [
-      6642000,
-      7642000
-    ],
-    "name": "[Ironeye] Improved Arcane, Reduced Dexterity",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Ironeye",
-    "category": "Character Specific",
-    "display_group": "Ironeye"
-  },
-  {
-    "ids": [
-      6642100,
-      7642100
-    ],
-    "name": "[Ironeye] Improved Vigor and Strength, Reduced Dexterity",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Ironeye",
-    "category": "Character Specific",
-    "display_group": "Ironeye"
-  },
-  {
-    "ids": [
       7123400
     ],
     "name": "[Raider] Changes compatible armament's skill to Prayerful Strike at start of expedition",
@@ -1121,32 +1017,7 @@
     "category": "Character Specific",
     "display_group": "Raider"
   },
-  {
-    "ids": [
-      6644100,
-      7644100
-    ],
-    "name": "[Raider] Improved Arcane, Reduced Vigor",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Raider",
-    "category": "Character Specific",
-    "display_group": "Raider"
-  },
-  {
-    "ids": [
-      6644000,
-      7644000
-    ],
-    "name": "[Raider] Improved Mind and Intelligence, Reduced Vigor and Endurance",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Raider",
-    "category": "Character Specific",
-    "display_group": "Raider"
-  },
+
   {
     "ids": [
       7030000
@@ -1197,32 +1068,6 @@
   },
   {
     "ids": [
-      6646100,
-      7646100
-    ],
-    "name": "[Recluse] Improved Intelligence and Faith, Reduced Mind",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Recluse",
-    "category": "Character Specific",
-    "display_group": "Recluse"
-  },
-  {
-    "ids": [
-      6646000,
-      7646000
-    ],
-    "name": "[Recluse] Improved Vigor, Endurance, and Dexterity, Reduced Intelligence and Faith",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Recluse",
-    "category": "Character Specific",
-    "display_group": "Recluse"
-  },
-  {
-    "ids": [
       17002,
       7032900
     ],
@@ -1242,32 +1087,6 @@
     "name": "[Revenant] Expend own HP to fully heal nearby allies when activating Art",
     "debuff": false,
     "deep": false,
-    "stacks": false,
-    "nightfarer": "Revenant",
-    "category": "Character Specific",
-    "display_group": "Revenant"
-  },
-  {
-    "ids": [
-      6645100,
-      7645100
-    ],
-    "name": "[Revenant] Improved Strength, Reduced Faith",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Revenant",
-    "category": "Character Specific",
-    "display_group": "Revenant"
-  },
-  {
-    "ids": [
-      6645000,
-      7645000
-    ],
-    "name": "[Revenant] Improved Vigor and Endurance, Reduced Mind",
-    "debuff": false,
-    "deep": true,
     "stacks": false,
     "nightfarer": "Revenant",
     "category": "Character Specific",
@@ -1391,32 +1210,6 @@
   },
   {
     "ids": [
-      6640100,
-      7640100
-    ],
-    "name": "[Wylder] Improved Intelligence and Faith, Reduced Strength and Dexterity",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Wylder",
-    "category": "Character Specific",
-    "display_group": "Wylder"
-  },
-  {
-    "ids": [
-      6640000,
-      7640000
-    ],
-    "name": "[Wylder] Improved Mind, Reduced Vigor",
-    "debuff": false,
-    "deep": true,
-    "stacks": false,
-    "nightfarer": "Wylder",
-    "category": "Character Specific",
-    "display_group": "Wylder"
-  },
-  {
-    "ids": [
       7030700
     ],
     "name": "Draw enemy attention while guarding",
@@ -1454,7 +1247,8 @@
   {
     "ids": [
       6611100,
-      7611100
+      7611100,
+      7006300
     ],
     "name": "Improved Affinity Damage Negation",
     "debuff": false,
@@ -1463,6 +1257,17 @@
     "category": "Defensive",
     "level": 1,
     "level_group": "Improved Affinity Damage Negation"
+  },
+  {
+    "ids": [
+      7006400
+    ],
+    "name": "Extends spell effect duration",
+    "forsaken": true,
+    "category": "Offensive",
+    "deep": false,
+    "debuff": false,
+    "stacks": false
   },
   {
     "ids": [
@@ -3184,7 +2989,8 @@
   },
   {
     "ids": [
-      7001402
+      7001402,
+      7001409
     ],
     "name": "Physical Attack Up +2",
     "debuff": false,
@@ -4807,7 +4613,8 @@
   },
   {
     "ids": [
-      7121000
+      7121000,
+      7121001
     ],
     "name": "Small Pouch in possession at start of expedition",
     "debuff": false,
@@ -5946,5 +5753,712 @@
     "deep": true,
     "stacks": true,
     "category": "Regen"
+  },
+  {
+    "ids": [
+      7006500
+    ],
+    "name": "Continuous FP Recovery",
+    "category": "Regen",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7006600
+    ],
+    "name": "Improved Melee Attack Power",
+    "category": "Offensive",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7006700
+    ],
+    "name": "Improved Skill Attack Power",
+    "category": "Offensive",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": true
+  },
+  {
+    "ids": [
+      7036200
+    ],
+    "name": "[Scholar] Prevent slowing of Character Skill progress",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7036300,
+      7036301
+    ],
+    "name": "[Scholar] Allies targeted by Character Skill gain boosted attack",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7036400,
+      7036401
+    ],
+    "name": "[Scholar] Continuous damage inflicted on targets threaded by Ultimate Art",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7036500,
+      7036501
+    ],
+    "name": "[Scholar] Earn runes for each additional specimen acquired with Character Skill",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },    
+  {
+    "ids": [
+      19001
+    ],
+    "name": "[Scholar] Allies targeted by Character Skill gain boosted attack",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      6500800
+    ],
+    "name": "[Scholar] Reduced FP consumption when using Character Skill on self",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": true,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      6500900
+    ],
+    "name": "[Undertaker] Executing Art readies Character Skill",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": true,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7036800,
+      7036801
+    ],
+    "name": "[Undertaker] Activating Ultimate Art increases attack power",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false
+  },
+  {
+    "ids": [
+      7036900,
+      7036901
+    ],
+    "name": "[Undertaker] Attack power increased by landing the final blow of a chain attack",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7037000,
+      7037001
+    ],
+    "name": "[Undertaker] Physical attacks boosted while assist effect from incantation is active for self",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false
+  },
+  {
+    "ids": [
+      7037300,
+      7037301
+    ],
+    "name": "[Undertaker] Contact with allies restores their HP while Ultimate Art is activated",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false
+  },
+  {
+    "ids": [
+      6623200
+    ],
+    "name": "Greenspill Crystal Tear in possession at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "[Tear] in possession at start of expedition",
+    "deep": true,
+    "stacks": true,
+    "debuff": false
+  },
+  {
+    "ids": [
+      7037700,
+      7037701
+    ],
+    "name": "Status Ailment Gauges Slowly Increase Attack Power",
+    "category": "Offensive",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7037800
+    ],
+    "name": "Occasionally Nullify Attacks When Damage Negation is Lowered",
+    "category": "Defensive",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7170100
+    ],
+    "name": "Attacks Inflict Rot when Damage is Taken",
+    "category": "Offensive",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7260900
+    ],
+    "name": "Rot in Vicinity Causes Continuous HP Recovery",
+    "category": "Regen",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7360600
+    ],
+    "name": "Changes compatible armament's sorcery to Magic Glintblade at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7360900
+    ],
+    "name": "Changes compatible armament's sorcery to Carian Greatsword at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7361200
+    ],
+    "name": "Changes compatible armament's sorcery to Night Shard at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7361500
+    ],
+    "name": "Changes compatible armament's sorcery to Glintstone Icecrag at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7361800
+    ],
+    "name": "Changes compatible armament's sorcery to Gravity Well at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7361300
+    ],
+    "name": "Changes compatible armament's sorcery to Magma Shot at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false
+  },
+  {
+    "ids": [
+      7362100
+    ],
+    "name": "Changes compatible armament's sorcery to Briars of Punishment at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's sorcery to [Sorcery] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7370000
+    ],
+    "name": "Changes compatible armament's incantation to Blessing's Boon at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7370300
+    ],
+    "name": "Changes compatible armament's incantation to Wrath of Gold at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7370400
+    ],
+    "name": "Changes compatible armament's incantation to Lightning Spear at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false
+  },
+  {
+    "ids": [
+      7370500
+    ],
+    "name": "Changes compatible armament's incantation to Lightning Strike at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7370600
+    ],
+    "name": "Changes compatible armament's incantation to O, Flame! at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7370800
+    ],
+    "name": "Changes compatible armament's incantation to Black Flame at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7370900
+    ],
+    "name": "Changes compatible armament's incantation to Beast Claw at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7371200
+    ],
+    "name": "Changes compatible armament's incantation to Swarm of Flies at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      7371500
+    ],
+    "name": "Changes compatible armament's incantation to Dragonfire at start of expedition",
+    "category": "Starting Bonus",
+    "display_group": "Changes compatible armament's incantation to [Incantation] at start of expedition",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+   "ids": [
+    7037600
+   ],
+   "name": "Successive Attacks Boost Attack Power",
+   "category": "Offensive",
+   "forsaken": true,
+   "deep": false,
+   "debuff": false,
+   "stacks": false
+  },
+  {
+    "ids": [
+      7006400
+    ],
+    "name": "Extend Spell Duration",
+    "category": "Offensive",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      6643100,
+      7643100
+    ],
+    "name": "[Duchess] Improved Mind and Faith, Reduced Intelligence",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      6643000,
+      7643000
+    ],
+    "name": "[Duchess] Improved Vigor and Strength, Reduced Mind",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Duchess",
+    "category": "Character Specific",
+    "display_group": "Duchess"
+  },
+  {
+    "ids": [
+      6647100,
+      7647100
+    ],
+    "name": "[Executor] Improved Dexterity and Arcane, Reduced Vigor",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },
+  {
+    "ids": [
+      6647000,
+      7647000
+    ],
+    "name": "[Executor] Improved Vigor and Endurance, Reduced Arcane",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Executor",
+    "category": "Character Specific",
+    "display_group": "Executor"
+  },  {
+    "ids": [
+      6641100,
+      7641100
+    ],
+    "name": "[Guardian] Improved Mind and Faith, Reduced Vigor",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      6641000,
+      7641000
+    ],
+    "name": "[Guardian] Improved Strength and Dexterity, Reduced Vigor",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Guardian",
+    "category": "Character Specific",
+    "display_group": "Guardian"
+  },
+  {
+    "ids": [
+      6642000,
+      7642000
+    ],
+    "name": "[Ironeye] Improved Arcane, Reduced Dexterity",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      6642100,
+      7642100
+    ],
+    "name": "[Ironeye] Improved Vigor and Strength, Reduced Dexterity",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Ironeye",
+    "category": "Character Specific",
+    "display_group": "Ironeye"
+  },
+  {
+    "ids": [
+      6644100,
+      7644100
+    ],
+    "name": "[Raider] Improved Arcane, Reduced Vigor",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      6644000,
+      7644000
+    ],
+    "name": "[Raider] Improved Mind and Intelligence, Reduced Vigor and Endurance",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Raider",
+    "category": "Character Specific",
+    "display_group": "Raider"
+  },
+  {
+    "ids": [
+      6646100,
+      7646100
+    ],
+    "name": "[Recluse] Improved Intelligence and Faith, Reduced Mind",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      6646000,
+      7646000
+    ],
+    "name": "[Recluse] Improved Vigor, Endurance, and Dexterity, Reduced Intelligence and Faith",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Recluse",
+    "category": "Character Specific",
+    "display_group": "Recluse"
+  },
+  {
+    "ids": [
+      6645100,
+      7645100
+    ],
+    "name": "[Revenant] Improved Strength, Reduced Faith",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      6645000,
+      7645000
+    ],
+    "name": "[Revenant] Improved Vigor and Endurance, Reduced Mind",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Revenant",
+    "category": "Character Specific",
+    "display_group": "Revenant"
+  },
+  {
+    "ids": [
+      6640100,
+      7640100
+    ],
+    "name": "[Wylder] Improved Intelligence and Faith, Reduced Strength and Dexterity",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      6640000,
+      7640000
+    ],
+    "name": "[Wylder] Improved Mind, Reduced Vigor",
+    "debuff": false,
+    "deep": false,
+    "stacks": false,
+    "nightfarer": "Wylder",
+    "category": "Character Specific",
+    "display_group": "Wylder"
+  },
+  {
+    "ids": [
+      6647200
+    ],
+    "name": "[Scholar] Improved Mind, Reduced Vigor",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      6647300
+    ],
+    "name": "[Scholar] Improved Endurance and Dexterity, Reduced Intelligence and Arcane",
+    "category": "Character Specific",
+    "display_group": "Scholar",
+    "nightfarer": "Scholar",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      6647400
+    ],
+    "name": "[Undertaker] Improved Dexterity, Reduced Vigor and Faith",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
+  },
+  {
+    "ids": [
+      6647500
+    ],
+    "name": "[Undertaker] Improved Mind and Faith, Reduced Strength",
+    "category": "Character Specific",
+    "display_group": "Undertaker",
+    "nightfarer": "Undertaker",
+    "forsaken": true,
+    "deep": false,
+    "debuff": false,
+    "stacks": false
   }
 ]

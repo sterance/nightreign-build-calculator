@@ -143,3 +143,45 @@ export const getEffectIcon = (effectName) => {
   
   return 'effect-icons/placeholder.png';
 };
+
+export const getRelicInfo = (id, relicsData) => {
+  const idStr = id?.toString();
+  if (!idStr) return null;
+
+  if (relicsData[idStr]) {
+    return relicsData[idStr];
+  }
+
+  const idNum = parseInt(idStr);
+  const colors = ['Red', 'Blue', 'Yellow', 'Green'];
+  const types = ['Burning', 'Drizzly', 'Luminous', 'Tranquil'];
+  const qualities = ['Delicate', 'Polished', 'Grand'];
+
+  // standard scenes: 1000000-1999999
+  if (idNum >= 1000000 && idNum <= 1999999) {
+    const colorIndex = Math.floor((idNum % 1000) / 100);
+    const qualityIndex = idNum % 10;
+    if (colorIndex <= 3 && qualityIndex <= 2) {
+      return {
+        name: `${qualities[qualityIndex]} ${types[colorIndex]} Scene`,
+        color: colors[colorIndex],
+        isFallback: true
+      };
+    }
+  }
+
+  // deep scenes: 2000000-2999999
+  if (idNum >= 2000000 && idNum <= 2999999) {
+    const colorIndex = Math.floor((idNum % 1000) / 100);
+    const qualityIndex = idNum % 10;
+    if (colorIndex <= 3 && qualityIndex <= 2) {
+      return {
+        name: `Deep ${qualities[qualityIndex]} ${types[colorIndex]} Scene`,
+        color: colors[colorIndex],
+        isFallback: true
+      };
+    }
+  }
+
+  return null;
+};

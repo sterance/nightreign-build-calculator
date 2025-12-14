@@ -2093,6 +2093,7 @@ button:hover {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 70px;
+  text-shadow: 2px 2px 4px black;
 }
 
 .collapsible-card {

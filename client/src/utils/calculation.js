@@ -1,5 +1,6 @@
 import items from '../data/relics.json';
 import baseRelicEffects from '../data/effects.json';
+import { getRelicInfo } from './utils.js';
 
 /**
  * Calculates the best relic combination for a given set of desired effects, available relics, and selected vessels.
@@ -39,7 +40,7 @@ export function calculateBestRelics(desiredEffects,
 
   // process base relics
   const processedBaseRelics = characterRelicData.relics.map(relic => {
-    const relicInfo = items[relic.item_id?.toString()];
+    const relicInfo = getRelicInfo(relic.item_id, items);
     if (!relicInfo || relicInfo.name?.startsWith('Deep')) {
       return null;
     }
@@ -76,7 +77,7 @@ export function calculateBestRelics(desiredEffects,
   let processedDeepRelics = [];
   if (showDeepOfNight) {
     processedDeepRelics = characterRelicData.relics.map(relic => {
-      const relicInfo = items[relic.item_id?.toString()];
+      const relicInfo = getRelicInfo(relic.item_id, items);
       if (!relicInfo || !relicInfo.name?.startsWith('Deep')) {
         return null;
       }

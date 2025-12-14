@@ -51,3 +51,4 @@ node_modules/
 /client/src/references
 diary.txt
 /test-files/
+client/src/data/tmp

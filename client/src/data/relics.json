@@ -324,6 +324,18 @@
     "fixedEffects": [ 7005600, 7000001, 7001001 ],
     "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
   },
+  "1300": {
+    "name": "Grand Burning Scene",
+    "color": "Red",
+    "fixedEffects": [ 7036200, 7000501, 7000701 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
+  },
+  "1310": {
+    "name": "Grand Tranquil Scene",
+    "color": "Green",
+    "fixedEffects": [ 7036900, 7000301, 7000601 ],
+    "description": "Can be purchased from the Small Jar Bazzar for 1000 Murk."
+  },
   "1400": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
@@ -400,6 +412,48 @@
     "name": "Grand Drizzly Scene",
     "color": "Blue",
     "fixedEffects": [ 7126000, 7126001, 7126002 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1610": {
+    "name": "Grand Drizzly Scene",
+    "color": "Blue",
+    "fixedEffects": [ 7037300, 7005600, 7090000 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1620": {
+    "name": "Grand Tranquil Scene",
+    "color": "Green",
+    "fixedEffects": [ 6642000, 7000402, 7000702 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1670": {
+    "name": "Grand Luminous Scene",
+    "color": "Yellow",
+    "fixedEffects": [ 6642100, 7000002, 7000302 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1700": {
+    "name": "Grand Drizzly Scene",
+    "color": "Blue",
+    "fixedEffects": [ 6643100, 7000102, 7000602 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1740": {
+    "name": "Grand Luminous Scene",
+    "color": "Yellow",
+    "fixedEffects": [ 7030800, 7090000, 7000902 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1750": {
+    "name": "Grand Tranquil Scene",
+    "color": "Green",
+    "fixedEffects": [ 7032200, 7240000, 7001409],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1830": {
+    "name": "Grand Drizzly Scene",
+    "color": "Blue",
+    "fixedEffects": [ 6646000, 7000002, 7000202 ],
     "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "2000": {
@@ -492,6 +546,18 @@
     "color": "Blue",
     "fixedEffects": [ 7035700, 7035800, 7035900 ],
     "description": "Acquired as a reward for defeating the Night Aspect Night Lord for the first time."
+  },
+  "2070": {
+    "name": "Will of the Balancers",
+    "color": "Blue",
+    "fixedEffects": [ 7006600, 7006700, 7006500 ],
+    "description": "Acquired as a reward for defeating the Weapon Bequeathed Harmonia Calamity for the first time."
+  },
+  "2080": {
+    "name": "The Night of Dregs",
+    "color": "Red",
+    "fixedEffects": [ 7037700, 7170100, 7260900 ],
+    "description": "Acquired as a reward for defeating the Dreglord Night Lord for the first time."
   },
   "10000": {
     "name": "Old Pocketwatch",
@@ -856,6 +922,18 @@
   "18982": {
     "name": "Grand Burning Scene",
     "color": "Red"
+  },
+  "19050": {
+    "name": "Leather Monocle Case",
+    "color": "Blue",
+    "fixedEffects": [ 7037000, 7006400, 7001402],
+    "description": "Acquired as a reward for completing Part 1 of the Undertaker's Remembrance Quest."
+  },
+  "19051": {
+    "name": "Glass Necklace",
+    "color": "Green",
+    "fixedEffects": [ 7036800, 7037600, 7000902 ],
+    "description": "Acquired as a reward for completing the Undertaker's Remembrance Quest."
   },
   "19062": {
     "name": "Grand Drizzly Scene",

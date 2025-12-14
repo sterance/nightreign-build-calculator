@@ -4,7 +4,7 @@ import items from '../data/relics.json';
 import effects from '../data/effects.json';
 import { CloseIcon, InformationIcon } from './Icons';
 import RelicFilters from './RelicFilters';
-import { EMPTY_SLOT_ID, createEffectMap, isEffectIdKnown, getEffectName } from '../utils/utils';
+import { EMPTY_SLOT_ID, createEffectMap, isEffectIdKnown, getEffectName, getRelicInfo } from '../utils/utils';
 
 const shouldShowRelic = (relic, relicInfo, options) => {
   const {
@@ -65,7 +65,7 @@ const shouldShowRelic = (relic, relicInfo, options) => {
 const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
   const [showRelicId, setShowRelicId] = useState(false)
 
-  const relicInfo = items[relic.item_id.toString()];
+  const relicInfo = getRelicInfo(relic.item_id, items);
 
   const allEffects = [
     { id: relic.effect1_id, isSecondary: false },
@@ -112,6 +112,7 @@ const RelicCard = ({ relic, items, effectMap, showRelicIdToggle }) => {
               {relic.sec_effect2_id !== EMPTY_SLOT_ID && `\nDebuff 2 ID: ${relic.sec_effect2_id}`}
               {relic.effect3_id !== EMPTY_SLOT_ID && `\nEffect 3 ID: ${relic.effect3_id}`}
               {relic.sec_effect3_id !== EMPTY_SLOT_ID && `\nDebuff 3 ID: ${relic.sec_effect3_id}`}
+              {relicInfo?.isFallback && `\n(found using fallback)`}
             </div>
           )}
           <div
@@ -149,7 +150,7 @@ const CharacterRelics = ({ characterData,
   };
 
   const filteredRelics = characterData.relics.filter(relic => {
-    const relicInfo = items[relic.item_id.toString()];
+    const relicInfo = getRelicInfo(relic.item_id, items);
     return shouldShowRelic(relic, relicInfo, filterOptions);
   });
 
@@ -206,7 +207,7 @@ const RelicsPage = ({ onBack,
 
           parsedData.forEach(character => {
             character.relics.forEach(relic => {
-              const relicInfo = items[relic.item_id.toString()];
+              const relicInfo = getRelicInfo(relic.item_id, items);
               const hasUnknownRelicId = !relicInfo || !relicInfo.name;
 
               const relicEntry = {
@@ -288,7 +289,7 @@ const RelicsPage = ({ onBack,
       effectMap
     };
     return character.relics.filter(relic => {
-      const relicInfo = items[relic.item_id.toString()];
+      const relicInfo = getRelicInfo(relic.item_id, items);
       return shouldShowRelic(relic, relicInfo, filterOptions);
     });
   };
@@ -385,7 +386,7 @@ const RelicsPage = ({ onBack,
       const character = selectedCharacterName ? relicData.find(c => c.character_name === selectedCharacterName) : null;
       if (character) {
         character.relics.forEach(relic => {
-          const relicInfo = items[relic.item_id.toString()];
+          const relicInfo = getRelicInfo(relic.item_id, items);
           
           if (!shouldShowRelic(relic, relicInfo, countFilterOptions)) return;
 
@@ -481,7 +482,7 @@ const RelicsPage = ({ onBack,
       effectMap
     };
     return character.relics.some(relic => {
-      const relicInfo = items[relic.item_id.toString()];
+      const relicInfo = getRelicInfo(relic.item_id, items);
       return shouldShowRelic(relic, relicInfo, filterOptions);
     });
   })();
