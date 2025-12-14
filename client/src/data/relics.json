@@ -414,6 +414,24 @@
     "fixedEffects": [ 7126000, 7126001, 7126002 ],
     "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
+  "1600": {
+    "name": "Grand Luminous Scene",
+    "color": "Yellow",
+    "fixedEffects": [ 7036500, 7121000, 7121001 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1650": {
+    "name": "Grand Burning Scene",
+    "color": "Red",
+    "fixedEffects": [ 6640000, 7000002, 7000102 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1680": {
+    "name": "Grand Drizzly Scene",
+    "color": "Blue",
+    "fixedEffects": [ 6640100, 7000502, 7000602 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
   "1610": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
@@ -432,10 +450,34 @@
     "fixedEffects": [ 6642100, 7000002, 7000302 ],
     "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
+  "1690": {
+    "name": "Grand Tranquil Scene",
+    "color": "Green",
+    "fixedEffects": [ 6646100, 7000502, 7000602 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
   "1700": {
     "name": "Grand Drizzly Scene",
     "color": "Blue",
     "fixedEffects": [ 6643100, 7000102, 7000602 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1710": {
+    "name": "Grand Burning Scene",
+    "color": "Red",
+    "fixedEffects": [ 6643000, 7000002, 7000302 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1720": {
+    "name": "Grand Burning Scene",
+    "color": "Red",
+    "fixedEffects": [ 7030200, 7050100, 7121000 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1730": {
+    "name": "Grand Drizzly Scene",
+    "color": "Blue",
+    "fixedEffects": [ 6060300, 6060500, 7060100 ],
     "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "1740": {
@@ -454,6 +496,24 @@
     "name": "Grand Drizzly Scene",
     "color": "Blue",
     "fixedEffects": [ 6646000, 7000002, 7000202 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1870": {
+    "name": "Grand Drizzly Scene",
+    "color": "Blue",
+    "fixedEffects": [ 6647400, 6647400, 7000402 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1880": {
+    "name": "Grand Tranquil Scene",
+    "color": "Green",
+    "fixedEffects": [ 6647500, 7000102, 7000602 ],
+    "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
+  },
+  "1920": {
+    "name": "Grand Luminous Scene",
+    "color": "Yellow",
+    "fixedEffects": [ 6647300, 7000202, 7000402 ],
     "description": "Can be purchased from the Collector Signboard outside the Roundtable Hold for 3 Sovereign Sigils."
   },
   "2000": {
