@@ -157,26 +157,14 @@ export const getRelicInfo = (id, relicsData) => {
   const types = ['Burning', 'Drizzly', 'Luminous', 'Tranquil'];
   const qualities = ['Delicate', 'Polished', 'Grand'];
 
-  // standard scenes: 1000000-1999999
-  if (idNum >= 1000000 && idNum <= 1999999) {
+  // standard relics: 1000000-1999999, deep relics: 2000000-2999999
+  if (idNum >= 1000000 && idNum <= 2999999) {
+    const isDeep = idNum >= 2000000;
     const colorIndex = Math.floor((idNum % 1000) / 100);
     const qualityIndex = idNum % 10;
     if (colorIndex <= 3 && qualityIndex <= 2) {
       return {
-        name: `${qualities[qualityIndex]} ${types[colorIndex]} Scene`,
-        color: colors[colorIndex],
-        isFallback: true
-      };
-    }
-  }
-
-  // deep scenes: 2000000-2999999
-  if (idNum >= 2000000 && idNum <= 2999999) {
-    const colorIndex = Math.floor((idNum % 1000) / 100);
-    const qualityIndex = idNum % 10;
-    if (colorIndex <= 3 && qualityIndex <= 2) {
-      return {
-        name: `Deep ${qualities[qualityIndex]} ${types[colorIndex]} Scene`,
+        name: `${isDeep ? 'Deep ' : ''}${qualities[qualityIndex]} ${types[colorIndex]} Scene`,
         color: colors[colorIndex],
         isFallback: true
       };
