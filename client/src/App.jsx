@@ -14,7 +14,7 @@ import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
 import { shouldUseDarkText, createEffectMap, capitalize } from './utils/utils';
-import { usePersistentBoolean, usePersistentState } from './utils/hooks';
+import { useUserOptions } from './utils/hooks';
 import { extractAllRelicsFromSl2 } from './utils/relicExtractor';
 
 const vesselData = nightfarers.nightfarers.reduce((acc, character) => {
@@ -38,13 +38,17 @@ function App() {
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
-  const [showDeepOfNight, setShowDeepOfNight] = usePersistentBoolean('showDeepOfNight', false);
-  const [showForsakenHollows, setShowForsakenHollows] = usePersistentBoolean('showForsakenHollows', false);
-  const [showUnknownRelics, setShowUnknownRelics] = usePersistentState('showUnknownRelics', 'no');
-  const [showRelicIdToggle, setShowRelicIdToggle] = usePersistentBoolean('showRelicIdToggle', false);
-  const [showScoreInfoToggle, setShowScoreInfoToggle] = usePersistentBoolean('showScoreInfoToggle', false);
-  const [calculateGuaranteeableRelics, setCalculateGuaranteeableRelics] = usePersistentBoolean('calculateGuaranteeableRelics', true);
-  const [openPopoutInNewTab, setOpenPopoutInNewTab] = usePersistentBoolean('openPopoutInNewTab', false);
+  const [userOptions, updateUserOption] = useUserOptions();
+  const {
+    showDeepOfNight,
+    showForsakenHollows,
+    showUnknownRelics,
+    showRelicIdToggle,
+    showScoreInfoToggle,
+    calculateGuaranteeableRelics,
+    openPopoutInNewTab,
+    primaryColor,
+  } = userOptions;
   const [baseRelicColorFilters, setBaseRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [deepRelicColorFilters, setDeepRelicColorFilters] = useState({ red: true, green: true, blue: true, yellow: true });
   const [showUploadTooltip, setShowUploadTooltip] = useState(false);
@@ -65,7 +69,6 @@ function App() {
     setExpandedCard(prev => prev === cardName ? null : cardName);
   };
 
-  const [primaryColor, setPrimaryColor] = usePersistentState('primaryColor', '#646cff');
   useEffect(() => {
     document.documentElement.style.setProperty('--primary-color', primaryColor);
     const textColor = shouldUseDarkText(primaryColor) ? '#000000' : 'rgba(255, 255, 255, 0.87)';
@@ -416,7 +419,7 @@ function App() {
       setShowDeepConfirmation(true);
     } else if (needsModeSwitch) {
       pendingBuildEffectsRef.current = buildData.effects;
-      setShowDeepOfNight(buildData.isDeepOfNight);
+      updateUserOption('showDeepOfNight', buildData.isDeepOfNight);
     } else {
       setDesiredEffects(buildData.effects);
     }
@@ -428,7 +431,7 @@ function App() {
       pendingBuildEffectsRef.current = pendingBuildLoad.effects;
       setPendingBuildLoad(null);
     }
-    setShowDeepOfNight(newValue);
+    updateUserOption('showDeepOfNight', newValue);
   };
 
   const handleDeepOfNightToggle = () => {
@@ -456,7 +459,7 @@ function App() {
   
   // FORSAKEN HOLLOWS TOGGLE
   const applyForsakenHollowsToggle = (newValue) => {
-    setShowForsakenHollows(newValue);
+    updateUserOption('showForsakenHollows', newValue);
     handleClearCharacter();
   };
 
@@ -598,10 +601,7 @@ function App() {
               <RelicResults
                 selectedVessels={selectedVessels}
                 calculationResult={calculationResult}
-                showDeepOfNight={showDeepOfNight}
-                showForsakenHollows={showForsakenHollows}
-                showScoreInfoToggle={showScoreInfoToggle}
-                openPopoutInNewTab={openPopoutInNewTab}
+                userOptions={userOptions}
               />
             </div>
           </div>
@@ -625,10 +625,7 @@ function App() {
         onBack={() => setShowRelics(false)}
         selectedSaveName={selectedSaveName}
         onSaveNameSelect={setSelectedSaveName}
-        showDeepOfNight={showDeepOfNight}
-        showForsakenHollows={showForsakenHollows}
-        showUnknownRelics={showUnknownRelics}
-        showRelicIdToggle={showRelicIdToggle}
+        userOptions={userOptions}
         baseRelicColorFilters={baseRelicColorFilters}
         deepRelicColorFilters={deepRelicColorFilters}
         onBaseRelicColorFilterChange={handleBaseRelicColorFilterChange}
@@ -637,18 +634,8 @@ function App() {
 
       {showSettings && <SettingsPage
         onBack={() => setShowSettings(false)}
-        showUnknownRelics={showUnknownRelics}
-        setShowUnknownRelics={setShowUnknownRelics}
-        showRelicIdToggle={showRelicIdToggle}
-        setShowRelicIdToggle={setShowRelicIdToggle}
-        showScoreInfoToggle={showScoreInfoToggle}
-        setShowScoreInfoToggle={setShowScoreInfoToggle}
-        calculateGuaranteeableRelics={calculateGuaranteeableRelics}
-        setCalculateGuaranteeableRelics={setCalculateGuaranteeableRelics}
-        openPopoutInNewTab={openPopoutInNewTab}
-        setOpenPopoutInNewTab={setOpenPopoutInNewTab}
-        primaryColor={primaryColor}
-        setPrimaryColor={setPrimaryColor}
+        userOptions={userOptions}
+        updateUserOption={updateUserOption}
       />}
 
       {showSavedBuilds && <SavedBuildsPage

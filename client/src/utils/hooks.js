@@ -1,35 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-export function usePersistentBoolean(key, defaultValue) {
-  const [value, setValue] = useState(() => {
-    const saved = localStorage.getItem(key);
-    return saved !== null ? JSON.parse(saved) : defaultValue;
+const DEFAULT_USER_OPTIONS = {
+  showDeepOfNight: false,
+  showForsakenHollows: false,
+  showUnknownRelics: 'no',
+  showRelicIdToggle: false,
+  showScoreInfoToggle: false,
+  calculateGuaranteeableRelics: true,
+  openPopoutInNewTab: false,
+  primaryColor: '#646cff',
+};
+
+export function useUserOptions() {
+  const [options, setOptions] = useState(() => {
+    const saved = localStorage.getItem('userOptions');
+    if (saved) {
+      try {
+        return { ...DEFAULT_USER_OPTIONS, ...JSON.parse(saved) };
+      } catch {
+        return DEFAULT_USER_OPTIONS;
+      }
+    }
+    return DEFAULT_USER_OPTIONS;
   });
 
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+    localStorage.setItem('userOptions', JSON.stringify(options));
+  }, [options]);
 
-  return [value, setValue];
-}
+  const updateOption = useCallback((key, value) => {
+    setOptions(prev => ({ ...prev, [key]: value }));
+  }, []);
 
-export function usePersistentState(key, defaultValue) {
-  const [value, setValue] = useState(() => {
-    const saved = localStorage.getItem(key);
-    if (saved === null) return defaultValue;
-    if (typeof defaultValue === 'boolean') {
-      try { return JSON.parse(saved); } catch { return saved === 'true'; }
-    }
-    return saved;
-  });
-
-  useEffect(() => {
-    if (typeof value === 'string') {
-      localStorage.setItem(key, value);
-    } else {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
-  }, [key, value]);
-
-  return [value, setValue];
+  return [options, updateOption, setOptions];
 }

@@ -1,19 +1,16 @@
 import ColorPicker from "./ColorPicker";
 import { CloseIcon } from "./Icons";
 
-const SettingsPage = ({ onBack,
-  showUnknownRelics,
-  setShowUnknownRelics,
-  showRelicIdToggle,
-  setShowRelicIdToggle,
-  showScoreInfoToggle,
-  setShowScoreInfoToggle,
-  calculateGuaranteeableRelics,
-  setCalculateGuaranteeableRelics,
-  openPopoutInNewTab,
-  setOpenPopoutInNewTab,
-  primaryColor,
-  setPrimaryColor }) => {
+const SettingsPage = ({ onBack, userOptions, updateUserOption }) => {
+  const {
+    showUnknownRelics,
+    showRelicIdToggle,
+    showScoreInfoToggle,
+    calculateGuaranteeableRelics,
+    openPopoutInNewTab,
+    primaryColor,
+  } = userOptions;
+
   return (
     <div className="settings-page-backdrop">
       <div className="settings-page card">
@@ -24,14 +21,14 @@ const SettingsPage = ({ onBack,
         <div className="settings-body">
 
           <div className="settings-column left-column">
-            <ColorPicker color={primaryColor} setColor={setPrimaryColor} />
+            <ColorPicker color={primaryColor} setColor={(color) => updateUserOption('primaryColor', color)} />
             
             <div className="settings-option">
               <label>
                 <input
                   type="checkbox"
                   checked={openPopoutInNewTab}
-                  onChange={() => setOpenPopoutInNewTab(prev => !prev)}
+                  onChange={() => updateUserOption('openPopoutInNewTab', !openPopoutInNewTab)}
                 />
                 Open Popout in New Tab
               </label>
@@ -41,15 +38,15 @@ const SettingsPage = ({ onBack,
               <span>Display Unknown Relics</span>
               <div className="radio-group">
                 <label>
-                  <input type="radio" checked={showUnknownRelics === 'no'} onChange={() => setShowUnknownRelics('no')} />
+                  <input type="radio" checked={showUnknownRelics === 'no'} onChange={() => updateUserOption('showUnknownRelics', 'no')} />
                   No
                 </label>
                 <label>
-                  <input type="radio" checked={showUnknownRelics === 'yes'} onChange={() => setShowUnknownRelics('yes')} />
+                  <input type="radio" checked={showUnknownRelics === 'yes'} onChange={() => updateUserOption('showUnknownRelics', 'yes')} />
                   Yes
                 </label>
                 <label>
-                  <input type="radio" checked={showUnknownRelics === 'only'} onChange={() => setShowUnknownRelics('only')} />
+                  <input type="radio" checked={showUnknownRelics === 'only'} onChange={() => updateUserOption('showUnknownRelics', 'only')} />
                   Only
                 </label>
               </div>
@@ -62,7 +59,7 @@ const SettingsPage = ({ onBack,
                 <input
                   type="checkbox"
                   checked={showScoreInfoToggle}
-                  onChange={() => setShowScoreInfoToggle(prev => !prev)}
+                  onChange={() => updateUserOption('showScoreInfoToggle', !showScoreInfoToggle)}
                 />
                 Display "Score Info" Toggle Icon
               </label>
@@ -73,7 +70,7 @@ const SettingsPage = ({ onBack,
                 <input
                   type="checkbox"
                   checked={showRelicIdToggle}
-                  onChange={() => setShowRelicIdToggle(prev => !prev)}
+                  onChange={() => updateUserOption('showRelicIdToggle', !showRelicIdToggle)}
                 />
                 Display "Relic ID" Toggle Icon
               </label>
@@ -84,7 +81,7 @@ const SettingsPage = ({ onBack,
                 <input
                   type="checkbox"
                   checked={calculateGuaranteeableRelics}
-                  onChange={() => setCalculateGuaranteeableRelics(prev => !prev)}
+                  onChange={() => updateUserOption('calculateGuaranteeableRelics', !calculateGuaranteeableRelics)}
                 />
                 Calculate "Guaranteeable" Relics
               </label>

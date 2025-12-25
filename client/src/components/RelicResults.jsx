@@ -6,7 +6,13 @@ import { InformationIcon, LeftArrowIcon, RightArrowIcon, MaximizeIcon, ExternalL
 import { numberFormatter, getImageUrl, getRelicDescription, getEffectIcon } from '../utils/utils';
 import relicsData from '../data/relics.json';
 
-const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle, openPopoutInNewTab }) => {
+const RelicResults = ({ calculationResult, userOptions }) => {
+  const {
+    showDeepOfNight,
+    showForsakenHollows,
+    showScoreInfoToggle,
+    openPopoutInNewTab,
+  } = userOptions;
   const [showTooltip, setShowTooltip] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showingDeepRelics, setShowingDeepRelics] = useState(false);
@@ -14,8 +20,6 @@ const RelicResults = ({ calculationResult, showDeepOfNight, showScoreInfoToggle,
   const [showMaximized, setShowMaximized] = useState(false);
   const [showPopout, setShowPopout] = useState(false);
   const [showRelicTooltip, setShowRelicTooltip] = useState(null);
-
-
 
   // reset index and deep relic display when calculationResult changes
   React.useEffect(() => {

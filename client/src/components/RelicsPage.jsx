@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { usePersistentState } from '../utils/hooks';
 import items from '../data/relics.json';
 import effects from '../data/effects.json';
 import { CloseIcon, InformationIcon } from './Icons';
@@ -172,21 +171,31 @@ const CharacterRelics = ({ characterData,
 const RelicsPage = ({ onBack,
   selectedSaveName,
   onSaveNameSelect,
-  showDeepOfNight,
-  showForsakenHollows,
-  showUnknownRelics,
-  showRelicIdToggle,
+  userOptions,
   baseRelicColorFilters,
   deepRelicColorFilters,
   onBaseRelicColorFilterChange,
   onDeepRelicColorFilterChange }) => {
+  const {
+    showDeepOfNight,
+    showForsakenHollows,
+    showUnknownRelics,
+    showRelicIdToggle,
+  } = userOptions;
+
   const [relicData, setRelicData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [effectMap, setEffectMap] = useState(new Map());
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCharacterName, setSelectedCharacterName] = usePersistentState('selectedRelicsCharacter', '');
+  const [selectedCharacterName, setSelectedCharacterName] = useState(() => {
+    return localStorage.getItem('selectedRelicsCharacter') || '';
+  });
   const [characterFilters, setCharacterFilters] = useState({});
   const [showWhiteRelics, setShowWhiteRelics] = useState(true);
+
+  useEffect(() => {
+    localStorage.setItem('selectedRelicsCharacter', selectedCharacterName);
+  }, [selectedCharacterName]);
 
   useEffect(() => {
     setEffectMap(createEffectMap(showForsakenHollows, effects));
