@@ -188,10 +188,6 @@ button:hover {
 }
 
 .floating-button {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1001;
   background-color: transparent;
   border-radius: 50%;
   font-size: 1.5rem;
@@ -199,6 +195,12 @@ button:hover {
   cursor: pointer;
   line-height: 0;
   padding: 0.25rem 0.25rem;
+  border: 1px solid transparent;
+}
+
+.floating-button svg {
+  width: 36px;
+  height: 36px;
 }
 
 .corner-button {
@@ -2104,7 +2106,7 @@ button:hover {
   display: contents;
 }
 
-.top-controls-bar {
+.options-top-left {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -2112,6 +2114,16 @@ button:hover {
   flex-direction: row;
   gap: 0.5rem;
   z-index: 1000;
+}
+
+.options-top-right {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1001;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 
 /* ========================================
@@ -2123,7 +2135,7 @@ button:hover {
   }
 
   /* top controls bar - full width, centered */
-  .top-controls-bar {
+  .options-top-left {
     position: static;
     justify-content: center;
     padding: 0.5rem 0;
@@ -2133,6 +2145,12 @@ button:hover {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
+  }
+
+  .options-top-right {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
   }
 
   .floating-checkbox {
@@ -2145,11 +2163,6 @@ button:hover {
     margin: 0.25rem 0;
   }
 
-  /* settings button positioning */
-  .floating-button {
-    top: 0.5rem;
-    right: 0.5rem;
-  }
 
   /* app container adjustments */
   .app-container {

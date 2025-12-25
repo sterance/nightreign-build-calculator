@@ -983,10 +983,22 @@
     "name": "Grand Burning Scene",
     "color": "Red"
   },
+  "19000": {
+    "name": "Cleansing Tear",
+    "color": "Red",
+    "fixedEffects": [ 7036400, 7006300, 7090000 ],
+    "description": "Acquired as a reward for completing Part 2 of the Scholar's Remembrance Quest."
+  },
+  "19001": {
+    "name": "Note \"My Dear Successor\"",
+    "color": "Yellow",
+    "fixedEffects": [ 19001, 7036200, 7000802 ],
+    "description": "Acquired as a reward for completing the Scholar's Remembrance Quest."
+  },
   "19050": {
     "name": "Leather Monocle Case",
     "color": "Blue",
-    "fixedEffects": [ 7037000, 7006400, 7001402],
+    "fixedEffects": [ 7037000, 7006400, 7001402 ],
     "description": "Acquired as a reward for completing Part 1 of the Undertaker's Remembrance Quest."
   },
   "19051": {

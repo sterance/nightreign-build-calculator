@@ -1,4 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect
+} from 'react';
 import './App.css';
 import CharacterSelection from './components/CharacterSelection';
 import VesselButton from './components/VesselButton';
@@ -8,12 +12,24 @@ import DesiredEffects from './components/DesiredEffects';
 import RelicsPage from './components/RelicsPage';
 import nightfarers from './data/nightfarers.json';
 import vesselsRaw from './data/vessels.json';
-import { RelicIcon, UploadIcon, SettingsIcon, SwordIcon, CloseIcon } from './components/Icons';
+import {
+  RelicIcon,
+  UploadIcon,
+  SettingsIcon,
+  SwordIcon,
+  CloseIcon,
+  TransferIcon,
+  QuestionMarkIcon
+} from './components/Icons';
 import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
 import ToastNotification from './components/ToastNotification';
-import { shouldUseDarkText, createEffectMap, capitalize } from './utils/utils';
+import {
+  shouldUseDarkText,
+  createEffectMap,
+  capitalize
+} from './utils/utils';
 import { useUserOptions } from './utils/hooks';
 import { extractAllRelicsFromSl2 } from './utils/relicExtractor';
 
@@ -456,7 +472,7 @@ function App() {
     setPendingDeepOfNight(false);
     setPendingBuildLoad(null);
   };
-  
+
   // FORSAKEN HOLLOWS TOGGLE
   const applyForsakenHollowsToggle = (newValue) => {
     updateUserOption('showForsakenHollows', newValue);
@@ -491,7 +507,7 @@ function App() {
   return (
     <div className="app-container">
       <ToastNotification toasts={toasts} />
-      <div className="top-controls-bar">
+      <div className="options-top-left">
         <div
           className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
           onClick={handleDeepOfNightToggle}
@@ -507,13 +523,27 @@ function App() {
         </div>
       </div>
 
-      <button
-        className="floating-button"
-        title='Settings'
-        onClick={() => setShowSettings(prev => !prev)}
-      >
-        <SettingsIcon />
-      </button>
+      <div className="options-top-right">
+        <button
+          className='floating-button'
+          title='Transfer'
+        >
+          <TransferIcon />
+        </button>
+        <button
+          className='floating-button'
+          title='Help'
+        >
+          <QuestionMarkIcon />
+        </button>
+        <button
+          className="floating-button"
+          title='Settings'
+          onClick={() => setShowSettings(prev => !prev)}
+        >
+          <SettingsIcon />
+        </button>
+      </div>
 
 
       <div className="content-wrapper">
@@ -642,7 +672,7 @@ function App() {
         onBack={() => setShowSavedBuilds(false)}
         onLoadBuild={handleLoadBuild}
       />}
-      
+
       <div className="bottom-bar">
 
         <button
