@@ -5,8 +5,17 @@
   "main": "client/dist/index.html",
   "scripts": {
     "install": "npm --prefix client install",
-    "dev": "npm --prefix client run dev",
+    "dev": "concurrently \"npm --prefix client run dev:http\" \"npm --prefix client run dev:https\" --names \"HTTP,HTTPS\" --prefix-colors \"blue,green\"",
     "build": "npm --prefix client run build",
     "preview": "npm --prefix client run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.1.0",
+    "html5-qrcode": "^2.3.8",
+    "peerjs": "^1.5.5",
+    "react-qr-code": "^2.0.18"
   }
 }

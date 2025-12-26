@@ -2126,6 +2126,67 @@ button:hover {
   gap: 0.5rem;
 }
 
+.transfer-button {
+  min-width: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.scanner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.scanner-modal {
+  background-color: #1a1a1a;
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.scanner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.scanner-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+#qr-reader {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#qr-reader video {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+#qr-reader__dashboard {
+  display: none;
+}
+
 /* ========================================
    PORTRAIT STYLES (< 1300px)
    ======================================== */
@@ -2137,7 +2198,7 @@ button:hover {
   /* top controls bar - full width, centered */
   .options-top-left {
     position: static;
-    justify-content: center;
+    justify-content: left;
     padding: 0.5rem 0;
     background-color: #1a1a1a;
     border-bottom: 1px solid #555;
@@ -2145,6 +2206,10 @@ button:hover {
     width: 100vw;
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
+  }
+
+  #don-button {
+    margin-left: 0.5rem;
   }
 
   .options-top-right {

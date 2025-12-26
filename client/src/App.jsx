@@ -24,6 +24,7 @@ import {
 import effects from './data/effects.json';
 import SettingsPage from './components/SettingsPage';
 import SavedBuildsPage from './components/SavedBuildsPage';
+import TransferPage from './components/TransferPage';
 import ToastNotification from './components/ToastNotification';
 import {
   shouldUseDarkText,
@@ -51,6 +52,7 @@ function App() {
   const [showRelics, setShowRelics] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [showSavedBuilds, setShowSavedBuilds] = useState(false);
+  const [showTransfer, setShowTransfer] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [hasRelicData, setHasRelicData] = useState(false);
   const [hasSavedBuilds, setHasSavedBuilds] = useState(false);
@@ -509,6 +511,7 @@ function App() {
       <ToastNotification toasts={toasts} />
       <div className="options-top-left">
         <div
+          id='don-button'
           className={showDeepOfNight ? 'floating-checkbox checked' : 'floating-checkbox'}
           onClick={handleDeepOfNightToggle}
         >
@@ -527,6 +530,7 @@ function App() {
         <button
           className='floating-button'
           title='Transfer'
+          onClick={() => setShowTransfer(true)}
         >
           <TransferIcon />
         </button>
@@ -671,6 +675,13 @@ function App() {
       {showSavedBuilds && <SavedBuildsPage
         onBack={() => setShowSavedBuilds(false)}
         onLoadBuild={handleLoadBuild}
+      />}
+
+      {showTransfer && <TransferPage
+        onBack={() => setShowTransfer(false)}
+        addToast={addToast}
+        setHasRelicData={setHasRelicData}
+        setHasSavedBuilds={setHasSavedBuilds}
       />}
 
       <div className="bottom-bar">
