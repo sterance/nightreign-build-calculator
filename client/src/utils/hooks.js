@@ -9,6 +9,7 @@ const DEFAULT_USER_OPTIONS = {
   calculateGuaranteeableRelics: true,
   openPopoutInNewTab: false,
   primaryColor: '#646cff',
+  selectedRelicsCharacter: '',
 };
 
 export function useUserOptions() {

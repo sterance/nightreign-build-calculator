@@ -406,7 +406,8 @@ const DesiredEffects = ({
         <h2>Desired Effects</h2>
         <div className="search-container" ref={searchContainerRef}>
           <input
-            type="text"
+            id="relic-effect-search"
+            type="search"
             placeholder="Search for relic effects..."
             value={searchTerm}
             onClick={() => setListVisible(true)}

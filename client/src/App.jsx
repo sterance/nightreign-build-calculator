@@ -229,17 +229,24 @@ function App() {
         const parsedData = JSON.parse(storedData);
         if (parsedData && parsedData.length > 0) {
           setHasRelicData(true);
+          // initialize from saved selectedRelicsCharacter if it exists and is valid
+          if (userOptions.selectedRelicsCharacter) {
+            const savedCharacter = parsedData.find(c => c.character_name === userOptions.selectedRelicsCharacter);
+            if (savedCharacter) {
+              setSelectedSaveName(userOptions.selectedRelicsCharacter);
+            }
+          }
           // pre-select default: single entry -> that entry; otherwise choose most-populated if none set
           if (parsedData.length === 1) {
             setSelectedSaveName(parsedData[0].character_name);
-            localStorage.setItem('selectedRelicsCharacter', parsedData[0].character_name);
+            updateUserOption('selectedRelicsCharacter', parsedData[0].character_name);
           } else if (!selectedSaveName) {
             const mostRelics = parsedData
               .map(c => ({ name: c.character_name, count: Array.isArray(c.relics) ? c.relics.length : 0 }))
               .sort((a, b) => b.count - a.count)[0];
             if (mostRelics) {
               setSelectedSaveName(mostRelics.name);
-              localStorage.setItem('selectedRelicsCharacter', mostRelics.name);
+              updateUserOption('selectedRelicsCharacter', mostRelics.name);
             }
           }
         } else {
@@ -342,7 +349,7 @@ function App() {
           .sort((a, b) => b.count - a.count)[0];
         setSelectedSaveName(mostRelicsEntry ? mostRelicsEntry.name : null);
         if (mostRelicsEntry && mostRelicsEntry.name) {
-          localStorage.setItem('selectedRelicsCharacter', mostRelicsEntry.name);
+          updateUserOption('selectedRelicsCharacter', mostRelicsEntry.name);
         }
       } else {
         addToast('Relic information not found in save file.', 'error');
@@ -575,7 +582,7 @@ function App() {
             <div className="collapsible-header" onClick={() => isVesselsEnabled && toggleCard('vessels')}>
               <span>Vessels</span>
               <div className="collapsible-header-right">
-                <span id='selected-vessel-count'> {selectedVessels.length === 0 ? '(None)' : (selectedVessels.length === 8 && !showForsakenHollows) || (selectedVessels.length === 11 && showForsakenHollows) ? '(All)' : '(Some)'} </span>
+                {selectedCharacter && <span id='selected-vessel-count'> {selectedVessels.length} / {showForsakenHollows ? 11 : 8} </span>}
                 <span className="collapse-indicator">▼</span>
               </div>
             </div>
@@ -658,8 +665,12 @@ function App() {
       {showRelics && <RelicsPage
         onBack={() => setShowRelics(false)}
         selectedSaveName={selectedSaveName}
-        onSaveNameSelect={setSelectedSaveName}
+        onSaveNameSelect={(name) => {
+          setSelectedSaveName(name);
+          updateUserOption('selectedRelicsCharacter', name);
+        }}
         userOptions={userOptions}
+        updateUserOption={updateUserOption}
         baseRelicColorFilters={baseRelicColorFilters}
         deepRelicColorFilters={deepRelicColorFilters}
         onBaseRelicColorFilterChange={handleBaseRelicColorFilterChange}

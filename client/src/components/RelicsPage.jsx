@@ -172,6 +172,7 @@ const RelicsPage = ({ onBack,
   selectedSaveName,
   onSaveNameSelect,
   userOptions,
+  updateUserOption,
   baseRelicColorFilters,
   deepRelicColorFilters,
   onBaseRelicColorFilterChange,
@@ -181,6 +182,7 @@ const RelicsPage = ({ onBack,
     showForsakenHollows,
     showUnknownRelics,
     showRelicIdToggle,
+    selectedRelicsCharacter,
   } = userOptions;
 
   const [relicData, setRelicData] = useState(null);
@@ -188,14 +190,16 @@ const RelicsPage = ({ onBack,
   const [effectMap, setEffectMap] = useState(new Map());
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCharacterName, setSelectedCharacterName] = useState(() => {
-    return localStorage.getItem('selectedRelicsCharacter') || '';
+    return selectedRelicsCharacter || '';
   });
   const [characterFilters, setCharacterFilters] = useState({});
   const [showWhiteRelics, setShowWhiteRelics] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem('selectedRelicsCharacter', selectedCharacterName);
-  }, [selectedCharacterName]);
+    if (selectedCharacterName && updateUserOption) {
+      updateUserOption('selectedRelicsCharacter', selectedCharacterName);
+    }
+  }, [selectedCharacterName, updateUserOption]);
 
   useEffect(() => {
     setEffectMap(createEffectMap(showForsakenHollows, effects));
@@ -317,11 +321,12 @@ const RelicsPage = ({ onBack,
   useEffect(() => {
     if (!relicData) return;
     // sync local selection from prop on initial render/open
-    if (selectedSaveName && selectedSaveName !== selectedCharacterName) {
-      setSelectedCharacterName(selectedSaveName);
+    const savedCharacter = selectedRelicsCharacter || selectedSaveName;
+    if (savedCharacter && savedCharacter !== selectedCharacterName) {
+      setSelectedCharacterName(savedCharacter);
     }
 
-    const current = (selectedSaveName || selectedCharacterName) || null;
+    const current = (selectedSaveName || selectedCharacterName || selectedRelicsCharacter) || null;
     const stillVisible = current ? visibleSortedCharacters.some(c => c.character_name === current) : false;
     const firstVisible = visibleSortedCharacters[0]?.character_name || null;
     const nextSelection = current && stillVisible ? current : firstVisible;
@@ -330,7 +335,7 @@ const RelicsPage = ({ onBack,
     }
     const target = (nextSelection || null);
     if (target && onSaveNameSelect) onSaveNameSelect(target);
-  }, [relicData, showUnknownRelics, showDeepOfNight, characterFilters, searchTerm, selectedSaveName, selectedCharacterName]);
+  }, [relicData, showUnknownRelics, showDeepOfNight, characterFilters, searchTerm, selectedSaveName, selectedCharacterName, selectedRelicsCharacter]);
 
   const handleBaseRelicColorFilterChange = (color) => {
     if (!selectedCharacterName) return;
@@ -435,7 +440,8 @@ const RelicsPage = ({ onBack,
           />
           <div className="search-container">
             <input
-              type="text"
+              type="search"
+              id="relic-search-input"
               placeholder="Search for relics or effects..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}

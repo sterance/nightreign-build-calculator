@@ -11,7 +11,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
   const [sendStatus, setSendStatus] = useState('');
   const [receiveStatus, setReceiveStatus] = useState('');
   const [isTransferring, setIsTransferring] = useState(false);
-  const [transferProgress, setTransferProgress] = useState(0);
   const [isScanning, setIsScanning] = useState(false);
   const [showSendCode, setShowSendCode] = useState(false);
   const peerRef = useRef(null);
@@ -21,10 +20,8 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
 
   const cleanupPeerConnection = async () => {
     console.log('[TransferPage] cleanupPeerConnection: cleaning up old connections...');
-    // Close and remove connection first
     if (connectionRef.current) {
       try {
-        // Remove all event listeners if method exists
         if (typeof connectionRef.current.removeAllListeners === 'function') {
           connectionRef.current.removeAllListeners();
         }
@@ -36,22 +33,17 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
       connectionRef.current = null;
     }
     
-    // Disconnect and destroy peer
     if (peerRef.current) {
       try {
         if (!peerRef.current.destroyed) {
-          // Remove all event listeners if method exists
           if (typeof peerRef.current.removeAllListeners === 'function') {
             peerRef.current.removeAllListeners();
           }
-          // Disconnect first if connected
           if (peerRef.current.open) {
             peerRef.current.disconnect();
             console.log('[TransferPage] cleanupPeerConnection: peer disconnected');
-            // Wait a bit for disconnect to complete
             await new Promise(resolve => setTimeout(resolve, 100));
           }
-          // Then destroy
           peerRef.current.destroy();
           console.log('[TransferPage] cleanupPeerConnection: peer destroyed');
         }
@@ -61,22 +53,17 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
       peerRef.current = null;
     }
     
-    // Longer delay to ensure cleanup completes and server processes the disconnection
     await new Promise(resolve => setTimeout(resolve, 500));
   };
 
   const handleGenerateSendCode = async () => {
-    // Clean up any existing connections first
     await cleanupPeerConnection();
     
-    // Reset state
     setPairingCode('');
     setShowSendCode(false);
     setSendStatus('');
     setIsTransferring(false);
-    setTransferProgress(0);
     
-    // Generate a new code - if connection fails, we'll generate another one
     let attempts = 0;
     const maxAttempts = 3;
     
@@ -132,11 +119,9 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
         }
       });
         
-        // Success - break out of retry loop
         break;
       } catch (error) {
         console.error(`[TransferPage] handleGenerateSendCode: attempt ${attempts} failed:`, error);
-        // Clean up failed attempt
         await cleanupPeerConnection();
         
         if (attempts >= maxAttempts) {
@@ -145,17 +130,14 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
           setShowSendCode(false);
           setPairingCode('');
         } else {
-          // Wait before retrying with a new code
           console.log(`[TransferPage] handleGenerateSendCode: waiting before retry...`);
           await new Promise(resolve => setTimeout(resolve, 1000));
-          // Continue loop to generate new code
         }
       }
     }
   };
 
   useEffect(() => {
-    // Cleanup on unmount
     return () => {
       if (connectionRef.current) {
         connectionRef.current.close();
@@ -175,7 +157,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
     try {
       setIsTransferring(true);
       setSendStatus('transferring data...');
-      setTransferProgress(0);
 
       const dataToTransfer = {
         saveData: localStorage.getItem('saveData'),
@@ -188,7 +169,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
       console.log('[TransferPage] startTransfer: sending data...');
       await sendData(connectionRef.current, dataToTransfer);
       console.log('[TransferPage] startTransfer: data sent successfully');
-      setTransferProgress(100);
       setSendStatus('transfer complete!');
       addToast('Data transferred successfully', 'success');
       setTimeout(() => {
@@ -222,7 +202,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
   const handleDataReceived = (data) => {
     try {
       setReceiveStatus('data received - saving...');
-      setTransferProgress(100);
 
       if (data.saveData) {
         localStorage.setItem('saveData', data.saveData);
@@ -250,10 +229,8 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
 
   const handleCodeInputChange = (e) => {
     const input = e.target.value;
-    // Remove all non-alphanumeric characters and convert to uppercase
     const cleaned = input.replace(/[^A-Z0-9]/gi, '').toUpperCase().slice(0, 8);
     
-    // Format with hyphen after 4th character
     let formatted = cleaned;
     if (cleaned.length > 4) {
       formatted = cleaned.slice(0, 4) + '-' + cleaned.slice(4);
@@ -284,7 +261,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
     if (!isScanning) return;
 
     const initializeScanner = async () => {
-      // Wait for the DOM element to be available
       const element = document.getElementById('qr-reader');
       if (!element) {
         const errorMsg = 'qr-reader element not found';
@@ -300,7 +276,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
         const onScanSuccess = (decodedText, decodedResult) => {
           console.log('[TransferPage] useEffect: QR code scanned:', decodedText);
           console.log('[TransferPage] useEffect: decoded result:', decodedResult);
-          // Validate the scanned code
           const cleaned = decodedText.trim().replace(/[^A-Z0-9]/gi, '').toUpperCase();
           
           if (cleaned.length !== 8) {
@@ -310,19 +285,14 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
             return;
           }
 
-          // Stop scanner and close modal
           stopScanner().then(() => {
-            // Set the code input and trigger receive
             const formatted = cleaned.slice(0, 4) + '-' + cleaned.slice(4);
             setCodeInput(formatted);
-            // Use the cleaned code (no hyphen) for connection
             handleReceiveWithCode(cleaned);
           });
         };
 
         const onScanError = (errorMessage) => {
-          // Ignore frequent scan errors (normal during scanning)
-          // These are expected when no QR code is in view
           const ignoredErrors = [
             'No QR code found',
             'NotFoundException',
@@ -335,13 +305,11 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
           }
         };
 
-        // Try to get available cameras first for better error handling
         let cameraId = null;
         try {
           const cameras = await Html5Qrcode.getCameras();
           console.log('[TransferPage] useEffect: available cameras:', cameras.length);
           if (cameras.length > 0) {
-            // Prefer back camera (environment) on mobile
             const backCamera = cameras.find(cam => cam.label.toLowerCase().includes('back') || cam.label.toLowerCase().includes('rear'));
             cameraId = backCamera ? backCamera.id : cameras[0].id;
             console.log('[TransferPage] useEffect: using camera:', cameraId);
@@ -354,7 +322,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
           fps: 10,
           aspectRatio: 1.0,
           qrbox: (viewfinderWidth, viewfinderHeight) => {
-            // Use a larger scan area for better detection (almost full screen)
             const minEdgePercentage = 0.9;
             const minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
             const qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
@@ -385,7 +352,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
         }
         
         if (!started) {
-          // Try facingMode: environment (back camera)
           try {
             await scanner.start(
               { facingMode: "environment" },
@@ -401,23 +367,7 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
         }
         
         if (!started) {
-          // Try facingMode: user (front camera) as last resort
-          try {
-            await scanner.start(
-              { facingMode: "user" },
-              config,
-              onScanSuccess,
-              onScanError
-            );
-            console.log('[TransferPage] useEffect: camera started successfully (user)');
-            started = true;
-          } catch (err) {
-            console.error('[TransferPage] useEffect: user camera failed:', err);
-          }
-        }
-        
-        if (!started) {
-          throw new Error('All camera start attempts failed');
+          throw new Error('Back camera failed to start. Please use manual code entry.');
         }
       } catch (error) {
         const errorName = error?.name || 'UnknownError';
@@ -428,7 +378,9 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
         setIsScanning(false);
         
         let errorMessage = 'Failed to start camera. ';
-        if (error.name === 'NotAllowedError' || error.message.includes('Permission denied') || error.message.includes('NotAllowedError')) {
+        if (error.message && error.message.includes('Back camera failed to start')) {
+          errorMessage = error.message;
+        } else if (error.name === 'NotAllowedError' || error.message.includes('Permission denied') || error.message.includes('NotAllowedError')) {
           errorMessage = 'Camera permission denied. Please enable camera access in your browser settings and try again.';
         } else if (error.name === 'NotFoundError' || error.message.includes('NotFoundError') || error.message.includes('No camera')) {
           errorMessage = 'No camera found. Please use manual code entry.';
@@ -442,7 +394,6 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
       }
     };
 
-    // Small delay to ensure DOM is ready
     const timeoutId = setTimeout(initializeScanner, 200);
 
     return () => {
@@ -517,96 +468,85 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
 
   return (
     <div className="settings-page-backdrop">
-      <div className="settings-page card">
+      <div className="transfer-page card">
         <div className='card-header'>
           <button className="corner-button" onClick={onBack}><CloseIcon /></button>
         </div>
         <h2>Transfer Data</h2>
-        <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          <div>
-            <h3 style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>Send</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        <div className='transfer-content'>
+          <div className="transfer-card card">
+            <div className="card-header">
+              <h3>Send</h3>
+            </div>
+            <div className="transfer-card-body">
               {showSendCode && pairingCode ? (
                 <>
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <div className="transfer-code-display">
                     <input
                       type="text"
                       value={formatPairingCode(pairingCode)}
                       readOnly
-                      style={{ flex: 1, padding: '0.5rem', fontFamily: 'monospace', fontSize: '1.2rem', textAlign: 'center' }}
+                      className="transfer-code-input"
+                      id='send-code-display'
                     />
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'center', padding: '1rem', backgroundColor: '#fff', borderRadius: '8px' }}>
+                  <div className="transfer-qr-container">
                     <QRCode
                       value={pairingCode}
-                      size={300}
-                      style={{ maxWidth: '100%', height: 'auto' }}
+                      size={200}
+                      className="transfer-qr-code"
                     />
                   </div>
+                  <p className="transfer-code-hint">Scan the QR code or enter the text code on the receiving device.</p>
                 </>
               ) : (
                 <button
-                  className="transfer-button"
+                  className="transfer-button transfer-button-full"
                   title='Generate Send Code'
                   onClick={handleGenerateSendCode}
                   disabled={isTransferring}
-                  style={{ width: '100%' }}
                 >
                   Generate Send Code
                 </button>
               )}
-              {isTransferring && (
-                <div>
-                  <div style={{ marginBottom: '0.5rem' }}>Transferring... {transferProgress}%</div>
-                  <div style={{ width: '100%', height: '20px', backgroundColor: '#333', borderRadius: '10px', overflow: 'hidden' }}>
-                    <div style={{ width: `${transferProgress}%`, height: '100%', backgroundColor: 'var(--primary-color)', transition: 'width 0.3s' }} />
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
-          <div>
-            <h3 style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>Receive</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div className="transfer-card card">
+            <div className="card-header">
+              <h3>Receive</h3>
+            </div>
+            <div className="transfer-card-body">
+              <div className="transfer-code-display">
                 <input
                   type="text"
                   value={codeInput}
                   onChange={handleCodeInputChange}
                   placeholder="XXXX-XXXX"
                   maxLength={9}
-                  style={{ width: '100%', padding: '0.5rem', fontFamily: 'monospace', fontSize: '1.2rem', textAlign: 'center', textTransform: 'uppercase' }}
+                  className="transfer-code-input"
+                  id='recieve-code-input'
                 />
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
-                  <button
-                    className="transfer-button"
-                    title='Connect'
-                    onClick={handleReceive}
-                    disabled={!codeInput.trim() || isTransferring}
-                    style={{ flex: 1 }}
-                  >
-                    Connect
-                  </button>
-                  <button
-                    className="transfer-button"
-                    title='Scan QR Code'
-                    onClick={handleScanQRCode}
-                    disabled={isScanning || isTransferring}
-                    style={{ flex: 1 }}
-                  >
-                    Scan QR Code
-                  </button>
-                </div>
               </div>
-              {isTransferring && (
-                <div>
-                  <div style={{ marginBottom: '0.5rem' }}>Receiving... {transferProgress}%</div>
-                  <div style={{ width: '100%', height: '20px', backgroundColor: '#333', borderRadius: '10px', overflow: 'hidden' }}>
-                    <div style={{ width: `${transferProgress}%`, height: '100%', backgroundColor: 'var(--primary-color)', transition: 'width 0.3s' }} />
-                  </div>
-                </div>
-              )}
+              <div className="transfer-button-row">
+                <button
+                  className="transfer-button"
+                  title='Connect'
+                  onClick={handleReceive}
+                  disabled={!codeInput.trim() || isTransferring}
+                >
+                  Enter Text Code
+                </button>
+                <button
+                  className="transfer-button"
+                  title='Scan QR Code'
+                  onClick={handleScanQRCode}
+                  disabled={isScanning || isTransferring}
+                >
+                  Scan QR Code
+                </button>
+              </div>
+              <p className="transfer-code-hint">Scan the QR code or enter the text code from the sending device.</p>
             </div>
           </div>
         </div>
@@ -620,8 +560,8 @@ const TransferPage = ({ onBack, addToast, setHasRelicData, setHasSavedBuilds }) 
                   <CloseIcon />
                 </button>
               </div>
-              <div id="qr-reader" style={{ width: '100%', minHeight: '300px' }}></div>
-              <div style={{ padding: '1rem', textAlign: 'center', color: '#888', fontSize: '0.9rem' }}>
+              <div id="qr-reader" className="scanner-reader"></div>
+              <div className="scanner-hint">
                 Point your camera at the QR code
               </div>
             </div>
